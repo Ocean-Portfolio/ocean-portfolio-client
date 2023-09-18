@@ -1,7 +1,15 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Image from 'next/image';
+import { getClient } from '@/apollo/apollo-client';
+import { GET_SKILLS } from '@/gql';
+import styles from './page.module.css';
 
-export default function Home() {
+export default async function Home() {
+  const apolloClient = getClient();
+  const { data } = await apolloClient.query({
+    query: GET_SKILLS,
+  });
+
+  console.log(data);
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -15,7 +23,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{" "}
+            By{' '}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"

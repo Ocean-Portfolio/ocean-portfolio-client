@@ -1,8 +1,7 @@
 import './globals.css';
-import { ApolloProvider } from '@apollo/client';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import apolloClient from '@/apollo-client';
+import { ApolloWrapper } from '@/apollo/apollo-wrapper';
 import { getCssText } from '../../stitches.config';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -18,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ApolloProvider client={apolloClient}>
-      <html lang="ko">
+    <html lang="ko">
+      <ApolloWrapper>
         <head>
           <style
             id="stitches"
@@ -27,7 +26,7 @@ export default function RootLayout({
           />
         </head>
         <body className={inter.className}>{children}</body>
-      </html>
-    </ApolloProvider>
+      </ApolloWrapper>
+    </html>
   );
 }
