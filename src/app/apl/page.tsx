@@ -1,13 +1,13 @@
 'use client';
 
-import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
+// import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr';
 import React from 'react';
-import { GET_SKILLS } from '@/gql';
+// import { GET_SKILLS } from '@/gql';
 
 const Aplpage = () => {
-  const { data } = useSuspenseQuery(GET_SKILLS);
+  // const { data } = useSuspenseQuery(GET_SKILLS);
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <div>
