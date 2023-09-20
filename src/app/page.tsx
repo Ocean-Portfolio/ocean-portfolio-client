@@ -1,15 +1,20 @@
 import Image from 'next/image';
-// import { getClient } from '@/apollo/apollo-client';
-// import { GET_SKILLS } from '@/gql';
+import { getClient } from '@/apollo/apollo-client';
+import { GET_SKILLS } from '@/gql/queries';
+import { GetSkillsQuery, GetSkillsQueryVariables } from '@/types/graphql';
 import styles from './page.module.css';
 
 export default async function Home() {
-  // const apolloClient = getClient();
-  // const { data } = await apolloClient.query({
-  //   query: GET_SKILLS,
-  // });
+  const apolloClient = getClient();
+  const { data } = await apolloClient.query<
+    GetSkillsQuery,
+    GetSkillsQueryVariables
+  >({
+    query: GET_SKILLS,
+  });
 
-  // console.log(data);
+  console.log(data.getSkills[0].name);
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>

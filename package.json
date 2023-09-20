@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "gen:type": "graphql-codegen",
+    "gen:type": "graphql-codegen --watch",
     "test:unit": "jest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -25,9 +25,6 @@
   "dependencies": {
     "@apollo/client": "3.8.0-rc.2",
     "@apollo/experimental-nextjs-app-support": "^0.4.2",
-    "@graphql-codegen/cli": "^5.0.0",
-    "@graphql-codegen/typescript": "^4.0.1",
-    "@graphql-codegen/typescript-operations": "^4.0.1",
     "@stitches/react": "^1.2.8",
     "graphql": "^16.8.0",
     "next": "13.4.7",
@@ -35,6 +32,10 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@parcel/watcher": "^2.3.0",
     "@storybook/addon-essentials": "^7.3.1",
     "@storybook/addon-interactions": "^7.3.1",
     "@storybook/addon-links": "^7.3.1",

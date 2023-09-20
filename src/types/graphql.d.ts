@@ -368,9 +368,9 @@ export type UserTable = {
   updated_at: Scalars['String']['output'];
 };
 
-export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never }>;
+export type GetSkillsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type Unnamed_1_Query = {
+export type GetSkillsQuery = {
   __typename?: 'Query';
   getSkills: Array<{
     __typename?: 'SkillTable';
