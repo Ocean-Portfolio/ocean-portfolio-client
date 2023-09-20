@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "gen:type": "graphql-codegen",
     "test:unit": "jest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
