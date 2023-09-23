@@ -13,8 +13,6 @@ export default async function Home() {
     query: GET_SKILLS,
   });
 
-  console.log(data.getSkills[0].name);
-
   return (
     <main className={styles.main}>
       <div className={styles.description}>
