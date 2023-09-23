@@ -8,7 +8,6 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-styling",
-    "storybook-addon-next",
   ],
   // env: (config) => ({
   //   ...config,
