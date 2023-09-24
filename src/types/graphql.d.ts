@@ -384,3 +384,22 @@ export type GetSkillsQuery = {
     image_id?: number | null;
   }>;
 };
+
+export type GetSkillByIdQueryVariables = Exact<{
+  id: Scalars['Float']['input'];
+}>;
+
+export type GetSkillByIdQuery = {
+  __typename?: 'Query';
+  getSkillById: {
+    __typename?: 'SkillTable';
+    id: string;
+    name: string;
+    description?: string | null;
+    visible_status: string;
+    created_at: string;
+    updated_at: string;
+    category_id: number;
+    image_id?: number | null;
+  };
+};

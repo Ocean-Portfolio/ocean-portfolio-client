@@ -1,16 +1,19 @@
 import Image from 'next/image';
 import { getClient } from '@/apollo/apollo-client';
-import { GET_SKILLS } from '@/gql/queries';
-import { GetSkillsQuery, GetSkillsQueryVariables } from '@/types/graphql';
+import { GET_SKILLS_BY_ID } from '@/gql/queries';
+import { GetSkillByIdQuery, GetSkillByIdQueryVariables } from '@/types/graphql';
 import styles from './page.module.css';
 
 export default async function Home() {
   const apolloClient = getClient();
   const { data } = await apolloClient.query<
-    GetSkillsQuery,
-    GetSkillsQueryVariables
+    GetSkillByIdQuery,
+    GetSkillByIdQueryVariables
   >({
-    query: GET_SKILLS,
+    query: GET_SKILLS_BY_ID,
+    variables: {
+      id: 1,
+    },
   });
 
   return (
@@ -19,6 +22,9 @@ export default async function Home() {
         <p>
           환영합니다 ! 배포성공 ! Get started by editing&nbsp;
           <code className={styles.code}>src/app/page.tsx</code>
+        </p>
+        <p>
+          {data.getSkillById.name} : {data.getSkillById.description}
         </p>
         <div>
           <a
