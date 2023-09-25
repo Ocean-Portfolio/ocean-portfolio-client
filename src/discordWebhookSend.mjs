@@ -25,6 +25,4 @@ const discordWebhookSend = () => {
   });
 };
 
-if (process.env.NODE_ENV === 'production') {
-  discordWebhookSend();
-}
+discordWebhookSend();

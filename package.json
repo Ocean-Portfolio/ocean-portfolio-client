@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && cross-env NODE_ENV=development node src/discordWebhookSend.mjs",
+    "build": "next build",
+    "build:prod": "next build && node src/discordWebhookSend.mjs",
     "start": "next start",
     "lint": "next lint",
     "gen:type": "graphql-codegen --watch",
