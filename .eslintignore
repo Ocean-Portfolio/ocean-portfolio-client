@@ -1,4 +1,5 @@
 /dist
+*.mjs
 *.js
 /unused
 /src/unused

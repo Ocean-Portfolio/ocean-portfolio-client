@@ -29,7 +29,14 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/envEnable.mts",
+    "src/discordWebhookSend.mjs"
+  ],
   "exclude": [
     "node_modules",
     "src/unused",
@@ -37,6 +44,7 @@
     "src/unused/*",
     "src/unused",
     "jest.config.js",
-    "jest.setup.ts"
+    "jest.setup.ts",
+    "*.mjs"
   ]
 }

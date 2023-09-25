@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && cross-env NODE_ENV=development node src/discordWebhookSend.mjs",
     "start": "next start",
     "lint": "next lint",
     "gen:type": "graphql-codegen --watch",
@@ -59,6 +59,8 @@
     "@typescript-eslint/utils": "^6.4.0",
     "babel-jest": "^29.6.2",
     "cross-env": "^7.0.3",
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1",
     "eslint": "^8.47.0",
     "eslint-config-next": "^13.4.16",
     "eslint-config-prettier": "^9.0.0",
