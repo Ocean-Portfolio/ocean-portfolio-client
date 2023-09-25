@@ -1,4 +1,4 @@
-name: Production Deploy ocean-portfolio-client to Vercel
+name: Production Deploy storybook to Vercel
 
 on:
   push:
@@ -19,28 +19,31 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_DEPLOY_TOKEN_2 }}
-      - name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_DEPLOY_TOKEN_2 }}
-      - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_DEPLOY_TOKEN_2 }}
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_DEPLOY_TOKEN }}
+      - name: Build Storybook Artifacts
+        run: |
+          pnpm install
+          NEXT_PUBLIC_STORAGE=${{ secrets.NEXT_PUBLIC_STORAGE }} pnpm build-storybook
+          cd ./storybook-static
+      - name: Deploy Storybook Artifacts to Vercel
+        run: vercel --prod --yes ./ocean-portfolio-storybook --token=${{ secrets.VERCEL_DEPLOY_TOKEN }}
 
-  discord-webhook-notify:
+  cd-notify:
     name: Discord Notification
     runs-on: ubuntu-latest
     needs:
       - deploy-production
     if: ${{ always() }}
     steps:
-      - name: discord-webhook-notify
+      - name: cd-notify
         uses: nobrayner/discord-webhook@v1
         with:
-          github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          github-token: ${{ secrets.github_token }}
           discord-webhook: ${{ secrets.UPDATE_WEBHOOK }}
           username: 'oceanBot'
           avatar-url: 'https://cdn.discordapp.com/app-icons/1044621624864940163/87fe18353f90a7a4c275be945afc14e5.png?size=512'
-          title: 'Client 웹 서버 업데이트 : ${{ github.event_name }}'
-          description: "🚥 상태 : {{STATUS}}\n🔍 로그 확인 : 제목을 클릭하세요\n\n웹 서버 빌드 및 재시작이 성공적으로 완료 되었습니다."
+          title: '${{ github.workflow }} : ${{ github.event_name }}'
+          description: "🚥 상태 : {{STATUS}}\n🔍 로그 확인 : 제목을 클릭하세요\n\n스토리북 빌드 및 스태틱 페이지 배포가 성공적으로 완료 되었습니다."
           include-details: 'true'
           color-success: '#008d62'
           color-failure: '#9b111e'
