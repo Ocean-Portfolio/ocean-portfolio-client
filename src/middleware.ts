@@ -28,7 +28,7 @@ export function middleware(request: NextRequest, event: NextFetchEvent) {
       return NextResponse.rewrite(new URL(재윤.pathname, request.url));
 
     default:
-      return NextResponse.rewrite(new URL('/', request.url));
+      return NextResponse.next();
   }
 }
 
