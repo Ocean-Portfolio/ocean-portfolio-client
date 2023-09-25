@@ -26,7 +26,7 @@ jobs:
           NEXT_PUBLIC_STORAGE=${{ secrets.NEXT_PUBLIC_STORAGE }} pnpm build-storybook
           cd ./storybook-static
       - name: Deploy Storybook Artifacts to Vercel
-        run: vercel --prod --yes ./ocean-portfolio-storybook --token=${{ secrets.VERCEL_DEPLOY_TOKEN_2 }}
+        run: vercel --name ocean-portfolio-storybook --prod --yes ./storybook-static --token=${{ secrets.VERCEL_DEPLOY_TOKEN_2 }}
 
   cd-notify:
     name: Discord Notification
