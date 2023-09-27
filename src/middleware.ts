@@ -10,7 +10,7 @@ const { 성연, 예지, 재윤 } = {
     pathname: 'yeji',
   },
   재윤: {
-    subdomain: 'nell6635',
+    subdomain: 'happie-0range',
     pathname: 'jaeyoon',
   },
 };
