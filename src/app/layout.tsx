@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ApolloWrapper } from '@/apollo/apollo-wrapper';
+import globalStyles from '@/styles/Global.style';
 import { getCssText } from '../../stitches.config';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -17,6 +18,7 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  globalStyles();
   return (
     <html lang="ko">
       <ApolloWrapper>

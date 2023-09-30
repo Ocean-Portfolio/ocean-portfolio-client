@@ -31,6 +31,7 @@
   },
   "include": [
     "next-env.d.ts",
+    "stitches.config.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",

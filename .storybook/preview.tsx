@@ -1,11 +1,11 @@
-import type { Preview } from "@storybook/react";
-import React from "react";
-// import { withThemeFromJSXProvider } from '@storybook/addon-styling';
-// import NextGlobalStyle from "../src/styles/Global.style";
+import type { Preview } from '@storybook/react';
+import React from 'react';
+import { withThemeFromJSXProvider } from '@storybook/addon-styling';
+import { getCssText } from '../stitches.config';
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -16,9 +16,9 @@ const preview: Preview = {
 };
 
 export const decorators = [
-  // withThemeFromJSXProvider({
-  //   GlobalStyles: NextGlobalStyle, // Adds your GlobalStyle component to all stories
-  // }),
+  withThemeFromJSXProvider({
+    defaultTheme: getCssText(),
+  }),
   (Story) => {
     return <Story />;
   },
