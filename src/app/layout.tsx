@@ -1,11 +1,9 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { ApolloWrapper } from '@/apollo/apollo-wrapper';
 import globalStyles from '@/styles/Global.style';
+import suit from '@/suit';
 import { getCssText } from '../../stitches.config';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -28,7 +26,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             dangerouslySetInnerHTML={{ __html: getCssText() }}
           />
         </head>
-        <body className={inter.className}>{children}</body>
+        <body className={suit.className}>{children}</body>
       </ApolloWrapper>
     </html>
   );
