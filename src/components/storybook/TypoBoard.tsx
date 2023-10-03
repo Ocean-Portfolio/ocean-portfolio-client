@@ -20,10 +20,6 @@ const TypoBoard = ({ children }: PropsWithChildren) => {
   );
 };
 
-const Wrap = ({ children }: PropsWithChildren) => {
-  return <>{children}</>;
-};
-
 const Column = ({ children }: PropsWithChildren) => {
   return (
     <Typo tag="h1" typoToken="paragraph-m-medium" colorToken="gray-scale-03">
@@ -82,7 +78,6 @@ const Info = ({ children }: PropsWithChildren) => {
   );
 };
 
-TypoBoard.Wrap = Wrap;
 TypoBoard.Column = Column;
 TypoBoard.Title = Title;
 TypoBoard.Display = Display;

@@ -1,5 +1,5 @@
 import React from 'react';
-import TypoBoard from '@/components/TypoBoard';
+import TypoBoard from '@/components/storybook/TypoBoard';
 import GridSystem from '@/composable/GridSystem';
 import Typo from '@/composable/Typo';
 
@@ -17,12 +17,11 @@ const Typography = () => {
         Typography
       </Typo>
       <TypoBoard>
-        <TypoBoard.Wrap>
-          <TypoBoard.Column>Token Name</TypoBoard.Column>
-          <TypoBoard.Column>Font Size</TypoBoard.Column>
-          <TypoBoard.Column>Line Height</TypoBoard.Column>
-          <TypoBoard.Column>Sample</TypoBoard.Column>
-        </TypoBoard.Wrap>
+        <TypoBoard.Column>Token Name</TypoBoard.Column>
+        <TypoBoard.Column>Font Size</TypoBoard.Column>
+        <TypoBoard.Column>Line Height</TypoBoard.Column>
+        <TypoBoard.Column>Sample</TypoBoard.Column>
+
         <TypoBoard.Title>display</TypoBoard.Title>
         <TypoBoard.Display typoToken="display-xl-bold">
           {sampleText}

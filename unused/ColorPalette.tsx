@@ -4,7 +4,7 @@ import {
   PalleteWrapDiv,
   PalleteRowDiv,
   PalleteTileDiv,
-} from './ColorPallete.style';
+} from './ColorPalette.style';
 
 const ColorPallete = ({ children }: PropsWithChildren) => {
   return <PalleteWrapDiv>{children}</PalleteWrapDiv>;
