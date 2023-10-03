@@ -1,9 +1,9 @@
 import React, { PropsWithChildren } from 'react';
 import GridSystem from '@/composable/GridSystem';
-import Typo, { TypoProps } from '@/composable/Typo';
-import { ODSTypoTokenVariables } from '@/const/fonts';
+import Text, { TextProps } from '@/composable/Text';
+import { ODSTextTokenVariables } from '@/const/fonts';
 
-const TypoBoard = ({ children }: PropsWithChildren) => {
+const FontBoard = ({ children }: PropsWithChildren) => {
   return (
     <GridSystem
       tag="div"
@@ -22,18 +22,18 @@ const TypoBoard = ({ children }: PropsWithChildren) => {
 
 const Column = ({ children }: PropsWithChildren) => {
   return (
-    <Typo tag="h1" typoToken="paragraph-m-medium" colorToken="gray-scale-03">
+    <Text tag="h1" typoToken="paragraph-m-medium" colorToken="gray-scale-03">
       {children}
-    </Typo>
+    </Text>
   );
 };
 
 const Title = ({ children }: PropsWithChildren) => {
   return (
     <>
-      <Typo tag="span" typoToken="title-m-bold" colorToken="gray-scale-03">
+      <Text tag="span" typoToken="title-m-bold" colorToken="gray-scale-03">
         {children}
-      </Typo>
+      </Text>
       <span />
       <span />
       <span />
@@ -42,45 +42,45 @@ const Title = ({ children }: PropsWithChildren) => {
 };
 
 interface DisplayProps {
-  typoToken: TypoProps['typoToken'];
+  typoToken: TextProps['typoToken'];
 }
 
 const Display = ({ children, typoToken }: PropsWithChildren<DisplayProps>) => {
   const fontSize =
-    ODSTypoTokenVariables[typoToken || 'paragraph-m-medium'].fontSize;
+    ODSTextTokenVariables[typoToken || 'paragraph-m-medium'].fontSize;
   const pxFontSize = `${Number(fontSize.split('rem')[0]) * 16}px`;
 
   const lineHeight =
-    ODSTypoTokenVariables[typoToken || 'paragraph-m-medium'].lineHeight;
+    ODSTextTokenVariables[typoToken || 'paragraph-m-medium'].lineHeight;
   const pxLineHeight = `${Number(lineHeight.split('rem')[0]) * 16}px`;
 
   return (
     <>
-      <TypoBoard.Info>.{typoToken}</TypoBoard.Info>
-      <TypoBoard.Info>
+      <FontBoard.Info>{typoToken}</FontBoard.Info>
+      <FontBoard.Info>
         {fontSize} ({pxFontSize})
-      </TypoBoard.Info>
-      <TypoBoard.Info>
+      </FontBoard.Info>
+      <FontBoard.Info>
         {lineHeight} ({pxLineHeight})
-      </TypoBoard.Info>
-      <Typo tag="span" typoToken={typoToken}>
+      </FontBoard.Info>
+      <Text tag="span" typoToken={typoToken}>
         {children}
-      </Typo>
+      </Text>
     </>
   );
 };
 
 const Info = ({ children }: PropsWithChildren) => {
   return (
-    <Typo tag="span" typoToken="paragraph-s-medium" colorToken="gray-scale-06">
+    <Text tag="span" typoToken="paragraph-s-medium" colorToken="gray-scale-06">
       {children}
-    </Typo>
+    </Text>
   );
 };
 
-TypoBoard.Column = Column;
-TypoBoard.Title = Title;
-TypoBoard.Display = Display;
-TypoBoard.Info = Info;
+FontBoard.Column = Column;
+FontBoard.Title = Title;
+FontBoard.Display = Display;
+FontBoard.Info = Info;
 
-export default TypoBoard;
+export default FontBoard;

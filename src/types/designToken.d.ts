@@ -74,44 +74,44 @@ type ODSColorToken =
   | YejiMainColorToken
   | JaeyoonMainColorToken;
 
-type DisplayTypoToken =
+type DisplayTextToken =
   | 'display-xl-bold'
   | 'display-l-bold'
   | 'display-m-bold'
   | 'display-s-medium';
 
-type GNBTypoToken =
+type GNBTextToken =
   | 'GNB-l-bold'
   | 'GNB-l-medium'
   | 'GNB-m-bold'
   | 'GNB-m-medium';
 
-type TitleTypoToken =
+type TitleTextToken =
   | 'title-xl-bold'
   | 'title-l-bold'
   | 'title-m-bold'
   | 'title-s-medium'
   | 'title-s-semibold';
 
-type ParagraphLTypoToken =
+type ParagraphLTextToken =
   | 'paragraph-l-bold'
   | 'paragraph-l-medium'
   | 'paragraph-l-semibold';
 
-type ParagraphMTypoToken =
+type ParagraphMTextToken =
   | 'paragraph-m-bold'
   | 'paragraph-m-medium'
   | 'paragraph-m-semibold';
 
-type ParagraphSTypoToken = 'paragraph-s-medium' | 'paragraph-s-regular';
+type ParagraphSTextToken = 'paragraph-s-medium' | 'paragraph-s-regular';
 
-type CaptionTypoToken = 'caption-m-semibold' | 'caption-m-medium';
+type CaptionTextToken = 'caption-m-semibold' | 'caption-m-medium';
 
-type ODSTypoToken =
-  | DisplayTypoToken
-  | GNBTypoToken
-  | TitleTypoToken
-  | ParagraphLTypoToken
-  | ParagraphMTypoToken
-  | ParagraphSTypoToken
-  | CaptionTypoToken;
+type ODSTextToken =
+  | DisplayTextToken
+  | GNBTextToken
+  | TitleTextToken
+  | ParagraphLTextToken
+  | ParagraphMTextToken
+  | ParagraphSTextToken
+  | CaptionTextToken;

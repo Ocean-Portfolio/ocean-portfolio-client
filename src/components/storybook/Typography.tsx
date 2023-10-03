@@ -1,7 +1,7 @@
 import React from 'react';
-import TypoBoard from '@/components/storybook/TypoBoard';
+import FontBoard from '@/components/storybook/FontBoard';
 import GridSystem from '@/composable/GridSystem';
-import Typo from '@/composable/Typo';
+import Typo from '@/composable/Text';
 
 const sampleText = 'Anyone can develop';
 
@@ -16,95 +16,95 @@ const Typography = () => {
       <Typo tag="h1" typoToken="display-m-bold">
         Typography
       </Typo>
-      <TypoBoard>
-        <TypoBoard.Column>Token Name</TypoBoard.Column>
-        <TypoBoard.Column>Font Size</TypoBoard.Column>
-        <TypoBoard.Column>Line Height</TypoBoard.Column>
-        <TypoBoard.Column>Sample</TypoBoard.Column>
+      <FontBoard>
+        <FontBoard.Column>Token Name</FontBoard.Column>
+        <FontBoard.Column>Font Size</FontBoard.Column>
+        <FontBoard.Column>Line Height</FontBoard.Column>
+        <FontBoard.Column>Sample</FontBoard.Column>
 
-        <TypoBoard.Title>display</TypoBoard.Title>
-        <TypoBoard.Display typoToken="display-xl-bold">
+        <FontBoard.Title>display</FontBoard.Title>
+        <FontBoard.Display typoToken="display-xl-bold">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="display-l-bold">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="display-l-bold">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="display-m-bold">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="display-m-bold">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="display-s-medium">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="display-s-medium">
           {sampleText}
-        </TypoBoard.Display>
+        </FontBoard.Display>
 
-        <TypoBoard.Title>title</TypoBoard.Title>
-        <TypoBoard.Display typoToken="title-xl-bold">
+        <FontBoard.Title>title</FontBoard.Title>
+        <FontBoard.Display typoToken="title-xl-bold">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="title-l-bold">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="title-l-bold">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="title-m-bold">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="title-m-bold">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="title-s-semibold">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="title-s-semibold">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="title-s-medium">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="title-s-medium">
           {sampleText}
-        </TypoBoard.Display>
+        </FontBoard.Display>
 
-        <TypoBoard.Title>GNB</TypoBoard.Title>
-        <TypoBoard.Display typoToken="GNB-l-bold">
+        <FontBoard.Title>GNB</FontBoard.Title>
+        <FontBoard.Display typoToken="GNB-l-bold">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="GNB-l-medium">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="GNB-l-medium">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="GNB-m-bold">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="GNB-m-bold">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="GNB-m-medium">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="GNB-m-medium">
           {sampleText}
-        </TypoBoard.Display>
+        </FontBoard.Display>
 
-        <TypoBoard.Title>paragraph-l</TypoBoard.Title>
-        <TypoBoard.Display typoToken="paragraph-l-bold">
+        <FontBoard.Title>paragraph-l</FontBoard.Title>
+        <FontBoard.Display typoToken="paragraph-l-bold">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="paragraph-l-medium">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="paragraph-l-medium">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="paragraph-l-semibold">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="paragraph-l-semibold">
           {sampleText}
-        </TypoBoard.Display>
+        </FontBoard.Display>
 
-        <TypoBoard.Title>paragraph-m</TypoBoard.Title>
-        <TypoBoard.Display typoToken="paragraph-m-bold">
+        <FontBoard.Title>paragraph-m</FontBoard.Title>
+        <FontBoard.Display typoToken="paragraph-m-bold">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="paragraph-m-medium">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="paragraph-m-medium">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="paragraph-m-semibold">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="paragraph-m-semibold">
           {sampleText}
-        </TypoBoard.Display>
+        </FontBoard.Display>
 
-        <TypoBoard.Title>paragraph-s</TypoBoard.Title>
-        <TypoBoard.Display typoToken="paragraph-s-medium">
+        <FontBoard.Title>paragraph-s</FontBoard.Title>
+        <FontBoard.Display typoToken="paragraph-s-medium">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="paragraph-s-regular">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="paragraph-s-regular">
           {sampleText}
-        </TypoBoard.Display>
+        </FontBoard.Display>
 
-        <TypoBoard.Title>caption</TypoBoard.Title>
-        <TypoBoard.Display typoToken="caption-m-semibold">
+        <FontBoard.Title>caption</FontBoard.Title>
+        <FontBoard.Display typoToken="caption-m-semibold">
           {sampleText}
-        </TypoBoard.Display>
-        <TypoBoard.Display typoToken="caption-m-medium">
+        </FontBoard.Display>
+        <FontBoard.Display typoToken="caption-m-medium">
           {sampleText}
-        </TypoBoard.Display>
-      </TypoBoard>
+        </FontBoard.Display>
+      </FontBoard>
     </GridSystem>
   );
 };

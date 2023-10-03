@@ -33,7 +33,7 @@ import {
   _title_s_semibold,
 } from '@/const/fonts/title';
 
-export const ODSTypoTokenVariables = {
+export const ODSTextTokenVariables = {
   'display-xl-bold': _display_xl_bold,
   'display-l-bold': _display_l_bold,
   'display-m-bold': _display_m_bold,

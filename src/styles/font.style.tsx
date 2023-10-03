@@ -1,4 +1,3 @@
-import { ODSTypoTokenVariables } from '@/const/fonts';
 import suit from '@/suit';
 import { globalCss } from '../../stitches.config';
 
