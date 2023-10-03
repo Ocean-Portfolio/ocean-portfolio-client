@@ -1,7 +1,7 @@
 import React from 'react';
 import FontBoard from '@/components/storybook/FontBoard';
 import GridSystem from '@/composable/GridSystem';
-import Typo from '@/composable/Text';
+import Text from '@/composable/Text';
 
 const sampleText = 'Anyone can develop';
 
@@ -13,13 +13,14 @@ const Typography = () => {
         padding: '30px 0 50px 50px',
       }}
     >
-      <Typo tag="h1" typoToken="display-m-bold">
+      <Text tag="h1" typoToken="display-m-bold">
         Typography
-      </Typo>
+      </Text>
       <FontBoard>
         <FontBoard.Column>Token Name</FontBoard.Column>
         <FontBoard.Column>Font Size</FontBoard.Column>
         <FontBoard.Column>Line Height</FontBoard.Column>
+        <FontBoard.Column>Letter Spacing</FontBoard.Column>
         <FontBoard.Column>Sample</FontBoard.Column>
 
         <FontBoard.Title>display</FontBoard.Title>

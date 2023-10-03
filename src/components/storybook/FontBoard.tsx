@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import GridSystem from '@/composable/GridSystem';
 import Text, { TextProps } from '@/composable/Text';
-import { ODSTextTokenVariables } from '@/const/fonts';
+import getTypoStyle from '@/utils/getTypoStyle';
 
 const FontBoard = ({ children }: PropsWithChildren) => {
   return (
@@ -13,7 +13,7 @@ const FontBoard = ({ children }: PropsWithChildren) => {
         whiteSpace: 'nowrap',
       }}
       autoFlowRows
-      templateColumns="12.5rem 7.5625rem 8.375rem 1fr"
+      templateColumns="11.25rem 7.5625rem 8.375rem 11.25rem 1fr"
     >
       {children}
     </GridSystem>
@@ -37,6 +37,7 @@ const Title = ({ children }: PropsWithChildren) => {
       <span />
       <span />
       <span />
+      <span />
     </>
   );
 };
@@ -46,22 +47,26 @@ interface DisplayProps {
 }
 
 const Display = ({ children, typoToken }: PropsWithChildren<DisplayProps>) => {
-  const fontSize =
-    ODSTextTokenVariables[typoToken || 'paragraph-m-medium'].fontSize;
-  const pxFontSize = `${Number(fontSize.split('rem')[0]) * 16}px`;
-
-  const lineHeight =
-    ODSTextTokenVariables[typoToken || 'paragraph-m-medium'].lineHeight;
-  const pxLineHeight = `${Number(lineHeight.split('rem')[0]) * 16}px`;
+  const {
+    fontSize,
+    pxFontSize,
+    lineHeight,
+    pxLineHeight,
+    letterSpacing,
+    pxLetterSpacing,
+  } = getTypoStyle(typoToken || 'paragraph-l-medium');
 
   return (
     <>
       <FontBoard.Info>{typoToken}</FontBoard.Info>
       <FontBoard.Info>
-        {fontSize} ({pxFontSize})
+        {fontSize} ({pxFontSize}px)
       </FontBoard.Info>
       <FontBoard.Info>
-        {lineHeight} ({pxLineHeight})
+        {lineHeight} ({pxLineHeight}px)
+      </FontBoard.Info>
+      <FontBoard.Info>
+        {letterSpacing} ({pxLetterSpacing}px)
       </FontBoard.Info>
       <Text tag="span" typoToken={typoToken}>
         {children}
