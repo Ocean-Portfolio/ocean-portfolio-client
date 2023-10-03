@@ -1,0 +1,19 @@
+import { ODSTypoTokenVariables } from '@/const/fonts';
+import suit from '@/suit';
+import { globalCss } from '../../stitches.config';
+
+export const defaultFontStyles = {
+  fontFeatureSettings: '"clig" off, "liga" off',
+  fontFamily: `${suit.style.fontFamily}, SUIT Variable !important`,
+  fontStyle: 'normal',
+  fontStretch: 'normal',
+  backgroundRepeat: 'no-repeat',
+
+  '-webkit-font-smoothing': 'antialiased',
+  '-moz-osx-font-smoothing': 'grayscale',
+  textRendering: 'optimizeLegibility',
+};
+
+export const fontGlobalStyles = globalCss({
+  '*': defaultFontStyles,
+});

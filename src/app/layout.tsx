@@ -1,7 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { ApolloWrapper } from '@/apollo/apollo-wrapper';
-import globalStyles from '@/styles/Global.style';
+import { fontGlobalStyles } from '@/styles/font.style';
+import { globalStyles } from '@/styles/global.style';
 import suit from '@/suit';
 import { getCssText } from '../../stitches.config';
 
@@ -16,6 +17,7 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  fontGlobalStyles();
   globalStyles();
   return (
     <html lang="ko">

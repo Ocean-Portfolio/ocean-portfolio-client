@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { ODSColorTokenVariables } from '../../../stitches.config';
+import { ODSColorTokenVariables } from '@/const/colors';
 import {
   PalleteWrapDiv,
   PalleteRowDiv,

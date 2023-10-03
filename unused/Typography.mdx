@@ -1,0 +1,57 @@
+import { Meta, Typeset } from '@storybook/blocks';
+import { ODSTypoTokenClasses } from '@/const/fonts';
+import getTypoStyle from '@/utils/getTypoStyle';
+import ODSTypeset from '@/components/ODSTypeset';
+
+<Meta title="Typography" />
+
+export const typography = {
+  type: {
+    primary: 'SUIT Variable',
+  },
+  token: {
+    'display-xl-bold': getTypoStyle('display-xl-bold'),
+    'display-l-bold': getTypoStyle('display-l-bold'),
+    'display-m-bold': getTypoStyle('display-m-bold'),
+    'display-s-medium': getTypoStyle('display-s-medium'),
+    'GNB-l-bold': getTypoStyle('GNB-l-bold'),
+    'GNB-l-medium': getTypoStyle('GNB-l-medium'),
+    'GNB-m-bold': getTypoStyle('GNB-m-bold'),
+    'GNB-m-medium': getTypoStyle('GNB-m-medium'),
+    'title-xl-bold': getTypoStyle('title-xl-bold'),
+    'title-l-bold': getTypoStyle('title-l-bold'),
+    'title-m-bold': getTypoStyle('title-m-bold'),
+    'title-s-medium': getTypoStyle('title-s-medium'),
+    'title-s-semibold': getTypoStyle('title-s-semibold'),
+    'paragraph-l-bold': getTypoStyle('paragraph-l-bold'),
+    'paragraph-l-semibold': getTypoStyle('paragraph-l-semibold'),
+    'paragraph-l-medium': getTypoStyle('paragraph-l-medium'),
+    'paragraph-m-bold': getTypoStyle('paragraph-m-bold'),
+    'paragraph-m-semibold': getTypoStyle('paragraph-m-semibold'),
+    'paragraph-m-medium': getTypoStyle('paragraph-m-medium'),
+    'paragraph-s-medium': getTypoStyle('paragraph-s-medium'),
+    'paragraph-s-regular': getTypoStyle('paragraph-s-regular'),
+    'caption-m-semibold': getTypoStyle('caption-m-semibold'),
+    'caption-m-medium': getTypoStyle('caption-m-medium'),
+  },
+};
+
+export const SampleText = 'Anyone can develop';
+
+# Typography
+
+---
+
+**Font:** SUIT Variable
+
+**Weights:** 400(regular), 500(medium), 600(semibold), 700(bold)
+
+<br />
+
+### Display
+
+<ODSTypeset fontSizes={[typography.token['display-xl-bold'].fontSize]}>
+  <span>display-xl-bold</span>
+  <span>lineHeight: {typography.token['display-xl-bold'].lineHeight}</span>
+  <span>fontWeight: {typography.token['display-xl-bold'].fontWeight}</span>
+</ODSTypeset>

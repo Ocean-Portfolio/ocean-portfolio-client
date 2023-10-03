@@ -1,7 +1,5 @@
-import { globalCss } from '@stitches/react';
+import { globalCss } from '../../stitches.config';
 
-const globalStyles = globalCss({
+export const globalStyles = globalCss({
   '*': { margin: 0, padding: 0 },
 });
-
-export default globalStyles;
