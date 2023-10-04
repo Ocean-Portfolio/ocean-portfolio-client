@@ -1,4 +1,6 @@
 import type { StorybookConfig } from '@storybook/nextjs';
+import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 
 const config: StorybookConfig = {
@@ -25,6 +27,37 @@ const config: StorybookConfig = {
     if (config.resolve && config.resolve.alias) {
       config.resolve.alias['@'] = path.resolve(__dirname, '../src/');
     }
+
+    config.plugins?.push(
+      new VanillaExtractPlugin(),
+      new MiniCssExtractPlugin(),
+    );
+
+    config.module?.rules?.forEach((rule) => {
+      if (
+        typeof rule !== 'string' &&
+        // @ts-ignore
+        rule.test instanceof RegExp &&
+        // @ts-ignore
+        rule.test.test('test.css')
+      ) {
+        // @ts-ignore
+        rule.exclude = /\.vanilla\.css$/i;
+      }
+    });
+
+    config.module?.rules?.push({
+      test: /\.vanilla\.css$/i,
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: require.resolve('css-loader'),
+          options: {
+            url: false,
+          },
+        },
+      ],
+    });
 
     return config;
   },

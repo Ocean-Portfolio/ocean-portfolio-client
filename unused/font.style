@@ -1,5 +1,5 @@
 import suit from '@/suit';
-import { globalCss } from '../../stitches.config';
+import { globalCss } from './stitches.config';
 
 export const defaultFontStyles = {
   fontFeatureSettings: '"clig" off, "liga" off',

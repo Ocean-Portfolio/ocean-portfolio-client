@@ -18,7 +18,7 @@
     "downlevelIteration": true,
     "incremental": true,
     "useUnknownInCatchVariables": false,
-
+    "allowImportingTsExtensions": true,
     "plugins": [
       {
         "name": "next"
@@ -31,7 +31,6 @@
   },
   "include": [
     "next-env.d.ts",
-    "stitches.config.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
@@ -41,7 +40,9 @@
   "exclude": [
     "node_modules",
     "src/unused",
-    "/unused",
+    "unused",
+    "/unused/*",
+    "/unused/*.ts",
     "src/unused/*",
     "src/unused",
     "jest.config.js",

@@ -1,9 +1,7 @@
-import { CSSProperties } from '@stitches/react';
-import React, { PropsWithChildren } from 'react';
 import { ODSTextTokenVariables } from '@/const/fonts';
-import { styled } from '../../stitches.config';
+import { styled } from '../stitches.config';
 
-const TextBox = styled('div', {
+export const StyledText = styled('div', {
   color: '$gray-scale-06',
   variants: {
     typoToken: {
@@ -33,37 +31,3 @@ const TextBox = styled('div', {
     },
   },
 });
-
-export interface TextProps
-  extends PropsWithChildren,
-    React.HTMLAttributes<HTMLTextElements> {
-  css?: CSSProperties;
-  tag: HTMLTextTags;
-  typoToken?: ODSTextToken;
-  colorToken?: ODSColorToken;
-}
-
-const Text = ({
-  children,
-  tag,
-  css,
-  typoToken,
-  colorToken,
-  ...rest
-}: TextProps) => {
-  return (
-    <TextBox
-      as={tag}
-      css={{
-        ...css,
-        color: `$${colorToken}`,
-      }}
-      typoToken={typoToken || 'paragraph-m-medium'}
-      {...rest}
-    >
-      {children}
-    </TextBox>
-  );
-};
-
-export default Text;

@@ -1,8 +1,9 @@
 import type { Preview } from '@storybook/react';
 import React from 'react';
-import { withThemeFromJSXProvider } from '@storybook/addon-styling';
-import { getCssText } from '../stitches.config';
-import { fontGlobalStyles } from '../src/styles/font.style';
+import '@/styles/global.css';
+import '@/styles/theme.css';
+import '@/styles/font.css';
+import '@/styles/storybook.css';
 
 const preview: Preview = {
   parameters: {
@@ -13,18 +14,10 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
-    docs: {
-      typeset: {
-        exclude: ['style', 'css', 'className', 'as', 'ref'],
-      },
-    },
   },
 };
 
 export const decorators = [
-  withThemeFromJSXProvider({
-    defaultTheme: `${getCssText()} ${fontGlobalStyles()}`,
-  }),
   (Story) => {
     return <Story />;
   },

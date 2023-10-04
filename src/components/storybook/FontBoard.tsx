@@ -1,28 +1,28 @@
 import React, { PropsWithChildren } from 'react';
-import GridSystem from '@/composable/GridSystem';
-import Text, { TextProps } from '@/composable/Text';
+import GridContainer from '@/composable/GridContainer/GridContainer';
+import Text, { TextProps } from '@/composable/Text/Text';
 import getTypoStyle from '@/utils/getTypoStyle';
 
 const FontBoard = ({ children }: PropsWithChildren) => {
   return (
-    <GridSystem
-      tag="div"
-      css={{
+    <GridContainer
+      as="div"
+      style={{
         rowGap: '2rem',
         alignItems: 'center',
         whiteSpace: 'nowrap',
       }}
-      autoFlowRows
+      autoFlow="row"
       templateColumns="11.25rem 7.5625rem 8.375rem 11.25rem 1fr"
     >
       {children}
-    </GridSystem>
+    </GridContainer>
   );
 };
 
 const Column = ({ children }: PropsWithChildren) => {
   return (
-    <Text tag="h1" typoToken="paragraph-m-medium" colorToken="gray-scale-03">
+    <Text as="h1" typoToken="paragraph-m-medium" colorToken="gray-scale-03">
       {children}
     </Text>
   );
@@ -31,7 +31,7 @@ const Column = ({ children }: PropsWithChildren) => {
 const Title = ({ children }: PropsWithChildren) => {
   return (
     <>
-      <Text tag="span" typoToken="title-m-bold" colorToken="gray-scale-03">
+      <Text as="span" typoToken="title-m-bold" colorToken="gray-scale-03">
         {children}
       </Text>
       <span />
@@ -68,7 +68,7 @@ const Display = ({ children, typoToken }: PropsWithChildren<DisplayProps>) => {
       <FontBoard.Info>
         {letterSpacing} ({pxLetterSpacing}px)
       </FontBoard.Info>
-      <Text tag="span" typoToken={typoToken}>
+      <Text as="span" typoToken={typoToken}>
         {children}
       </Text>
     </>
@@ -77,7 +77,7 @@ const Display = ({ children, typoToken }: PropsWithChildren<DisplayProps>) => {
 
 const Info = ({ children }: PropsWithChildren) => {
   return (
-    <Text tag="span" typoToken="paragraph-s-medium" colorToken="gray-scale-06">
+    <Text as="span" typoToken="paragraph-s-medium" colorToken="gray-scale-06">
       {children}
     </Text>
   );

@@ -1,19 +1,19 @@
 import React from 'react';
 import FontBoard from '@/components/storybook/FontBoard';
-import GridSystem from '@/composable/GridSystem';
-import Text from '@/composable/Text';
+import GridContainer from '@/composable/GridContainer/GridContainer';
+import Text from '@/composable/Text/Text';
 
 const sampleText = 'Anyone can develop';
 
 const Typography = () => {
   return (
-    <GridSystem
-      tag="div"
-      css={{
-        padding: '30px 0 50px 50px',
+    <GridContainer
+      as="div"
+      style={{
+        padding: '30px 50px',
       }}
     >
-      <Text tag="h1" typoToken="display-m-bold">
+      <Text as="h1" typoToken="display-m-bold">
         Typography
       </Text>
       <FontBoard>
@@ -106,7 +106,7 @@ const Typography = () => {
           {sampleText}
         </FontBoard.Display>
       </FontBoard>
-    </GridSystem>
+    </GridContainer>
   );
 };
 

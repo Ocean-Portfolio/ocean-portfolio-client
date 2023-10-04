@@ -17,7 +17,7 @@ export default async function Home() {
   });
 
   return (
-    <main className={styles.main}>
+    <main className={`${styles.main}`}>
       <div className={styles.description}>
         <p>
           환영합니다 ! 배포성공 ! Get started by editing&nbsp;

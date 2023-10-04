@@ -1,10 +1,9 @@
-import './globals.css';
+import '@/styles/global.css';
+import '@/styles/theme.css';
+import '@/styles/font.css';
 import type { Metadata } from 'next';
 import { ApolloWrapper } from '@/apollo/apollo-wrapper';
-import { fontGlobalStyles } from '@/styles/font.style';
-import { globalStyles } from '@/styles/Global.style';
 import suit from '@/suit';
-import { getCssText } from '../../stitches.config';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,18 +16,11 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  fontGlobalStyles();
-  globalStyles();
   return (
     <html lang="ko">
       <ApolloWrapper>
-        <head>
-          <style
-            id="stitches"
-            dangerouslySetInnerHTML={{ __html: getCssText() }}
-          />
-        </head>
-        <body className={suit.className}>{children}</body>
+        <head></head>
+        <body className={`${suit.className}`}>{children}</body>
       </ApolloWrapper>
     </html>
   );
