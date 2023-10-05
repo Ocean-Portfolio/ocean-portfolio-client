@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import Text from '@/composable/Text/Text';
 
 const meta: Meta<typeof Text> = {
-  title: 'Text/Text',
+  title: 'Common/Text',
   component: Text,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },

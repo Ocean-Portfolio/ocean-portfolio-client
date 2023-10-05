@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import GridContainer from '@/composable/GridContainer/GridContainer';
 import Text, { TextProps } from '@/composable/Text/Text';
-import getTypoStyle from '@/utils/getTypoStyle';
+import getTextStyle from '@/utils/getTextStyle';
 
 const FontBoard = ({ children }: PropsWithChildren) => {
   return (
@@ -54,7 +54,7 @@ const Display = ({ children, typoToken }: PropsWithChildren<DisplayProps>) => {
     pxLineHeight,
     letterSpacing,
     pxLetterSpacing,
-  } = getTypoStyle(typoToken || 'paragraph-l-medium');
+  } = getTextStyle(typoToken || 'paragraph-l-medium');
 
   return (
     <>

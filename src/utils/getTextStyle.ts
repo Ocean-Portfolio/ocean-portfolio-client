@@ -1,6 +1,6 @@
 import { ODSTextTokenVariables } from '@/const/fonts';
 
-const getTypoStyle = (typoToken: ODSTextToken) => {
+const getTextStyle = (typoToken: ODSTextToken) => {
   const fontSize = ODSTextTokenVariables[typoToken].fontSize;
   const pxFontSize = Number(fontSize.split('rem')[0]) * 16;
 
@@ -22,4 +22,4 @@ const getTypoStyle = (typoToken: ODSTextToken) => {
   };
 };
 
-export default getTypoStyle;
+export default getTextStyle;
