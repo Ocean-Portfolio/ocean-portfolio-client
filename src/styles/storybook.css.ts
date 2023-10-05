@@ -3,5 +3,5 @@ import { globalThemeVars } from './theme.css';
 
 globalStyle('*', {
   fontFamily: 'SUIT Variable',
-  color: globalThemeVars.color['gray-scale-00'],
+  color: globalThemeVars.color['gray-scale-04'],
 });
