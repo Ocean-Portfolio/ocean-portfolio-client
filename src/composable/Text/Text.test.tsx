@@ -7,13 +7,13 @@ describe('<Text /> Component', () => {
     jest.clearAllMocks();
   });
 
-  test('renders without crashing', () => {
+  test('1. 문제없이 렌더링 된다', () => {
     const { getByText } = render(<Text as="p">Test Content</Text>);
 
     expect(getByText('Test Content')).toBeTruthy();
   });
 
-  test('applies typoToken style', () => {
+  test('2. 타이포토큰 에 따른 스타일이 적용 되야한다', () => {
     const { getByText } = render(
       <Text as="p" typoToken="display-l-bold">
         Test Content for TypoToken

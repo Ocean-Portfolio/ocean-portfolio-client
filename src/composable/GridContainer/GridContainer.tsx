@@ -1,8 +1,8 @@
 import React, { PropsWithChildren } from 'react';
-import DynamicTag, { DynamicTagProps } from '../DynamicTag';
+import Tag, { TagProps } from '../Tag/Tag';
 import { gridSystemStyle } from './GridContainer.css';
 
-interface Props extends PropsWithChildren, DynamicTagProps {
+interface Props extends PropsWithChildren, TagProps {
   autoFlow?: 'row' | 'column' | 'row dense' | 'column dense';
   autoRows?: string;
   autoColumns?: string;
@@ -21,7 +21,7 @@ const GridSystem = ({
   ...rest
 }: Props) => {
   return (
-    <DynamicTag
+    <Tag
       className={gridSystemStyle}
       style={{
         ...style,
@@ -34,7 +34,7 @@ const GridSystem = ({
       {...rest}
     >
       {children}
-    </DynamicTag>
+    </Tag>
   );
 };
 

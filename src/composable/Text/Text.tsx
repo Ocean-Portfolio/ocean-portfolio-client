@@ -1,9 +1,9 @@
 import React, { PropsWithChildren } from 'react';
 import { fontVariants } from '@/styles/font.css';
 import { globalThemeVars } from '@/styles/theme.css';
-import DynamicTag, { DynamicTagProps } from '../DynamicTag';
+import Tag, { TagProps } from '../Tag/Tag';
 
-export interface TextProps extends PropsWithChildren, DynamicTagProps {
+export interface TextProps extends PropsWithChildren, TagProps {
   typoToken?: ODSTextToken;
   colorToken?: ODSColorToken;
 }
@@ -12,7 +12,7 @@ const Text = ({ children, typoToken, colorToken, ...rest }: TextProps) => {
   const color = globalThemeVars.color[colorToken || 'gray-scale-06'];
 
   return (
-    <DynamicTag
+    <Tag
       className={fontVariants[typoToken || 'paragraph-m-medium']}
       style={{
         color: `${color || rest.style?.color}`,
@@ -20,7 +20,7 @@ const Text = ({ children, typoToken, colorToken, ...rest }: TextProps) => {
       {...rest}
     >
       {children}
-    </DynamicTag>
+    </Tag>
   );
 };
 

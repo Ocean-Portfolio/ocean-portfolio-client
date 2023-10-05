@@ -2,18 +2,18 @@ import React, { PropsWithChildren } from 'react';
 
 type ExcludedTags = 'button' | 'input';
 
-export interface DynamicTagProps
+export interface TagProps
   extends React.AllHTMLAttributes<HTMLElement | SVGElement> {
-  as: Exclude<keyof JSX.IntrinsicElements, ExcludedTags>;
+  as?: Exclude<keyof JSX.IntrinsicElements, ExcludedTags>;
 }
 
-const DynamicTag = ({
+const Tag = ({
   as: Tag = 'div',
   children,
   type,
   ...props
-}: PropsWithChildren<DynamicTagProps>) => {
+}: PropsWithChildren<TagProps>) => {
   return <Tag {...props}>{children}</Tag>;
 };
 
-export default DynamicTag;
+export default Tag;
