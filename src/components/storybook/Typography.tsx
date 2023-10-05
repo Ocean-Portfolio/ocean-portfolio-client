@@ -1,13 +1,13 @@
 import React from 'react';
 import FontBoard from '@/components/storybook/FontBoard';
-import GridContainer from '@/composable/GridContainer/GridContainer';
+import Grid from '@/composable/Grid/Grid';
 import Text from '@/composable/Text/Text';
 
 const sampleText = 'Anyone can develop';
 
 const Typography = () => {
   return (
-    <GridContainer
+    <Grid
       as="div"
       style={{
         padding: '30px 50px',
@@ -106,7 +106,7 @@ const Typography = () => {
           {sampleText}
         </FontBoard.Display>
       </FontBoard>
-    </GridContainer>
+    </Grid>
   );
 };
 

@@ -16,8 +16,8 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
     '^@/(.*)': '<rootDir>/src/$1',
-    '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
-    '\\.css$': '<rootDir>/__mocks__/styleMock.js',
+    // '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
+    // '\\.css$': '<rootDir>/__mocks__/styleMock.js',
   },
   verbose: true,
   setupFilesAfterEnv: ['./tests/setupTests.ts'],

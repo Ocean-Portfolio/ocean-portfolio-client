@@ -1,11 +1,12 @@
 import React, { PropsWithChildren } from 'react';
-import GridContainer from '@/composable/GridContainer/GridContainer';
+import Grid from '@/composable/Grid/Grid';
 import Text, { TextProps } from '@/composable/Text/Text';
+import { globalThemeVars } from '@/styles/theme.css';
 import getTextStyle from '@/utils/getTextStyle';
 
 const FontBoard = ({ children }: PropsWithChildren) => {
   return (
-    <GridContainer
+    <Grid
       as="div"
       style={{
         rowGap: '2rem',
@@ -16,13 +17,19 @@ const FontBoard = ({ children }: PropsWithChildren) => {
       templateColumns="11.25rem 7.5625rem 8.375rem 11.25rem 1fr"
     >
       {children}
-    </GridContainer>
+    </Grid>
   );
 };
 
 const Column = ({ children }: PropsWithChildren) => {
   return (
-    <Text as="h1" typoToken="paragraph-m-medium" colorToken="gray-scale-03">
+    <Text
+      as="h1"
+      style={{
+        color: globalThemeVars.color['gray-scale-03'],
+      }}
+      typoToken="paragraph-m-medium"
+    >
       {children}
     </Text>
   );
@@ -31,7 +38,13 @@ const Column = ({ children }: PropsWithChildren) => {
 const Title = ({ children }: PropsWithChildren) => {
   return (
     <>
-      <Text as="span" typoToken="title-m-bold" colorToken="gray-scale-03">
+      <Text
+        as="span"
+        typoToken="title-m-bold"
+        style={{
+          color: globalThemeVars.color['gray-scale-03'],
+        }}
+      >
         {children}
       </Text>
       <span />
@@ -77,7 +90,13 @@ const Display = ({ children, typoToken }: PropsWithChildren<DisplayProps>) => {
 
 const Info = ({ children }: PropsWithChildren) => {
   return (
-    <Text as="span" typoToken="paragraph-s-medium" colorToken="gray-scale-06">
+    <Text
+      as="span"
+      typoToken="paragraph-s-medium"
+      style={{
+        color: globalThemeVars.color['gray-scale-06'],
+      }}
+    >
       {children}
     </Text>
   );

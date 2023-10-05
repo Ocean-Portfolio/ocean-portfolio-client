@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Text from '@/composable/Text/Text';
+import { globalThemeVars } from '@/styles/theme.css';
 
 const meta: Meta<typeof Text> = {
   title: 'Common/Text',
@@ -13,7 +14,9 @@ export const Default: Story = {
   args: {
     as: 'p',
     typoToken: 'display-l-bold',
-    colorToken: 'sungyeon-02',
+    style: {
+      color: globalThemeVars.color['sungyeon-02'],
+    },
     children: '돈 많은 백수이고 싶어요',
   },
 };

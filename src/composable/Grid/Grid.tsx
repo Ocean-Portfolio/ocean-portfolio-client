@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import Tag, { TagProps } from '../Tag/Tag';
-import { gridSystemStyle } from './GridContainer.css';
+import { gridSystemStyle } from './Grid.css';
 
 interface Props extends PropsWithChildren, TagProps {
   autoFlow?: 'row' | 'column' | 'row dense' | 'column dense';
@@ -10,7 +10,7 @@ interface Props extends PropsWithChildren, TagProps {
   templateColumns?: string;
 }
 
-const GridSystem = ({
+const Grid = ({
   children,
   style,
   autoFlow,
@@ -38,4 +38,4 @@ const GridSystem = ({
   );
 };
 
-export default GridSystem;
+export default Grid;
