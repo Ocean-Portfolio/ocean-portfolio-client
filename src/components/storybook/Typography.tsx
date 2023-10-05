@@ -13,7 +13,13 @@ const Typography = () => {
         padding: '30px 50px',
       }}
     >
-      <Text as="h1" typoToken="display-m-bold">
+      <Text
+        as="h1"
+        typoToken="display-m-bold"
+        style={{
+          marginBottom: '20px',
+        }}
+      >
         Typography
       </Text>
       <FontBoard>
