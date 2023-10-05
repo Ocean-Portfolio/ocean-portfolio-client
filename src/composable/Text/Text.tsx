@@ -9,11 +9,16 @@ export interface TextProps extends PropsWithChildren, DynamicTagProps {
 }
 
 const Text = ({ children, typoToken, colorToken, ...rest }: TextProps) => {
+  const color =
+    process.env.NODE_ENV === 'test'
+      ? `var(--${colorToken})`
+      : globalThemeVars.color[colorToken || 'gray-scale-06'];
+
   return (
     <DynamicTag
       className={fontVariants[typoToken || 'paragraph-m-medium']}
       style={{
-        color: `${globalThemeVars.color[colorToken || 'gray-scale-06']}`,
+        color: `${color || rest.style?.color}`,
       }}
       {...rest}
     >

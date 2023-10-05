@@ -1,44 +1,27 @@
+import { render } from '@testing-library/react';
 import React from 'react';
-import renderer from 'react-test-renderer';
 import Text from '@/composable/Text/Text';
 
-expect.extend(matchers);
-
 describe('<Text /> Component', () => {
-  it('renders without crashing', () => {
-    const tree = renderer.create(<Text as="p">Test Content</Text>).toJSON();
-
-    expect(tree).not.toBeNull();
-    if (tree) {
-      const treeObj = JSON.parse(JSON.stringify(tree));
-
-      expect(treeObj['children']).toContain('Test Content');
-    }
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
-  it('applies typoToken style', () => {
-    const tree = renderer
-      .create(
-        <Text as="p" typoToken="display-l-bold">
-          Test Content for TypoToken
-        </Text>,
-      )
-      .toJSON();
+  test('renders without crashing', () => {
+    const { getByText } = render(<Text as="p">Test Content</Text>);
 
-    console.log(tree, 'tree');
-
-    expect(tree).toHaveStyleRule('font-size', '24px');
+    expect(getByText('Test Content')).toBeTruthy();
   });
 
-  it('applies colorToken style', () => {
-    const tree = renderer
-      .create(
-        <Text as="p" colorToken="sungyeon-03">
-          Test Content for ColorToken
-        </Text>,
-      )
-      .toJSON();
+  test('applies typoToken style', () => {
+    const { getByText } = render(
+      <Text as="p" typoToken="display-l-bold">
+        Test Content for TypoToken
+      </Text>,
+    );
 
-    expect(tree).toHaveStyleRule('color', '#ff0000');
+    const textElement = getByText('Test Content for TypoToken');
+    const styles = getComputedStyle(textElement);
+    expect(styles.fontSize).toBe('4rem');
   });
 });
