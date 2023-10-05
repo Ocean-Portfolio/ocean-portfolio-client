@@ -1,8 +1,12 @@
 import React from 'react';
+import Container from '@/composable/Container/Container';
 
 const Sungyeon = () => {
-  console.log('yoon0cean page');
-  return <div className={`display-xl-bold`}>yoon0cean page</div>;
+  return (
+    <Container>
+      <div>yoon0cean page</div>
+    </Container>
+  );
 };
 
 export default Sungyeon;

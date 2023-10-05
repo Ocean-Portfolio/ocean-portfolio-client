@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
 import Tag, { TagProps } from '../Tag/Tag';
 import { gridSystemStyle } from './Grid.css';
@@ -12,6 +13,7 @@ interface Props extends PropsWithChildren, TagProps {
 
 const Grid = ({
   children,
+  className,
   style,
   autoFlow,
   autoRows,
@@ -22,7 +24,7 @@ const Grid = ({
 }: Props) => {
   return (
     <Tag
-      className={gridSystemStyle}
+      className={classNames(gridSystemStyle, className)}
       style={{
         ...style,
         gridAutoFlow: autoFlow,

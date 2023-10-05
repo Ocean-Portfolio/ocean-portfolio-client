@@ -4,6 +4,7 @@ import {
   styleVariants,
 } from '@vanilla-extract/css';
 import { ODSTextTokenVariables } from '@/const/fonts';
+import { globalThemeVars } from './theme.css';
 
 export const defaultFontStyles: GlobalStyleRule = {
   fontFeatureSettings: '"clig" off, "liga" off',
@@ -14,6 +15,8 @@ export const defaultFontStyles: GlobalStyleRule = {
   WebkitFontSmoothing: 'antialiased',
   MozOsxFontSmoothing: 'grayscale',
   textRendering: 'optimizeLegibility' as const,
+
+  color: globalThemeVars.color['gray-scale-06'],
 };
 
 globalStyle('*', defaultFontStyles);

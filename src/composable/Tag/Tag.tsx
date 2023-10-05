@@ -10,10 +10,15 @@ export interface TagProps
 const Tag = ({
   as: Tag = 'div',
   children,
+  className,
   type,
   ...props
 }: PropsWithChildren<TagProps>) => {
-  return <Tag {...props}>{children}</Tag>;
+  return (
+    <Tag className={`${className}`} {...props}>
+      {children}
+    </Tag>
+  );
 };
 
 export default Tag;
