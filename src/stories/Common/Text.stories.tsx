@@ -15,7 +15,7 @@ export const Default: Story = {
     as: 'p',
     className: colorVariants['sungyeon-02'],
     typoToken: 'display-l-bold',
-    children: '돈 많은 백수이고 싶어요',
+    children: 'Ocean Portfolio Text Component sss bbb',
   },
 };
 
