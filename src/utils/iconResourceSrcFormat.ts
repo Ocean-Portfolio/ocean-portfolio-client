@@ -6,11 +6,13 @@ const iconResourceSrcFormat = ({
   background,
   state,
 }: ODSIconTokenInterface) => {
-  return `Company=${convToPascaleCase(company)}, Color=${convToPascaleCase(
-    color,
-  )}, Background=${convToPascaleCase(background)}, State=${convToPascaleCase(
-    state,
-  )}`;
+  return encodeURIComponent(
+    `Company=${convToPascaleCase(company)}, Color=${convToPascaleCase(
+      color,
+    )}, Background=${convToPascaleCase(background)}, State=${convToPascaleCase(
+      state,
+    )}`,
+  );
 };
 
 export default iconResourceSrcFormat;

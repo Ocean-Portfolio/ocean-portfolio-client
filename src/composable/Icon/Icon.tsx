@@ -3,9 +3,20 @@ import React from 'react';
 import { ASSET_ENDPOINT } from '@/const/endpoint';
 import iconResourceSrcFormat from '@/utils/iconResourceSrcFormat';
 
-type Props = ODSIconTokenInterface & ImageProps;
+type ModifiedImageProps = Omit<ImageProps, 'src' | 'alt'>;
+type Props = ODSIconTokenInterface &
+  ModifiedImageProps & {
+    format?: 'png' | 'svg';
+  };
 
-const Icon = ({ company, color, background, state, ...props }: Props) => {
+const Icon = ({
+  company,
+  color,
+  background,
+  state,
+  format,
+  ...props
+}: Props) => {
   const resource = iconResourceSrcFormat({
     company,
     color,
@@ -13,9 +24,15 @@ const Icon = ({ company, color, background, state, ...props }: Props) => {
     state,
   });
 
-  const path = `${ASSET_ENDPOINT}/icons/${company}`;
+  const path = `${ASSET_ENDPOINT}/icons/${company.toLowerCase()}`;
 
-  return <Image {...props} src={`${path}/${resource}`} alt={company} />;
+  return (
+    <Image
+      {...props}
+      src={`${path}/${resource}.${format || 'svg'}`}
+      alt={company}
+    />
+  );
 };
 
 export default Icon;

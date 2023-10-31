@@ -20,6 +20,22 @@ describe('Icon 컴포넌트', () => {
       size: randomOneNumber(0, 200),
     };
 
+    const { getByRole } = render(
+      <Icon
+        company={testProps.company}
+        color={testProps.color}
+        background={testProps.background}
+        state={testProps.state}
+        width={testProps.size}
+        height={testProps.size}
+      />,
+    );
+    const image = getByRole('img');
+
+    expect(image).toHaveAttribute('width', testProps.size.toString());
+    expect(image).toHaveAttribute('height', testProps.size.toString());
+    expect(image).toHaveAttribute('alt', testProps.company);
+
     const resource = iconResourceSrcFormat({
       company: testProps.company,
       color: testProps.color,
@@ -31,29 +47,9 @@ describe('Icon 컴포넌트', () => {
 
     const imageSrc = `${path}/${resource}`;
 
-    const { getByRole } = render(
-      <Icon
-        src={`${path}/${resource}`}
-        company={testProps.company}
-        color={testProps.color}
-        background={testProps.background}
-        state={testProps.state}
-        width={testProps.size}
-        height={testProps.size}
-        alt={testProps.company}
-      />,
-    );
-    const image = getByRole('img');
-
-    expect(image).toHaveAttribute('width', testProps.size.toString());
-    expect(image).toHaveAttribute('height', testProps.size.toString());
-    expect(image).toHaveAttribute('alt', testProps.company);
-
     expect(image).toHaveAttribute(
       'src',
-      expect.stringContaining(
-        `/_next/image?url=${encodeURIComponent(imageSrc)}`,
-      ),
+      expect.stringContaining(`/_next/image?url=${imageSrc}`),
     );
   });
 });
