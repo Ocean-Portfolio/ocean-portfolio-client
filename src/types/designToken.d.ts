@@ -115,3 +115,35 @@ type ODSTextToken =
   | ParagraphMTextToken
   | ParagraphSTextToken
   | CaptionTextToken;
+
+type CompanyIconToken =
+  | 'GOOGLE'
+  | 'FACEBOOK'
+  | 'TWITTER'
+  | 'LINKEDIN'
+  | 'INSTAGRAM'
+  | 'YOUTUBE'
+  | 'PINTEREST'
+  | 'MEDIUM'
+  | 'GITHUB'
+  | 'FIGMA'
+  | 'DRIBBBLE'
+  | 'TIKTOK'
+  | 'WHATSAPP'
+  | 'BEHANCE'
+  | 'NOTION'
+  | 'DISQUITE'
+  | 'TELEGRAM';
+
+type ColorIconToken = 'BRAND' | 'GRAY' | 'WHITE';
+
+type BackgroundIconToken = 'NONE' | 'CIRCULAR' | 'RECTANGLAR';
+
+type StateIconToken = 'DEFAULT' | 'HOVER';
+
+interface ODSIconTokenInterface {
+  company: CompanyIconToken;
+  color: ColorIconToken;
+  background: BackgroundIconToken;
+  state: StateIconToken;
+}

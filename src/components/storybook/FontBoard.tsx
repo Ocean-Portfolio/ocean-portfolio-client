@@ -81,7 +81,13 @@ const Display = ({ children, typoToken }: PropsWithChildren<DisplayProps>) => {
       <FontBoard.Info>
         {letterSpacing} ({pxLetterSpacing}px)
       </FontBoard.Info>
-      <Text as="span" typoToken={typoToken}>
+      <Text
+        as="span"
+        typoToken={typoToken}
+        style={{
+          color: globalThemeVars.color['gray-scale-06'],
+        }}
+      >
         {children}
       </Text>
     </>

@@ -2,6 +2,7 @@ import React from 'react';
 import FontBoard from '@/components/storybook/FontBoard';
 import Grid from '@/composable/Grid/Grid';
 import Text from '@/composable/Text/Text';
+import { globalThemeVars } from '@/styles/theme.css';
 
 const sampleText = 'Anyone can develop';
 
@@ -18,6 +19,7 @@ const Typography = () => {
         typoToken="display-m-bold"
         style={{
           marginBottom: '20px',
+          color: globalThemeVars.color['gray-scale-06'],
         }}
       >
         Typography
