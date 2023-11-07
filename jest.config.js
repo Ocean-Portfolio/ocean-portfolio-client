@@ -5,13 +5,9 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jest-environment-jsdom',
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.test.json',
-    },
-  },
   transform: {
     '\\.css\\.ts$': '@vanilla-extract/jest-transform',
+    '\\.(tsx|ts)$': ['ts-jest', { tsconfig: 'tsconfig.test.json' }],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {

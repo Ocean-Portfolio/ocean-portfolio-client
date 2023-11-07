@@ -6,8 +6,7 @@ import {
   iconCompanyTokens,
   iconStateTokens,
 } from '@/mock/iconTokens.mock';
-import { randomIndex, randomOneNumber } from '@/utils/number/random';
-import capitalizeFirstLetter from '@/utils/string/capitalizeFirstLetter';
+import { randomIndex, randomBetweenNumber } from '@/utils/number/random';
 import iconResourceSrcFormat from '@/utils/string/iconResourceSrcFormat';
 import Icon from './Icon';
 
@@ -18,7 +17,7 @@ describe('Icon 컴포넌트', () => {
       color: iconColorTokens[randomIndex(iconColorTokens)],
       background: iconBackgroundTokens[randomIndex(iconBackgroundTokens)],
       state: iconStateTokens[randomIndex(iconStateTokens)],
-      size: randomOneNumber(0, 200),
+      size: randomBetweenNumber(0, 200),
     };
 
     const { getByRole } = render(
