@@ -1,50 +1,50 @@
 import { ODSTextTokenArray } from '@/const/fonts';
 import { randomIndex } from '../number/random';
-import calcRemToPx from './calcRemToPx';
+import calcRemToPxNumber from './calcRemToPxNumber';
 import determineTextColor from './determineTextColor';
 import getTextStyle from './getTextStyle';
 
 describe('style', () => {
-  describe('calcRemToPx', () => {
+  describe('calcRemToPxNumber', () => {
     // 테스트 케이스 1: 기본적인 REM 값을 PX로 변환
     it('1rem은 16px와 같아야 한다', () => {
       const remValue = '1rem';
-      const pxValue = calcRemToPx(remValue);
+      const pxValue = calcRemToPxNumber(remValue);
       expect(pxValue).toBe(16);
     });
 
     // 테스트 케이스 2: 소수점을 포함하는 REM 값을 PX로 변환
     it('0.5rem은 8px와 같아야 한다', () => {
       const remValue = '0.5rem';
-      const pxValue = calcRemToPx(remValue);
+      const pxValue = calcRemToPxNumber(remValue);
       expect(pxValue).toBe(8);
     });
 
     // 테스트 케이스 3: 0rem 값이 0px로 변환되는지 확인
     it('0rem은 0px와 같아야 한다', () => {
       const remValue = '0rem';
-      const pxValue = calcRemToPx(remValue);
+      const pxValue = calcRemToPxNumber(remValue);
       expect(pxValue).toBe(0);
     });
 
     // 테스트 케이스 4: 소수점이 있는 값이 정확히 변환되는지 확인
     it('2.75rem은 44px와 같아야 한다', () => {
       const remValue = '2.75rem';
-      const pxValue = calcRemToPx(remValue);
+      const pxValue = calcRemToPxNumber(remValue);
       expect(pxValue).toBe(44);
     });
 
     // 테스트 케이스 5: 잘못된 입력값 처리 - 문자열 포함
     it('잘못된 rem 값에 대해서는 NaN을 반환해야 한다', () => {
       const remValue = 'abc';
-      const pxValue = calcRemToPx(remValue);
+      const pxValue = calcRemToPxNumber(remValue);
       expect(pxValue).toBeNaN();
     });
 
     // 테스트 케이스 6: 음수 값이 올바르게 변환되는지 확인
     it('-1rem은 -16px와 같아야 한다', () => {
       const remValue = '-1rem';
-      const pxValue = calcRemToPx(remValue);
+      const pxValue = calcRemToPxNumber(remValue);
       expect(pxValue).toBe(-16);
     });
   });
@@ -56,13 +56,15 @@ describe('style', () => {
       const style = getTextStyle(ODSRandomTextToken.key);
 
       const fontSize = ODSRandomTextToken.value.fontSize;
-      const pxFontSize = calcRemToPx(ODSRandomTextToken.value.fontSize);
+      const pxFontSize = calcRemToPxNumber(ODSRandomTextToken.value.fontSize);
 
       const lineHeight = ODSRandomTextToken.value.lineHeight;
-      const pxLineHeight = calcRemToPx(ODSRandomTextToken.value.lineHeight);
+      const pxLineHeight = calcRemToPxNumber(
+        ODSRandomTextToken.value.lineHeight,
+      );
 
       const letterSpacing = ODSRandomTextToken.value.letterSpacing;
-      const pxLetterSpacing = calcRemToPx(
+      const pxLetterSpacing = calcRemToPxNumber(
         ODSRandomTextToken.value.letterSpacing,
       );
 
