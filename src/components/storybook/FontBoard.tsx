@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import Grid from '@/composable/Grid/Grid';
 import Text, { TextProps } from '@/composable/Text/Text';
 import { globalThemeVars } from '@/styles/theme.css';
-import getTextStyle from '@/utils/getTextStyle';
+import getTextStyle from '@/utils/style/getTextStyle';
 
 const FontBoard = ({ children }: PropsWithChildren) => {
   return (

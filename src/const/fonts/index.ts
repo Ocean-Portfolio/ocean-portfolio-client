@@ -64,3 +64,14 @@ export const ODSTextTokenVariables = {
   'caption-m-semibold': _caption_m_medium,
   'caption-m-medium': _caption_m_semibold,
 };
+
+const keyArray = Object.keys(ODSTextTokenVariables) as ODSTextToken[];
+
+const valueArray = Object.values(ODSTextTokenVariables);
+
+export const ODSTextTokenArray = keyArray.map((key, index) => {
+  return {
+    key,
+    value: valueArray[index],
+  };
+});

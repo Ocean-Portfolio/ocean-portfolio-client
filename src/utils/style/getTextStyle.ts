@@ -1,14 +1,15 @@
 import { ODSTextTokenVariables } from '@/const/fonts';
+import calcRemToPx from './calcRemToPx';
 
 const getTextStyle = (typoToken: ODSTextToken) => {
   const fontSize = ODSTextTokenVariables[typoToken].fontSize;
-  const pxFontSize = Number(fontSize.split('rem')[0]) * 16;
+  const pxFontSize = calcRemToPx(fontSize);
 
   const lineHeight = ODSTextTokenVariables[typoToken].lineHeight;
-  const pxLineHeight = Number(lineHeight.split('rem')[0]) * 16;
+  const pxLineHeight = calcRemToPx(lineHeight);
 
   const letterSpacing = ODSTextTokenVariables[typoToken].letterSpacing;
-  const pxLetterSpacing = Number(letterSpacing.split('rem')[0]) * 16;
+  const pxLetterSpacing = calcRemToPx(letterSpacing);
 
   return {
     token: typoToken,
