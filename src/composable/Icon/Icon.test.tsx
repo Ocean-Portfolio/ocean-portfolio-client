@@ -7,7 +7,8 @@ import {
   iconStateTokens,
 } from '@/mock/iconTokens.mock';
 import iconResourceSrcFormat from '@/utils/iconResourceSrcFormat';
-import { randomIndex, randomOneNumber } from '@/utils/random';
+import { randomIndex, randomOneNumber } from '@/utils/number/random';
+import capitalizeFirstLetter from '@/utils/string/capitalizeFirstLetter';
 import Icon from './Icon';
 
 describe('Icon 컴포넌트', () => {
@@ -43,13 +44,12 @@ describe('Icon 컴포넌트', () => {
       state: testProps.state,
     });
 
-    const path = `${ASSET_ENDPOINT}/icons/${testProps.company}`;
-
+    const path = `${ASSET_ENDPOINT}/icons/${testProps.company.toLowerCase()}`;
     const imageSrc = `${path}/${resource}`;
 
     expect(image).toHaveAttribute(
       'src',
-      expect.stringContaining(`/_next/image?url=${imageSrc}`),
+      expect.stringContaining(`${imageSrc}`),
     );
   });
 });

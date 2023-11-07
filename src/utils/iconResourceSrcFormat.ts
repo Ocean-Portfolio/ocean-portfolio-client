@@ -1,4 +1,4 @@
-import convToPascaleCase from './convToPascaleCase';
+import capitalizeFirstLetter from './string/capitalizeFirstLetter';
 
 const iconResourceSrcFormat = ({
   company,
@@ -7,11 +7,11 @@ const iconResourceSrcFormat = ({
   state,
 }: ODSIconTokenInterface) => {
   return encodeURIComponent(
-    `Company=${convToPascaleCase(company)}, Color=${convToPascaleCase(
+    `Company=${capitalizeFirstLetter(company)}, Color=${capitalizeFirstLetter(
       color,
-    )}, Background=${convToPascaleCase(background)}, State=${convToPascaleCase(
-      state,
-    )}`,
+    )}, Background=${capitalizeFirstLetter(
+      background,
+    )}, State=${capitalizeFirstLetter(state)}`,
   );
 };
 
