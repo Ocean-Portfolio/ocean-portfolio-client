@@ -1,4 +1,5 @@
 import capitalizeFirstLetter from './capitalizeFirstLetter';
+import iconResourceSrcFormat from './iconResourceSrcFormat';
 import replaceAll from './replaceAll';
 
 describe('string', () => {
@@ -100,5 +101,25 @@ describe('string', () => {
         'The quick brown fox jumps over the lazy cat. If the cat barked, was it really lazy?';
       expect(replaceAll(original, 'dog', 'cat')).toBe(replaced);
     });
+  });
+
+  describe('iconResourceSrcFormat', () => {
+    it('should format the icon resource source correctly', () => {
+      const mockIconToken: ODSIconTokenInterface = {
+        company: 'GOOGLE',
+        color: 'BRAND',
+        background: 'CIRCULAR',
+        state: 'HOVER',
+      };
+
+      const expectedOutput = encodeURIComponent(
+        'Company=Google, Color=Brand, Background=Circular, State=Hover',
+      );
+
+      const result = iconResourceSrcFormat(mockIconToken);
+      expect(result).toBe(expectedOutput);
+    });
+
+    // You can add more tests to cover other cases, such as different capitalizations, empty strings, etc.
   });
 });

@@ -1,4 +1,4 @@
-import capitalizeFirstLetter from './string/capitalizeFirstLetter';
+import capitalizeFirstLetter from './capitalizeFirstLetter';
 
 const iconResourceSrcFormat = ({
   company,

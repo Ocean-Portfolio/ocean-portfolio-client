@@ -6,9 +6,9 @@ import {
   iconCompanyTokens,
   iconStateTokens,
 } from '@/mock/iconTokens.mock';
-import iconResourceSrcFormat from '@/utils/iconResourceSrcFormat';
 import { randomIndex, randomOneNumber } from '@/utils/number/random';
 import capitalizeFirstLetter from '@/utils/string/capitalizeFirstLetter';
+import iconResourceSrcFormat from '@/utils/string/iconResourceSrcFormat';
 import Icon from './Icon';
 
 describe('Icon 컴포넌트', () => {

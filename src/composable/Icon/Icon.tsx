@@ -1,7 +1,7 @@
 import Image, { ImageProps } from 'next/image';
 import React from 'react';
 import { ASSET_ENDPOINT } from '@/const/endpoint';
-import iconResourceSrcFormat from '@/utils/iconResourceSrcFormat';
+import iconResourceSrcFormat from '@/utils/string/iconResourceSrcFormat';
 
 type ModifiedImageProps = Omit<ImageProps, 'src' | 'alt'>;
 type Props = ODSIconTokenInterface &
