@@ -6,6 +6,7 @@ const replaceAll = (
   replaceTarget: string,
   replaceText: string,
 ) => {
+  if (replaceTarget.length === 0) return target;
   const splitedInput = target.split(replaceTarget);
 
   const joinedInput = splitedInput.join(replaceText);
