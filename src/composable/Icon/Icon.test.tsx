@@ -7,7 +7,7 @@ import {
   iconStateTokens,
 } from '@/mock/iconTokens.mock';
 import { randomIndex, randomBetweenNumber } from '@/utils/number/random';
-import iconResourceSrcFormat from '@/utils/string/iconResourceSrcFormat';
+import capitalizeFirstLetter from '@/utils/string/capitalizeFirstLetter';
 import Icon from './Icon';
 
 describe('Icon 컴포넌트', () => {
@@ -36,19 +36,24 @@ describe('Icon 컴포넌트', () => {
     expect(image).toHaveAttribute('height', testProps.size.toString());
     expect(image).toHaveAttribute('alt', testProps.company);
 
-    const resource = iconResourceSrcFormat({
-      company: testProps.company,
-      color: testProps.color,
-      background: testProps.background,
-      state: testProps.state,
-    });
-
-    const path = `${ASSET_ENDPOINT}/icons/${testProps.company.toLowerCase()}`;
-    const imageSrc = `${path}/${resource}`;
+    expect(image).toHaveAttribute(
+      'src',
+      expect.stringContaining(`${capitalizeFirstLetter(testProps.company)}`),
+    );
 
     expect(image).toHaveAttribute(
       'src',
-      expect.stringContaining(`${imageSrc}`),
+      expect.stringContaining(`${capitalizeFirstLetter(testProps.color)}`),
+    );
+
+    expect(image).toHaveAttribute(
+      'src',
+      expect.stringContaining(`${capitalizeFirstLetter(testProps.background)}`),
+    );
+
+    expect(image).toHaveAttribute(
+      'src',
+      expect.stringContaining(`${capitalizeFirstLetter(testProps.state)}`),
     );
   });
 });

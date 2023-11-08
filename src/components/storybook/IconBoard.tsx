@@ -30,15 +30,17 @@ const IconBoard = () => {
 
 interface SocialProps {
   company: CompanyIconToken;
+  format?: 'png' | 'svg';
 }
 
-const Social = ({ company }: SocialProps) => {
+const Social = ({ company, format }: SocialProps) => {
   return (
     <>
       <Icon
         width={32}
         height={32}
         company={company}
+        format={format}
         color="BRAND"
         background="NONE"
         state="DEFAULT"
@@ -47,6 +49,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="BRAND"
         background="CIRCULAR"
         state="DEFAULT"
@@ -55,6 +58,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="BRAND"
         background="RECTANGLAR"
         state="DEFAULT"
@@ -64,6 +68,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="GRAY"
         background="NONE"
         state="DEFAULT"
@@ -72,6 +77,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="GRAY"
         background="CIRCULAR"
         state="DEFAULT"
@@ -80,6 +86,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="GRAY"
         background="RECTANGLAR"
         state="DEFAULT"
@@ -89,6 +96,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="GRAY"
         background="NONE"
         state="HOVER"
@@ -97,6 +105,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="GRAY"
         background="CIRCULAR"
         state="HOVER"
@@ -105,6 +114,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="GRAY"
         background="RECTANGLAR"
         state="HOVER"
@@ -114,6 +124,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="WHITE"
         background="NONE"
         state="DEFAULT"
@@ -122,6 +133,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="WHITE"
         background="CIRCULAR"
         state="DEFAULT"
@@ -130,6 +142,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="WHITE"
         background="RECTANGLAR"
         state="DEFAULT"
@@ -139,6 +152,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="WHITE"
         background="RECTANGLAR"
         state="HOVER"
@@ -147,6 +161,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="WHITE"
         background="RECTANGLAR"
         state="HOVER"
@@ -155,6 +170,7 @@ const Social = ({ company }: SocialProps) => {
         width={32}
         height={32}
         company={company}
+        format={format}
         color="WHITE"
         background="RECTANGLAR"
         state="HOVER"

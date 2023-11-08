@@ -29,7 +29,7 @@ const Icon = ({
   return (
     <Image
       {...props}
-      src={`${path}/${resource}.${format || 'svg'}`}
+      src={`${path}/${resource}.${format || 'png'}`}
       alt={company}
     />
   );
