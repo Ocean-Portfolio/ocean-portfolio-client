@@ -23,6 +23,7 @@ const IconBoard = () => {
       <IconBoard.Social company="GOOGLE" />
       <IconBoard.Social company="FACEBOOK" />
       <IconBoard.Social company="TWITTER" />
+      <IconBoard.Social company="LINKEDIN" />
     </Grid>
   );
 };
