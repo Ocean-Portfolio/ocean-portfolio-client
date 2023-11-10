@@ -11,6 +11,7 @@ const IconBoard = () => {
       templateColumns="repeat(16, 2rem)"
       templateRows="repeat(19, 2rem)"
       style={{
+        width: 'fit-content',
         justifyItems: 'center',
         alignItems: 'center',
         rowGap: '1rem',
@@ -26,6 +27,16 @@ const IconBoard = () => {
       <IconBoard.Social company="LINKEDIN" />
       <IconBoard.Social company="INSTAGRAM" />
       <IconBoard.Social company="YOUTUBE" />
+      <IconBoard.Social company="PINTEREST" />
+      <IconBoard.Social company="MEDIUM" />
+      <IconBoard.Social company="GITHUB" />
+      <IconBoard.Social company="FIGMA" />
+      <IconBoard.Social company="DRIBBBLE" />
+      <IconBoard.Social company="TIKTOK" />
+      <IconBoard.Social company="WHATSAPP" />
+      <IconBoard.Social company="BEHANCE" />
+      <IconBoard.Social company="NOTION" />
+      <IconBoard.Social company="DISQUITE" />
     </Grid>
   );
 };
