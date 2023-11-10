@@ -1,5 +1,5 @@
 import Image, { ImageProps } from 'next/image';
-import React, { useRef } from 'react';
+import React from 'react';
 import { ASSET_ENDPOINT } from '@/const/endpoint';
 import iconResourceSrcFormat from '@/utils/string/iconResourceSrcFormat';
 
@@ -17,8 +17,6 @@ const Icon = ({
   format,
   ...props
 }: Props) => {
-  const imageRef = useRef<HTMLImageElement>(null);
-
   const resource = iconResourceSrcFormat({
     company,
     color,
@@ -31,12 +29,11 @@ const Icon = ({
   return (
     <Image
       {...props}
-      ref={imageRef}
       src={`${path}/${resource}.${format || 'png'}`}
-      onError={(e) => {
-        const target = e.target as HTMLImageElement;
-        target.style.opacity = '0';
-      }}
+      // onError={(e) => {
+      //   const target = e.target as HTMLImageElement;
+      //   target.style.opacity = '0';
+      // }}
       alt={company}
     />
   );
