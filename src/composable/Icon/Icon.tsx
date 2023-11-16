@@ -1,22 +1,25 @@
+import dynamic from 'next/dynamic';
 import Image, { ImageProps } from 'next/image';
 import React from 'react';
 import { ASSET_ENDPOINT } from '@/const/endpoint';
 import iconResourceSrcFormat from '@/utils/string/iconResourceSrcFormat';
 
+const Icon = () => {};
+
 type ModifiedImageProps = Omit<ImageProps, 'src' | 'alt'>;
-type Props = ODSIconTokenInterface &
+type SocialProps = ODSIconTokenInterface &
   ModifiedImageProps & {
     format?: 'png' | 'svg';
   };
 
-const Icon = ({
+const Social = ({
   company,
   color,
   background,
   state,
   format,
   ...props
-}: Props) => {
+}: SocialProps) => {
   const resource = iconResourceSrcFormat({
     company,
     color,
@@ -39,4 +42,5 @@ const Icon = ({
   );
 };
 
+Icon.Social = dynamic(() => Promise.resolve(Social), {});
 export default Icon;

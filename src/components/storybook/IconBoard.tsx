@@ -49,7 +49,7 @@ interface SocialProps {
 const Social = ({ company, format }: SocialProps) => {
   return (
     <>
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -58,7 +58,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="NONE"
         state="DEFAULT"
       />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -67,7 +67,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="CIRCULAR"
         state="DEFAULT"
       />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -77,7 +77,7 @@ const Social = ({ company, format }: SocialProps) => {
         state="DEFAULT"
       />
       <br />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -86,7 +86,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="NONE"
         state="DEFAULT"
       />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -95,7 +95,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="CIRCULAR"
         state="DEFAULT"
       />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -105,7 +105,7 @@ const Social = ({ company, format }: SocialProps) => {
         state="DEFAULT"
       />
       <br />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -114,7 +114,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="NONE"
         state="HOVER"
       />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -123,7 +123,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="CIRCULAR"
         state="HOVER"
       />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -133,7 +133,7 @@ const Social = ({ company, format }: SocialProps) => {
         state="HOVER"
       />
       <br />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -142,7 +142,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="NONE"
         state="DEFAULT"
       />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -151,7 +151,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="CIRCULAR"
         state="DEFAULT"
       />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -161,7 +161,7 @@ const Social = ({ company, format }: SocialProps) => {
         state="DEFAULT"
       />
       <br />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -170,7 +170,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="RECTANGLAR"
         state="HOVER"
       />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}
@@ -179,7 +179,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="RECTANGLAR"
         state="HOVER"
       />
-      <Icon
+      <Icon.Social
         width={32}
         height={32}
         company={company}

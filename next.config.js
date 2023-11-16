@@ -8,7 +8,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**.brand-ing.me',
+        hostname: 'cdn.brand-ing.me',
       },
     ],
     // loader: 'custom',
