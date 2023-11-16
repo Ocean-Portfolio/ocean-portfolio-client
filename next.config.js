@@ -11,8 +11,6 @@ const nextConfig = {
         hostname: 'cdn.brand-ing.me',
       },
     ],
-    // loader: 'custom',
-    // loaderFile: './utils/image/cloudFlareLoader.ts',
   },
 };
 
