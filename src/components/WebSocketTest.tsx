@@ -5,9 +5,12 @@ const WebSocketTest = () => {
   const [data, setData] = useState<string>('');
   const [receivedData, setReceivedData] = useState('');
   const socketRef = useRef<Socket>();
+  // TODO: 포트번호를 .env 파일에서 가져오는 방법을 찾아보자.
+  const PORT = useRef(process.env.NEXT_PUBIC_WEBSOCKET_PORT);
 
   useEffect(() => {
-    socketRef.current = io(process.env.NEXT_PUBIC_WEBSOCKET_PORT);
+    console.log(PORT.current);
+    socketRef.current = io(PORT.current);
 
     socketRef.current.on('connect', () => {
       console.log('Socket connected');
