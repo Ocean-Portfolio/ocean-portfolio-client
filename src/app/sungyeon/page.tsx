@@ -3,7 +3,7 @@ import Container from '@/composable/Container/Container';
 
 const Sungyeon = () => {
   return (
-    <Container>
+    <Container as="main">
       <div>yoon0cean page</div>
     </Container>
   );

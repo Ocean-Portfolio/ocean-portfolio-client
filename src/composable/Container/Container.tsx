@@ -13,7 +13,7 @@ const Container = ({
 }: PropsWithChildren<Props>) => {
   return (
     <Tag
-      as={as || 'main'}
+      as={as || 'div'}
       className={classNames(containerStyle, className)}
       {...rest}
     >

@@ -72,6 +72,9 @@ export const colorVariants = styleVariants({
 });
 
 export const backgroundColorVariants = styleVariants({
+  transparent: {
+    backgroundColor: 'transparent',
+  },
   'gray-scale-00': {
     backgroundColor: globalThemeVars.color['gray-scale-00'],
   },
