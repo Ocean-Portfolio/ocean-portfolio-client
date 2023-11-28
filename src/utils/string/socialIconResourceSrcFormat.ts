@@ -1,11 +1,11 @@
 import capitalizeFirstLetter from './capitalizeFirstLetter';
 
-const iconResourceSrcFormat = ({
+const socialIconResourceSrcFormat = ({
   company,
   color,
   background,
   state,
-}: ODSIconTokenInterface) => {
+}: SocialIconProps) => {
   return encodeURIComponent(
     `Company=${capitalizeFirstLetter(company)}, Color=${capitalizeFirstLetter(
       color,
@@ -15,4 +15,4 @@ const iconResourceSrcFormat = ({
   );
 };
 
-export default iconResourceSrcFormat;
+export default socialIconResourceSrcFormat;

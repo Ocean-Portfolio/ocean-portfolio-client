@@ -1,11 +1,23 @@
 import React from 'react';
 import Grid from '@/composable/Grid/Grid';
+import CommonIcon from '@/composable/Icon/CommonIcon';
 import SocialIcon from '@/composable/Icon/SocialIcon';
 import Text from '@/composable/Text/Text';
 import { backgroundColorVariants } from '@/styles/color.css';
 import { globalThemeVars } from '@/styles/theme.css';
 
 const IconBoard = () => {
+  const gridStyle = {
+    width: 'fit-content',
+    justifyItems: 'center',
+    alignItems: 'center',
+    rowGap: '1rem',
+    columnGap: '2rem',
+    margin: '1rem 0',
+    padding: '1.5rem',
+    borderRadius: '1rem',
+  };
+
   return (
     <>
       <Text
@@ -16,8 +28,17 @@ const IconBoard = () => {
           color: globalThemeVars.color['gray-scale-04'],
         }}
       >
-        Skill Icons
+        Common Icons
       </Text>
+
+      <Grid
+        className={backgroundColorVariants['gray-scale-01']}
+        autoFlow="column"
+        templateColumns="repeat(7, 2rem)"
+        style={gridStyle}
+      >
+        <IconBoard.Common />
+      </Grid>
 
       <Text
         as="h1"
@@ -34,16 +55,7 @@ const IconBoard = () => {
         autoFlow="column"
         templateColumns="repeat(16, 2rem)"
         templateRows="repeat(19, 2rem)"
-        style={{
-          width: 'fit-content',
-          justifyItems: 'center',
-          alignItems: 'center',
-          rowGap: '1rem',
-          columnGap: '2rem',
-          margin: '1rem 0',
-          padding: '1.5rem',
-          borderRadius: '1rem',
-        }}
+        style={gridStyle}
       >
         <IconBoard.Social company="GOOGLE" />
         <IconBoard.Social company="FACEBOOK" />
@@ -217,6 +229,40 @@ const Social = ({ company, format }: SocialProps) => {
   );
 };
 
+interface CommonProps {
+  format?: 'png' | 'svg';
+}
+
+const Common = ({ format }: CommonProps) => {
+  return (
+    <>
+      <CommonIcon variant="DOWN_ARROW" width={32} height={32} format={format} />
+      <CommonIcon variant="HAMBURGER" width={32} height={32} format={format} />
+      <CommonIcon
+        variant="LARGE_CLOSE"
+        width={32}
+        height={32}
+        format={format}
+      />
+      <CommonIcon variant="LEFT_ARROW" width={32} height={32} format={format} />
+      <CommonIcon
+        variant="NORMAL_CLOSE"
+        width={32}
+        height={32}
+        format={format}
+      />
+      <CommonIcon
+        variant="ROUND_CLOSE"
+        width={32}
+        height={32}
+        format={format}
+      />
+      <CommonIcon variant="UP_ARROW" width={32} height={32} format={format} />
+    </>
+  );
+};
+
 IconBoard.Social = Social;
+IconBoard.Common = Common;
 
 export default IconBoard;

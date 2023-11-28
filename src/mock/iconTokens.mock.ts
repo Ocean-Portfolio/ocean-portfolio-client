@@ -1,3 +1,12 @@
+export const iconCommonTokens: CommonIconToken[] = [
+  'DOWN_ARROW',
+  'HAMBURGER',
+  'LARGE_CLOSE',
+  'NORMAL_CLOSE',
+  'ROUND_CLOSE',
+  'UP_ARROW',
+];
+
 export const iconCompanyTokens: CompanyIconToken[] = [
   'GOOGLE',
   'FACEBOOK',

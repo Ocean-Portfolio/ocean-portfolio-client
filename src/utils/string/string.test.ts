@@ -1,6 +1,6 @@
 import capitalizeFirstLetter from './capitalizeFirstLetter';
-import iconResourceSrcFormat from './iconResourceSrcFormat';
 import replaceAll from './replaceAll';
+import socialIconResourceSrcFormat from './socialIconResourceSrcFormat';
 
 describe('string', () => {
   describe('capitalizeFirstLetter', () => {
@@ -103,9 +103,9 @@ describe('string', () => {
     });
   });
 
-  describe('iconResourceSrcFormat', () => {
+  describe('socialIconResourceSrcFormat', () => {
     it('should format the icon resource source correctly', () => {
-      const mockIconToken: ODSIconTokenInterface = {
+      const mockIconToken: SocialIconProps = {
         company: 'GOOGLE',
         color: 'BRAND',
         background: 'CIRCULAR',
@@ -116,7 +116,7 @@ describe('string', () => {
         'Company=Google, Color=Brand, Background=Circular, State=Hover',
       );
 
-      const result = iconResourceSrcFormat(mockIconToken);
+      const result = socialIconResourceSrcFormat(mockIconToken);
       expect(result).toBe(expectedOutput);
     });
 

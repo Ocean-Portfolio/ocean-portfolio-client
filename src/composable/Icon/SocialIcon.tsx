@@ -1,12 +1,6 @@
-import Image, { ImageProps } from 'next/image';
-import { ASSET_ENDPOINT } from '@/const/endpoint';
-import iconResourceSrcFormat from '@/utils/string/iconResourceSrcFormat';
-
-type ModifiedImageProps = Omit<ImageProps, 'src' | 'alt'>;
-type SocialProps = ODSIconTokenInterface &
-  ModifiedImageProps & {
-    format?: 'png' | 'svg';
-  };
+import Image from 'next/image';
+import iconAssetEndpoint from '@/utils/string/iconAssetEndpoint';
+import socialIconResourceSrcFormat from '@/utils/string/socialIconResourceSrcFormat';
 
 const SocialIcon = ({
   company,
@@ -15,15 +9,15 @@ const SocialIcon = ({
   state,
   format,
   ...props
-}: SocialProps) => {
-  const resource = iconResourceSrcFormat({
+}: SocialIconProps) => {
+  const resource = socialIconResourceSrcFormat({
     company,
     color,
     background,
     state,
   });
 
-  const path = `${ASSET_ENDPOINT}/icons/${company.toLowerCase()}`;
+  const path = iconAssetEndpoint(company);
 
   return (
     <Image

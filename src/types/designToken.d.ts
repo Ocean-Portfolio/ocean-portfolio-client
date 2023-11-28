@@ -116,6 +116,15 @@ type ODSTextToken =
   | ParagraphSTextToken
   | CaptionTextToken;
 
+type CommonIconToken =
+  | 'HAMBURGER'
+  | 'DOWN_ARROW'
+  | 'UP_ARROW'
+  | 'LEFT_ARROW'
+  | 'ROUND_CLOSE'
+  | 'NORMAL_CLOSE'
+  | 'LARGE_CLOSE';
+
 type CompanyIconToken =
   | 'GOOGLE'
   | 'FACEBOOK'
@@ -142,7 +151,6 @@ type BackgroundIconToken = 'NONE' | 'CIRCULAR' | 'RECTANGLAR';
 type StateIconToken = 'DEFAULT' | 'HOVER';
 
 interface ODSIconTokenInterface {
-  company: CompanyIconToken;
   color: ColorIconToken;
   background: BackgroundIconToken;
   state: StateIconToken;
