@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import { ASSET_ENDPOINT } from '@/const/endpoint';
 import {
   iconBackgroundTokens,
   iconColorTokens,
@@ -8,7 +7,7 @@ import {
 } from '@/mock/iconTokens.mock';
 import { randomIndex, randomBetweenNumber } from '@/utils/number/random';
 import capitalizeFirstLetter from '@/utils/string/capitalizeFirstLetter';
-import Icon from './Icon';
+import SocialIcon from './SocialIcon';
 
 describe('Icon 컴포넌트', () => {
   test('1. Image 컴포넌트가 정확한 props로 렌더링 되는가?', () => {
@@ -21,7 +20,7 @@ describe('Icon 컴포넌트', () => {
     };
 
     const { getByRole } = render(
-      <Icon
+      <SocialIcon
         company={testProps.company}
         color={testProps.color}
         background={testProps.background}

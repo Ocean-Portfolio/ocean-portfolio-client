@@ -1,43 +1,68 @@
 import React from 'react';
 import Grid from '@/composable/Grid/Grid';
-import Icon from '@/composable/Icon/Icon';
+import SocialIcon from '@/composable/Icon/SocialIcon';
+import Text from '@/composable/Text/Text';
 import { backgroundColorVariants } from '@/styles/color.css';
+import { globalThemeVars } from '@/styles/theme.css';
 
 const IconBoard = () => {
   return (
-    <Grid
-      className={backgroundColorVariants['gray-scale-01']}
-      autoFlow="column"
-      templateColumns="repeat(16, 2rem)"
-      templateRows="repeat(19, 2rem)"
-      style={{
-        width: 'fit-content',
-        justifyItems: 'center',
-        alignItems: 'center',
-        rowGap: '1rem',
-        columnGap: '2rem',
-        margin: '1rem 0',
-        padding: '1.5rem',
-        borderRadius: '1rem',
-      }}
-    >
-      <IconBoard.Social company="GOOGLE" />
-      <IconBoard.Social company="FACEBOOK" />
-      <IconBoard.Social company="TWITTER" />
-      <IconBoard.Social company="LINKEDIN" />
-      <IconBoard.Social company="INSTAGRAM" />
-      <IconBoard.Social company="YOUTUBE" />
-      <IconBoard.Social company="PINTEREST" />
-      <IconBoard.Social company="MEDIUM" />
-      <IconBoard.Social company="GITHUB" />
-      <IconBoard.Social company="FIGMA" />
-      <IconBoard.Social company="DRIBBBLE" />
-      <IconBoard.Social company="TIKTOK" />
-      <IconBoard.Social company="WHATSAPP" />
-      <IconBoard.Social company="BEHANCE" />
-      <IconBoard.Social company="NOTION" />
-      <IconBoard.Social company="DISQUITE" />
-    </Grid>
+    <>
+      <Text
+        as="h1"
+        typoToken="display-m-bold"
+        style={{
+          marginBottom: '20px',
+          color: globalThemeVars.color['gray-scale-04'],
+        }}
+      >
+        Skill Icons
+      </Text>
+
+      <Text
+        as="h1"
+        typoToken="display-m-bold"
+        style={{
+          marginBottom: '20px',
+          color: globalThemeVars.color['gray-scale-04'],
+        }}
+      >
+        Social Icons
+      </Text>
+      <Grid
+        className={backgroundColorVariants['gray-scale-01']}
+        autoFlow="column"
+        templateColumns="repeat(16, 2rem)"
+        templateRows="repeat(19, 2rem)"
+        style={{
+          width: 'fit-content',
+          justifyItems: 'center',
+          alignItems: 'center',
+          rowGap: '1rem',
+          columnGap: '2rem',
+          margin: '1rem 0',
+          padding: '1.5rem',
+          borderRadius: '1rem',
+        }}
+      >
+        <IconBoard.Social company="GOOGLE" />
+        <IconBoard.Social company="FACEBOOK" />
+        <IconBoard.Social company="TWITTER" />
+        <IconBoard.Social company="LINKEDIN" />
+        <IconBoard.Social company="INSTAGRAM" />
+        <IconBoard.Social company="YOUTUBE" />
+        <IconBoard.Social company="PINTEREST" />
+        <IconBoard.Social company="MEDIUM" />
+        <IconBoard.Social company="GITHUB" />
+        <IconBoard.Social company="FIGMA" />
+        <IconBoard.Social company="DRIBBBLE" />
+        <IconBoard.Social company="TIKTOK" />
+        <IconBoard.Social company="WHATSAPP" />
+        <IconBoard.Social company="BEHANCE" />
+        <IconBoard.Social company="NOTION" />
+        <IconBoard.Social company="DISQUITE" />
+      </Grid>
+    </>
   );
 };
 
@@ -49,7 +74,7 @@ interface SocialProps {
 const Social = ({ company, format }: SocialProps) => {
   return (
     <>
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -58,7 +83,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="NONE"
         state="DEFAULT"
       />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -67,7 +92,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="CIRCULAR"
         state="DEFAULT"
       />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -77,7 +102,7 @@ const Social = ({ company, format }: SocialProps) => {
         state="DEFAULT"
       />
       <br />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -86,7 +111,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="NONE"
         state="DEFAULT"
       />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -95,7 +120,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="CIRCULAR"
         state="DEFAULT"
       />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -105,7 +130,7 @@ const Social = ({ company, format }: SocialProps) => {
         state="DEFAULT"
       />
       <br />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -114,7 +139,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="NONE"
         state="HOVER"
       />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -123,7 +148,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="CIRCULAR"
         state="HOVER"
       />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -133,7 +158,7 @@ const Social = ({ company, format }: SocialProps) => {
         state="HOVER"
       />
       <br />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -142,7 +167,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="NONE"
         state="DEFAULT"
       />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -151,7 +176,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="CIRCULAR"
         state="DEFAULT"
       />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -161,7 +186,7 @@ const Social = ({ company, format }: SocialProps) => {
         state="DEFAULT"
       />
       <br />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -170,7 +195,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="RECTANGLAR"
         state="HOVER"
       />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
@@ -179,7 +204,7 @@ const Social = ({ company, format }: SocialProps) => {
         background="RECTANGLAR"
         state="HOVER"
       />
-      <Icon.Social
+      <SocialIcon
         width={32}
         height={32}
         company={company}
