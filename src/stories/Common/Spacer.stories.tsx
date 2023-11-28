@@ -21,7 +21,6 @@ export const Vertical30: Story = {
     spacing: 'spacer-30',
     backgroundColor: 'sungyeon-02',
     direction: 'vertical',
-    as: 'span',
   },
   decorators: [
     (Story) => (
@@ -50,7 +49,6 @@ export const Vertical50: Story = {
     spacing: 'spacer-50',
     backgroundColor: 'sungyeon-02',
     direction: 'vertical',
-    as: 'span',
   },
   decorators: [
     (Story) => (
