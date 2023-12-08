@@ -171,3 +171,13 @@ type SpacingToken =
   | 'spacer-60'
   | 'spacer-80'
   | 'spacer-100';
+
+type ImageSizeToken =
+  | 'image-profile-mo-50'
+  | 'image-profile-mo-65'
+  | 'image-project-mo-75'
+  | 'image-keyword-mo-75'
+  | 'image-project-mo-100'
+  | 'image-115'
+  | 'image-150'
+  | 'image-profile-pc-200';
