@@ -2,6 +2,7 @@ import type { StorybookConfig } from '@storybook/nextjs';
 import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
+import { DefinePlugin } from 'webpack';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -31,6 +32,9 @@ const config: StorybookConfig = {
     config.plugins?.push(
       new VanillaExtractPlugin(),
       new MiniCssExtractPlugin(),
+      new DefinePlugin({
+        'process.env.STORYBOOK': JSON.stringify(true),
+      }),
     );
 
     config.module?.rules?.forEach((rule) => {
