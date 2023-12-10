@@ -14,7 +14,7 @@ const FontBoard = ({ children }: PropsWithChildren) => {
         whiteSpace: 'nowrap',
       }}
       autoFlow="row"
-      templateColumns="11.25rem 7.5625rem 8.375rem 11.25rem 1fr"
+      templateColumns="11.25rem 7.5625rem 8.375rem 11.25rem 11.25rem 1fr"
     >
       {children}
     </Grid>
@@ -51,6 +51,7 @@ const Title = ({ children }: PropsWithChildren) => {
       <span />
       <span />
       <span />
+      <span />
     </>
   );
 };
@@ -63,6 +64,7 @@ const Display = ({ children, typoToken }: PropsWithChildren<DisplayProps>) => {
   const {
     fontSize,
     pxFontSize,
+    fontWeight,
     lineHeight,
     pxLineHeight,
     letterSpacing,
@@ -75,6 +77,7 @@ const Display = ({ children, typoToken }: PropsWithChildren<DisplayProps>) => {
       <FontBoard.Info>
         {fontSize} ({pxFontSize}px)
       </FontBoard.Info>
+      <FontBoard.Info>{fontWeight}</FontBoard.Info>
       <FontBoard.Info>
         {lineHeight} ({pxLineHeight}px)
       </FontBoard.Info>

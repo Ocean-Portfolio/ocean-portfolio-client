@@ -27,6 +27,7 @@ const Typography = () => {
       <FontBoard>
         <FontBoard.Column>Token Name</FontBoard.Column>
         <FontBoard.Column>Font Size</FontBoard.Column>
+        <FontBoard.Column>Font Weight</FontBoard.Column>
         <FontBoard.Column>Line Height</FontBoard.Column>
         <FontBoard.Column>Letter Spacing</FontBoard.Column>
         <FontBoard.Column>Sample</FontBoard.Column>
