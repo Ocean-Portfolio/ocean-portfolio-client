@@ -13,7 +13,7 @@ export default async function Home() {
   >({
     query: GET_SKILLS_BY_ID,
     variables: {
-      id: 1,
+      id: 26,
     },
   });
 
