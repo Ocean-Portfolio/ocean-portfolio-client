@@ -21,4 +21,5 @@ export const ODSColorTokenVariables = {
   'jaeyoon-03': '#1340B4',
   'jaeyoon-04': '#021C39',
   'jaeyoon-05': '#AF96F5',
+  transparent: 'transparent',
 };
