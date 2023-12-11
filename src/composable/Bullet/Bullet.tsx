@@ -4,11 +4,18 @@ import { fontVariants } from '@/styles/font.css';
 import Text from '../Text/Text';
 import { bulletStyle } from './Bullet.css';
 
-const Bullet = ({ children }: PropsWithChildren) => {
+const Bullet = ({
+  className,
+  children,
+}: PropsWithChildren<{ className?: string }>) => {
   return (
     <Text
       as="span"
-      className={classNames(bulletStyle, fontVariants['paragraph-m-bold'])}
+      className={classNames(
+        bulletStyle,
+        fontVariants['paragraph-m-bold'],
+        className,
+      )}
     >
       {children}
     </Text>
