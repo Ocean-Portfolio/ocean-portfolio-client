@@ -1,3 +1,4 @@
+import { SocialIconProps } from '@/composable/Icon/SocialIcon';
 import capitalizeFirstLetter from './capitalizeFirstLetter';
 import replaceAll from './replaceAll';
 import socialIconResourceSrcFormat from './socialIconResourceSrcFormat';
