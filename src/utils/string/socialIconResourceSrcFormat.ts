@@ -1,3 +1,4 @@
+import { SocialIconProps } from '@/composable/Icon/SocialIcon';
 import capitalizeFirstLetter from './capitalizeFirstLetter';
 
 const socialIconResourceSrcFormat = ({
