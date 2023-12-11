@@ -45,7 +45,14 @@ const Profile = ({ className, layout, src, alt, name, job, social }: Props) => {
       >
         {name}
       </Text>
-      <Text className={jobVariants[layout]} typoToken={'paragraph-s-regular'}>
+      <Text
+        as="pre"
+        className={jobVariants[layout]}
+        typoToken={'paragraph-s-regular'}
+        style={{
+          textAlign: 'center',
+        }}
+      >
         {job}
       </Text>
       {social && (

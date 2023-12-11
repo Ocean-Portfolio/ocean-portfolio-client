@@ -27,7 +27,7 @@ export const Vertical: Story = {
     src: 'https://cdn.brand-ing.me/profiles/2023-12-11_my_profile_img.png',
     alt: '성연 프로필 사진',
     name: '윤성연',
-    job: 'Software Engineer, Frontend',
+    job: `Software Engineer,\nFrontend`,
     social: [
       {
         company: 'GITHUB',
