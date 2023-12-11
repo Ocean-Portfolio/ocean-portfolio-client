@@ -5,11 +5,4 @@ declare global {
   type IconProps = ModifiedImageProps & {
     format?: 'png' | 'svg';
   };
-  type CommonIconProps = IconProps & {
-    variant: CommonIconToken;
-  };
-  type SocialIconProps = ODSIconTokenInterface &
-    IconProps & {
-      company: CompanyIconToken;
-    };
 }
