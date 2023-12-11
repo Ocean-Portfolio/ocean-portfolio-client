@@ -23,3 +23,7 @@ export const ODSColorTokenVariables = {
   'jaeyoon-05': '#AF96F5',
   transparent: 'transparent',
 };
+
+export const ODSColorTokenKeys = Object.keys(
+  ODSColorTokenVariables,
+) as ODSColorToken[];

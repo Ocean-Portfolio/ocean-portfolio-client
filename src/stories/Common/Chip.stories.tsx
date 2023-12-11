@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Chip from '@/composable/Chip/Chip';
-import { ODSColorTokenVariables } from '@/const/colors';
+import { ODSColorTokenKeys } from '@/const/colors';
 import { globalThemeVars } from '@/styles/theme.css';
 
 const meta: Meta<typeof Chip> = {
@@ -20,7 +20,6 @@ export const Default: Story = {
 
 export const ColorVariants: Story = {
   render: () => {
-    const colors = Object.keys(ODSColorTokenVariables) as ODSColorToken[];
     return (
       <div
         style={{
@@ -30,7 +29,7 @@ export const ColorVariants: Story = {
           backgroundColor: globalThemeVars.color['gray-scale-01'],
         }}
       >
-        {colors.map((color) => (
+        {ODSColorTokenKeys.map((color) => (
           <Chip key={color} backgroundColorToken={color}>
             {color}
           </Chip>
