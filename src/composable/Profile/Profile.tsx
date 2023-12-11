@@ -50,7 +50,7 @@ const Profile = ({ className, layout, src, alt, name, job, social }: Props) => {
         className={jobVariants[layout]}
         typoToken={'paragraph-s-regular'}
         style={{
-          textAlign: 'center',
+          textAlign: layout === 'HORIZONTAL' ? 'left' : 'center',
         }}
       >
         {job}
