@@ -5,3 +5,9 @@ export const flexCenter = style({
   alignItems: 'center',
   justifyContent: 'center',
 });
+
+export const inlineFlexCenter = style({
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
