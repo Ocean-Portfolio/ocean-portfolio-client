@@ -5,8 +5,8 @@ import Tag from '../Tag/Tag';
 import { horizontalSpacerStyle, verticalSpacerStyle } from './Spacer.css';
 
 interface Props {
-  spacing: SpacingToken;
   className?: string;
+  spacing: SpacingToken;
   direction?: 'vertical' | 'horizontal';
   backgroundColor?: ODSColorToken;
   style?: React.CSSProperties;
