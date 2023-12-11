@@ -8,6 +8,8 @@ interface Props {
   className?: string;
   size: 'M' | 'L';
   status?: 'DEFAULT' | 'HOVER' | 'PRESS';
+  width?: string;
+  style?: React.CSSProperties;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -16,6 +18,8 @@ const Button = ({
   children,
   size,
   status = 'DEFAULT',
+  width,
+  style,
   onClick,
 }: PropsWithChildren<Props>) => {
   return (
@@ -24,10 +28,13 @@ const Button = ({
       className={classNames(
         className,
         buttonVariants[size],
-        fontVariants[size === 'M' ? 'paragraph-m-bold' : 'paragraph-s-regular'],
+        fontVariants[
+          size === 'M' ? 'paragraph-m-medium' : 'paragraph-s-regular'
+        ],
         getSpecificButtonStatus?.(size, status),
       )}
       onClick={onClick}
+      style={{ ...style, width }}
     >
       {children}
     </button>

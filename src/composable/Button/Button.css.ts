@@ -20,6 +20,7 @@ const MPRESS = {
 };
 
 const LHOVER = {
+  border: '1.5px solid',
   borderColor: globalThemeVars.color['gray-scale-01'],
   color: globalThemeVars.color['gray-scale-01'],
   opacity: 0.8,
@@ -38,8 +39,7 @@ export const buttonVariants = styleVariants({
     buttonStyle,
     {
       display: 'inline-flex',
-      width: '6.875rem',
-      padding: '0rem 2.125rem',
+      padding: '0.625rem 0.75rem',
       borderRadius: '0.5rem',
       backgroundColor: globalThemeVars.color['gray-scale-00'],
       color: globalThemeVars.color['yeji-03'],
@@ -50,7 +50,6 @@ export const buttonVariants = styleVariants({
   L: [
     buttonStyle,
     {
-      width: '20rem',
       padding: '0.625rem',
       backgroundColor: 'transparent',
       border: '1px solid',

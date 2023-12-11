@@ -74,7 +74,12 @@ const ButtonBoard = () => {
         Press
       </Text>
       {buttonStates.map(({ size, status, text }) => (
-        <Button key={`${size}-${status}`} size={size} status={status}>
+        <Button
+          key={`${size}-${status}`}
+          size={size}
+          status={status}
+          width={size === 'M' ? '6.875rem' : '20rem'}
+        >
           {text}
         </Button>
       ))}
