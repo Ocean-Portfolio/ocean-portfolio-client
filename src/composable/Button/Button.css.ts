@@ -38,7 +38,7 @@ export const buttonVariants = styleVariants({
     buttonStyle,
     {
       display: 'inline-flex',
-      width: 'fit-content',
+      width: '6.875rem',
       padding: '0rem 2.125rem',
       borderRadius: '0.5rem',
       backgroundColor: globalThemeVars.color['gray-scale-00'],
@@ -52,7 +52,6 @@ export const buttonVariants = styleVariants({
     {
       width: '20rem',
       padding: '0.625rem',
-
       backgroundColor: 'transparent',
       border: '1px solid',
       borderColor: globalThemeVars.color['gray-scale-00'],

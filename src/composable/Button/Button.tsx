@@ -24,7 +24,7 @@ const Button = ({
       className={classNames(
         className,
         buttonVariants[size],
-        fontVariants[size === 'M' ? 'GNB-m-medium' : 'paragraph-s-regular'],
+        fontVariants[size === 'M' ? 'paragraph-m-bold' : 'paragraph-s-regular'],
         getSpecificButtonStatus?.(size, status),
       )}
       onClick={onClick}
