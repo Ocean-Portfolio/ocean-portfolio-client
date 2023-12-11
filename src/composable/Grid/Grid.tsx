@@ -9,6 +9,8 @@ interface Props extends PropsWithChildren, TagProps {
   autoColumns?: string;
   templateRows?: string;
   templateColumns?: string;
+  justifyItems?: 'start' | 'end' | 'center' | 'stretch';
+  alignItems?: 'start' | 'end' | 'center' | 'stretch';
 }
 
 const Grid = ({
