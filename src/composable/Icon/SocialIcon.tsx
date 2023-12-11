@@ -2,6 +2,11 @@ import Image from 'next/image';
 import iconAssetEndpoint from '@/utils/string/iconAssetEndpoint';
 import socialIconResourceSrcFormat from '@/utils/string/socialIconResourceSrcFormat';
 
+export type SocialIconProps = ODSIconTokenInterface &
+  IconProps & {
+    company: CompanyIconToken;
+  };
+
 const SocialIcon = ({
   company,
   color,
