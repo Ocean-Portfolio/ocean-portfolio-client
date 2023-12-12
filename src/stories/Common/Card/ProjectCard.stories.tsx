@@ -1,17 +1,16 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import ProjectCard, {
   ProjectCardProps,
 } from '@/composable/Card/Project/ProjectCard';
 
-const meta: Meta<ProjectCardProps> = {
+const meta: Meta<typeof ProjectCard> = {
   title: 'Common/Card/ProjectCard',
   component: ProjectCard,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },
 };
 
-// 각 컴포넌트를 래핑할 기본 템플릿을 생성합니다.
-const Template: Story<ProjectCardProps> = (args) => {
+const Template = (args: ProjectCardProps) => {
   return (
     <ProjectCard {...args}>
       <ProjectCard.Name name="구름톤 in Jeju 6기 - 도누리 : 모다드렁 (우수상)" />
@@ -22,31 +21,39 @@ const Template: Story<ProjectCardProps> = (args) => {
   );
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  visble_status: 'VISIBLE',
-  sizeToken: 'LARGE',
-  colorThemeToken: 'sungyeon',
-  projectMode: 'MAIN',
-  projectStatus: 'CURRENT',
+type Story = StoryObj<typeof ProjectCard>;
+
+export const Large: Story = {
+  args: {
+    visible_status: 'VISIBLE',
+    sizeToken: 'LARGE',
+    colorThemeToken: 'sungyeon',
+    projectMode: 'MAIN',
+    projectStatus: 'CURRENT',
+  },
+  render: Template,
 };
 
-export const Medium = Template.bind({});
-Medium.args = {
-  visble_status: 'VISIBLE',
-  sizeToken: 'MEDIUM',
-  colorThemeToken: 'sungyeon',
-  projectMode: 'MAIN',
-  projectStatus: 'CURRENT',
+export const Medium: Story = {
+  args: {
+    visible_status: 'VISIBLE',
+    sizeToken: 'MEDIUM',
+    colorThemeToken: 'sungyeon',
+    projectMode: 'MAIN',
+    projectStatus: 'CURRENT',
+  },
+  render: Template,
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  visble_status: 'VISIBLE',
-  sizeToken: 'SMALL',
-  colorThemeToken: 'sungyeon',
-  projectMode: 'MAIN',
-  projectStatus: 'CURRENT',
+export const Small: Story = {
+  args: {
+    visible_status: 'VISIBLE',
+    sizeToken: 'SMALL',
+    colorThemeToken: 'sungyeon',
+    projectMode: 'MAIN',
+    projectStatus: 'CURRENT',
+  },
+  render: Template,
 };
 
 export default meta;

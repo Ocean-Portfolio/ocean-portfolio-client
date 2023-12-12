@@ -3,10 +3,10 @@ import React, { PropsWithChildren } from 'react';
 import Chip from '@/composable/Chip/Chip';
 import Grid from '@/composable/Grid/Grid';
 import ODSNextImage from '@/composable/Image/ODSNextImage';
+import { backgroundColorVariants, colorVariants } from '@/styles/color.css';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import StaticContextProjectCard from './ProjectCard.context';
 import {
-  backgroundVariants,
   descriptionVariants,
   gapVariants,
   imageStyle,
@@ -18,7 +18,7 @@ import {
 
 export interface ProjectCardProps {
   className?: string;
-  visble_status: VisibleStatusToken;
+  visible_status: VisibleStatusToken;
   sizeToken: CardSizeToken;
   colorThemeToken: ColorThemeToken;
   projectMode: ProjectModeToken;
@@ -28,13 +28,22 @@ export interface ProjectCardProps {
 const ProjectCard = ({
   className,
   children,
-  visble_status,
+  visible_status,
   sizeToken,
   colorThemeToken,
   projectMode,
   projectStatus,
 }: PropsWithChildren<ProjectCardProps>) => {
-  if (visble_status === 'NONE') return null;
+  if (visible_status === 'NONE') return null;
+
+  const getBgColor = (colorThemeToken: ColorThemeToken): ODSColorToken => {
+    switch (colorThemeToken) {
+      case 'sungyeon':
+        return 'sungyeon-tertiary-200';
+      default:
+        return 'sungyeon-tertiary-200';
+    }
+  };
 
   return (
     <StaticContextProjectCard.Provider
@@ -47,7 +56,7 @@ const ProjectCard = ({
         className={classNames(
           className,
           wrapVariants[sizeToken],
-          backgroundVariants[colorThemeToken],
+          backgroundColorVariants[getBgColor(colorThemeToken)],
           sizeVariants[sizeToken],
           gapVariants[sizeToken],
         )}
@@ -64,9 +73,29 @@ interface NameProps {
 }
 
 const Name = ({ name }: NameProps) => {
-  const { sizeToken } = getStaticContext(StaticContextProjectCard);
+  const { sizeToken, colorThemeToken } = getStaticContext(
+    StaticContextProjectCard,
+  );
 
-  return <p className={classNames(nameVariants[sizeToken])}>{name}</p>;
+  const getColor = (colorThemeToken: ColorThemeToken): ODSColorToken => {
+    switch (colorThemeToken) {
+      case 'sungyeon':
+        return 'gray-scale-00';
+      default:
+        return 'gray-scale-00';
+    }
+  };
+
+  return (
+    <p
+      className={classNames(
+        nameVariants[sizeToken],
+        colorVariants[getColor(colorThemeToken)],
+      )}
+    >
+      {name}
+    </p>
+  );
 };
 
 interface DescriptionProps {
@@ -74,10 +103,28 @@ interface DescriptionProps {
 }
 
 const Description = ({ content }: DescriptionProps) => {
-  const { sizeToken } = getStaticContext(StaticContextProjectCard);
+  const { sizeToken, colorThemeToken } = getStaticContext(
+    StaticContextProjectCard,
+  );
+
+  const getColor = (colorThemeToken: ColorThemeToken): ODSColorToken => {
+    switch (colorThemeToken) {
+      case 'sungyeon':
+        return 'gray-scale-01';
+      default:
+        return 'gray-scale-01';
+    }
+  };
 
   return (
-    <p className={classNames(descriptionVariants[sizeToken])}>{content}</p>
+    <p
+      className={classNames(
+        descriptionVariants[sizeToken],
+        colorVariants[getColor(colorThemeToken)],
+      )}
+    >
+      {content}
+    </p>
   );
 };
 
