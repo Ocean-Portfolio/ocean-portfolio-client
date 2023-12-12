@@ -99,7 +99,7 @@ const Period = ({ period }: PeriodProps) => {
   };
   return (
     <Chip
-      className={periodVariants[sizeToken]}
+      className={classNames(periodVariants[sizeToken])}
       backgroundColorToken={getChipColor(colorThemeToken)}
     >
       {period}

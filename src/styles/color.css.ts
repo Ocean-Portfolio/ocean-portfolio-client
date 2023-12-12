@@ -39,6 +39,12 @@ export const colorVariants = styleVariants({
   'sungyeon-05': {
     color: globalThemeVars.color['sungyeon-05'],
   },
+  'sungyeon-tertiary-100': {
+    color: globalThemeVars.color['sungyeon-tertiary-100'],
+  },
+  'sungyeon-tertiary-200': {
+    color: globalThemeVars.color['sungyeon-tertiary-200'],
+  },
   'yeji-01': {
     color: globalThemeVars.color['yeji-01'],
   },
@@ -111,6 +117,12 @@ export const backgroundColorVariants = styleVariants({
   },
   'sungyeon-05': {
     backgroundColor: globalThemeVars.color['sungyeon-05'],
+  },
+  'sungyeon-tertiary-100': {
+    backgroundColor: globalThemeVars.color['sungyeon-tertiary-100'],
+  },
+  'sungyeon-tertiary-200': {
+    backgroundColor: globalThemeVars.color['sungyeon-tertiary-200'],
   },
   'yeji-01': {
     backgroundColor: globalThemeVars.color['yeji-01'],
