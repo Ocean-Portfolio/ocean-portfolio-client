@@ -3,7 +3,7 @@ import ProjectCard, { ProjectCardProps } from './ProjectCard';
 
 describe('ProjectCard 컴포넌트', () => {
   const mockProps: ProjectCardProps = {
-    visble_status: 'VISIBLE',
+    visible_status: 'VISIBLE',
     sizeToken: 'LARGE',
     colorThemeToken: 'sungyeon',
     projectMode: 'MAIN',
