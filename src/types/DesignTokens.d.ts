@@ -22,6 +22,8 @@ interface SungyeonMainColorTokenInterface {
   'sungyeon-03': string;
   'sungyeon-04': string;
   'sungyeon-05': string;
+  'sungyeon-tertiary-100': string;
+  'sungyeon-tertiary-200': string;
 }
 
 interface YejiMainColorTokenInterface {
@@ -54,7 +56,9 @@ type SungyeonMainColorToken =
   | 'sungyeon-02'
   | 'sungyeon-03'
   | 'sungyeon-04'
-  | 'sungyeon-05';
+  | 'sungyeon-05'
+  | 'sungyeon-tertiary-100'
+  | 'sungyeon-tertiary-200';
 
 type YejiMainColorToken =
   | 'yeji-01'
@@ -76,6 +80,8 @@ type ODSColorToken =
   | YejiMainColorToken
   | JaeyoonMainColorToken
   | 'transparent';
+
+type ColorThemeToken = 'sungyeon' | 'yeji' | 'jaeyoon';
 
 type DisplayTextToken =
   | 'display-xl-bold'

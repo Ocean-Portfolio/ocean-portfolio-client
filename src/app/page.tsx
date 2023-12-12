@@ -2,7 +2,10 @@ import Image from 'next/image';
 import { getClient } from '@/apollo/apollo-client';
 import IconBoard from '@/components/storybook/IconBoard';
 import { GET_SKILLS_BY_ID } from '@/gql/queries';
-import { GetSkillByIdQuery, GetSkillByIdQueryVariables } from '@/types/graphql';
+import {
+  GetSkillByIdQuery,
+  GetSkillByIdQueryVariables,
+} from '@/types/GraphqlTypes';
 import styles from './page.module.css';
 
 export default async function Home() {
