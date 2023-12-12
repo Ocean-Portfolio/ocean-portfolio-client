@@ -2,6 +2,9 @@ import { styleVariants } from '@vanilla-extract/css';
 import { globalThemeVars } from './theme.css';
 
 export const colorVariants = styleVariants({
+  transparent: {
+    color: 'transparent',
+  },
   'gray-scale-00': {
     color: globalThemeVars.color['gray-scale-00'],
   },
@@ -29,7 +32,6 @@ export const colorVariants = styleVariants({
   'sungyeon-02': {
     color: globalThemeVars.color['sungyeon-02'],
   },
-
   'sungyeon-03': {
     color: globalThemeVars.color['sungyeon-03'],
   },
@@ -38,6 +40,9 @@ export const colorVariants = styleVariants({
   },
   'sungyeon-05': {
     color: globalThemeVars.color['sungyeon-05'],
+  },
+  'sungyeon-primary-200': {
+    color: globalThemeVars.color['sungyeon-primary-200'],
   },
   'sungyeon-tertiary-100': {
     color: globalThemeVars.color['sungyeon-tertiary-100'],
@@ -117,6 +122,9 @@ export const backgroundColorVariants = styleVariants({
   },
   'sungyeon-05': {
     backgroundColor: globalThemeVars.color['sungyeon-05'],
+  },
+  'sungyeon-primary-200': {
+    backgroundColor: globalThemeVars.color['sungyeon-primary-200'],
   },
   'sungyeon-tertiary-100': {
     backgroundColor: globalThemeVars.color['sungyeon-tertiary-100'],

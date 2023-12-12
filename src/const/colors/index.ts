@@ -11,6 +11,7 @@ export const ODSColorTokenVariables = {
   'sungyeon-03': '#276196',
   'sungyeon-04': '#E3F6FF',
   'sungyeon-05': '#0D464F',
+  'sungyeon-primary-200': '#276196',
   'sungyeon-tertiary-100': '#3B5D76',
   'sungyeon-tertiary-200': '#0F2332',
   'yeji-01': '#CCF0FF',

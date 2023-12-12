@@ -22,6 +22,7 @@ interface SungyeonMainColorTokenInterface {
   'sungyeon-03': string;
   'sungyeon-04': string;
   'sungyeon-05': string;
+  'sungyeon-primary-200': string;
   'sungyeon-tertiary-100': string;
   'sungyeon-tertiary-200': string;
 }
@@ -57,6 +58,7 @@ type SungyeonMainColorToken =
   | 'sungyeon-03'
   | 'sungyeon-04'
   | 'sungyeon-05'
+  | 'sungyeon-primary-200'
   | 'sungyeon-tertiary-100'
   | 'sungyeon-tertiary-200';
 
