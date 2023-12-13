@@ -38,5 +38,3 @@ type HTMLTextTags =
   | 'tfoot';
 
 type HTMLAllTagNames = keyof HTMLElementTagNameMap;
-
-type AutoFlowProp = string | boolean;
