@@ -25,28 +25,81 @@ export const ColorVariants: Story = {
   render: () => {
     return (
       <div
-        className={backgroundColorVariants['gray-scale-01']}
         style={{
           display: 'inline-flex',
           flexWrap: 'wrap',
           gap: '1rem',
         }}
+        className={backgroundColorVariants['gray-scale-01']}
       >
-        {ODSUserColorKeyList.map((color) => (
-          <Chip className={sungyeonColorTheme} key={color} bgColorToken={color}>
-            {color}
-          </Chip>
-        ))}
-        {ODSUserColorKeyList.map((color) => (
-          <Chip className={yejiColorTheme} key={color} bgColorToken={color}>
-            {color}
-          </Chip>
-        ))}
-        {ODSUserColorKeyList.map((color) => (
-          <Chip className={jaeyoonColorTheme} key={color} bgColorToken={color}>
-            {color}
-          </Chip>
-        ))}
+        <div
+          className={sungyeonColorTheme}
+          style={{
+            display: 'inline-flex',
+            flexWrap: 'wrap',
+            gap: '1rem',
+          }}
+        >
+          {ODSUserColorKeyList.map((color) => (
+            <Chip
+              key={color}
+              bgColorToken={color}
+              style={
+                {
+                  // color: determineTextColor(color),
+                }
+              }
+            >
+              sungyeon-{color}
+            </Chip>
+          ))}
+        </div>
+
+        <div
+          className={yejiColorTheme}
+          style={{
+            display: 'inline-flex',
+            flexWrap: 'wrap',
+            gap: '1rem',
+          }}
+        >
+          {ODSUserColorKeyList.map((color) => (
+            <Chip
+              key={color}
+              bgColorToken={color}
+              style={
+                {
+                  // color: determineTextColor(color),
+                }
+              }
+            >
+              yeji-{color}
+            </Chip>
+          ))}
+        </div>
+
+        <div
+          className={jaeyoonColorTheme}
+          style={{
+            display: 'inline-flex',
+            flexWrap: 'wrap',
+            gap: '1rem',
+          }}
+        >
+          {ODSUserColorKeyList.map((color) => (
+            <Chip
+              key={color}
+              bgColorToken={color}
+              style={
+                {
+                  // color: determineTextColor(color),
+                }
+              }
+            >
+              jaeyoon-{color}
+            </Chip>
+          ))}
+        </div>
       </div>
     );
   },

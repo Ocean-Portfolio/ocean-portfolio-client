@@ -2,6 +2,9 @@ import { Meta, StoryObj } from '@storybook/react';
 import ProjectCard, {
   ProjectCardProps,
 } from '@/composable/Card/Project/ProjectCard';
+import { jaeyoonColorTheme } from '@/styles/theme/jaeyoon.css';
+import { sungyeonColorTheme } from '@/styles/theme/sungyeon.css';
+import { yejiColorTheme } from '@/styles/theme/yeji.css';
 
 const meta: Meta<typeof ProjectCard> = {
   title: 'Common/Card/ProjectCard',
@@ -51,6 +54,61 @@ export const Small: Story = {
     projectStatus: 'CURRENT',
   },
   render: Template,
+};
+
+const SungyeonWrapper = (args: ProjectCardProps) => {
+  return (
+    <div className={sungyeonColorTheme}>
+      성연
+      <Template {...args} />
+    </div>
+  );
+};
+
+const YejiWrapper = (args: ProjectCardProps) => {
+  return (
+    <div className={yejiColorTheme}>
+      예지
+      <Template {...args} />
+    </div>
+  );
+};
+
+const JaeyoonWrapper = (args: ProjectCardProps) => {
+  return (
+    <div className={jaeyoonColorTheme}>
+      재윤
+      <Template {...args} />
+    </div>
+  );
+};
+
+const ColorVariantsTemplate = (args: ProjectCardProps) => {
+  return (
+    <>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '1rem',
+        }}
+      >
+        <SungyeonWrapper {...args} />
+        <YejiWrapper {...args} />
+        <JaeyoonWrapper {...args} />
+      </div>
+    </>
+  );
+};
+
+export const ColorVariants: Story = {
+  args: {
+    visible_status: 'VISIBLE',
+    sizeToken: 'LARGE',
+    projectMode: 'MAIN',
+    projectStatus: 'CURRENT',
+  },
+  render: ColorVariantsTemplate,
 };
 
 export default meta;
