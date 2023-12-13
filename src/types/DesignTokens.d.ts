@@ -83,7 +83,14 @@ type ODSColorToken =
   | JaeyoonMainColorToken
   | 'transparent';
 
-type ColorThemeToken = 'sungyeon' | 'yeji' | 'jaeyoon';
+type UserColorThemeToken =
+  | 'primary'
+  | 'primary-variant'
+  | 'secondary'
+  | 'secondary-variant'
+  | 'accent'
+  | 'tertiary'
+  | 'tertiary-variant';
 
 type DisplayTextToken =
   | 'display-xl-bold'

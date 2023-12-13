@@ -4,7 +4,6 @@ import HistoryCard, { HistoryCardProps } from './HistoryCard';
 describe('HistoryCard 컴포넌트', () => {
   const mockProps: HistoryCardProps = {
     visible_status: 'VISIBLE',
-    colorThemeToken: 'sungyeon',
     sizeToken: 'LARGE',
   };
 

@@ -1,10 +1,10 @@
-import type { Preview } from '@storybook/react';
-import React from 'react';
 import '@/styles/global.css';
-import '@/styles/theme.css';
-import '@/styles/font.css';
+import '@/styles/theme/grayScale.css';
 import '@/styles/storybook.css';
+import type { Preview } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { defaultColorTheme } from '../src/styles/theme/default.css';
+import React from 'react';
 
 export const customViewports = {
   mobile360: {
@@ -57,7 +57,11 @@ const preview: Preview = {
 
 export const decorators = [
   (Story) => {
-    return <Story />;
+    return (
+      <div className={defaultColorTheme}>
+        <Story />
+      </div>
+    );
   },
 ];
 

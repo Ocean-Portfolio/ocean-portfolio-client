@@ -3,8 +3,11 @@ import { Meta, StoryObj } from '@storybook/react';
 import classNames from 'classnames';
 import { PropsWithChildren } from 'react';
 import Container from '@/composable/Container/Container';
-import { backgroundColorVariants, colorVariants } from '@/styles/color.css';
-import { flexCenter } from '@/styles/flex.css';
+import {
+  backgroundColorVariants,
+  colorVariants,
+} from '@/styles/common/color.css';
+import { flexCenter } from '@/styles/common/flex.css';
 
 const meta: Meta<typeof Container> = {
   title: 'Common/Container',
@@ -27,7 +30,7 @@ const Sample = ({
     <div
       className={classNames(
         colorVariants['gray-scale-00'],
-        backgroundColorVariants['sungyeon-02'],
+        backgroundColorVariants['primary'],
         flexCenter,
       )}
       style={{

@@ -1,8 +1,12 @@
+import classNames from 'classnames';
 import React from 'react';
 import Button from '@/composable/Button/Button';
 import Grid from '@/composable/Grid/Grid';
 import Text from '@/composable/Text/Text';
-import { globalThemeVars } from '@/styles/theme.css';
+import {
+  backgroundColorVariants,
+  colorVariants,
+} from '@/styles/common/color.css';
 import { fontWrapperStyle } from './FontWrapper.css';
 
 // 버튼 상태와 텍스트를 배열로 정의
@@ -24,25 +28,26 @@ const ButtonBoard = () => {
   return (
     <Grid
       as="div"
-      className={fontWrapperStyle}
+      className={classNames(
+        fontWrapperStyle,
+        backgroundColorVariants['gray-scale-05'],
+      )}
       templateColumns="1fr 1fr 1fr"
       templateRows="fit-content fit-content fit-content fit-content"
       style={{
         rowGap: '1.81rem',
         padding: '2rem 0.5rem',
-
-        backgroundColor: globalThemeVars.color['gray-scale-05'],
       }}
     >
       <Text
         as="h3"
         typoToken="title-m-bold"
+        className={colorVariants['gray-scale-00']}
         style={{
           display: 'flex',
           alignItems: 'center',
           height: '100%',
           margin: '0',
-          color: globalThemeVars.color['gray-scale-00'],
         }}
       >
         Default
@@ -50,12 +55,12 @@ const ButtonBoard = () => {
       <Text
         as="h3"
         typoToken="title-m-bold"
+        className={colorVariants['gray-scale-00']}
         style={{
           display: 'flex',
           alignItems: 'center',
           height: '100%',
           margin: '0',
-          color: globalThemeVars.color['gray-scale-00'],
         }}
       >
         Hover
@@ -63,12 +68,12 @@ const ButtonBoard = () => {
       <Text
         as="h3"
         typoToken="title-m-bold"
+        className={colorVariants['gray-scale-00']}
         style={{
           display: 'flex',
           alignItems: 'center',
           height: '100%',
           margin: '0',
-          color: globalThemeVars.color['gray-scale-00'],
         }}
       >
         Press

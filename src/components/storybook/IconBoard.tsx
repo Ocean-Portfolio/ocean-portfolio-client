@@ -3,8 +3,10 @@ import Grid from '@/composable/Grid/Grid';
 import CommonIcon from '@/composable/Icon/CommonIcon';
 import SocialIcon from '@/composable/Icon/SocialIcon';
 import Text from '@/composable/Text/Text';
-import { backgroundColorVariants } from '@/styles/color.css';
-import { globalThemeVars } from '@/styles/theme.css';
+import {
+  backgroundColorVariants,
+  colorVariants,
+} from '@/styles/common/color.css';
 
 const IconBoard = () => {
   const gridStyle = {
@@ -23,9 +25,9 @@ const IconBoard = () => {
       <Text
         as="h1"
         typoToken="display-m-bold"
+        className={colorVariants['gray-scale-04']}
         style={{
           marginBottom: '20px',
-          color: globalThemeVars.color['gray-scale-04'],
         }}
       >
         Common Icons
@@ -43,9 +45,9 @@ const IconBoard = () => {
       <Text
         as="h1"
         typoToken="display-m-bold"
+        className={colorVariants['gray-scale-04']}
         style={{
           marginBottom: '20px',
-          color: globalThemeVars.color['gray-scale-04'],
         }}
       >
         Social Icons

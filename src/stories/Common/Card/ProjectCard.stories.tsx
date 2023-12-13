@@ -27,7 +27,6 @@ export const Large: Story = {
   args: {
     visible_status: 'VISIBLE',
     sizeToken: 'LARGE',
-    colorThemeToken: 'sungyeon',
     projectMode: 'MAIN',
     projectStatus: 'CURRENT',
   },
@@ -38,7 +37,6 @@ export const Medium: Story = {
   args: {
     visible_status: 'VISIBLE',
     sizeToken: 'MEDIUM',
-    colorThemeToken: 'sungyeon',
     projectMode: 'MAIN',
     projectStatus: 'CURRENT',
   },
@@ -49,7 +47,6 @@ export const Small: Story = {
   args: {
     visible_status: 'VISIBLE',
     sizeToken: 'SMALL',
-    colorThemeToken: 'sungyeon',
     projectMode: 'MAIN',
     projectStatus: 'CURRENT',
   },

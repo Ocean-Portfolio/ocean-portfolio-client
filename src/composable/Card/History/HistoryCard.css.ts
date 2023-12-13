@@ -1,6 +1,6 @@
 import { style, styleVariants } from '@vanilla-extract/css';
-import { fontVariants } from '@/styles/font.css';
-import { textPreStyle } from '@/styles/text.css';
+import { fontVariants } from '@/styles/common/font.css';
+import { textPreStyle } from '@/styles/common/text.css';
 
 const wrapStyle = style({
   display: 'inline-flex',

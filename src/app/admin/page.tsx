@@ -1,7 +1,8 @@
 import React from 'react';
+import { defaultColorTheme } from '@/styles/theme/default.css';
 
 const Admin = () => {
-  return <div>admin page</div>;
+  return <div className={defaultColorTheme}>admin page</div>;
 };
 
 export default Admin;

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
-import { fontVariants } from '@/styles/font.css';
+import { fontVariants } from '@/styles/common/font.css';
 import Tag, { TagProps } from '../Tag/Tag';
 
 export interface TextProps extends PropsWithChildren, TagProps {

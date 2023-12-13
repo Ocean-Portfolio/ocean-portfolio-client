@@ -1,20 +1,14 @@
-import { style, styleVariants } from '@vanilla-extract/css';
-import { ODSColorTokenVariables } from '@/const/colors';
-import { inlineFlexCenter } from '@/styles/flex.css';
-import { globalThemeVars } from '@/styles/theme.css';
+import { style } from '@vanilla-extract/css';
+import { inlineFlexCenter } from '@/styles/common/flex.css';
+import { commonColorThemeVars } from '@/styles/theme/index.css';
 
-const chipStyle = style([
+export const chipStyle = style([
   inlineFlexCenter,
   {
     width: 'fit-content',
     height: 'fit-content',
     padding: '0.25rem 1rem',
     borderRadius: '1.952rem',
-    color: globalThemeVars.color['gray-scale-00'],
+    color: commonColorThemeVars.token['gray-scale-00'],
   },
-]);
-
-export const chipVariants = styleVariants(ODSColorTokenVariables, (color) => [
-  chipStyle,
-  { backgroundColor: color },
 ]);

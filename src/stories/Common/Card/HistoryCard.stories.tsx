@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import HistoryCard, {
   HistoryCardProps,
 } from '@/composable/Card/History/HistoryCard';
-import { backgroundColorVariants } from '@/styles/color.css';
+import { backgroundColorVariants } from '@/styles/common/color.css';
 
 const meta: Meta<typeof HistoryCard> = {
   title: 'Common/Card/HistoryCard',
@@ -32,7 +32,6 @@ type Story = StoryObj<typeof HistoryCard>;
 export const Large: Story = {
   args: {
     visible_status: 'VISIBLE',
-    colorThemeToken: 'sungyeon',
     sizeToken: 'LARGE',
   },
   render: Template,
@@ -41,7 +40,6 @@ export const Large: Story = {
 export const Small: Story = {
   args: {
     visible_status: 'VISIBLE',
-    colorThemeToken: 'sungyeon',
     sizeToken: 'SMALL',
   },
   render: Template,

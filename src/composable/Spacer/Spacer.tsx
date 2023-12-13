@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import { backgroundColorVariants } from '@/styles/color.css';
+import { backgroundColorVariants } from '@/styles/common/color.css';
 import Tag from '../Tag/Tag';
 import { horizontalSpacerStyle, verticalSpacerStyle } from './Spacer.css';
 
@@ -8,7 +8,7 @@ interface Props {
   className?: string;
   spacing: SpacingToken;
   direction?: 'vertical' | 'horizontal';
-  backgroundColor?: ODSColorToken;
+  bgColorToken?: UserColorThemeToken;
   style?: React.CSSProperties;
 }
 
@@ -16,7 +16,7 @@ const Spacer = ({
   className,
   direction,
   spacing,
-  backgroundColor,
+  bgColorToken,
   style,
 }: Props) => {
   const spacerDirectionStyle =
@@ -30,7 +30,7 @@ const Spacer = ({
       className={classNames(
         spacerDirectionStyle,
         className,
-        backgroundColorVariants[backgroundColor || 'transparent'],
+        backgroundColorVariants[bgColorToken || 'transparent'],
       )}
       style={style}
     />

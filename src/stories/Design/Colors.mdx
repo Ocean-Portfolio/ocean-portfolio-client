@@ -1,5 +1,11 @@
-import { ODSColorTokenVariables } from '@/const/colors';
 import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+import {
+  commonColorThemeVars,
+  userColorThemeVars,
+} from '@/styles/theme/index.css';
+import { jaeyoonColorTheme } from '@/styles/theme/jaeyoon.css';
+import { sungyeonColorTheme } from '@/styles/theme/sungyeon.css';
+import { yejiColorTheme } from '@/styles/theme/yeji.css';
 
 <Meta title="Design/Colors" />
 
@@ -11,43 +17,59 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
   <ColorItem
     title="Gray Scale"
     colors={{
-      'gray-scale-00': ODSColorTokenVariables['gray-scale-00'],
-      'gray-scale-01': ODSColorTokenVariables['gray-scale-01'],
-      'gray-scale-02': ODSColorTokenVariables['gray-scale-02'],
-      'gray-scale-03': ODSColorTokenVariables['gray-scale-03'],
-      'gray-scale-04': ODSColorTokenVariables['gray-scale-04'],
-      'gray-scale-05': ODSColorTokenVariables['gray-scale-05'],
-      'gray-scale-06': ODSColorTokenVariables['gray-scale-06'],
+      'gray-scale-00': commonColorThemeVars.token['gray-scale-00'],
+      'gray-scale-01': commonColorThemeVars.token['gray-scale-01'],
+      'gray-scale-02': commonColorThemeVars.token['gray-scale-02'],
+      'gray-scale-03': commonColorThemeVars.token['gray-scale-03'],
+      'gray-scale-04': commonColorThemeVars.token['gray-scale-04'],
+      'gray-scale-05': commonColorThemeVars.token['gray-scale-05'],
+      'gray-scale-06': commonColorThemeVars.token['gray-scale-06'],
     }}
   />
-  <ColorItem
-    title="성연"
-    colors={{
-      'sungyeon-01': ODSColorTokenVariables['sungyeon-01'],
-      'sungyeon-02': ODSColorTokenVariables['sungyeon-02'],
-      'sungyeon-03': ODSColorTokenVariables['sungyeon-03'],
-      'sungyeon-04': ODSColorTokenVariables['sungyeon-04'],
-      'sungyeon-05': ODSColorTokenVariables['sungyeon-05'],
-    }}
-  />
-  <ColorItem
-    title="예지"
-    colors={{
-      'yeji-01': ODSColorTokenVariables['yeji-01'],
-      'yeji-02': ODSColorTokenVariables['yeji-02'],
-      'yeji-03': ODSColorTokenVariables['yeji-03'],
-      'yeji-04': ODSColorTokenVariables['yeji-04'],
-      'yeji-05': ODSColorTokenVariables['yeji-05'],
-    }}
-  />
-  <ColorItem
-    title="재윤"
-    colors={{
-      'jaeyoon-01': ODSColorTokenVariables['jaeyoon-01'],
-      'jaeyoon-02': ODSColorTokenVariables['jaeyoon-02'],
-      'jaeyoon-03': ODSColorTokenVariables['jaeyoon-03'],
-      'jaeyoon-04': ODSColorTokenVariables['jaeyoon-04'],
-      'jaeyoon-05': ODSColorTokenVariables['jaeyoon-05'],
-    }}
-  />
+  <div className={sungyeonColorTheme}>
+    <ColorItem
+      title="성연"
+      colors={{
+        'sungyeon-primary': userColorThemeVars.token['primary'],
+        'sungyeon-primary-variant': userColorThemeVars.token['primary-variant'],
+        'sungyeon-secondary': userColorThemeVars.token['secondary'],
+        'sungyeon-secondary-variant':
+          userColorThemeVars.token['secondary-variant'],
+        'sungyeon-accent': userColorThemeVars.token['accent'],
+        'sungyeon-tertiary': userColorThemeVars.token['tertiary'],
+        'sungyeon-tertiary-variant':
+          userColorThemeVars.token['tertiary-variant'],
+      }}
+    />
+  </div>
+  <div className={yejiColorTheme}>
+    <ColorItem
+      title="예지"
+      colors={{
+        'yeji-primary': userColorThemeVars.token['primary'],
+        'yeji-primary-variant': userColorThemeVars.token['primary-variant'],
+        'yeji-secondary': userColorThemeVars.token['secondary'],
+        'yeji-secondary-variant': userColorThemeVars.token['secondary-variant'],
+        'yeji-accent': userColorThemeVars.token['accent'],
+        'yeji-tertiary': userColorThemeVars.token['tertiary'],
+        'yeji-tertiary-variant': userColorThemeVars.token['tertiary-variant'],
+      }}
+    />
+  </div>
+  <div className={jaeyoonColorTheme}>
+    <ColorItem
+      title="재윤"
+      colors={{
+        'jaeyoon-primary': userColorThemeVars.token['primary'],
+        'jaeyoon-primary-variant': userColorThemeVars.token['primary-variant'],
+        'jaeyoon-secondary': userColorThemeVars.token['secondary'],
+        'jaeyoon-secondary-variant':
+          userColorThemeVars.token['secondary-variant'],
+        'jaeyoon-accent': userColorThemeVars.token['accent'],
+        'jaeyoon-tertiary': userColorThemeVars.token['tertiary'],
+        'jaeyoon-tertiary-variant':
+          userColorThemeVars.token['tertiary-variant'],
+      }}
+    />
+  </div>
 </ColorPalette>

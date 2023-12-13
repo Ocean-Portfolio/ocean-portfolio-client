@@ -2,7 +2,7 @@ import React from 'react';
 import FontBoard from '@/components/storybook/FontBoard';
 import Grid from '@/composable/Grid/Grid';
 import Text from '@/composable/Text/Text';
-import { globalThemeVars } from '@/styles/theme.css';
+import { colorVariants } from '@/styles/common/color.css';
 
 const sampleText = 'Anyone can develop';
 
@@ -16,10 +16,10 @@ const Typography = () => {
     >
       <Text
         as="h1"
+        className={colorVariants['gray-scale-06']}
         typoToken="display-m-bold"
         style={{
           marginBottom: '20px',
-          color: globalThemeVars.color['gray-scale-06'],
         }}
       >
         Typography

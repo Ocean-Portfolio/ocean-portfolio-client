@@ -1,22 +1,5 @@
-import {
-  GlobalStyleRule,
-  globalStyle,
-  styleVariants,
-} from '@vanilla-extract/css';
+import { styleVariants } from '@vanilla-extract/css';
 import { ODSTextTokenVariables } from '@/const/fonts';
-
-export const defaultFontStyles: GlobalStyleRule = {
-  fontFeatureSettings: '"clig" off, "liga" off',
-  fontStyle: 'normal',
-  fontStretch: 'normal',
-  backgroundRepeat: 'no-repeat',
-
-  WebkitFontSmoothing: 'antialiased',
-  MozOsxFontSmoothing: 'grayscale',
-  textRendering: 'optimizeLegibility' as const,
-};
-
-globalStyle('*', defaultFontStyles);
 
 export const fontVariants = styleVariants({
   'display-xl-bold': ODSTextTokenVariables['display-xl-bold'],

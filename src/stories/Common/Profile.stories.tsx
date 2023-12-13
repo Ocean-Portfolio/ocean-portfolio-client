@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Profile from '@/composable/Profile/Profile';
-import { globalThemeVars } from '@/styles/theme.css';
+import { backgroundColorVariants } from '@/styles/common/color.css';
 
 const meta: Meta<typeof Profile> = {
   title: 'Common/Profile',
@@ -9,11 +9,7 @@ const meta: Meta<typeof Profile> = {
   parameters: { layout: 'fullscreen' },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          backgroundColor: globalThemeVars.color['gray-scale-02'],
-        }}
-      >
+      <div className={backgroundColorVariants['gray-scale-02']}>
         <Story />
       </div>
     ),

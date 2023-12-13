@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Bullet from '@/composable/Bullet/Bullet';
-import { globalThemeVars } from '@/styles/theme.css';
+import { commonColorThemeVars } from '@/styles/theme/index.css';
 
 const meta: Meta<typeof Bullet> = {
   title: 'Common/Bullet',
@@ -9,7 +9,9 @@ const meta: Meta<typeof Bullet> = {
   parameters: { layout: 'fullscreen' },
   decorators: [
     (Story) => (
-      <div style={{ backgroundColor: globalThemeVars.color['gray-scale-05'] }}>
+      <div
+        style={{ backgroundColor: commonColorThemeVars.token['gray-scale-05'] }}
+      >
         <Story />
       </div>
     ),

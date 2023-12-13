@@ -12,14 +12,14 @@ type Story = StoryObj<typeof Spacer>;
 export const Default30: Story = {
   args: {
     spacing: 'spacer-30',
-    backgroundColor: 'sungyeon-02',
+    bgColorToken: 'primary',
   },
 };
 
 export const Vertical30: Story = {
   args: {
     spacing: 'spacer-30',
-    backgroundColor: 'sungyeon-02',
+    bgColorToken: 'primary',
     direction: 'vertical',
   },
   decorators: [
@@ -39,7 +39,7 @@ export const Vertical30: Story = {
 export const Horizontal80: Story = {
   args: {
     spacing: 'spacer-80',
-    backgroundColor: 'sungyeon-02',
+    bgColorToken: 'primary',
     direction: 'horizontal',
   },
 };
@@ -47,7 +47,7 @@ export const Horizontal80: Story = {
 export const Vertical50: Story = {
   args: {
     spacing: 'spacer-50',
-    backgroundColor: 'sungyeon-02',
+    bgColorToken: 'primary',
     direction: 'vertical',
   },
   decorators: [

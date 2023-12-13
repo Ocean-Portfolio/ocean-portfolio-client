@@ -1,6 +1,9 @@
 import { style, styleVariants } from '@vanilla-extract/css';
-import { flexCenter } from '@/styles/flex.css';
-import { globalThemeVars } from '@/styles/theme.css';
+import { flexCenter } from '@/styles/common/flex.css';
+import {
+  commonColorThemeVars,
+  userColorThemeVars,
+} from '@/styles/theme/index.css';
 
 export const buttonStyle = style([
   flexCenter,
@@ -15,21 +18,21 @@ const MHOVER = {
 
 const MPRESS = {
   transition: 'none',
-  backgroundColor: globalThemeVars.color['gray-scale-00'],
+  backgroundColor: commonColorThemeVars.token['gray-scale-00'],
   boxShadow: '0px 3px 2px 0px rgba(0, 0, 0, 0.12) inset',
 };
 
 const LHOVER = {
   border: '1.5px solid',
-  borderColor: globalThemeVars.color['gray-scale-01'],
-  color: globalThemeVars.color['gray-scale-01'],
+  borderColor: commonColorThemeVars.token['gray-scale-01'],
+  color: commonColorThemeVars.token['gray-scale-01'],
   opacity: 0.8,
 };
 
 const LPRESS = {
   transition: 'none',
-  borderColor: globalThemeVars.color['gray-scale-00'],
-  color: globalThemeVars.color['gray-scale-00'],
+  borderColor: commonColorThemeVars.token['gray-scale-00'],
+  color: commonColorThemeVars.token['gray-scale-00'],
   opacity: 1,
   backgroundColor: 'rgba(255, 255, 255, 0.08)',
 };
@@ -41,8 +44,8 @@ export const buttonVariants = styleVariants({
       display: 'inline-flex',
       padding: '0.625rem 0.75rem',
       borderRadius: '0.5rem',
-      backgroundColor: globalThemeVars.color['gray-scale-00'],
-      color: globalThemeVars.color['yeji-03'],
+      backgroundColor: commonColorThemeVars.token['gray-scale-00'],
+      color: userColorThemeVars.token['tertiary'],
       ':hover': MHOVER,
       ':active': MPRESS,
     },
@@ -53,9 +56,9 @@ export const buttonVariants = styleVariants({
       padding: '0.625rem',
       backgroundColor: 'transparent',
       border: '1px solid',
-      borderColor: globalThemeVars.color['gray-scale-00'],
+      borderColor: commonColorThemeVars.token['gray-scale-00'],
       borderRadius: '0.25rem',
-      color: globalThemeVars.color['gray-scale-00'],
+      color: commonColorThemeVars.token['gray-scale-00'],
       ':hover': LHOVER,
       ':active': LPRESS,
     },

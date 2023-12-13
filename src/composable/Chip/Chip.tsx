@@ -1,24 +1,26 @@
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
-import { fontVariants } from '@/styles/font.css';
+import { backgroundColorVariants } from '@/styles/common/color.css';
+import { fontVariants } from '@/styles/common/font.css';
 import Text from '../Text/Text';
-import { chipVariants } from './Chip.css';
+import { chipStyle } from './Chip.css';
 
 interface Props {
   className?: string;
-  backgroundColorToken: ODSColorToken;
+  bgColorToken: UserColorThemeToken;
 }
 
 const Chip = ({
   className,
   children,
-  backgroundColorToken,
+  bgColorToken,
 }: PropsWithChildren<Props>) => {
   return (
     <Text
       as="span"
       className={classNames(
-        chipVariants[backgroundColorToken],
+        chipStyle,
+        backgroundColorVariants[bgColorToken],
         fontVariants['caption-m-semibold'],
         className,
       )}

@@ -1,5 +1,5 @@
 import { style, styleVariants } from '@vanilla-extract/css';
-import { globalThemeVars } from '@/styles/theme.css';
+import { commonColorThemeVars } from '@/styles/theme/index.css';
 
 const commonStyle = style({
   display: 'grid',
@@ -43,19 +43,19 @@ export const imageVariants = styleVariants({
 
 export const nameVariants = styleVariants({
   HORIZONTAL: {
-    color: globalThemeVars.color['gray-scale-00'],
+    color: commonColorThemeVars.token['gray-scale-00'],
   },
   VERTICAL: {
-    color: globalThemeVars.color['gray-scale-05'],
+    color: commonColorThemeVars.token['gray-scale-05'],
   },
 });
 
 export const jobVariants = styleVariants({
   HORIZONTAL: {
-    color: globalThemeVars.color['gray-scale-04'],
+    color: commonColorThemeVars.token['gray-scale-04'],
   },
   VERTICAL: {
-    color: globalThemeVars.color['gray-scale-05'],
+    color: commonColorThemeVars.token['gray-scale-05'],
   },
 });
 

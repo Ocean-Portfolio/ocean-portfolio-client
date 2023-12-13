@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import React from 'react';
-import { fontVariants } from '@/styles/font.css';
+import { fontVariants } from '@/styles/common/font.css';
 import Bullet from './Bullet';
 import { bulletStyle } from './Bullet.css';
 

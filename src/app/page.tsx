@@ -1,7 +1,9 @@
+import classNames from 'classnames';
 import Image from 'next/image';
 import { getClient } from '@/apollo/apollo-client';
 import IconBoard from '@/components/storybook/IconBoard';
 import { GET_SKILLS_BY_ID } from '@/gql/queries';
+import { defaultColorTheme } from '@/styles/theme/default.css';
 import {
   GetSkillByIdQuery,
   GetSkillByIdQueryVariables,
@@ -21,7 +23,7 @@ export default async function Home() {
   });
 
   return (
-    <main className={`${styles.main}`}>
+    <main className={classNames(styles.main, defaultColorTheme)}>
       <div className={styles.description}>
         <p>
           환영합니다 ! 배포성공 ! Get started by editing&nbsp;

@@ -1,7 +1,13 @@
 import React from 'react';
+import Container from '@/composable/Container/Container';
+import { yejiColorTheme } from '@/styles/theme/yeji.css';
 
-const Trialegg = () => {
-  return <div>yeji page</div>;
+const Yeji = () => {
+  return (
+    <Container as="main" className={yejiColorTheme}>
+      <div>yeji page</div>
+    </Container>
+  );
 };
 
-export default Trialegg;
+export default Yeji;

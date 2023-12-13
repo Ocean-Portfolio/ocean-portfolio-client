@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
-import { colorVariants } from '@/styles/color.css';
+import { colorVariants } from '@/styles/common/color.css';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import StaticContextHistoryCard from './HistoryCard.context';
 import {
@@ -12,7 +12,6 @@ import {
 export interface HistoryCardProps {
   className?: string;
   visible_status: VisibleStatusToken;
-  colorThemeToken: ColorThemeToken;
   sizeToken: 'LARGE' | 'SMALL';
 }
 
@@ -20,7 +19,6 @@ const HistoryCard = ({
   className,
   children,
   visible_status,
-  colorThemeToken,
   sizeToken,
 }: PropsWithChildren<HistoryCardProps>) => {
   if (visible_status === 'NONE') return null;
@@ -29,7 +27,6 @@ const HistoryCard = ({
     <StaticContextHistoryCard.Provider
       value={{
         sizeToken,
-        colorThemeToken,
       }}
     >
       <div className={classNames(className, wrapVariants[sizeToken])}>
@@ -44,18 +41,17 @@ interface CompanyProps {
 }
 
 const Company = ({ companyName }: CompanyProps) => {
-  const { sizeToken, colorThemeToken } = getStaticContext(
-    StaticContextHistoryCard,
-  );
+  const { sizeToken } = getStaticContext(StaticContextHistoryCard);
 
-  const getCompanyColor = (colorThemeToken: ColorThemeToken): ODSColorToken => {
-    switch (colorThemeToken) {
-      case 'sungyeon': {
-        if (sizeToken === 'LARGE') return 'gray-scale-06';
-        return 'sungyeon-primary-200';
-      }
-      default:
+  const getCompanyColor = (
+    sizeToken: 'LARGE' | 'SMALL',
+  ): UserColorThemeToken | GrayScaleToken => {
+    switch (sizeToken) {
+      case 'LARGE':
         return 'gray-scale-06';
+
+      default:
+        return 'primary-variant';
     }
   };
 
@@ -63,7 +59,7 @@ const Company = ({ companyName }: CompanyProps) => {
     <p
       className={classNames(
         companyVariants[sizeToken],
-        colorVariants[getCompanyColor(colorThemeToken)],
+        colorVariants[getCompanyColor(sizeToken)],
       )}
     >
       {companyName}
@@ -84,25 +80,13 @@ interface PeriodProps {
 }
 
 const Period = ({ period }: PeriodProps) => {
-  const { sizeToken, colorThemeToken } = getStaticContext(
-    StaticContextHistoryCard,
-  );
-
-  const getPeriodColor = (colorThemeToken: ColorThemeToken): ODSColorToken => {
-    switch (colorThemeToken) {
-      case 'sungyeon': {
-        return 'gray-scale-05';
-      }
-      default:
-        return 'gray-scale-05';
-    }
-  };
+  const { sizeToken } = getStaticContext(StaticContextHistoryCard);
 
   return (
     <p
       className={classNames(
         periodVariants[sizeToken],
-        colorVariants[getPeriodColor(colorThemeToken)],
+        colorVariants['gray-scale-05'],
       )}
     >
       {period}

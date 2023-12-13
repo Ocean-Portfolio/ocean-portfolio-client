@@ -3,7 +3,10 @@ import React, { PropsWithChildren } from 'react';
 import Chip from '@/composable/Chip/Chip';
 import Grid from '@/composable/Grid/Grid';
 import ODSNextImage from '@/composable/Image/ODSNextImage';
-import { backgroundColorVariants, colorVariants } from '@/styles/color.css';
+import {
+  backgroundColorVariants,
+  colorVariants,
+} from '@/styles/common/color.css';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import StaticContextProjectCard from './ProjectCard.context';
 import {
@@ -20,7 +23,6 @@ export interface ProjectCardProps {
   className?: string;
   visible_status: VisibleStatusToken;
   sizeToken: CardSizeToken;
-  colorThemeToken: ColorThemeToken;
   projectMode: ProjectModeToken;
   projectStatus: EndTimeToken;
 }
@@ -30,33 +32,22 @@ const ProjectCard = ({
   children,
   visible_status,
   sizeToken,
-  colorThemeToken,
   projectMode,
   projectStatus,
 }: PropsWithChildren<ProjectCardProps>) => {
   if (visible_status === 'NONE') return null;
 
-  const getBgColor = (colorThemeToken: ColorThemeToken): ODSColorToken => {
-    switch (colorThemeToken) {
-      case 'sungyeon':
-        return 'sungyeon-tertiary-200';
-      default:
-        return 'sungyeon-tertiary-200';
-    }
-  };
-
   return (
     <StaticContextProjectCard.Provider
       value={{
         sizeToken,
-        colorThemeToken,
       }}
     >
       <Grid
         className={classNames(
           className,
           wrapVariants[sizeToken],
-          backgroundColorVariants[getBgColor(colorThemeToken)],
+          backgroundColorVariants['tertiary-variant'],
           sizeVariants[sizeToken],
           gapVariants[sizeToken],
         )}
@@ -73,24 +64,13 @@ interface NameProps {
 }
 
 const Name = ({ name }: NameProps) => {
-  const { sizeToken, colorThemeToken } = getStaticContext(
-    StaticContextProjectCard,
-  );
-
-  const getColor = (colorThemeToken: ColorThemeToken): ODSColorToken => {
-    switch (colorThemeToken) {
-      case 'sungyeon':
-        return 'gray-scale-00';
-      default:
-        return 'gray-scale-00';
-    }
-  };
+  const { sizeToken } = getStaticContext(StaticContextProjectCard);
 
   return (
     <p
       className={classNames(
         nameVariants[sizeToken],
-        colorVariants[getColor(colorThemeToken)],
+        colorVariants['gray-scale-00'],
       )}
     >
       {name}
@@ -103,24 +83,13 @@ interface DescriptionProps {
 }
 
 const Description = ({ content }: DescriptionProps) => {
-  const { sizeToken, colorThemeToken } = getStaticContext(
-    StaticContextProjectCard,
-  );
-
-  const getColor = (colorThemeToken: ColorThemeToken): ODSColorToken => {
-    switch (colorThemeToken) {
-      case 'sungyeon':
-        return 'gray-scale-01';
-      default:
-        return 'gray-scale-01';
-    }
-  };
+  const { sizeToken } = getStaticContext(StaticContextProjectCard);
 
   return (
     <p
       className={classNames(
         descriptionVariants[sizeToken],
-        colorVariants[getColor(colorThemeToken)],
+        colorVariants['gray-scale-01'],
       )}
     >
       {content}
@@ -133,21 +102,11 @@ interface PeriodProps {
 }
 
 const Period = ({ period }: PeriodProps) => {
-  const { colorThemeToken, sizeToken } = getStaticContext(
-    StaticContextProjectCard,
-  );
-  const getChipColor = (colorThemeToken: ColorThemeToken): ODSColorToken => {
-    switch (colorThemeToken) {
-      case 'sungyeon':
-        return 'sungyeon-tertiary-100';
-      default:
-        return 'sungyeon-tertiary-100';
-    }
-  };
+  const { sizeToken } = getStaticContext(StaticContextProjectCard);
   return (
     <Chip
       className={classNames(periodVariants[sizeToken])}
-      backgroundColorToken={getChipColor(colorThemeToken)}
+      bgColorToken="tertiary"
     >
       {period}
     </Chip>

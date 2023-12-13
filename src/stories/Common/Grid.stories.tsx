@@ -2,7 +2,13 @@ import { Meta, StoryObj } from '@storybook/react';
 import classNames from 'classnames';
 import Grid from '@/composable/Grid/Grid';
 import Text from '@/composable/Text/Text';
-import { backgroundColorVariants, colorVariants } from '@/styles/color.css';
+import {
+  backgroundColorVariants,
+  colorVariants,
+} from '@/styles/common/color.css';
+import { jaeyoonColorTheme } from '@/styles/theme/jaeyoon.css';
+import { sungyeonColorTheme } from '@/styles/theme/sungyeon.css';
+import { yejiColorTheme } from '@/styles/theme/yeji.css';
 
 const meta: Meta<typeof Grid> = {
   title: 'Common/Grid',
@@ -26,8 +32,9 @@ export const Default: Story = {
       <>
         <Text
           className={classNames(
-            colorVariants['gray-scale-00'],
-            backgroundColorVariants['sungyeon-03'],
+            sungyeonColorTheme,
+            colorVariants['gray-scale-03'],
+            backgroundColorVariants['secondary'],
           )}
           style={{
             width: '100%',
@@ -39,8 +46,9 @@ export const Default: Story = {
         </Text>
         <Text
           className={classNames(
-            colorVariants['gray-scale-00'],
-            backgroundColorVariants['yeji-03'],
+            yejiColorTheme,
+            colorVariants['gray-scale-03'],
+            backgroundColorVariants['secondary'],
           )}
           style={{
             width: '100%',
@@ -52,8 +60,9 @@ export const Default: Story = {
         </Text>
         <Text
           className={classNames(
-            colorVariants['gray-scale-00'],
-            backgroundColorVariants['jaeyoon-03'],
+            jaeyoonColorTheme,
+            colorVariants['gray-scale-03'],
+            backgroundColorVariants['secondary'],
           )}
           style={{
             width: '100%',

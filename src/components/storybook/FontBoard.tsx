@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import Grid from '@/composable/Grid/Grid';
 import Text, { TextProps } from '@/composable/Text/Text';
-import { globalThemeVars } from '@/styles/theme.css';
+import { colorVariants } from '@/styles/common/color.css';
 import getTextStyle from '@/utils/style/getTextStyle';
 
 const FontBoard = ({ children }: PropsWithChildren) => {
@@ -25,9 +25,7 @@ const Column = ({ children }: PropsWithChildren) => {
   return (
     <Text
       as="h1"
-      style={{
-        color: globalThemeVars.color['gray-scale-03'],
-      }}
+      className={colorVariants['gray-scale-03']}
       typoToken="paragraph-m-medium"
     >
       {children}
@@ -41,9 +39,7 @@ const Title = ({ children }: PropsWithChildren) => {
       <Text
         as="span"
         typoToken="title-m-bold"
-        style={{
-          color: globalThemeVars.color['gray-scale-03'],
-        }}
+        className={colorVariants['gray-scale-03']}
       >
         {children}
       </Text>
@@ -87,9 +83,7 @@ const Display = ({ children, typoToken }: PropsWithChildren<DisplayProps>) => {
       <Text
         as="span"
         typoToken={typoToken}
-        style={{
-          color: globalThemeVars.color['gray-scale-06'],
-        }}
+        className={colorVariants['gray-scale-06']}
       >
         {children}
       </Text>
@@ -102,9 +96,7 @@ const Info = ({ children }: PropsWithChildren) => {
     <Text
       as="span"
       typoToken="paragraph-s-medium"
-      style={{
-        color: globalThemeVars.color['gray-scale-06'],
-      }}
+      className={colorVariants['gray-scale-06']}
     >
       {children}
     </Text>

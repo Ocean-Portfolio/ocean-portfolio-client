@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Button from '@/composable/Button/Button';
-import { globalThemeVars } from '@/styles/theme.css';
+import { backgroundColorVariants } from '@/styles/common/color.css';
 
 const meta: Meta<typeof Button> = {
   title: 'Common/Button',
@@ -24,8 +24,8 @@ const meta: Meta<typeof Button> = {
   decorators: [
     (Story) => (
       <div
+        className={backgroundColorVariants['gray-scale-05']}
         style={{
-          backgroundColor: globalThemeVars.color['gray-scale-05'],
           minHeight: '10rem',
         }}
       >
