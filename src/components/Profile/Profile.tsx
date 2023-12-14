@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import React from 'react';
 import calcRemToPxNumber from '@/utils/style/calcRemToPxNumber';
-import SocialIcon, { SocialIconProps } from '../Icon/SocialIcon';
-import ODSNextImage from '../Image/ODSNextImage';
+import SocialIcon, { SocialIconProps } from '../../composable/Icon/SocialIcon';
+import ODSNextImage from '../../composable/Image/ODSNextImage';
 import {
   iconLayouts,
   imageVariants,

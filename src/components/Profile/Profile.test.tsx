@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { SocialIconProps } from '../Icon/SocialIcon';
+import { SocialIconProps } from '../../composable/Icon/SocialIcon';
 import Profile from './Profile';
 import { wrapVariants } from './Profile.css';
 
