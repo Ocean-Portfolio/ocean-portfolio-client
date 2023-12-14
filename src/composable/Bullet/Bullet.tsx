@@ -1,24 +1,24 @@
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
-import { fontVariants } from '@/styles/common/font.css';
-import Text from '../Text/Text';
-import { bulletStyle } from './Bullet.css';
+import { colorVariants } from '@/styles/common/color.css';
+import { bulletFontVariants, bulletVariants } from './Bullet.css';
 
 const Bullet = ({
   className,
   children,
-}: PropsWithChildren<{ className?: string }>) => {
+  sizeToken,
+}: PropsWithChildren<{ className?: string; sizeToken: CardSizeToken }>) => {
   return (
-    <Text
-      as="span"
+    <span
       className={classNames(
-        bulletStyle,
-        fontVariants['paragraph-m-bold'],
         className,
+        bulletVariants[sizeToken],
+        bulletFontVariants[sizeToken],
+        colorVariants['gray-scale-00'],
       )}
     >
       {children}
-    </Text>
+    </span>
   );
 };
 

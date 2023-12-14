@@ -1,15 +1,39 @@
-import { style } from '@vanilla-extract/css';
+import { styleVariants } from '@vanilla-extract/css';
 import { inlineFlexCenter } from '@/styles/common/flex.css';
-import { commonColorThemeVars } from '@/styles/theme/index.css';
+import { fontVariants } from '@/styles/common/font.css';
 
-export const bulletStyle = style([
-  inlineFlexCenter,
-  {
-    padding: '0.5rem 0.875rem',
-    border: '1.2px solid',
-    borderColor: commonColorThemeVars.token['gray-scale-00'],
-    borderRadius: '3.125rem',
-    textAlign: 'center',
-    color: commonColorThemeVars.token['gray-scale-00'],
-  },
-]);
+export const bulletVariants = styleVariants({
+  SMALL: [
+    inlineFlexCenter,
+    {
+      padding: '0.5rem 0.875rem',
+      border: '1.2px solid',
+      borderRadius: '3.125rem',
+      textAlign: 'center',
+    },
+  ],
+  MEDIUM: [
+    inlineFlexCenter,
+    {
+      padding: '0.5rem 1.75rem',
+      border: '1.2px solid',
+      borderRadius: '3.125rem',
+      textAlign: 'center',
+    },
+  ],
+  LARGE: [
+    inlineFlexCenter,
+    {
+      padding: '0.875rem 1.75rem',
+      border: '1.2px solid',
+      borderRadius: '3.125rem',
+      textAlign: 'center',
+    },
+  ],
+});
+
+export const bulletFontVariants = styleVariants({
+  LARGE: [fontVariants['title-l-bold']],
+  MEDIUM: [fontVariants['title-m-bold']],
+  SMALL: [fontVariants['paragraph-m-bold']],
+});
