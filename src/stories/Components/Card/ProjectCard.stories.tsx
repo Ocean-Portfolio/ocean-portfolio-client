@@ -7,7 +7,7 @@ import { sungyeonColorTheme } from '@/styles/theme/sungyeon.css';
 import { yejiColorTheme } from '@/styles/theme/yeji.css';
 
 const meta: Meta<typeof ProjectCard> = {
-  title: 'Common/Card/ProjectCard',
+  title: 'Components/Card/ProjectCard',
   component: ProjectCard,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },

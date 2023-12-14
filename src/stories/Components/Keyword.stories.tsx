@@ -3,7 +3,7 @@ import Keyword from '@/components/Keyword/Keyword';
 import { backgroundColorVariants } from '@/styles/common/color.css';
 
 const meta: Meta<typeof Keyword> = {
-  title: 'Keyword/Keyword',
+  title: 'Components/Keyword',
   component: Keyword,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },

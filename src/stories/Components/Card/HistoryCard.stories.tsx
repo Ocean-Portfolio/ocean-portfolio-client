@@ -5,7 +5,7 @@ import HistoryCard, {
 import { backgroundColorVariants } from '@/styles/common/color.css';
 
 const meta: Meta<typeof HistoryCard> = {
-  title: 'Common/Card/HistoryCard',
+  title: 'Components/Card/HistoryCard',
   component: HistoryCard,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },
