@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
 import { backgroundColorVariants } from '@/styles/common/color.css';
-import { fontVariants } from '@/styles/common/font.css';
 import Text from '../Text/Text';
 import { chipStyle } from './Chip.css';
 
@@ -23,10 +22,10 @@ const Chip = ({
       className={classNames(
         chipStyle,
         backgroundColorVariants[bgColorToken],
-        fontVariants['caption-m-semibold'],
         className,
       )}
       style={style}
+      typoToken="caption-m-semibold"
     >
       {children}
     </Text>
