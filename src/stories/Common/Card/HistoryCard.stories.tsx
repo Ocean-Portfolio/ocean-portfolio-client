@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import HistoryCard, {
   HistoryCardProps,
-} from '@/composable/Card/History/HistoryCard';
+} from '@/components/Card/History/HistoryCard';
 import { backgroundColorVariants } from '@/styles/common/color.css';
 
 const meta: Meta<typeof HistoryCard> = {

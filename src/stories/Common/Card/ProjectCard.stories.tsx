@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import ProjectCard, {
   ProjectCardProps,
-} from '@/composable/Card/Project/ProjectCard';
+} from '@/components/Card/Project/ProjectCard';
 import { jaeyoonColorTheme } from '@/styles/theme/jaeyoon.css';
 import { sungyeonColorTheme } from '@/styles/theme/sungyeon.css';
 import { yejiColorTheme } from '@/styles/theme/yeji.css';
