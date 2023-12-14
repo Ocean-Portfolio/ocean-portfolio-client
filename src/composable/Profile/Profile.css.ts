@@ -1,4 +1,5 @@
 import { style, styleVariants } from '@vanilla-extract/css';
+import { fontVariants } from '@/styles/common/font.css';
 import { commonColorThemeVars } from '@/styles/theme/index.css';
 
 const commonStyle = style({
@@ -42,21 +43,35 @@ export const imageVariants = styleVariants({
 });
 
 export const nameVariants = styleVariants({
-  HORIZONTAL: {
-    color: commonColorThemeVars.token['gray-scale-00'],
-  },
-  VERTICAL: {
-    color: commonColorThemeVars.token['gray-scale-05'],
-  },
+  HORIZONTAL: [
+    fontVariants['paragraph-m-semibold'],
+    {
+      color: commonColorThemeVars.token['gray-scale-00'],
+    },
+  ],
+  VERTICAL: [
+    fontVariants['GNB-l-bold'],
+    {
+      color: commonColorThemeVars.token['gray-scale-05'],
+    },
+  ],
 });
 
 export const jobVariants = styleVariants({
-  HORIZONTAL: {
-    color: commonColorThemeVars.token['gray-scale-04'],
-  },
-  VERTICAL: {
-    color: commonColorThemeVars.token['gray-scale-05'],
-  },
+  HORIZONTAL: [
+    fontVariants['paragraph-s-regular'],
+    {
+      color: commonColorThemeVars.token['gray-scale-04'],
+      textAlign: 'left',
+    },
+  ],
+  VERTICAL: [
+    fontVariants['paragraph-s-regular'],
+    {
+      color: commonColorThemeVars.token['gray-scale-05'],
+      textAlign: 'center',
+    },
+  ],
 });
 
 const socialWrapStyle = style({

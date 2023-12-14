@@ -4,7 +4,6 @@ import React from 'react';
 import calcRemToPxNumber from '@/utils/style/calcRemToPxNumber';
 import SocialIcon, { SocialIconProps } from '../Icon/SocialIcon';
 import ODSNextImage from '../Image/ODSNextImage';
-import Text from '../Text/Text';
 import {
   iconLayouts,
   imageVariants,
@@ -37,24 +36,8 @@ const Profile = ({ className, layout, src, alt, name, job, social }: Props) => {
         sizeToken={layout === 'HORIZONTAL' ? 'image-50' : 'image-65'}
         alt={alt}
       />
-      <Text
-        className={nameVariants[layout]}
-        typoToken={
-          layout === 'HORIZONTAL' ? 'paragraph-m-semibold' : 'GNB-l-bold'
-        }
-      >
-        {name}
-      </Text>
-      <Text
-        as="pre"
-        className={jobVariants[layout]}
-        typoToken={'paragraph-s-regular'}
-        style={{
-          textAlign: layout === 'HORIZONTAL' ? 'left' : 'center',
-        }}
-      >
-        {job}
-      </Text>
+      <span className={nameVariants[layout]}>{name}</span>
+      <pre className={jobVariants[layout]}>{job}</pre>
       {social && (
         <div className={socialWrapVariants[layout]}>
           {social.map(({ url, company, color, background, state }) => {
