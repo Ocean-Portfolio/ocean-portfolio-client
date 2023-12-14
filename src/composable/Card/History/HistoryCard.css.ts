@@ -13,7 +13,8 @@ export const wrapVariants = styleVariants({
     wrapStyle,
     {
       gap: '0.5rem',
-      minWidth: '19.25rem',
+      width: '19.25rem',
+      maxWidth: '19.25rem',
       padding: '1.5rem',
       borderRadius: '0.75rem',
       backgroundColor: 'rgba(255, 255, 255, 0.75)',
