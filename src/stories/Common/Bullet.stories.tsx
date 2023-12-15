@@ -19,9 +19,24 @@ const meta: Meta<typeof Bullet> = {
 };
 
 type Story = StoryObj<typeof Bullet>;
-export const Default: Story = {
+export const Small: Story = {
   args: {
     children: '대화하고 싶어지는',
+    sizeToken: 'SMALL',
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    children: '대화하고 싶어지는',
+    sizeToken: 'MEDIUM',
+  },
+};
+
+export const Large: Story = {
+  args: {
+    children: '대화하고 싶어지는',
+    sizeToken: 'LARGE',
   },
 };
 
