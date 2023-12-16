@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, Canvas } from '@storybook/blocks';
 import { ApolloWrapper } from '@/apollo/apollo-wrapper';
 import LinkProfileList from '@/components/LinkProfileList/client/LinkProfileList';
 import Home from '@/pages/Home/Home';
@@ -7,12 +7,14 @@ import Home from '@/pages/Home/Home';
 
 # Home
 
-<ApolloWrapper>
-  <Home.Wrap>
-    <Home.Title />
-    <Home.Caption />
-    <Home.Makers>
-      <LinkProfileList />
-    </Home.Makers>
-  </Home.Wrap>
-</ApolloWrapper>
+<Canvas>
+  <ApolloWrapper>
+    <Home.Wrap>
+      <Home.Title />
+      <Home.Caption />
+      <Home.Makers>
+        <LinkProfileList />
+      </Home.Makers>
+    </Home.Wrap>
+  </ApolloWrapper>
+</Canvas>
