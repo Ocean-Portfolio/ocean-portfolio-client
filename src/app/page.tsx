@@ -41,7 +41,6 @@ export default async function Home() {
         <br />
         Ocean Portfolio
       </h1>
-
       <p
         className={classNames(captionStyle, colorVariants['secondary-variant'])}
       >

@@ -19,13 +19,14 @@ export const wrapStyle = style([
 ]);
 
 export const titleStyle = style({
-  paddingBottom: '6rem',
+  paddingTop: '4.5rem',
+  paddingBottom: '13rem',
 
   ...ODSTextTokenVariables['display-l-bold'],
 
   '@media': {
-    'screen and (max-width: 810px)': ODSTextTokenVariables['title-l-bold'],
-    'screen and (max-width: 700px)': ODSTextTokenVariables['title-m-bold'],
+    'screen and (max-width: 810px)': ODSTextTokenVariables['display-m-bold'],
+    'screen and (max-width: 700px)': ODSTextTokenVariables['display-m-bold'],
   },
 });
 
@@ -33,8 +34,8 @@ export const captionStyle = style({
   ...ODSTextTokenVariables['display-m-bold'],
 
   '@media': {
-    'screen and (max-width: 810px)': ODSTextTokenVariables['title-m-bold'],
-    'screen and (max-width: 700px)': ODSTextTokenVariables['title-s-medium'],
+    'screen and (max-width: 810px)': ODSTextTokenVariables['display-s-medium'],
+    'screen and (max-width: 700px)': ODSTextTokenVariables['display-s-medium'],
   },
 });
 
