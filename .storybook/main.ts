@@ -3,6 +3,9 @@ import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import { DefinePlugin } from 'webpack';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
