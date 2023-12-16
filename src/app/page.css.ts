@@ -20,7 +20,7 @@ export const wrapStyle = style([
 
 export const titleStyle = style({
   paddingTop: '4.5rem',
-  paddingBottom: '13rem',
+  paddingBottom: '9.5rem',
 
   ...ODSTextTokenVariables['display-l-bold'],
 

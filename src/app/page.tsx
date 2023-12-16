@@ -41,6 +41,7 @@ export default async function Home() {
         <br />
         Ocean Portfolio
       </h1>
+
       <p
         className={classNames(captionStyle, colorVariants['secondary-variant'])}
       >
@@ -52,17 +53,20 @@ export default async function Home() {
           backgroundColorVariants['secondary-variant'],
         )}
       >
-        {getUsersQuery.data.getUsers.map((user) => {
-          return (
-            <ProfileList
-              key={user.id}
-              user_id={user.id}
-              name={user.name}
-              job={user.job}
-              image_id={user.image_id}
-            />
-          );
-        })}
+        {getUsersQuery.data.getUsers
+          .map((elem) => elem)
+          .sort((a, b) => Number(a.id) - Number(b.id))
+          .map((user) => {
+            return (
+              <ProfileList
+                key={user.id}
+                user_id={user.id}
+                name={user.name}
+                job={user.job}
+                image_id={user.image_id}
+              />
+            );
+          })}
       </div>
     </Container>
   );
