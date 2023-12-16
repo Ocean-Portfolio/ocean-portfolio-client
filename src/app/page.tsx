@@ -1,118 +1,77 @@
 import classNames from 'classnames';
-import Image from 'next/image';
 import { getClient } from '@/apollo/apollo-client';
-import IconBoard from '@/components/storybook/IconBoard';
-import { GET_SKILLS_BY_ID } from '@/gql/queries';
-import { defaultColorTheme } from '@/styles/theme/default.css';
+import ProfileList from '@/components/ProfileList/ProfileList';
+import Container from '@/composable/Container/Container';
+import Grid from '@/composable/Grid/Grid';
+import { GET_USERS } from '@/gql/queries/user';
 import {
-  GetSkillByIdQuery,
-  GetSkillByIdQueryVariables,
-} from '@/types/GraphqlTypes';
-import styles from './page.module.css';
+  backgroundColorVariants,
+  colorVariants,
+} from '@/styles/common/color.css';
+import { fontVariants } from '@/styles/common/font.css';
+import { defaultColorTheme } from '@/styles/theme/default.css';
+import { GetUsersQuery, GetUsersQueryVariables } from '@/types/graphql';
+import { profileListStyle, titleStyle, wrapStyle } from './page.css';
 
 export default async function Home() {
   const apolloClient = getClient();
-  const { data } = await apolloClient.query<
-    GetSkillByIdQuery,
-    GetSkillByIdQueryVariables
+
+  const getUsersQuery = await apolloClient.query<
+    GetUsersQuery,
+    GetUsersQueryVariables
   >({
-    query: GET_SKILLS_BY_ID,
-    variables: {
-      id: 26,
-    },
+    query: GET_USERS,
   });
 
   return (
-    <main className={classNames(styles.main, defaultColorTheme)}>
-      <div className={styles.description}>
-        <p>
-          환영합니다 ! 배포성공 ! Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <p>
-          {data.getSkillById.name} : {data.getSkillById.description}
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <Container
+      as="main"
+      className={classNames(
+        defaultColorTheme,
+        wrapStyle,
+        backgroundColorVariants['tertiary'],
+      )}
+    >
+      <h1
+        className={classNames(
+          titleStyle,
+          fontVariants['display-l-bold'],
+          colorVariants['gray-scale-00'],
+        )}
+      >
+        Brand-ing Me: Ocean Portfolio
+      </h1>
+
+      <p
+        className={classNames(
+          fontVariants['display-m-bold'],
+          colorVariants['secondary-variant'],
+        )}
+      >
+        Makers
+      </p>
+      <Grid
+        className={classNames(
+          profileListStyle,
+          backgroundColorVariants['secondary-variant'],
+        )}
+        templateColumns="repeat(3, 12.5rem)"
+        templateRows="auto"
+        justifyItems="center"
+        alignItems="center"
+      >
+        {getUsersQuery.data.getUsers.map((user) => {
+          return (
+            <ProfileList
+              key={user.id}
+              user_id={user.id}
+              name={user.name}
+              job={user.job}
+              image_id={user.image_id}
             />
-          </a>
-        </div>
-      </div>
-      <IconBoard />
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+          );
+        })}
+      </Grid>
+    </Container>
   );
 }

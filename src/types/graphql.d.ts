@@ -361,6 +361,21 @@ export type UserTable = {
   updated_at: Scalars['String']['output'];
 };
 
+export type GetImageByIdQueryVariables = Exact<{
+  id: Scalars['Float']['input'];
+}>;
+
+export type GetImageByIdQuery = {
+  __typename?: 'Query';
+  getImageById: {
+    __typename?: 'ImageTable';
+    id: string;
+    name: string;
+    storage_url: string;
+    description?: string | null;
+  };
+};
+
 export type GetSkillsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetSkillsQuery = {
@@ -395,4 +410,32 @@ export type GetSkillByIdQuery = {
     category_id: number;
     image_id?: number | null;
   };
+};
+
+export type GetSnsByUserIdQueryVariables = Exact<{
+  id: Scalars['Float']['input'];
+}>;
+
+export type GetSnsByUserIdQuery = {
+  __typename?: 'Query';
+  getSNSByUserId: Array<{
+    __typename?: 'SNSLinkTable';
+    id: string;
+    type: string;
+    link: string;
+    visible_status: string;
+  }>;
+};
+
+export type GetUsersQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetUsersQuery = {
+  __typename?: 'Query';
+  getUsers: Array<{
+    __typename?: 'UserTable';
+    id: string;
+    name: string;
+    job?: string | null;
+    image_id?: number | null;
+  }>;
 };
