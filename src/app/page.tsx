@@ -1,5 +1,5 @@
 import LinkProfileList from '@/components/LinkProfileList/server/LinkProfileList';
-import Home from '@/components/pages/Home/Home';
+import Home from '@/components/Pages/Home/Home';
 
 export default async function HomePage() {
   return (

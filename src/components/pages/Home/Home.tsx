@@ -5,7 +5,7 @@ import {
   profileListStyle,
   titleStyle,
   wrapStyle,
-} from '@/components/pages/Home/Home.css';
+} from '@/components/Pages/Home/Home.css';
 import Container from '@/composable/Container/Container';
 import {
   backgroundColorVariants,
