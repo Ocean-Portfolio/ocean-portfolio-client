@@ -17,10 +17,7 @@ const config: StorybookConfig = {
   ],
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL as string,
-    NEXT_PUBLIC_LOCALHOST: process.env.NEXT_PUBLIC_LOCALHOST as string,
-    NEXT_PUBLIC_BASE_PATH: process.env.NEXT_PUBLIC_BASE_PATH as string,
     NEXT_PUBLIC_STORAGE_URL: process.env.NEXT_PUBLIC_STORAGE_URL as string,
-    NEXT_PUBIC_WEBSOCKET_PORT: process.env.NEXT_PUBIC_WEBSOCKET_PORT as string,
   },
   framework: {
     name: '@storybook/nextjs',
