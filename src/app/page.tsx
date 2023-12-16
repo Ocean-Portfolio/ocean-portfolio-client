@@ -1,20 +1,17 @@
 import classNames from 'classnames';
 import { getClient } from '@/apollo/apollo-client';
-import Profile from '@/components/Profile/Profile';
+import ProfileList from '@/components/ProfileList/ProfileList';
 import Container from '@/composable/Container/Container';
-import { GET_IMAGE_BY_ID } from '@/gql/queries/image';
-import { GET_SNS_BY_USER_ID } from '@/gql/queries/sns_link';
+import Grid from '@/composable/Grid/Grid';
 import { GET_USERS } from '@/gql/queries/user';
-import { defaultColorTheme } from '@/styles/theme/default.css';
 import {
-  GetImageByIdQuery,
-  GetImageByIdQueryVariables,
-  GetSnsByUserIdQuery,
-  GetSnsByUserIdQueryVariables,
-  GetUsersQuery,
-  GetUsersQueryVariables,
-} from '@/types/graphql';
-import capitalizeFirstLetter from '@/utils/string/capitalizeFirstLetter';
+  backgroundColorVariants,
+  colorVariants,
+} from '@/styles/common/color.css';
+import { fontVariants } from '@/styles/common/font.css';
+import { defaultColorTheme } from '@/styles/theme/default.css';
+import { GetUsersQuery, GetUsersQueryVariables } from '@/types/graphql';
+import { profileListStyle, titleStyle, wrapStyle } from './page.css';
 
 export default async function Home() {
   const apolloClient = getClient();
@@ -27,11 +24,45 @@ export default async function Home() {
   });
 
   return (
-    <main className={classNames(defaultColorTheme)}>
-      <Container>
+    <Container
+      as="main"
+      className={classNames(
+        defaultColorTheme,
+        wrapStyle,
+        backgroundColorVariants['tertiary'],
+      )}
+    >
+      <h1
+        className={classNames(
+          titleStyle,
+          fontVariants['display-l-bold'],
+          colorVariants['gray-scale-00'],
+        )}
+      >
+        Brand-ing Me: Ocean Portfolio
+      </h1>
+
+      <p
+        className={classNames(
+          fontVariants['display-m-bold'],
+          colorVariants['secondary-variant'],
+        )}
+      >
+        Makers
+      </p>
+      <Grid
+        className={classNames(
+          profileListStyle,
+          backgroundColorVariants['secondary-variant'],
+        )}
+        templateColumns="repeat(3, 12.5rem)"
+        templateRows="auto"
+        justifyItems="center"
+        alignItems="center"
+      >
         {getUsersQuery.data.getUsers.map((user) => {
           return (
-            <HomeProfile
+            <ProfileList
               key={user.id}
               user_id={user.id}
               name={user.name}
@@ -40,55 +71,7 @@ export default async function Home() {
             />
           );
         })}
-      </Container>
-    </main>
+      </Grid>
+    </Container>
   );
 }
-
-interface Props {
-  user_id: string;
-  name: string;
-  job?: string | null;
-  image_id?: number | null;
-}
-
-const HomeProfile = async ({ user_id, name, job, image_id }: Props) => {
-  const apolloClient = getClient();
-
-  const res = await Promise.all([
-    image_id &&
-      apolloClient.query<GetImageByIdQuery, GetImageByIdQueryVariables>({
-        query: GET_IMAGE_BY_ID,
-        variables: {
-          id: image_id,
-        },
-      }),
-    apolloClient.query<GetSnsByUserIdQuery, GetSnsByUserIdQueryVariables>({
-      query: GET_SNS_BY_USER_ID,
-      variables: {
-        id: Number(user_id),
-      },
-    }),
-  ]);
-
-  return (
-    <Profile
-      layout="VERTICAL"
-      src={(res[0] && res[0].data.getImageById.storage_url) || ''}
-      alt={(res[0] && res[0].data.getImageById.description) || ''}
-      name={name}
-      job={job || ''}
-      social={res[1].data.getSNSByUserId
-        .filter((sns) => sns.visible_status !== 'NONE')
-        .map((sns) => {
-          return {
-            company: capitalizeFirstLetter(sns.type) as CompanyIconToken,
-            color: 'GRAY',
-            background: 'NONE',
-            state: 'DEFAULT',
-            url: sns.link,
-          };
-        })}
-    />
-  );
-};
