@@ -1,12 +1,12 @@
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
-import Container from '@/composable/Container/Container';
 import {
   captionStyle,
   profileListStyle,
   titleStyle,
   wrapStyle,
-} from '@/pages/Home/Home.css';
+} from '@/components/pages/Home/Home.css';
+import Container from '@/composable/Container/Container';
 import {
   backgroundColorVariants,
   colorVariants,
