@@ -19,13 +19,16 @@ export const wrapStyle = style([
 ]);
 
 export const titleStyle = style({
-  paddingTop: '4.5rem',
-  paddingBottom: '9.5rem',
+  paddingBottom: '6rem',
 
   ...ODSTextTokenVariables['display-l-bold'],
 
   '@media': {
-    'screen and (max-width: 810px)': ODSTextTokenVariables['display-m-bold'],
+    'screen and (max-width: 810px)': {
+      ...ODSTextTokenVariables['display-m-bold'],
+      paddingTop: '4.5rem',
+      paddingBottom: '9.5rem',
+    },
     'screen and (max-width: 700px)': ODSTextTokenVariables['display-m-bold'],
   },
 });
