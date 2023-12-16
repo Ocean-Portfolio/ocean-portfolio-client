@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 import classNames from 'classnames';
 import { ApolloWrapper } from '@/apollo/apollo-wrapper';
-import { profileListStyle } from '@/app/page.css';
 import LinkProfileList from '@/components/LinkProfileList/client/LinkProfileList';
+import { profileListStyle } from '@/pages/Home/Home.css';
 import { backgroundColorVariants } from '@/styles/common/color.css';
 
 const meta: Meta<typeof LinkProfileList> = {
