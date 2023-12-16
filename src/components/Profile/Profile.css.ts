@@ -94,6 +94,11 @@ export const socialWrapVariants = styleVariants({
   ],
 });
 
+export const iconStyle = style({
+  position: 'relative',
+  zIndex: 10,
+});
+
 export const iconLayouts = {
   HORIZONTAL: {
     width: '1.5rem',

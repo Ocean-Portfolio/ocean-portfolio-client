@@ -5,6 +5,8 @@ export const wrapStyle = style([
   flexCenter,
   {
     position: 'relative',
+    width: '100%',
+    height: '100%',
     padding: '1.5rem',
     borderRadius: '1rem',
     ':hover': {

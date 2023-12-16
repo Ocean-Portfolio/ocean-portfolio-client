@@ -6,6 +6,7 @@ import SocialIcon, { SocialIconProps } from '../../composable/Icon/SocialIcon';
 import ODSNextImage from '../../composable/Image/ODSNextImage';
 import {
   iconLayouts,
+  iconStyle,
   imageVariants,
   jobVariants,
   nameVariants,
@@ -43,6 +44,7 @@ const Profile = ({ className, layout, src, alt, name, job, social }: Props) => {
           {social.map(({ url, company, color, background, state }) => {
             return (
               <Link
+                className={iconStyle}
                 key={url}
                 href={url}
                 target="_blank"
