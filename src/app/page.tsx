@@ -1,15 +1,11 @@
 import classNames from 'classnames';
-import { getClient } from '@/apollo/apollo-client';
-import ProfileList from '@/components/ProfileList/ProfileList';
+import LinkProfileList from '@/components/LinkProfileList/server/LinkProfileList';
 import Container from '@/composable/Container/Container';
-import { GET_USERS } from '@/gql/queries/user';
 import {
   backgroundColorVariants,
   colorVariants,
 } from '@/styles/common/color.css';
-import { fontVariants } from '@/styles/common/font.css';
 import { defaultColorTheme } from '@/styles/theme/default.css';
-import { GetUsersQuery, GetUsersQueryVariables } from '@/types/graphql';
 import {
   captionStyle,
   profileListStyle,
@@ -18,15 +14,6 @@ import {
 } from './page.css';
 
 export default async function Home() {
-  const apolloClient = getClient();
-
-  const getUsersQuery = await apolloClient.query<
-    GetUsersQuery,
-    GetUsersQueryVariables
-  >({
-    query: GET_USERS,
-  });
-
   return (
     <Container
       as="main"
@@ -53,20 +40,7 @@ export default async function Home() {
           backgroundColorVariants['secondary-variant'],
         )}
       >
-        {getUsersQuery.data.getUsers
-          .map((elem) => elem)
-          .sort((a, b) => Number(a.id) - Number(b.id))
-          .map((user) => {
-            return (
-              <ProfileList
-                key={user.id}
-                user_id={user.id}
-                name={user.name}
-                job={user.job}
-                image_id={user.image_id}
-              />
-            );
-          })}
+        <LinkProfileList />
       </div>
     </Container>
   );

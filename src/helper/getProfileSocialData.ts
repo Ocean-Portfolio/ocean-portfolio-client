@@ -8,7 +8,7 @@ interface Data {
   visible_status: string;
 }
 
-export const getProlfileSocialData = <P extends Data>(data: P[]) => {
+export const getProfileSocialData = <P extends Data>(data: P[]) => {
   return filteredVisibleStatus(data).map((sns) => {
     return {
       company: capitalizeFirstLetter(sns.type) as CompanyIconToken,
