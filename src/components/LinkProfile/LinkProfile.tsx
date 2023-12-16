@@ -20,7 +20,7 @@ interface Props {
   }[];
 }
 
-const LinkProfile = async ({ user_id, name, job, src, alt, social }: Props) => {
+const LinkProfile = ({ user_id, name, job, src, alt, social }: Props) => {
   return (
     <div
       className={classNames(
