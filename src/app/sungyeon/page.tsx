@@ -1,12 +1,40 @@
 import React from 'react';
+import { getClient } from '@/apollo/apollo-client';
+import Contents from '@/components/Sections/Contents';
 import Container from '@/composable/Container/Container';
+import { getSectionsByUserIdQuery } from '@/helper/getSectionByUserIdQuery';
+import { getUserByNameQuery } from '@/helper/getUserByNameQuery';
 import { sungyeonColorTheme } from '@/styles/theme/sungyeon.css';
+import { StaticContextPageInfo } from './context';
 
-const Sungyeon = () => {
+const Sungyeon = async () => {
+  const apolloClient = getClient();
+  const userByName = await getUserByNameQuery(apolloClient, '윤성연');
+  const sectionByUserId = await getSectionsByUserIdQuery(
+    apolloClient,
+    Number(userByName.data.getUserByName.id),
+  );
+  const { getUserByName } = userByName.data;
+  const { getSectionsByUserId } = sectionByUserId.data;
+
   return (
-    <Container as="main" className={sungyeonColorTheme}>
-      <div>yoon0cean page</div>
-    </Container>
+    <StaticContextPageInfo.Provider
+      value={{
+        userInfo: {
+          id: getUserByName.id,
+          name: getUserByName.name,
+          email: getUserByName.email,
+          job: getUserByName.job,
+          image_id: getUserByName.image_id,
+        },
+        sections: getSectionsByUserId,
+      }}
+    >
+      <Container as="main" className={sungyeonColorTheme}>
+        <div>yoon0cean page</div>
+        <Contents />
+      </Container>
+    </StaticContextPageInfo.Provider>
   );
 };
 

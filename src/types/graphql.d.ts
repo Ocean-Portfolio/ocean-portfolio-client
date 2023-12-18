@@ -162,7 +162,7 @@ export type Query = {
   getImageByName: Array<ImageTable>;
   getIntroduceById: IntroduceTable;
   getIntroduces: Array<IntroduceTable>;
-  getIntroducesByCategoryId: Array<IntroduceTable>;
+  getIntroducesBySectionId: IntroduceTable;
   getKeywordById: KeywordTable;
   getKeywords: Array<KeywordTable>;
   getKeywordsByCategoryId: Array<KeywordTable>;
@@ -248,7 +248,7 @@ export type QueryGetIntroduceByIdArgs = {
   id: Scalars['Float']['input'];
 };
 
-export type QueryGetIntroducesByCategoryIdArgs = {
+export type QueryGetIntroducesBySectionIdArgs = {
   section_id: Scalars['Float']['input'];
 };
 
@@ -336,6 +336,8 @@ export type SectionTable = {
   created_at: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
+  section_type: Scalars['String']['output'];
+  sort_order: Scalars['Float']['output'];
   updated_at: Scalars['String']['output'];
   user_id: Scalars['Float']['output'];
   visible_status: Scalars['String']['output'];
@@ -417,6 +419,37 @@ export type GetSkillByIdQuery = {
   };
 };
 
+export type GetIntroducesBySectionIdQueryVariables = Exact<{
+  section_id: Scalars['Float']['input'];
+}>;
+
+export type GetIntroducesBySectionIdQuery = {
+  __typename?: 'Query';
+  getIntroducesBySectionId: {
+    __typename?: 'IntroduceTable';
+    id: string;
+    slogan?: string | null;
+    intro_text?: string | null;
+    visible_status: string;
+    image_id?: number | null;
+  };
+};
+
+export type GetSectionsByUserIdQueryVariables = Exact<{
+  user_id: Scalars['Float']['input'];
+}>;
+
+export type GetSectionsByUserIdQuery = {
+  __typename?: 'Query';
+  getSectionsByUserId: Array<{
+    __typename?: 'SectionTable';
+    id: string;
+    name: string;
+    sort_order: number;
+    section_type: string;
+  }>;
+};
+
 export type GetSnsByUserIdQueryVariables = Exact<{
   id: Scalars['Float']['input'];
 }>;
@@ -443,4 +476,20 @@ export type GetUsersQuery = {
     job?: string | null;
     image_id?: number | null;
   }>;
+};
+
+export type GetUserByNameQueryVariables = Exact<{
+  name: Scalars['String']['input'];
+}>;
+
+export type GetUserByNameQuery = {
+  __typename?: 'Query';
+  getUserByName: {
+    __typename?: 'UserTable';
+    id: string;
+    name: string;
+    email: string;
+    job?: string | null;
+    image_id?: number | null;
+  };
 };

@@ -10,3 +10,15 @@ export const GET_USERS = gql`
     }
   }
 `;
+
+export const GET_USER_BY_NAME = gql`
+  query GetUserByName($name: String!) {
+    getUserByName(name: $name) {
+      id
+      name
+      email
+      job
+      image_id
+    }
+  }
+`;
