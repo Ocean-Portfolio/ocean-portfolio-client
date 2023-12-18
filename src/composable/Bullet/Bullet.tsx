@@ -7,7 +7,7 @@ const Bullet = ({
   className,
   children,
   sizeToken,
-}: PropsWithChildren<{ className?: string; sizeToken: CardSizeToken }>) => {
+}: PropsWithChildren<{ className?: string; sizeToken: SizeToken }>) => {
   return (
     <span
       className={classNames(

@@ -19,7 +19,7 @@ import {
 interface KeywordProps {
   className?: string;
   direction: 'LEFT' | 'RIGHT';
-  sizeToken: CardSizeToken;
+  sizeToken: SizeToken;
   src: string;
   alt: string;
   main_text: string;

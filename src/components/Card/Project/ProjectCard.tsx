@@ -22,7 +22,7 @@ import {
 export interface ProjectCardProps {
   className?: string;
   visible_status: VisibleStatusToken;
-  sizeToken: CardSizeToken;
+  sizeToken: SizeToken;
   projectMode: ProjectModeToken;
   projectStatus: EndTimeToken;
 }
@@ -121,7 +121,7 @@ interface ImageProps {
 const Image = ({ src, alt }: ImageProps) => {
   const { sizeToken } = getStaticContext(StaticContextProjectCard);
 
-  const getImageSize = (sizeToken: CardSizeToken): ImageSizeToken => {
+  const getImageSize = (sizeToken: SizeToken): ImageSizeToken => {
     switch (sizeToken) {
       case 'LARGE':
         return 'image-100';

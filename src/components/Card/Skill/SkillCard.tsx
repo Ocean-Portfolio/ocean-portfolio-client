@@ -11,7 +11,7 @@ import {
 
 interface Props {
   className?: string;
-  sizeToken: CardSizeToken;
+  sizeToken: SizeToken;
   src: string;
   alt: string;
   name: string;
