@@ -183,6 +183,7 @@ export type Query = {
   getSkillsByCategoryId: Array<SkillTable>;
   getSkillsByTitle: Array<SkillTable>;
   getUserById: Array<UserTable>;
+  getUserByName: UserTable;
   getUsers: Array<UserTable>;
   sayHello: Scalars['String']['output'];
 };
@@ -313,6 +314,10 @@ export type QueryGetSkillsByTitleArgs = {
 
 export type QueryGetUserByIdArgs = {
   userId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type QueryGetUserByNameArgs = {
+  name: Scalars['String']['input'];
 };
 
 export type SnsLinkTable = {
