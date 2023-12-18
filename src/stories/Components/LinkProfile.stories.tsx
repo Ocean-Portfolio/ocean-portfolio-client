@@ -6,6 +6,17 @@ const meta: Meta<typeof LinkProfile> = {
   component: LinkProfile,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          display: 'inline-flex',
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 type Story = StoryObj<typeof LinkProfile>;

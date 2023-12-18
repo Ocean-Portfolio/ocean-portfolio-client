@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Keyword from '@/components/Keyword/Keyword';
+import Keyword from '@/components/Sections/Keyword/Keyword';
 import { backgroundColorVariants } from '@/styles/common/color.css';
 
 const meta: Meta<typeof Keyword> = {
-  title: 'Components/Keyword',
+  title: 'Components/Sections/Keyword',
   component: Keyword,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },
