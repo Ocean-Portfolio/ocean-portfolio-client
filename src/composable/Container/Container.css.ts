@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 export const containerStyle = style({
   width: '100%',
-  minWidth: '22.5rem',
+  minWidth: '17.5rem',
 
   padding: '0 5rem',
 
