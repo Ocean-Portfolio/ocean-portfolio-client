@@ -1,9 +1,11 @@
+import classNames from 'classnames';
 import React from 'react';
 import { getClient } from '@/apollo/apollo-client';
 import Contents from '@/components/Sections/Contents';
 import Container from '@/composable/Container/Container';
 import { getSectionsByUserIdQuery } from '@/helper/getSectionByUserIdQuery';
 import { getUserByNameQuery } from '@/helper/getUserByNameQuery';
+import { mainContainerStyle } from '@/styles/page.css';
 import { sungyeonColorTheme } from '@/styles/theme/sungyeon.css';
 import { StaticContextPageInfo } from './context';
 
@@ -30,8 +32,10 @@ const Sungyeon = async () => {
         sections: getSectionsByUserId,
       }}
     >
-      <Container as="main" className={sungyeonColorTheme}>
-        <div>yoon0cean page</div>
+      <Container
+        as="main"
+        className={classNames(sungyeonColorTheme, mainContainerStyle)}
+      >
         <Contents />
       </Container>
     </StaticContextPageInfo.Provider>

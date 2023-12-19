@@ -2,13 +2,26 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import React, { PropsWithChildren } from 'react';
 import { textPreStyle } from '@/styles/common/text.css';
+import {
+  aboutMeStyle,
+  articleWrapStyle,
+  bodyWrapStyle,
+  imageStyle,
+  imageWrapStyle,
+  introTextStyle,
+  sloganStyle,
+  titleStyle,
+  wrapStyle,
+} from './Introduce.css';
 
 interface Props {
   className?: string;
 }
 
 const Introduce = ({ children, className }: PropsWithChildren<Props>) => {
-  return <section className={className}>{children}</section>;
+  return (
+    <section className={classNames(className, wrapStyle)}>{children}</section>
+  );
 };
 
 interface TitleProps {
@@ -16,11 +29,11 @@ interface TitleProps {
 }
 
 const Title = ({ text }: TitleProps) => {
-  return <h1>{text}</h1>;
+  return <h1 className={titleStyle}>{text}</h1>;
 };
 
 const BodyWrap = ({ children }: PropsWithChildren) => {
-  return <div>{children}</div>;
+  return <div className={bodyWrapStyle}>{children}</div>;
 };
 
 interface ProfileProps {
@@ -29,7 +42,17 @@ interface ProfileProps {
 }
 
 const Face = ({ src, alt }: ProfileProps) => {
-  return <Image src={src} alt={alt} width={300} height={300} />;
+  return (
+    <div className={imageWrapStyle}>
+      <Image
+        fill
+        className={imageStyle}
+        src={src}
+        alt={alt}
+        sizes="(max-width: 600px) 90vw, (max-width: 900px) 12.5rem, (max-width: 1920px) 19.25rem"
+      />
+    </div>
+  );
 };
 
 interface AboutMeProps {
@@ -39,9 +62,10 @@ interface AboutMeProps {
 
 const AboutMe = ({ slogan, intro_text }: AboutMeProps) => {
   return (
-    <article>
-      <h2>{slogan}</h2>
-      <p className={classNames(textPreStyle)}>{intro_text}</p>
+    <article className={articleWrapStyle}>
+      <p className={aboutMeStyle}>ABOUT ME</p>
+      <h2 className={sloganStyle}>{slogan}</h2>
+      <p className={classNames(textPreStyle, introTextStyle)}>{intro_text}</p>
     </article>
   );
 };
