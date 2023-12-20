@@ -9,7 +9,7 @@ export const containerStyle = style({
   padding: '0 5rem',
 
   '@media': {
-    'screen and (max-width: 940px)': {
+    'screen and (max-width: 1280px)': {
       padding: '0 2rem',
     },
     'screen and (max-width: 599px)': {
