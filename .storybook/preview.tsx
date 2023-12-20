@@ -31,7 +31,7 @@ export const customViewports = {
   desktop: {
     name: 'desktop',
     styles: {
-      width: '900px',
+      width: '940px',
       height: '801px',
     },
   },

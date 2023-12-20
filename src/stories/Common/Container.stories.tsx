@@ -49,7 +49,7 @@ export const Default: Story = {
   args: {
     className: backgroundColorVariants['gray-scale-01'],
     style: {
-      height: '600px',
+      height: '599px',
     },
     children: (
       <Sample>

@@ -22,4 +22,13 @@
 
 ## BreakPoint
 
-360 - 768 - 900
+| 반응형 대응
+
+- 599 - 720 - 940 - default
+
+| 기기별 타겟 px
+
+- 0px ~ 599px Mobile
+- 600px ~ 940px Tablet
+- 941px ~ 1440px PC
+- 1440px ~ FHD

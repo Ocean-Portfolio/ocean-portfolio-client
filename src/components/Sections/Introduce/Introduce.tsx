@@ -49,7 +49,7 @@ const Face = ({ src, alt }: ProfileProps) => {
         className={imageStyle}
         src={src}
         alt={alt}
-        sizes="(max-width: 600px) 90vw, (max-width: 900px) 12.5rem, (max-width: 1920px) 19.25rem"
+        sizes="(max-width: 599px) 90vw, (max-width: 940px) 12.5rem, (max-width: 1920px) 19.25rem"
       />
     </div>
   );
