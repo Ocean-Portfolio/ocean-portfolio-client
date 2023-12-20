@@ -5,7 +5,6 @@ import Contents from '@/components/Sections/Contents';
 import Container from '@/composable/Container/Container';
 import { getSectionsByUserIdQuery } from '@/helper/getSectionByUserIdQuery';
 import { getUserByNameQuery } from '@/helper/getUserByNameQuery';
-import { mainContainerStyle } from '@/styles/page.css';
 import { sungyeonColorTheme } from '@/styles/theme/sungyeon.css';
 import { StaticContextPageInfo } from './context';
 
@@ -32,10 +31,7 @@ const Sungyeon = async () => {
         sections: getSectionsByUserId,
       }}
     >
-      <Container
-        as="main"
-        className={classNames(sungyeonColorTheme, mainContainerStyle)}
-      >
+      <Container as="main" className={classNames(sungyeonColorTheme)}>
         <Contents />
       </Container>
     </StaticContextPageInfo.Provider>

@@ -7,36 +7,36 @@ import { defaultColorTheme } from '../src/styles/theme/default.css';
 import React from 'react';
 
 export const customViewports = {
-  mobile360: {
-    name: 'mobile360',
+  'container-s': {
+    name: 'container-s',
     styles: {
       width: '360px',
       height: '640px',
     },
   },
-  mobile390: {
-    name: 'mobile390',
-    styles: {
-      width: '390px',
-      height: '640px',
-    },
-  },
-  tablet: {
-    name: 'tablet',
+  'container-m': {
+    name: 'container-m',
     styles: {
       width: '768px',
       height: '720px',
     },
   },
-  laptop: {
-    name: 'laptop',
+  'container-l': {
+    name: 'container-l',
+    styles: {
+      width: '940px',
+      height: '720px',
+    },
+  },
+  'container-xl': {
+    name: 'container-xl',
     styles: {
       width: '1280px',
       height: '720px',
     },
   },
-  FHD: {
-    name: 'FHD',
+  'container-xxl': {
+    name: 'container-xxl',
     styles: {
       width: '1440px',
       height: '801px',

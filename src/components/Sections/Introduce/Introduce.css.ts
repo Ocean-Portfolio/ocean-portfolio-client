@@ -128,7 +128,7 @@ export const introTextStyle = style({
     'screen and (max-width: 1280px)': {
       ...ODSTextTokenVariables['paragraph-l-medium'],
     },
-    'screen and (max-width: 720px)': {
+    'screen and (max-width: 839px)': {
       ...ODSTextTokenVariables['paragraph-m-medium'],
     },
     'screen and (max-width: 599px)': {

@@ -45,25 +45,10 @@ const Sample = ({
 
 type Story = StoryObj<typeof Container>;
 
-export const Default: Story = {
-  args: {
-    className: backgroundColorVariants['gray-scale-01'],
-    style: {
-      height: '599px',
-    },
-    children: (
-      <Sample>
-        <br />
-        뷰포트별 케이스를 보시려면 왼쪽 메뉴를 이용해주세요
-      </Sample>
-    ),
-  },
-};
-
-export const With360px: Story = {
+export const Container_S_360px: Story = {
   parameters: {
     viewport: {
-      defaultViewport: 'mobile360',
+      defaultViewport: 'container-s',
     },
   },
   args: {
@@ -75,10 +60,10 @@ export const With360px: Story = {
   },
 };
 
-export const With390px: Story = {
+export const Container_M_768px: Story = {
   parameters: {
     viewport: {
-      defaultViewport: 'mobile390',
+      defaultViewport: 'container-m',
     },
   },
   args: {
@@ -90,10 +75,10 @@ export const With390px: Story = {
   },
 };
 
-export const With768px: Story = {
+export const Container_L_940px: Story = {
   parameters: {
     viewport: {
-      defaultViewport: 'tablet',
+      defaultViewport: 'container-l',
     },
   },
   args: {
@@ -105,10 +90,25 @@ export const With768px: Story = {
   },
 };
 
-export const With900px: Story = {
+export const Container_XL_1280px: Story = {
   parameters: {
     viewport: {
-      defaultViewport: 'FHD',
+      defaultViewport: 'container-xl',
+    },
+  },
+  args: {
+    className: backgroundColorVariants['gray-scale-01'],
+    style: {
+      height: '100vh',
+    },
+    children: <Sample></Sample>,
+  },
+};
+
+export const Container_XXL_1440px: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: 'container-xxl',
     },
   },
   args: {

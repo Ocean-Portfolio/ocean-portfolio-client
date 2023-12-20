@@ -36,10 +36,10 @@ const Template = (args: IntroduceProps) => {
 };
 
 type Story = StoryObj<typeof Introduce>;
-export const FHD: Story = {
+export const Container_XXL: Story = {
   parameters: {
     viewport: {
-      defaultViewport: 'FHD',
+      defaultViewport: 'container-xxl',
     },
   },
   render: Template,
@@ -48,7 +48,7 @@ export const FHD: Story = {
 export const Laptop: Story = {
   parameters: {
     viewport: {
-      defaultViewport: 'laptop',
+      defaultViewport: 'container-xl',
     },
   },
   render: Template,
@@ -57,7 +57,7 @@ export const Laptop: Story = {
 export const Tablet: Story = {
   parameters: {
     viewport: {
-      defaultViewport: 'tablet',
+      defaultViewport: 'container-l',
     },
   },
   render: Template,
