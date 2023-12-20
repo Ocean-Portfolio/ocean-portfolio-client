@@ -6,7 +6,6 @@ export const getImageByIdQuery = (
   client: ApolloClient<unknown>,
   image_id?: number | null,
 ) => {
-  console.log(image_id, 'image_id');
   if (!image_id) return;
 
   return client.query<GetImageByIdQuery, GetImageByIdQueryVariables>({
