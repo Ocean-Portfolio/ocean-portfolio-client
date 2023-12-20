@@ -14,11 +14,14 @@ import {
   wrapStyle,
 } from './Introduce.css';
 
-interface Props {
+export interface IntroduceProps {
   className?: string;
 }
 
-const Introduce = ({ children, className }: PropsWithChildren<Props>) => {
+const Introduce = ({
+  children,
+  className,
+}: PropsWithChildren<IntroduceProps>) => {
   return (
     <section className={classNames(className, wrapStyle)}>{children}</section>
   );

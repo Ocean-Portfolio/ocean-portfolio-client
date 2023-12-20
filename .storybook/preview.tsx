@@ -28,8 +28,15 @@ export const customViewports = {
       height: '720px',
     },
   },
-  desktop: {
-    name: 'desktop',
+  laptop: {
+    name: 'laptop',
+    styles: {
+      width: '1280px',
+      height: '720px',
+    },
+  },
+  FHD: {
+    name: 'FHD',
     styles: {
       width: '1440px',
       height: '801px',

@@ -108,7 +108,7 @@ export const With768px: Story = {
 export const With900px: Story = {
   parameters: {
     viewport: {
-      defaultViewport: 'desktop',
+      defaultViewport: 'FHD',
     },
   },
   args: {
