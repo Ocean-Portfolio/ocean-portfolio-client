@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React from 'react';
 import { getClient } from '@/apollo/apollo-client';
-import Contents from '@/components/Sections/Contents';
 import Container from '@/composable/Container/Container';
+import Contents from '@/containers/Contents';
 import { getSectionsByUserIdQuery } from '@/helper/getSectionByUserIdQuery';
 import { getUserByNameQuery } from '@/helper/getUserByNameQuery';
 import { backgroundColorVariants } from '@/styles/common/color.css';

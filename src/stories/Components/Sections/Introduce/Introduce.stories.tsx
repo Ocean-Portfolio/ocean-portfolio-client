@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Introduce from '@/components/Sections/Introduce/Introduce';
+import Introduce from '@/components/Introduce/Introduce';
 
 const meta: Meta<typeof Introduce> = {
-  title: 'Components/Sections/Introduce',
+  title: 'Components/Introduce',
   component: Introduce,
   parameters: { layout: 'fullscreen' },
 };

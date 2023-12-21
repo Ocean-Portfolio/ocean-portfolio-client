@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { getClient } from '@/apollo/apollo-client';
 import LinkProfile from '@/components/LinkProfile/LinkProfile';
-import { getSNSByUserIdQuery } from '@/components/Sections/LinkProfileList/server/helper/getSNSByUserIdQuery';
+import { getSNSByUserIdQuery } from '@/components/LinkProfileList/server/helper/getSNSByUserIdQuery';
 import { getImageByIdQuery } from '@/helper/getImageByIdQuery';
 import { getProfileSocialData } from '@/helper/getProfileSocialData';
 import { getStaticContext } from '@/utils/context/StaticContext';

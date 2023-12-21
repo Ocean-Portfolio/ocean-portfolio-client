@@ -1,11 +1,9 @@
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { Meta, StoryObj } from '@storybook/react';
-import Introduce, {
-  IntroduceProps,
-} from '@/components/Sections/Introduce/Introduce';
+import Introduce, { IntroduceProps } from '@/components/Introduce/Introduce';
 
 const meta: Meta<typeof Introduce> = {
-  title: 'Components/Sections/Introduce/Variants',
+  title: 'Components/Introduce/Variants',
   component: Introduce,
   parameters: {
     layout: 'fullscreen',
