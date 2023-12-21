@@ -2,6 +2,11 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import React, { PropsWithChildren } from 'react';
 import { textPreStyle } from '@/styles/common/text.css';
+import { getStaticContext } from '@/utils/context/StaticContext';
+import {
+  IntroduceContextProps,
+  StaticContextIntroduce,
+} from './Introduce.context';
 import {
   aboutMeStyle,
   articleWrapStyle,
@@ -14,56 +19,54 @@ import {
   wrapStyle,
 } from './Introduce.css';
 
-export interface IntroduceProps {
+export interface IntroduceProps extends IntroduceContextProps {
   className?: string;
 }
 
 const Introduce = ({
   children,
   className,
+  id,
+  title,
+  slogan,
+  intro_text,
+  visible_status,
+  image,
 }: PropsWithChildren<IntroduceProps>) => {
   return (
-    <section className={classNames(className, wrapStyle)}>{children}</section>
+    <StaticContextIntroduce.Provider
+      value={{ id, title, slogan, intro_text, visible_status, image }}
+    >
+      <section className={classNames(className, wrapStyle)}>{children}</section>
+    </StaticContextIntroduce.Provider>
   );
 };
-
-interface TitleProps {
-  text: string;
-}
-
-const Title = ({ text }: TitleProps) => {
-  return <h1 className={titleStyle}>{text}</h1>;
+const Title = () => {
+  const { title } = getStaticContext(StaticContextIntroduce);
+  return <h1 className={titleStyle}>{title}</h1>;
 };
 
 const BodyWrap = ({ children }: PropsWithChildren) => {
   return <div className={bodyWrapStyle}>{children}</div>;
 };
 
-interface ProfileProps {
-  src: string;
-  alt: string;
-}
-
-const Face = ({ src, alt }: ProfileProps) => {
+const Face = () => {
+  const { image } = getStaticContext(StaticContextIntroduce);
   return (
     <div className={imageWrapStyle}>
       <Image
         fill
         className={imageStyle}
-        src={src}
-        alt={alt}
+        src={image?.storage_url || ''}
+        alt={image?.description || ''}
         sizes="(max-width: 599px) 90vw, (max-width: 1280px) 12.5rem, (max-width: 1920px) 19.25rem"
       />
     </div>
   );
 };
 
-interface AboutMeProps {
-  slogan: string;
-  intro_text: string;
-}
-
-const AboutMe = ({ slogan, intro_text }: AboutMeProps) => {
+const AboutMe = () => {
+  const { slogan, intro_text } = getStaticContext(StaticContextIntroduce);
   return (
     <article className={articleWrapStyle}>
       <p className={aboutMeStyle}>ABOUT ME</p>

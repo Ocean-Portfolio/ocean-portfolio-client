@@ -6,7 +6,8 @@ import { createStaticContext } from '@/utils/context/StaticContext';
 
 type KeywordData = GetKeywordsByCategoryIdQuery['getKeywordsByCategoryId'];
 
-interface KeywordListContextData extends KeywordData {
+export interface KeywordListContextData extends KeywordData {
+  visible_status: VisibleStatusToken;
   image?: GetImageByIdQuery['getImageById'];
 }
 

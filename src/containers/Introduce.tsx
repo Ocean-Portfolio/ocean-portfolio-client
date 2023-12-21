@@ -2,6 +2,7 @@ import { getClient } from '@/apollo/apollo-client';
 import Introduce from '@/components/Introduce/Introduce';
 import { getImageByIdQuery } from '@/helper/getImageByIdQuery';
 import { getIntroducesBySectionIdQuery } from '@/helper/getIntroducesBySectionIdQuery';
+import { filterUndefinedData } from '@/utils/array/filterUndefinedData';
 
 interface Props {
   title: string;
@@ -21,20 +22,22 @@ const IntroduceContainer = async ({ title, section_id }: Props) => {
     introduceData.data.getIntroducesBySectionId.image_id,
   );
 
-  const { slogan, intro_text } = introduceData.data.getIntroducesBySectionId;
+  const { id, slogan, intro_text, visible_status } =
+    introduceData.data.getIntroducesBySectionId;
 
   return (
-    <Introduce>
-      <Introduce.Title text={title} />
+    <Introduce
+      id={id}
+      title={title}
+      slogan={slogan}
+      intro_text={intro_text}
+      visible_status={visible_status as VisibleStatusToken}
+      image={imgData?.data.getImageById}
+    >
+      <Introduce.Title />
       <Introduce.BodyWrap>
-        <Introduce.Face
-          src={imgData?.data.getImageById.storage_url || ''}
-          alt={imgData?.data.getImageById.description || ''}
-        />
-        <Introduce.AboutMe
-          slogan={slogan || ''}
-          intro_text={intro_text || ''}
-        />
+        <Introduce.Face />
+        <Introduce.AboutMe />
       </Introduce.BodyWrap>
     </Introduce>
   );
