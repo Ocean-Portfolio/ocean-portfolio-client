@@ -1,4 +1,5 @@
 import { style, styleVariants } from '@vanilla-extract/css';
+import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 import { ODSTextTokenVariables } from '@/const/fonts';
 import { ODSImageTokenVariables } from '@/const/images';
 import { fontVariants } from '@/styles/common/font.css';
@@ -43,8 +44,8 @@ const wrapVariables = {
 export const wrapMediaStyle = style({
   ...wrapVariables.LARGE,
   '@media': {
-    'screen and (max-width: 1023px)': wrapVariables.MEDIUM,
-    'screen and (max-width: 599px)': {
+    [ODSBreakpointTokenVariables['breakpoint-l']]: wrapVariables.MEDIUM,
+    [ODSBreakpointTokenVariables['breakpoint-s']]: {
       ...wrapVariables.SMALL,
       justifyItems: 'center',
     },
@@ -68,8 +69,9 @@ export const bulletStyle = style({
 export const keywordFontMediaStyle = style({
   ...ODSTextTokenVariables['title-l-bold'],
   '@media': {
-    'screen and (max-width: 1023px)': ODSTextTokenVariables['title-m-bold'],
-    'screen and (max-width: 599px)': {
+    [ODSBreakpointTokenVariables['breakpoint-l']]:
+      ODSTextTokenVariables['title-m-bold'],
+    [ODSBreakpointTokenVariables['breakpoint-s']]: {
       ...ODSTextTokenVariables['paragraph-m-bold'],
       textAlign: 'center',
     },
@@ -102,8 +104,10 @@ export const imageMediaStyle = style({
   position: 'relative',
   ...ODSImageTokenVariables['image-150'],
   '@media': {
-    'screen and (max-width: 1023px)': ODSImageTokenVariables['image-115'],
-    'screen and (max-width: 599px)': ODSImageTokenVariables['image-50'],
+    [ODSBreakpointTokenVariables['breakpoint-l']]:
+      ODSImageTokenVariables['image-115'],
+    [ODSBreakpointTokenVariables['breakpoint-s']]:
+      ODSImageTokenVariables['image-50'],
   },
 });
 

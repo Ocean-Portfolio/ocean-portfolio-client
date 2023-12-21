@@ -1,4 +1,5 @@
 import { style, styleVariants } from '@vanilla-extract/css';
+import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 import { ODSTextTokenVariables } from '@/const/fonts';
 import { inlineFlexCenter } from '@/styles/common/flex.css';
 import { fontVariants } from '@/styles/common/font.css';
@@ -27,8 +28,8 @@ const bulletVariables = {
 export const bulletMediaStyle = style({
   ...bulletVariables.LARGE,
   '@media': {
-    'screen and (max-width: 1023px)': bulletVariables.MEDIUM,
-    'screen and (max-width: 599px)': bulletVariables.SMALL,
+    [ODSBreakpointTokenVariables['breakpoint-l']]: bulletVariables.MEDIUM,
+    [ODSBreakpointTokenVariables['breakpoint-s']]: bulletVariables.SMALL,
   },
 });
 
@@ -41,8 +42,10 @@ export const bulletVariants = styleVariants({
 export const bulletFontMediaStyle = style({
   ...ODSTextTokenVariables['title-l-bold'],
   '@media': {
-    'screen and (max-width: 1023px)': ODSTextTokenVariables['title-m-bold'],
-    'screen and (max-width: 599px)': ODSTextTokenVariables['paragraph-m-bold'],
+    [ODSBreakpointTokenVariables['breakpoint-l']]:
+      ODSTextTokenVariables['title-m-bold'],
+    [ODSBreakpointTokenVariables['breakpoint-s']]:
+      ODSTextTokenVariables['paragraph-m-bold'],
   },
 });
 

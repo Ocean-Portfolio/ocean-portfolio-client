@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 
 export const containerStyle = style({
   display: 'grid',
@@ -12,14 +13,14 @@ export const containerStyle = style({
   padding: '0 5rem',
 
   '@media': {
-    'screen and (max-width: 1023px)': {
+    [ODSBreakpointTokenVariables['breakpoint-l']]: {
       padding: '0 2rem',
       gap: '10rem',
     },
-    'screen and (max-width: 839px)': {
+    [ODSBreakpointTokenVariables['breakpoint-m']]: {
       gap: '7.5rem',
     },
-    'screen and (max-width: 599px)': {
+    [ODSBreakpointTokenVariables['breakpoint-s']]: {
       padding: '0 1.25rem',
       gap: '7.75rem',
     },
