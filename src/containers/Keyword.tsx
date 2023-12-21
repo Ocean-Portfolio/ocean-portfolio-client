@@ -29,7 +29,18 @@ const KeywordContainer = async ({ title, section_id }: KeywordSectionProps) => {
   return (
     <KeywordList>
       <KeywordList.Title>{title}</KeywordList.Title>
-      <KeywordList.Article keywordList={keywordList} imageList={imageList} />
+      <KeywordList.Article>
+        {keywordList.map(({ data }, idx) => (
+          <KeywordList.Item
+            key={data.getKeywordsByCategoryId.id}
+            direction={idx % 2 ? 'RIGHT' : 'LEFT'}
+            src={imageList[idx]?.data.getImageById.storage_url || ''}
+            alt={imageList[idx]?.data.getImageById.description || ''}
+            main_text={data.getKeywordsByCategoryId.main_text || ''}
+            description={data.getKeywordsByCategoryId.description || ''}
+          />
+        ))}
+      </KeywordList.Article>
     </KeywordList>
   );
 };
