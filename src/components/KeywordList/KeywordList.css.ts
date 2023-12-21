@@ -10,8 +10,9 @@ export const wrapStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '5rem',
+
   '@media': {
-    [ODSBreakpointTokenVariables['breakpoint-l']]: {
+    [ODSBreakpointTokenVariables['breakpoint-xl']]: {
       gap: '2.5rem',
     },
   },
@@ -21,7 +22,7 @@ export const titleStyle = style({
   ...ODSTextTokenVariables['display-l-bold'],
   color: commonColorThemeVars.token['gray-scale-00'],
   '@media': {
-    [ODSBreakpointTokenVariables['breakpoint-l']]: {
+    [ODSBreakpointTokenVariables['breakpoint-xl']]: {
       ...ODSTextTokenVariables['title-l-bold'],
       color: userColorThemeVars.token.accent,
     },
@@ -36,5 +37,4 @@ export const articleWrapStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1.5rem',
-  padding: '0 auto',
 });

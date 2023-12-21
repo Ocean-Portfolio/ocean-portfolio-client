@@ -13,14 +13,14 @@ export const gridVariants = styleVariants({
   LEFT: [
     gridStyle,
     {
-      justifySelf: 'flex-start',
+      justifyItems: 'flex-start',
       gridTemplateColumns: 'auto 1fr',
     },
   ],
   RIGHT: [
     gridStyle,
     {
-      justifySelf: 'flex-end',
+      justifyItems: 'flex-end',
       gridTemplateColumns: '1fr auto',
     },
   ],
@@ -44,7 +44,7 @@ const wrapVariables = {
 export const wrapMediaStyle = style({
   ...wrapVariables.LARGE,
   '@media': {
-    [ODSBreakpointTokenVariables['breakpoint-l']]: wrapVariables.MEDIUM,
+    [ODSBreakpointTokenVariables['breakpoint-xl']]: wrapVariables.MEDIUM,
     [ODSBreakpointTokenVariables['breakpoint-s']]: {
       ...wrapVariables.SMALL,
       justifyItems: 'center',
@@ -58,10 +58,6 @@ export const wrapVariants = styleVariants({
   SMALL: wrapVariables.SMALL,
 });
 
-export const gridExceptJustifyWithSize = style({
-  justifyItems: 'center',
-});
-
 export const bulletStyle = style({
   alignSelf: 'flex-end',
 });
@@ -69,7 +65,7 @@ export const bulletStyle = style({
 export const keywordFontMediaStyle = style({
   ...ODSTextTokenVariables['title-l-bold'],
   '@media': {
-    [ODSBreakpointTokenVariables['breakpoint-l']]:
+    [ODSBreakpointTokenVariables['breakpoint-xl']]:
       ODSTextTokenVariables['title-m-bold'],
     [ODSBreakpointTokenVariables['breakpoint-s']]: {
       ...ODSTextTokenVariables['paragraph-m-bold'],
@@ -83,11 +79,6 @@ export const keywordFontVariants = styleVariants({
   MEDIUM: [fontVariants['title-s-medium']],
   SMALL: [fontVariants['paragraph-m-medium']],
 });
-
-export const textExceptAlignWithSize = style({
-  textAlign: 'center',
-});
-
 export const textDirectionVariants = styleVariants({
   LEFT: {
     gridRow: '2 / 3',
@@ -104,7 +95,7 @@ export const imageMediaStyle = style({
   position: 'relative',
   ...ODSImageTokenVariables['image-150'],
   '@media': {
-    [ODSBreakpointTokenVariables['breakpoint-l']]:
+    [ODSBreakpointTokenVariables['breakpoint-xl']]:
       ODSImageTokenVariables['image-115'],
     [ODSBreakpointTokenVariables['breakpoint-s']]:
       ODSImageTokenVariables['image-50'],

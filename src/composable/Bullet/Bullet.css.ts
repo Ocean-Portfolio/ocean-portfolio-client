@@ -28,7 +28,7 @@ const bulletVariables = {
 export const bulletMediaStyle = style({
   ...bulletVariables.LARGE,
   '@media': {
-    [ODSBreakpointTokenVariables['breakpoint-l']]: bulletVariables.MEDIUM,
+    [ODSBreakpointTokenVariables['breakpoint-xl']]: bulletVariables.MEDIUM,
     [ODSBreakpointTokenVariables['breakpoint-s']]: bulletVariables.SMALL,
   },
 });
@@ -42,7 +42,7 @@ export const bulletVariants = styleVariants({
 export const bulletFontMediaStyle = style({
   ...ODSTextTokenVariables['title-l-bold'],
   '@media': {
-    [ODSBreakpointTokenVariables['breakpoint-l']]:
+    [ODSBreakpointTokenVariables['breakpoint-xl']]:
       ODSTextTokenVariables['title-m-bold'],
     [ODSBreakpointTokenVariables['breakpoint-s']]:
       ODSTextTokenVariables['paragraph-m-bold'],

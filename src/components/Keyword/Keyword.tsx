@@ -6,7 +6,6 @@ import { colorVariants } from '@/styles/common/color.css';
 import { textPreStyle } from '@/styles/common/text.css';
 import {
   bulletStyle,
-  gridExceptJustifyWithSize,
   gridVariants,
   imageLayouts,
   imageMediaStyle,
@@ -14,7 +13,6 @@ import {
   keywordFontMediaStyle,
   keywordFontVariants,
   textDirectionVariants,
-  textExceptAlignWithSize,
   wrapMediaStyle,
   wrapVariants,
 } from './Keyword.css';
@@ -44,16 +42,22 @@ const Keyword = ({
         className,
         gridVariants[direction],
         sizeToken ? wrapVariants[sizeToken] : wrapMediaStyle,
-        sizeToken === 'SMALL' && gridExceptJustifyWithSize,
       )}
+      style={
+        sizeToken === 'SMALL'
+          ? {
+              maxWidth: '20rem',
+              justifyItems: 'center',
+            }
+          : undefined
+      }
     >
       {direction === 'LEFT' && (
         <div
-          className={
-            !sizeToken
-              ? classNames(imageMediaStyle, imageVariants[direction])
-              : undefined
-          }
+          className={classNames(
+            imageVariants[direction],
+            !sizeToken ? imageMediaStyle : undefined,
+          )}
         >
           <ODSNextImage
             className={imageVariants[direction]}
@@ -71,19 +75,24 @@ const Keyword = ({
           textPreStyle,
           colorVariants['gray-scale-00'],
           textDirectionVariants[direction],
-          sizeToken === 'SMALL' && textExceptAlignWithSize,
           sizeToken ? keywordFontVariants[sizeToken] : keywordFontMediaStyle,
         )}
+        style={
+          sizeToken === 'SMALL'
+            ? {
+                textAlign: 'center',
+              }
+            : undefined
+        }
       >
         {description}
       </p>
       {direction === 'RIGHT' && (
         <div
-          className={
-            !sizeToken
-              ? classNames(imageMediaStyle, imageVariants[direction])
-              : undefined
-          }
+          className={classNames(
+            imageVariants[direction],
+            !sizeToken ? imageMediaStyle : undefined,
+          )}
         >
           <ODSNextImage
             src={src}

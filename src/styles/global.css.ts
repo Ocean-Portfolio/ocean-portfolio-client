@@ -1,4 +1,5 @@
 import { globalStyle } from '@vanilla-extract/css';
+import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 
 globalStyle('*', {
   margin: 0,
@@ -20,4 +21,17 @@ globalStyle('button', {
   border: 'none',
   outline: 'none',
   cursor: 'pointer',
+});
+
+globalStyle('section', {
+  width: '100%',
+  maxWidth: '80rem',
+  '@media': {
+    [ODSBreakpointTokenVariables['breakpoint-xl']]: {
+      maxWidth: '64rem',
+    },
+    [ODSBreakpointTokenVariables['breakpoint-s']]: {
+      maxWidth: '20rem',
+    },
+  },
 });

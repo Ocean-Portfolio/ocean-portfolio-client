@@ -65,8 +65,8 @@ export const imageWrapStyle = style({
       height: '12.5rem',
     },
     [ODSBreakpointTokenVariables['breakpoint-s']]: {
-      width: 'calc(100vw - 2.5rem)',
-      height: 'calc(100vw - 2.5rem)',
+      width: '20rem',
+      height: '20rem',
     },
   },
 });

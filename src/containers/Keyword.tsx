@@ -4,10 +4,7 @@ import { KeywordListContextData } from '@/components/KeywordList/KeywordList.con
 import { getCategoryBySectionIdQuery } from '@/helper/getCategoryBySectionIdQuery';
 import { getImageByIdQueryList } from '@/helper/getImageByIdQuery';
 import { getKeywordsByCategoryIdQueryList } from '@/helper/getKeywordByCategoryIdQueryList';
-import {
-  GetImageByIdQuery,
-  GetKeywordsByCategoryIdQuery,
-} from '@/types/graphql';
+import { GetImageByIdQuery } from '@/types/graphql';
 import { filterUndefinedData } from '@/utils/array/filterUndefinedData';
 
 interface KeywordSectionProps {
