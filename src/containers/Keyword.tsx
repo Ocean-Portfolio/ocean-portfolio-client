@@ -3,6 +3,11 @@ import KeywordList from '@/components/KeywordList/KeywordList';
 import { getCategoryBySectionIdQuery } from '@/helper/getCategoryBySectionIdQuery';
 import { getImageByIdQueryList } from '@/helper/getImageByIdQuery';
 import { getKeywordsByCategoryIdQueryList } from '@/helper/getKeywordByCategoryIdQueryList';
+import {
+  GetImageByIdQuery,
+  GetKeywordsByCategoryIdQuery,
+} from '@/types/graphql';
+import { filterUndefinedData } from '@/utils/array/filterUndefinedData';
 
 interface KeywordSectionProps {
   title: string;
@@ -15,32 +20,35 @@ const KeywordContainer = async ({ title, section_id }: KeywordSectionProps) => {
     apolloClient,
     section_id,
   );
-  const keywordList = await getKeywordsByCategoryIdQueryList(
+  const keywordListData = await getKeywordsByCategoryIdQueryList(
     apolloClient,
-    categoryBySectionId.data.getCategoryBySectionId.map((data) =>
-      Number(data.id),
+    categoryBySectionId.data.getCategoryBySectionId.map((category) =>
+      Number(category.id),
     ),
   );
-  const imageList = await getImageByIdQueryList(
+  const imageListData = await getImageByIdQueryList(
     apolloClient,
-    keywordList.map((data) => data.data.getKeywordsByCategoryId.image_id || 0),
+    keywordListData.map(
+      (keyword) => keyword.data.getKeywordsByCategoryId.image_id || 0,
+    ),
   );
 
+  const keywordList: GetKeywordsByCategoryIdQuery['getKeywordsByCategoryId'][] =
+    keywordListData.map((keyword) => keyword.data.getKeywordsByCategoryId);
+
+  const imageList: GetImageByIdQuery['getImageById'][] = filterUndefinedData(
+    imageListData,
+  ).map((image) => image.data.getImageById);
+
+  const data = keywordList.map((keyword, idx) => ({
+    ...keyword,
+    image: imageList[idx],
+  }));
+
   return (
-    <KeywordList>
-      <KeywordList.Title>{title}</KeywordList.Title>
-      <KeywordList.Article>
-        {keywordList.map(({ data }, idx) => (
-          <KeywordList.Item
-            key={data.getKeywordsByCategoryId.id}
-            direction={idx % 2 ? 'RIGHT' : 'LEFT'}
-            src={imageList[idx]?.data.getImageById.storage_url || ''}
-            alt={imageList[idx]?.data.getImageById.description || ''}
-            main_text={data.getKeywordsByCategoryId.main_text || ''}
-            description={data.getKeywordsByCategoryId.description || ''}
-          />
-        ))}
-      </KeywordList.Article>
+    <KeywordList title={title} data={data}>
+      <KeywordList.Title />
+      <KeywordList.Article />
     </KeywordList>
   );
 };
