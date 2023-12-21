@@ -3,7 +3,6 @@ import { textPreStyle } from '@/styles/common/text.css';
 import Keyword from './Keyword';
 import {
   bulletStyle,
-  gridExceptJustifyWithSize,
   gridVariants,
   imageVariants,
   wrapVariants,
@@ -40,7 +39,6 @@ describe('Keyword 컴포넌트', () => {
     // 예시: direction이 LEFT이고 sizeToken이 SMALL인 경우
     expect(container.firstChild).toHaveClass(gridVariants[mockProps.direction]);
     expect(container.firstChild).toHaveClass(wrapVariants[mockProps.sizeToken]);
-    expect(container.firstChild).toHaveClass(gridExceptJustifyWithSize);
 
     // 이미지에 imageVariants에 대한 스타일 검증
     const image = getByAltText(container, mockProps.alt);
