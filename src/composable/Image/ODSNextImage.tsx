@@ -1,10 +1,10 @@
 import Image, { ImageProps } from 'next/image';
 import React from 'react';
+import { ODSImageTokenVariables } from '@/const/images';
 import calcRemToPxNumber from '@/utils/style/calcRemToPxNumber';
-import { imageSizes } from './ODSImage.css';
 
 export interface ODSNextImageProps extends ImageProps {
-  sizeToken: ImageSizeToken;
+  sizeToken?: ImageSizeToken;
 }
 
 const ODSNextImage = ({
@@ -19,9 +19,15 @@ const ODSNextImage = ({
       {...rest}
       className={className}
       src={src}
-      width={calcRemToPxNumber(imageSizes[sizeToken].width)}
-      height={calcRemToPxNumber(imageSizes[sizeToken].height)}
+      width={
+        sizeToken && calcRemToPxNumber(ODSImageTokenVariables[sizeToken].width)
+      }
+      height={
+        sizeToken && calcRemToPxNumber(ODSImageTokenVariables[sizeToken].height)
+      }
       alt={alt}
+      fill={!sizeToken}
+      objectFit={sizeToken && 'cover'}
     />
   );
 };

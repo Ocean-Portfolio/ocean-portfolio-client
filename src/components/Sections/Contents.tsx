@@ -2,12 +2,15 @@ import React from 'react';
 import { getClient } from '@/apollo/apollo-client';
 import { StaticContextPageInfo } from '@/app/sungyeon/context';
 import { getCategoryBySectionIdQuery } from '@/helper/getCategoryBySectionIdQuery';
-import { getImageByIdQuery } from '@/helper/getImageByIdQuery';
+import {
+  getImageByIdQuery,
+  getImageByIdQueryList,
+} from '@/helper/getImageByIdQuery';
 import { getIntroducesBySectionIdQuery } from '@/helper/getIntroducesBySectionIdQuery';
 import { getKeywordsByCategoryIdQueryList } from '@/helper/getKeywordByCategoryIdQueryList';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import Introduce from './Introduce/Introduce';
-import Keyword from './Keyword/Keyword';
+import KeywordList from './KeywordList/KeywordList';
 
 const Contents = async () => {
   const apolloClient = getClient();
@@ -39,7 +42,12 @@ const Contents = async () => {
               />
             );
           case 'KEYWORD':
-            return <Contents.KeywordSection section_id={Number(data.id)} />;
+            return (
+              <Contents.KeywordSection
+                title={data.name}
+                section_id={Number(data.id)}
+              />
+            );
           default:
             return <div key={data.id}>{data.name}</div>;
         }
@@ -79,10 +87,11 @@ const IntroduceSection = async ({
 };
 
 interface KeywordSectionProps {
+  title: string;
   section_id: number;
 }
 
-const KeywordSection = async ({ section_id }: KeywordSectionProps) => {
+const KeywordSection = async ({ title, section_id }: KeywordSectionProps) => {
   const apolloClient = getClient();
   const categoryBySectionId = await getCategoryBySectionIdQuery(
     apolloClient,
@@ -94,29 +103,16 @@ const KeywordSection = async ({ section_id }: KeywordSectionProps) => {
     getCategoryBySectionId.map((data) => Number(data.id)),
   );
 
-  console.log(
-    keywordList[0].data,
-    keywordList[1].data,
-    keywordList[2].data,
-    'keywordList',
+  const imageList = await getImageByIdQueryList(
+    apolloClient,
+    keywordList.map((data) => data.data.getKeywordsByCategoryId.image_id || 0),
   );
 
   return (
-    <>
-      {keywordList.map((keyword, idx) => {
-        return (
-          <Keyword
-            key={keyword.data.getKeywordsByCategoryId.id}
-            direction={idx % 2 ? 'RIGHT' : 'LEFT'}
-            sizeToken="LARGE"
-            src={''}
-            alt={''}
-            main_text={keyword.data.getKeywordsByCategoryId.main_text || ''}
-            description={keyword.data.getKeywordsByCategoryId.description || ''}
-          />
-        );
-      })}
-    </>
+    <KeywordList>
+      <KeywordList.Title>{title}</KeywordList.Title>
+      <KeywordList.Article keywordList={keywordList} imageList={imageList} />
+    </KeywordList>
   );
 };
 

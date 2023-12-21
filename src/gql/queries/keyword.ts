@@ -7,6 +7,7 @@ export const GET_KEYWORDS_BY_CATEGORY_ID = gql`
       main_text
       description
       visible_status
+      image_id
     }
   }
 `;

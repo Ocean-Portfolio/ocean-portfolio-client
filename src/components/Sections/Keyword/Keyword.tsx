@@ -6,20 +6,23 @@ import { colorVariants } from '@/styles/common/color.css';
 import { textPreStyle } from '@/styles/common/text.css';
 import {
   bulletStyle,
-  gridExpeptJustifyWithSize,
+  gridExceptJustifyWithSize,
   gridVariants,
   imageLayouts,
+  imageMediaStyle,
   imageVariants,
+  keywordFontMediaStyle,
   keywordFontVariants,
   textDirectionVariants,
   textExceptAlignWithSize,
+  wrapMediaStyle,
   wrapVariants,
 } from './Keyword.css';
 
 interface KeywordProps {
   className?: string;
   direction: 'LEFT' | 'RIGHT';
-  sizeToken: SizeToken;
+  sizeToken?: SizeToken;
   src: string;
   alt: string;
   main_text: string;
@@ -39,40 +42,55 @@ const Keyword = ({
     <div
       className={classNames(
         className,
-        wrapVariants[sizeToken],
         gridVariants[direction],
-        sizeToken === 'SMALL' && gridExpeptJustifyWithSize,
+        sizeToken ? wrapVariants[sizeToken] : wrapMediaStyle,
+        sizeToken === 'SMALL' && gridExceptJustifyWithSize,
       )}
     >
       {direction === 'LEFT' && (
-        <ODSNextImage
-          className={imageVariants[direction]}
-          src={src}
-          alt={alt}
-          sizeToken={imageLayouts[sizeToken]}
-        />
+        <div
+          className={
+            !sizeToken
+              ? classNames(imageMediaStyle, imageVariants[direction])
+              : undefined
+          }
+        >
+          <ODSNextImage
+            className={imageVariants[direction]}
+            src={src}
+            alt={alt}
+            sizeToken={sizeToken && imageLayouts[sizeToken]}
+          />
+        </div>
       )}
-      <Bullet className={bulletStyle} sizeToken={sizeToken}>
+      <Bullet className={classNames(bulletStyle)} sizeToken={sizeToken}>
         {main_text}
       </Bullet>
       <p
         className={classNames(
           textPreStyle,
           colorVariants['gray-scale-00'],
-          keywordFontVariants[sizeToken],
           textDirectionVariants[direction],
           sizeToken === 'SMALL' && textExceptAlignWithSize,
+          sizeToken ? keywordFontVariants[sizeToken] : keywordFontMediaStyle,
         )}
       >
         {description}
       </p>
       {direction === 'RIGHT' && (
-        <ODSNextImage
-          className={imageVariants[direction]}
-          src={src}
-          alt={alt}
-          sizeToken={imageLayouts[sizeToken]}
-        />
+        <div
+          className={
+            !sizeToken
+              ? classNames(imageMediaStyle, imageVariants[direction])
+              : undefined
+          }
+        >
+          <ODSNextImage
+            src={src}
+            alt={alt}
+            sizeToken={sizeToken && imageLayouts[sizeToken]}
+          />
+        </div>
       )}
     </div>
   );

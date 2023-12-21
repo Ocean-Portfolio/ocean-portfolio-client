@@ -25,8 +25,11 @@
 | 반응형 대응
 
 - 599 - 839 - 1023 - 1280 - default
-
-| 기기별 타겟 px
+- breakpoint-s
+- breakpoint-m
+- breakpoint-l
+- breakpoint-xl
+  | 기기별 타겟 px
 
 - 0px ~ 599px Mobile
 - 600px ~ 1023px Tablet

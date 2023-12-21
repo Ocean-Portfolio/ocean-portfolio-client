@@ -1,52 +1,79 @@
 import { style, styleVariants } from '@vanilla-extract/css';
+import { ODSTextTokenVariables } from '@/const/fonts';
+import { ODSImageTokenVariables } from '@/const/images';
 import { fontVariants } from '@/styles/common/font.css';
 
 const gridStyle = style({
   display: 'grid',
-  gridAutoRows: 'auto auto',
+  gridTemplateRows: 'auto auto',
 });
 
 export const gridVariants = styleVariants({
   LEFT: [
     gridStyle,
     {
-      justifyItems: 'flex-start',
+      justifySelf: 'flex-start',
       gridTemplateColumns: 'auto 1fr',
     },
   ],
   RIGHT: [
     gridStyle,
     {
-      justifyItems: 'flex-end',
+      justifySelf: 'flex-end',
       gridTemplateColumns: '1fr auto',
     },
   ],
 });
 
-export const gridExpeptJustifyWithSize = style({
-  justifyItems: 'center',
-});
-
-export const wrapVariants = styleVariants({
+const wrapVariables = {
   LARGE: {
-    width: '66.5rem',
     columnGap: '1.5rem',
     rowGap: '1.25rem',
   },
   MEDIUM: {
-    width: '48.75rem',
     columnGap: '1.5rem',
     rowGap: '1.25rem',
   },
   SMALL: {
-    width: '20rem',
     columnGap: '0.75rem',
     rowGap: '0.75rem',
   },
+};
+
+export const wrapMediaStyle = style({
+  ...wrapVariables.LARGE,
+  '@media': {
+    'screen and (max-width: 1023px)': wrapVariables.MEDIUM,
+    'screen and (max-width: 599px)': {
+      ...wrapVariables.SMALL,
+      justifyItems: 'center',
+    },
+  },
+});
+
+export const wrapVariants = styleVariants({
+  LARGE: wrapVariables.LARGE,
+  MEDIUM: wrapVariables.MEDIUM,
+  SMALL: wrapVariables.SMALL,
+});
+
+export const gridExceptJustifyWithSize = style({
+  justifyItems: 'center',
 });
 
 export const bulletStyle = style({
   alignSelf: 'flex-end',
+});
+
+export const keywordFontMediaStyle = style({
+  ...ODSTextTokenVariables['title-l-bold'],
+  '@media': {
+    'screen and (max-width: 1023px)': ODSTextTokenVariables['title-m-bold'],
+    'screen and (max-width: 599px)': {
+      ...ODSTextTokenVariables['paragraph-m-bold'],
+      textAlign: 'center',
+    },
+  },
 });
 
 export const keywordFontVariants = styleVariants({
@@ -55,17 +82,29 @@ export const keywordFontVariants = styleVariants({
   SMALL: [fontVariants['paragraph-m-medium']],
 });
 
+export const textExceptAlignWithSize = style({
+  textAlign: 'center',
+});
+
 export const textDirectionVariants = styleVariants({
   LEFT: {
+    gridRow: '2 / 3',
+    gridColumn: '2 / 3',
     textAlign: 'left',
   },
   RIGHT: {
+    gridRow: '2 / 3',
     textAlign: 'right',
   },
 });
 
-export const textExceptAlignWithSize = style({
-  textAlign: 'center',
+export const imageMediaStyle = style({
+  position: 'relative',
+  ...ODSImageTokenVariables['image-150'],
+  '@media': {
+    'screen and (max-width: 1023px)': ODSImageTokenVariables['image-115'],
+    'screen and (max-width: 599px)': ODSImageTokenVariables['image-50'],
+  },
 });
 
 export const imageLayouts: {
@@ -79,15 +118,20 @@ export const imageLayouts: {
 };
 
 export const imageStyle = style({
-  gridRow: '1 / 3',
   alignSelf: 'center',
 });
 
 export const imageVariants = styleVariants({
-  LEFT: [imageStyle],
+  LEFT: [
+    imageStyle,
+    {
+      gridRow: '1 / 3',
+    },
+  ],
   RIGHT: [
     imageStyle,
     {
+      gridRow: '1 / 3',
       gridColumn: '2 / 3',
     },
   ],

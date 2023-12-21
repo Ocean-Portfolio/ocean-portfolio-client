@@ -15,3 +15,12 @@ export const getImageByIdQuery = (
     },
   });
 };
+
+export const getImageByIdQueryList = (
+  client: ApolloClient<unknown>,
+  image_id_list: number[],
+) => {
+  return Promise.all(
+    image_id_list.map((image_id) => getImageByIdQuery(client, image_id)),
+  );
+};

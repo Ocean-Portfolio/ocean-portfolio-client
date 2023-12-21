@@ -116,6 +116,7 @@ export type KeywordTable = {
   created_at: Scalars['String']['output'];
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
+  image_id?: Maybe<Scalars['Float']['output']>;
   main_text?: Maybe<Scalars['String']['output']>;
   updated_at: Scalars['String']['output'];
   visible_status: Scalars['String']['output'];
@@ -461,6 +462,7 @@ export type GetKeywordsByCategoryIdQuery = {
     main_text?: string | null;
     description?: string | null;
     visible_status: string;
+    image_id?: number | null;
   };
 };
 

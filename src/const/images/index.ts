@@ -1,6 +1,4 @@
-import { style, styleVariants } from '@vanilla-extract/css';
-
-export const imageSizes = {
+export const ODSImageTokenVariables = {
   'image-50': {
     width: '5rem',
     height: '5rem',
@@ -30,9 +28,3 @@ export const imageSizes = {
     height: '20rem',
   },
 };
-
-export const imageStyleVariants = styleVariants(imageSizes);
-
-export const imageBoxStyle = style({
-  position: 'relative',
-});
