@@ -165,7 +165,7 @@ export type Query = {
   getIntroducesBySectionId: IntroduceTable;
   getKeywordById: KeywordTable;
   getKeywords: Array<KeywordTable>;
-  getKeywordsByCategoryId: Array<KeywordTable>;
+  getKeywordsByCategoryId: KeywordTable;
   getKeywordsByTitle: Array<KeywordTable>;
   getProjectById: ProjectTable;
   getProjectByMainMode: ProjectTable;
@@ -368,6 +368,20 @@ export type UserTable = {
   updated_at: Scalars['String']['output'];
 };
 
+export type GetCategoryBySectionIdQueryVariables = Exact<{
+  section_id: Scalars['Float']['input'];
+}>;
+
+export type GetCategoryBySectionIdQuery = {
+  __typename?: 'Query';
+  getCategoryBySectionId: Array<{
+    __typename?: 'CategoryTable';
+    id: string;
+    name: string;
+    visible_status: string;
+  }>;
+};
+
 export type GetImageByIdQueryVariables = Exact<{
   id: Scalars['Float']['input'];
 }>;
@@ -432,6 +446,21 @@ export type GetIntroducesBySectionIdQuery = {
     intro_text?: string | null;
     visible_status: string;
     image_id?: number | null;
+  };
+};
+
+export type GetKeywordsByCategoryIdQueryVariables = Exact<{
+  category_id: Scalars['Float']['input'];
+}>;
+
+export type GetKeywordsByCategoryIdQuery = {
+  __typename?: 'Query';
+  getKeywordsByCategoryId: {
+    __typename?: 'KeywordTable';
+    id: string;
+    main_text?: string | null;
+    description?: string | null;
+    visible_status: string;
   };
 };
 

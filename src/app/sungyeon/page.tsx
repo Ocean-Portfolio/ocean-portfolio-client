@@ -5,6 +5,7 @@ import Contents from '@/components/Sections/Contents';
 import Container from '@/composable/Container/Container';
 import { getSectionsByUserIdQuery } from '@/helper/getSectionByUserIdQuery';
 import { getUserByNameQuery } from '@/helper/getUserByNameQuery';
+import { backgroundColorVariants } from '@/styles/common/color.css';
 import { sungyeonColorTheme } from '@/styles/theme/sungyeon.css';
 import { StaticContextPageInfo } from './context';
 
@@ -15,6 +16,7 @@ const Sungyeon = async () => {
     apolloClient,
     Number(userByName.data.getUserByName.id),
   );
+
   const { getUserByName } = userByName.data;
   const { getSectionsByUserId } = sectionByUserId.data;
 
@@ -31,7 +33,13 @@ const Sungyeon = async () => {
         sections: getSectionsByUserId,
       }}
     >
-      <Container as="main" className={classNames(sungyeonColorTheme)}>
+      <Container
+        as="main"
+        className={classNames(
+          sungyeonColorTheme,
+          backgroundColorVariants['primary'],
+        )}
+      >
         <Contents />
       </Container>
     </StaticContextPageInfo.Provider>
