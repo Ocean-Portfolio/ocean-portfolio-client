@@ -1,7 +1,14 @@
 import { getClient } from '@/apollo/apollo-client';
+import { craeteQueryResource } from '@/apollo/createQueryResource';
+import { queryFetcher } from '@/apollo/queryFetcher';
 import Introduce from '@/components/Introduce/Introduce';
+import { GET_INTRODUCES_BY_SECTION_ID } from '@/gql/queries/introduce';
 import { getImageByIdQuery } from '@/helper/getImageByIdQuery';
 import { getIntroducesBySectionIdQuery } from '@/helper/getIntroducesBySectionIdQuery';
+import {
+  GetIntroducesBySectionIdQuery,
+  GetIntroducesBySectionIdQueryVariables,
+} from '@/types/graphql';
 
 interface Props {
   title: string;
@@ -9,6 +16,18 @@ interface Props {
 }
 
 const IntroduceContainer = async ({ title, section_id }: Props) => {
+  const introduceResource = craeteQueryResource<
+    GetIntroducesBySectionIdQuery,
+    GetIntroducesBySectionIdQueryVariables
+  >({
+    query: GET_INTRODUCES_BY_SECTION_ID,
+    variables: {
+      section_id,
+    },
+  });
+
+  const data = await queryFetcher(introduceResource);
+
   const apolloClient = getClient();
 
   const introduceData = await getIntroducesBySectionIdQuery(
