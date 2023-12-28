@@ -12,7 +12,6 @@ import { flexCenter } from '@/styles/common/flex.css';
 const meta: Meta<typeof Container> = {
   title: 'Common/Container',
   component: Container,
-  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
     viewport: {
@@ -34,6 +33,7 @@ const Sample = ({
         flexCenter,
       )}
       style={{
+        width: '100%',
         height: '100%',
       }}
     >
