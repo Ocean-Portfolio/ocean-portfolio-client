@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import React, { PropsWithChildren } from 'react';
 import { textPreStyle } from '@/styles/common/text.css';
-import { getStaticContext } from '@/utils/context/StaticContext';
+import { GetImageByIdQuery } from '@/types/graphql';
 import {
   IntroduceContextProps,
   StaticContextIntroduce,
@@ -27,31 +27,27 @@ const Introduce = ({
   children,
   className,
   id,
-  title,
-  slogan,
-  intro_text,
-  visible_status,
-  image,
 }: PropsWithChildren<IntroduceProps>) => {
   return (
-    <StaticContextIntroduce.Provider
-      value={{ id, title, slogan, intro_text, visible_status, image }}
-    >
+    <StaticContextIntroduce.Provider value={{ id }}>
       <section className={classNames(className, wrapStyle)}>{children}</section>
     </StaticContextIntroduce.Provider>
   );
 };
-const Title = () => {
-  const { title } = getStaticContext(StaticContextIntroduce);
-  return <h1 className={titleStyle}>{title}</h1>;
+
+const Title = ({ children }: PropsWithChildren) => {
+  return <h1 className={titleStyle}>{children}</h1>;
 };
 
 const BodyWrap = ({ children }: PropsWithChildren) => {
   return <div className={bodyWrapStyle}>{children}</div>;
 };
 
-const Face = () => {
-  const { image } = getStaticContext(StaticContextIntroduce);
+interface FaceProps {
+  image?: GetImageByIdQuery['getImageById'];
+}
+
+const Face = ({ image }: FaceProps) => {
   return (
     <div className={imageWrapStyle}>
       <Image
@@ -65,8 +61,12 @@ const Face = () => {
   );
 };
 
-const AboutMe = () => {
-  const { slogan, intro_text } = getStaticContext(StaticContextIntroduce);
+interface AboutMeProps {
+  slogan: string | null | undefined;
+  intro_text: string | null | undefined;
+}
+
+const AboutMe = ({ slogan, intro_text }: AboutMeProps) => {
   return (
     <article className={articleWrapStyle}>
       <p className={aboutMeStyle}>ABOUT ME</p>
