@@ -1,6 +1,5 @@
 import { getClient } from '@/apollo/apollo-client';
 import KeywordList from '@/components/KeywordList/KeywordList';
-import { KeywordListContextData } from '@/components/KeywordList/KeywordList.context';
 import { getCategoryBySectionIdQuery } from '@/helper/getCategoryBySectionIdQuery';
 import { getImageByIdQueryList } from '@/helper/getImageByIdQuery';
 import { getKeywordsByCategoryIdQueryList } from '@/helper/getKeywordByCategoryIdQueryList';
@@ -51,9 +50,9 @@ const KeywordContainer = async ({ title, section_id }: KeywordSectionProps) => {
   }));
 
   return (
-    <KeywordList title={title} data={data}>
-      <KeywordList.Title />
-      <KeywordList.Article />
+    <KeywordList>
+      <KeywordList.Title>{title}</KeywordList.Title>
+      <KeywordList.Article data={data} />
     </KeywordList>
   );
 };
