@@ -5,6 +5,8 @@ import React, { useCallback, useState } from 'react';
 import Markdown from 'react-markdown';
 import { textPreStyle } from '@/styles/common/text.css';
 import { defaultColorTheme } from '@/styles/theme/default.css';
+import '../globals.css';
+import { testStyles } from './page.css';
 
 const Admin = () => {
   const [value, setValue] = useState('**Hello world!!!**');
@@ -29,6 +31,7 @@ const Admin = () => {
         <MDEditor value={value} onChange={onChange} />
       </div>
       <Markdown className={classNames(textPreStyle)}>{value}</Markdown>
+      <span className={testStyles}>test</span>
     </div>
   );
 };
