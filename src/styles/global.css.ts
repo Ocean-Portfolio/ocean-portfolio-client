@@ -35,3 +35,7 @@ globalStyle('section', {
     },
   },
 });
+
+globalStyle('a', {
+  textDecoration: 'none',
+});

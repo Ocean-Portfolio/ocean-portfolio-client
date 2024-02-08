@@ -147,8 +147,9 @@ export type Query = {
   getCategoryByTitle: Array<CategoryTable>;
   getCollab: Array<CollabTable>;
   getContact: Array<ContactTable>;
+  getContactByCategoryId: ContactTable;
   getContactById: ContactTable;
-  getContactBySectionId: Array<ContactTable>;
+  getContactBySectionId: ContactTable;
   getContactByTitle: Array<ContactTable>;
   getHistories: Array<HistoryTable>;
   getHistoriesByCategoryId: Array<HistoryTable>;
@@ -199,6 +200,10 @@ export type QueryGetCategoryBySectionIdArgs = {
 
 export type QueryGetCategoryByTitleArgs = {
   name: Scalars['String']['input'];
+};
+
+export type QueryGetContactByCategoryIdArgs = {
+  category_id: Scalars['Float']['input'];
 };
 
 export type QueryGetContactByIdArgs = {
@@ -381,6 +386,22 @@ export type GetCategoryBySectionIdQuery = {
     name: string;
     visible_status: string;
   }>;
+};
+
+export type GetContactBySectionIdQueryVariables = Exact<{
+  section_id: Scalars['Float']['input'];
+}>;
+
+export type GetContactBySectionIdQuery = {
+  __typename?: 'Query';
+  getContactBySectionId: {
+    __typename?: 'ContactTable';
+    id: string;
+    email: string;
+    email_description?: string | null;
+    visible_status: string;
+    section_id: number;
+  };
 };
 
 export type GetImageByIdQueryVariables = Exact<{

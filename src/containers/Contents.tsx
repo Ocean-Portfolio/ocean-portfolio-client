@@ -1,6 +1,7 @@
 import React from 'react';
 import { StaticContextPageInfo } from '@/app/sungyeon/context';
 import { getStaticContext } from '@/utils/context/StaticContext';
+import ContactContainer from './Contact';
 import IntroduceContainer from './Introduce';
 import KeywordContainer from './Keyword';
 
@@ -22,6 +23,14 @@ const Contents = () => {
           case 'KEYWORD':
             return (
               <KeywordContainer
+                key={data.id}
+                title={data.name}
+                section_id={Number(data.id)}
+              />
+            );
+          case 'CONTACT':
+            return (
+              <ContactContainer
                 key={data.id}
                 title={data.name}
                 section_id={Number(data.id)}
