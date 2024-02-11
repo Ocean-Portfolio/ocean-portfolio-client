@@ -1,11 +1,13 @@
 import { PropsWithChildren } from 'react';
+import Button from '@/composable/Button/Button';
+import Clipboard from '@/composable/Clipboard/Clipboard';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import { ContactSectionProps, StaticContextContact } from './Contact.context';
 import {
   contentWrapStyle,
   descriptionStyle,
-  dummyStyle,
   emailLinkStyle,
+  sendStyle,
   titleStyle,
   wrapStyle,
 } from './Contact.css';
@@ -36,13 +38,12 @@ const Content = ({ children }: PropsWithChildren) => {
   return <article className={contentWrapStyle}>{children}</article>;
 };
 
-const EmailLink = ({ children }: PropsWithChildren) => {
+const EmailLink = () => {
   const { data } = getStaticContext(StaticContextContact);
   return (
-    <a className={emailLinkStyle} href={`mailto:${data.email}`}>
+    <Clipboard as="button" className={emailLinkStyle} targetText={data.email}>
       {data.email}
-      {children}
-    </a>
+    </Clipboard>
   );
 };
 
@@ -51,15 +52,19 @@ const Description = () => {
   return <span className={descriptionStyle}>{data.email_description}</span>;
 };
 
-const Dummy = () => {
+const Send = () => {
   const { data } = getStaticContext(StaticContextContact);
-  return <span className={dummyStyle}>{data.email_description}</span>;
+  return (
+    <Button as="a" className={sendStyle} size="L" href={`mailto:${data.email}`}>
+      메일 보내기
+    </Button>
+  );
 };
 
 Contact.Title = Title;
 Contact.Content = Content;
 Contact.EmailLink = EmailLink;
 Contact.Description = Description;
-Contact.Dummy = Dummy;
+Contact.Send = Send;
 
 export default Contact;

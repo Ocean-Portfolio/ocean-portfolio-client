@@ -1,12 +1,15 @@
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
 import { fontVariants } from '@/styles/common/font.css';
+import Tag from '../Tag/Tag';
 import { buttonVariants } from './Button.css';
 import { getSpecificButtonStatus } from './helper/getSepcificButtonStatus';
 
 interface Props {
   className?: string;
   size: 'M' | 'L';
+  as: 'button' | 'a';
+  href?: string;
   status?: 'DEFAULT' | 'HOVER' | 'PRESS';
   width?: string;
   style?: React.CSSProperties;
@@ -16,6 +19,8 @@ interface Props {
 const Button = ({
   className,
   children,
+  as,
+  href,
   size,
   status = 'DEFAULT',
   width,
@@ -23,8 +28,10 @@ const Button = ({
   onClick,
 }: PropsWithChildren<Props>) => {
   return (
-    <button
+    <Tag
       type="button"
+      as={as}
+      href={href}
       className={classNames(
         className,
         buttonVariants[size],
@@ -37,7 +44,7 @@ const Button = ({
       style={{ ...style, width }}
     >
       {children}
-    </button>
+    </Tag>
   );
 };
 

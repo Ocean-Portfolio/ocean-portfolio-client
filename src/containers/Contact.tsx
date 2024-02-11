@@ -18,11 +18,10 @@ const ContactContainer = async ({ title, section_id }: ContactSectionProps) => {
     <Contact title={title} data={contactData.data.getContactBySectionId}>
       <Contact.Title />
       <Contact.Content>
-        <Contact.EmailLink>
-          <Contact.Description />
-        </Contact.EmailLink>
-        <Contact.Dummy />
+        <Contact.EmailLink />
+        <Contact.Description />
       </Contact.Content>
+      <Contact.Send />
     </Contact>
   );
 };

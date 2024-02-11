@@ -6,7 +6,7 @@ describe('Button 컴포넌트', () => {
   it('클래스 이름이 올바르게 적용되어야 한다', () => {
     const className = 'test-class';
     const { getByRole } = render(
-      <Button className={className} size="M">
+      <Button as="button" className={className} size="M">
         테스트 버튼
       </Button>,
     );
@@ -18,7 +18,7 @@ describe('Button 컴포넌트', () => {
 
   it('상태에 따라 적절한 클래스가 적용되어야 한다', () => {
     const { getByRole } = render(
-      <Button size="M" status="HOVER">
+      <Button as="button" size="M" status="HOVER">
         테스트 버튼
       </Button>,
     );
@@ -30,7 +30,7 @@ describe('Button 컴포넌트', () => {
   it('onClick 핸들러가 호출되어야 한다', () => {
     const handleClick = jest.fn();
     const { getByRole } = render(
-      <Button size="M" onClick={handleClick}>
+      <Button as="button" size="M" onClick={handleClick}>
         테스트 버튼
       </Button>,
     );

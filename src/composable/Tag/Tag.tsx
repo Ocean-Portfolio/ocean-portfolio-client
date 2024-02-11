@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 
-export type ExcludedTags = 'button' | 'input';
+export type ExcludedTags = 'input';
 
 export interface TagProps
   extends React.AllHTMLAttributes<HTMLElement | SVGElement> {

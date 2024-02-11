@@ -21,6 +21,8 @@ globalStyle('button', {
   border: 'none',
   outline: 'none',
   cursor: 'pointer',
+  background: 'none',
+  color: 'inherit',
 });
 
 globalStyle('section', {
