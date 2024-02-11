@@ -43,7 +43,7 @@ export const contentWrapStyle = style({
     [ODSBreakpointTokenVariables['breakpoint-s']]: {
       gap: '1.5rem',
       paddingTop: '1.5rem',
-      paddingBottom: '0',
+      paddingBottom: '0.5rem',
     },
   },
 });
