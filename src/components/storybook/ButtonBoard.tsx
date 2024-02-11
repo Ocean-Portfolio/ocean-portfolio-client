@@ -80,6 +80,7 @@ const ButtonBoard = () => {
       </Text>
       {buttonStates.map(({ size, status, text }) => (
         <Button
+          as="button"
           key={`${size}-${status}`}
           size={size}
           status={status}
