@@ -1,11 +1,12 @@
 import React, { PropsWithChildren } from 'react';
+import SectionTitle from '@/composable/SectionTitle/SectionTitle';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import Keyword from '../Keyword/Keyword';
 import {
   KeywordListProps,
   StaticContextKeywordList,
 } from './KeywordList.context';
-import { articleWrapStyle, titleStyle, wrapStyle } from './KeywordList.css';
+import { articleWrapStyle, wrapStyle } from './KeywordList.css';
 
 const KeywordList = ({
   children,
@@ -21,7 +22,7 @@ const KeywordList = ({
 
 const Title = () => {
   const { title } = getStaticContext(StaticContextKeywordList);
-  return <h1 className={titleStyle}>{title}</h1>;
+  return <SectionTitle>{title}</SectionTitle>;
 };
 
 const Article = () => {

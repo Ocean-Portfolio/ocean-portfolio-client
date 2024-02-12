@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import Image from 'next/image';
 import React, { PropsWithChildren } from 'react';
+import SectionTitle from '@/composable/SectionTitle/SectionTitle';
 import { textPreStyle } from '@/styles/common/text.css';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import {
@@ -15,7 +16,6 @@ import {
   imageWrapStyle,
   introTextStyle,
   sloganStyle,
-  titleStyle,
   wrapStyle,
 } from './Introduce.css';
 
@@ -43,7 +43,7 @@ const Introduce = ({
 };
 const Title = () => {
   const { title } = getStaticContext(StaticContextIntroduce);
-  return <h1 className={titleStyle}>{title}</h1>;
+  return <SectionTitle>{title}</SectionTitle>;
 };
 
 const BodyWrap = ({ children }: PropsWithChildren) => {

@@ -4,6 +4,7 @@ import { getStaticContext } from '@/utils/context/StaticContext';
 import ContactContainer from './Contact';
 import IntroduceContainer from './Introduce';
 import KeywordContainer from './Keyword';
+import ProjectContainer from './Project';
 
 const Contents = () => {
   const { sections } = getStaticContext(StaticContextPageInfo);
@@ -31,6 +32,14 @@ const Contents = () => {
           case 'CONTACT':
             return (
               <ContactContainer
+                key={data.id}
+                title={data.name}
+                section_id={Number(data.id)}
+              />
+            );
+          case 'PROJECT':
+            return (
+              <ProjectContainer
                 key={data.id}
                 title={data.name}
                 section_id={Number(data.id)}

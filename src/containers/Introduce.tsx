@@ -2,7 +2,6 @@ import { getClient } from '@/apollo/apollo-client';
 import Introduce from '@/components/Introduce/Introduce';
 import { getImageByIdQuery } from '@/helper/getImageByIdQuery';
 import { getIntroducesBySectionIdQuery } from '@/helper/getIntroducesBySectionIdQuery';
-import { filterUndefinedData } from '@/utils/array/filterUndefinedData';
 
 interface Props {
   title: string;
@@ -34,7 +33,6 @@ const IntroduceContainer = async ({ title, section_id }: Props) => {
       visible_status={visible_status as VisibleStatusToken}
       image={imgData?.data.getImageById}
     >
-      <Introduce.Title />
       <Introduce.BodyWrap>
         <Introduce.Face />
         <Introduce.AboutMe />

@@ -20,21 +20,6 @@ export const wrapStyle = style({
   },
 });
 
-export const titleStyle = style({
-  color: userColorThemeVars.token['primary-variant'],
-  ...ODSTextTokenVariables['display-l-bold'],
-  '@media': {
-    [ODSBreakpointTokenVariables['breakpoint-xl']]: {
-      color: userColorThemeVars.token['accent'],
-      ...ODSTextTokenVariables['title-l-bold'],
-    },
-    [ODSBreakpointTokenVariables['breakpoint-s']]: {
-      color: userColorThemeVars.token['primary-variant'],
-      ...ODSTextTokenVariables['title-m-bold'],
-    },
-  },
-});
-
 export const bodyWrapStyle = style({
   display: 'grid',
   alignItems: 'center',

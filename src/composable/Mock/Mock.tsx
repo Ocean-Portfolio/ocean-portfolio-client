@@ -16,6 +16,7 @@ interface MockProps {
   width?: string;
   height?: string;
   layoutRatio?: 1 | 0.75 | 0.5 | 0.25;
+  className?: string;
 }
 
 interface WrapProps extends MockProps {
@@ -31,7 +32,7 @@ const Mock = ({ device, ...rest }: WrapProps) => {
   );
 };
 
-const Desktop = ({ src, width, height, layoutRatio }: MockProps) => {
+const Desktop = ({ className, src, width, height, layoutRatio }: MockProps) => {
   const originWidthWithRatio = layoutRatio
     ? origin.desktop.width * layoutRatio
     : origin.desktop.width;
@@ -41,6 +42,7 @@ const Desktop = ({ src, width, height, layoutRatio }: MockProps) => {
 
   return (
     <svg
+      className={className}
       data-testid="desktop-svg"
       width={width ? width : originWidthWithRatio}
       height={height ? height : originHeightWithRatio}
@@ -285,7 +287,7 @@ const Desktop = ({ src, width, height, layoutRatio }: MockProps) => {
   );
 };
 
-const Mobile = ({ src, width, height, layoutRatio }: MockProps) => {
+const Mobile = ({ className, src, width, height, layoutRatio }: MockProps) => {
   const originWidthWithRatio = layoutRatio
     ? origin.mobile.width * layoutRatio
     : origin.mobile.width;
@@ -295,6 +297,7 @@ const Mobile = ({ src, width, height, layoutRatio }: MockProps) => {
 
   return (
     <svg
+      className={className}
       data-testid="mobile-svg"
       width={width ? width : originWidthWithRatio}
       height={height ? height : originHeightWithRatio}

@@ -13,16 +13,6 @@ export const wrapStyle = style([
   },
 ]);
 
-export const titleStyle = style([
-  fontVariants['title-l-bold'],
-  {
-    '@media': {
-      [ODSBreakpointTokenVariables['breakpoint-l']]:
-        ODSTextTokenVariables['title-m-bold'],
-    },
-  },
-]);
-
 export const contentWrapStyle = style({
   display: 'flex',
   flexDirection: 'column',
@@ -75,6 +65,8 @@ export const descriptionStyle = style([
 ]);
 
 export const sendStyle = style([
+  colorVariants['gray-scale-00'],
+  fontVariants['paragraph-s-regular'],
   {
     width: '17.5rem',
     '@media': {

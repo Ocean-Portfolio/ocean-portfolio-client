@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react';
 import Button from '@/composable/Button/Button';
 import Clipboard from '@/composable/Clipboard/Clipboard';
+import SectionTitle from '@/composable/SectionTitle/SectionTitle';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import { ContactSectionProps, StaticContextContact } from './Contact.context';
 import {
@@ -8,7 +9,6 @@ import {
   descriptionStyle,
   emailLinkStyle,
   sendStyle,
-  titleStyle,
   wrapStyle,
 } from './Contact.css';
 
@@ -31,7 +31,7 @@ const Contact = ({
 
 const Title = () => {
   const { title } = getStaticContext(StaticContextContact);
-  return <h1 className={titleStyle}>{title}</h1>;
+  return <SectionTitle>{title}</SectionTitle>;
 };
 
 const Content = ({ children }: PropsWithChildren) => {

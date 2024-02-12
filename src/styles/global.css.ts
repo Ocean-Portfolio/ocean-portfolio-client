@@ -17,6 +17,20 @@ globalStyle('*', {
   textRendering: 'optimizeLegibility',
 });
 
+globalStyle('*::webkit-scrollbar', {
+  display: 'none',
+});
+
+globalStyle('html::-webkit-scrollbar', {
+  display: 'none',
+});
+
+globalStyle('html, body', {
+  maxWidth: '100vw',
+});
+
+globalStyle('main', {});
+
 globalStyle('button', {
   border: 'none',
   outline: 'none',

@@ -7,7 +7,7 @@ export const containerStyle = style({
   justifyItems: 'center',
   gap: '15rem',
 
-  width: '100%',
+  maxWidth: '100vw',
   minWidth: '17.5rem',
 
   padding: '0 5rem',

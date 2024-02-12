@@ -131,9 +131,11 @@ export type ProjectTable = {
   end_time: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   image_id?: Maybe<Scalars['Float']['output']>;
+  mockup?: Maybe<Scalars['String']['output']>;
   mode: Scalars['String']['output'];
   name: Scalars['String']['output'];
   section_id: Scalars['Float']['output'];
+  sort_order: Scalars['Float']['output'];
   start_date?: Maybe<Scalars['String']['output']>;
   updated_at: Scalars['String']['output'];
   visible_status: Scalars['String']['output'];
@@ -172,8 +174,8 @@ export type Query = {
   getProjectById: ProjectTable;
   getProjectByMainMode: ProjectTable;
   getProjects: Array<ProjectTable>;
-  getProjectsByCategoryId: Array<ProjectTable>;
   getProjectsByName: Array<ProjectTable>;
+  getProjectsBySectionId: Array<ProjectTable>;
   getSNSById: SnsLinkTable;
   getSNSByName: Array<SnsLinkTable>;
   getSNSByUserId: Array<SnsLinkTable>;
@@ -274,12 +276,12 @@ export type QueryGetProjectByIdArgs = {
   id: Scalars['Float']['input'];
 };
 
-export type QueryGetProjectsByCategoryIdArgs = {
-  section_id: Scalars['Float']['input'];
-};
-
 export type QueryGetProjectsByNameArgs = {
   name: Scalars['String']['input'];
+};
+
+export type QueryGetProjectsBySectionIdArgs = {
+  section_id: Scalars['Float']['input'];
 };
 
 export type QueryGetSnsByIdArgs = {
@@ -485,6 +487,27 @@ export type GetKeywordsByCategoryIdQuery = {
     visible_status: string;
     image_id?: number | null;
   };
+};
+
+export type GetProjectsBySectionIdQueryVariables = Exact<{
+  section_id: Scalars['Float']['input'];
+}>;
+
+export type GetProjectsBySectionIdQuery = {
+  __typename?: 'Query';
+  getProjectsBySectionId: Array<{
+    __typename?: 'ProjectTable';
+    id: string;
+    mode: string;
+    name: string;
+    content?: string | null;
+    date_type: string;
+    end_time: string;
+    start_date?: string | null;
+    end_date?: string | null;
+    mockup?: string | null;
+    image_id?: number | null;
+  }>;
 };
 
 export type GetSectionsByUserIdQueryVariables = Exact<{
