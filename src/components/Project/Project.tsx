@@ -46,7 +46,7 @@ const Main = () => {
   return (
     <MainProject
       src={mainProject?.image?.storage_url || ''}
-      device={'MOBILE'}
+      device={mainProject?.mockup || 'MOBILE'}
       title={mainProject?.name || ''}
       period={period}
       description={mainProject?.content || ''}
