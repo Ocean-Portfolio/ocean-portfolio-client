@@ -86,6 +86,7 @@ export const mockWrapVariants = styleVariants({
         },
         [ODSBreakpointTokenVariables['breakpoint-s']]: {
           gap: '0',
+          minWidth: '20rem',
           height: '20rem',
         },
       },
