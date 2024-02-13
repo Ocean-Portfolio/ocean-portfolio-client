@@ -20,6 +20,10 @@ export const wrapStyle = style([
       [ODSBreakpointTokenVariables['breakpoint-m']]: {
         padding: '0 0.69rem',
       },
+      [ODSBreakpointTokenVariables['breakpoint-s']]: {
+        flexDirection: 'column',
+        padding: '0',
+      },
     },
   },
 ]);
@@ -35,6 +39,11 @@ export const wrapVariants = styleVariants({
       [ODSBreakpointTokenVariables['breakpoint-l']]: {
         height: '20rem',
       },
+      [ODSBreakpointTokenVariables['breakpoint-s']]: {
+        gap: '4rem',
+        height: '100%',
+        paddingTop: '1.37rem',
+      },
     },
   },
   MOBILE: {
@@ -45,6 +54,11 @@ export const wrapVariants = styleVariants({
       [ODSBreakpointTokenVariables['breakpoint-l']]: {
         gap: '3rem',
         height: '19.5rem',
+      },
+      [ODSBreakpointTokenVariables['breakpoint-s']]: {
+        gap: '1.25rem',
+        height: 'auto',
+        paddingTop: '1.25rem',
       },
     },
   },
@@ -68,10 +82,19 @@ export const mockWrapVariants = styleVariants({
       [ODSBreakpointTokenVariables['breakpoint-m']]: {
         minWidth: '15.5625rem',
       },
+      [ODSBreakpointTokenVariables['breakpoint-s']]: {
+        gap: '0',
+        height: '20rem',
+      },
     },
   },
   MOBILE: {
     width: '100%',
+    '@media': {
+      [ODSBreakpointTokenVariables['breakpoint-s']]: {
+        justifyContent: 'center',
+      },
+    },
   },
 });
 
@@ -104,6 +127,11 @@ export const mockVariants = styleVariants({
         width: '11.25rem',
         height: '19.5rem',
       },
+      [ODSBreakpointTokenVariables['breakpoint-s']]: {
+        position: 'initial',
+        width: '15rem',
+        height: '26rem',
+      },
     },
   },
 });
@@ -119,12 +147,24 @@ export const contentWrapStyle = style({
     [ODSBreakpointTokenVariables['breakpoint-l']]: {
       rowGap: '1rem',
     },
+    [ODSBreakpointTokenVariables['breakpoint-s']]: {
+      gridTemplateColumns: 'auto 1fr',
+      alignItems: 'center',
+      rowGap: '0.5rem',
+      columnGap: '0.5rem',
+    },
   },
 });
 
 export const titleStyle = style([
   colorVariants['gray-scale-02'],
   fontVariants['title-l-bold'],
+  {
+    '@media': {
+      [ODSBreakpointTokenVariables['breakpoint-s']]:
+        ODSTextTokenVariables['GNB-l-bold'],
+    },
+  },
 ]);
 
 export const periodStyle = style([
@@ -134,6 +174,12 @@ export const periodStyle = style([
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-m']]:
         ODSTextTokenVariables['paragraph-m-bold'],
+      [ODSBreakpointTokenVariables['breakpoint-s']]: {
+        fontSize: '0.75rem',
+        fontWeight: '700',
+        lineHeight: '1.125rem',
+        letterSpacing: '-0.00625rem',
+      },
     },
   },
 ]);
@@ -145,6 +191,10 @@ export const descriptionStyle = style([
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-m']]:
         ODSTextTokenVariables['paragraph-l-semibold'],
+      [ODSBreakpointTokenVariables['breakpoint-s']]: {
+        ...ODSTextTokenVariables['paragraph-m-medium'],
+        gridColumn: '1/3',
+      },
     },
   },
 ]);
@@ -154,5 +204,12 @@ export const buttonStyle = style([
   fontVariants['display-s-medium'],
   {
     width: '15rem',
+    '@media': {
+      [ODSBreakpointTokenVariables['breakpoint-s']]: {
+        gridColumn: '1/3',
+        width: 'fit-content',
+        padding: '0.5rem 2.44rem !important',
+      },
+    },
   },
 ]);
