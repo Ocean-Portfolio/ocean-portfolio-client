@@ -3,12 +3,12 @@ import React from 'react';
 import Button from '@/composable/Button/Button';
 import Mock from '@/composable/Mock/Mock';
 import {
+  backgroundGradientVariants,
   buttonStyle,
   contentWrapStyle,
   descriptionStyle,
   mockStyle,
   mockVariants,
-  mockWrapStyle,
   mockWrapVariants,
   periodStyle,
   titleStyle,
@@ -27,7 +27,13 @@ interface Props {
 const MainProject = ({ src, device, title, period, description }: Props) => {
   return (
     <article className={classNames(wrapStyle, wrapVariants[device])}>
-      <div className={classNames(mockWrapStyle, mockWrapVariants[device])}>
+      <div className={classNames(mockWrapVariants[device])}>
+        <div
+          className={classNames(
+            backgroundGradientVariants[device],
+            mockVariants[device],
+          )}
+        />
         <Mock
           className={classNames(mockStyle, mockVariants[device])}
           src={src}

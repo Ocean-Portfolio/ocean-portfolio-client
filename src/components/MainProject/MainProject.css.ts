@@ -64,7 +64,7 @@ export const wrapVariants = styleVariants({
   },
 });
 
-export const mockWrapStyle = style({
+const mockWrapStyle = style({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -72,30 +72,70 @@ export const mockWrapStyle = style({
 });
 
 export const mockWrapVariants = styleVariants({
-  DESKTOP: {
-    minWidth: '24.375rem',
+  DESKTOP: [
+    mockWrapStyle,
+    {
+      minWidth: '24.375rem',
 
-    '@media': {
-      [ODSBreakpointTokenVariables['breakpoint-xl']]: {
-        minWidth: '16.5625rem',
-      },
-      [ODSBreakpointTokenVariables['breakpoint-m']]: {
-        minWidth: '15.5625rem',
-      },
-      [ODSBreakpointTokenVariables['breakpoint-s']]: {
-        gap: '0',
-        height: '20rem',
-      },
-    },
-  },
-  MOBILE: {
-    width: '100%',
-    '@media': {
-      [ODSBreakpointTokenVariables['breakpoint-s']]: {
-        justifyContent: 'center',
+      '@media': {
+        [ODSBreakpointTokenVariables['breakpoint-xl']]: {
+          minWidth: '16.5625rem',
+        },
+        [ODSBreakpointTokenVariables['breakpoint-m']]: {
+          minWidth: '15.5625rem',
+        },
+        [ODSBreakpointTokenVariables['breakpoint-s']]: {
+          gap: '0',
+          height: '20rem',
+        },
       },
     },
-  },
+  ],
+  MOBILE: [
+    mockWrapStyle,
+    {
+      overflow: 'hidden',
+      minWidth: '19.375rem',
+      '@media': {
+        [ODSBreakpointTokenVariables['breakpoint-l']]: {
+          width: '11.25rem',
+        },
+        [ODSBreakpointTokenVariables['breakpoint-s']]: {
+          width: '15rem',
+          justifyContent: 'center',
+        },
+      },
+    },
+  ],
+});
+
+const backgroundGradientStyle = style({
+  position: 'absolute',
+  right: '0',
+  zIndex: '10',
+});
+
+export const backgroundGradientVariants = styleVariants({
+  DESKTOP: [
+    backgroundGradientStyle,
+    {
+      background:
+        'linear-gradient(270deg, transparent 0%, rgba(1, 65, 124, 0.00) 76.5%, #276196 100%)',
+    },
+  ],
+  MOBILE: [
+    backgroundGradientStyle,
+    {
+      bottom: '-50%',
+      background:
+        'linear-gradient(0deg, #276196 54.16%, rgba(1, 65, 124, 0.00) 100%, #276196 100%)',
+      '@media': {
+        [ODSBreakpointTokenVariables['breakpoint-s']]: {
+          right: 'initial',
+        },
+      },
+    },
+  ],
 });
 
 export const mockStyle = style({
@@ -107,7 +147,6 @@ export const mockVariants = styleVariants({
   DESKTOP: {
     width: '54.875rem',
     height: '31.25rem',
-
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-xl']]: {
         height: '31.61455rem',
@@ -128,9 +167,12 @@ export const mockVariants = styleVariants({
         height: '19.5rem',
       },
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
-        position: 'initial',
         width: '15rem',
         height: '26rem',
+
+        '&:not(div)': {
+          position: 'initial',
+        },
       },
     },
   },
