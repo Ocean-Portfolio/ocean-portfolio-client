@@ -30,14 +30,14 @@ export const wrapStyle = style([
 
 export const wrapVariants = styleVariants({
   DESKTOP: {
-    height: '31.25rem',
+    minHeight: '31.25rem',
 
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-xl']]: {
-        height: '31.61455rem',
+        minHeight: '31.61455rem',
       },
       [ODSBreakpointTokenVariables['breakpoint-l']]: {
-        height: '20rem',
+        minHeight: '20rem',
       },
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         gap: '4rem',

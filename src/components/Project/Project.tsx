@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import SectionTitle from '@/composable/SectionTitle/SectionTitle';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import MainProject from '../MainProject/MainProject';
+import NormalProject from '../NormalProject/NormalProject';
 import { ProjectContextProps, StaticContextProject } from './Project.context';
 import { wrapStyle } from './Project.css';
 
@@ -57,7 +58,7 @@ const Main = () => {
 const Normal = () => {
   const { data } = getStaticContext(StaticContextProject);
 
-  return <div>{}</div>;
+  return <NormalProject />;
 };
 
 Project.Title = Title;

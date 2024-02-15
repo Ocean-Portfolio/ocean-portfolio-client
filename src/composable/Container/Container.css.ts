@@ -2,6 +2,8 @@ import { style } from '@vanilla-extract/css';
 import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 
 export const containerStyle = style({
+  overflowX: 'hidden',
+
   display: 'grid',
   gridAutoFlow: 'row',
   justifyItems: 'center',

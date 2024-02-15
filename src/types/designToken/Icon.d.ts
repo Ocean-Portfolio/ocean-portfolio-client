@@ -5,6 +5,7 @@ type CommonIconToken =
   | 'DOWN_ARROW'
   | 'UP_ARROW'
   | 'LEFT_ARROW'
+  | 'LEFT_ARROW_SECONDARY_VARIANT'
   | 'ROUND_CLOSE'
   | 'NORMAL_CLOSE'
   | 'LARGE_CLOSE';
