@@ -47,14 +47,21 @@ export const buttonVariants = styleVariants({
     buttonStyle,
     buttonAnimationStyle,
     {
-      left: 'calc(-2.5rem + -12.5rem)',
+      // left: '-15rem',
+      left: '0',
     },
   ],
   'slick-next': [
     buttonStyle,
     buttonAnimationStyle,
     {
-      right: 'calc(-2.5rem + -12.5rem)',
+      // right: '-15rem',
+      right: '0',
+      // '@media': {
+      //   [ODSBreakpointTokenVariables['breakpoint-xl']]: {
+      //     right: '0',
+      //   },
+      // },
     },
   ],
 });

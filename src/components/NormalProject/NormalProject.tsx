@@ -4,9 +4,18 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import classNames from 'classnames';
-import React, { CSSProperties, MouseEventHandler } from 'react';
+import React, {
+  CSSProperties,
+  MouseEventHandler,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+} from 'react';
 import Slider from 'react-slick';
 import CommonIcon from '@/composable/Icon/CommonIcon';
+import { useODSBreakPoints } from '@/hook/useODSBreakPoints';
+import { useWindowResize } from '@/hook/useWindowResize';
+import { getButtonPositionWithBreakPoints } from './getButtonPositionWithBreakPoints';
 import {
   buttonVariants,
   iconVariants,
@@ -58,13 +67,59 @@ interface ButtonBoxProps {
 
 const ButtonBox = (props: ButtonBoxProps) => {
   const { className, style, onClick } = props;
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const windowSize = useWindowResize();
+  const breakPoints = useODSBreakPoints();
+
+  const shiftValue = getButtonPositionWithBreakPoints(breakPoints);
+
   const direction =
     (className?.split(' ')[1] as 'slick-prev' | 'slick-next') || 'slick-prev';
+
+  const enablePrevPosition = buttonRef.current && direction === 'slick-prev';
+  const enableNextPosition = buttonRef.current && direction === 'slick-next';
+
+  const $p = buttonRef.current?.parentElement;
+  const $pp = $p?.parentElement;
+
+  const buttonLeftPosition = enablePrevPosition
+    ? -($pp as HTMLElement).getBoundingClientRect().left + shiftValue
+    : '';
+
+  const buttonRightPosition = enableNextPosition
+    ? -windowSize.width +
+      ($pp as HTMLElement).getBoundingClientRect().right +
+      shiftValue
+    : '';
+
+  useLayoutEffect(() => {
+    const button = buttonRef.current as HTMLButtonElement;
+    const $p = button.parentElement as HTMLElement;
+    const $pp = $p.parentElement as HTMLElement;
+
+    const DOMRect = $pp.getBoundingClientRect();
+
+    const { left, right } = DOMRect;
+
+    if (direction === 'slick-prev') {
+      const windowStartPoint = -left;
+      button.style.left = `${windowStartPoint + shiftValue}px`;
+    } else if (direction === 'slick-next') {
+      const windowEndPoint = -windowSize.width + right;
+      button.style.right = `${windowEndPoint + shiftValue}px`;
+    }
+  }, [buttonRef]);
 
   return (
     <button
       className={classNames(className, buttonVariants[direction])}
-      style={{ ...style, display: 'flex' }}
+      ref={buttonRef}
+      style={{
+        ...style,
+        display: 'flex',
+        left: buttonLeftPosition,
+        right: buttonRightPosition,
+      }}
       onClick={onClick}
     >
       <CommonIcon
