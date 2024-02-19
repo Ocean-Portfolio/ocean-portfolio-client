@@ -2,19 +2,23 @@ import { useEffect, useState } from 'react';
 
 export const useWindowResize = () => {
   const [windowSize, setWindowSize] = useState<WindowBasedPoints>({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: typeof window !== 'undefined' ? window.innerWidth : 0,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0,
   });
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: typeof window !== 'undefined' ? window.innerWidth : 0,
+        height: typeof window !== 'undefined' ? window.innerHeight : 0,
       });
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    typeof window !== 'undefined' &&
+      window.addEventListener('resize', handleResize);
+    return () => {
+      typeof window !== 'undefined' &&
+        window.removeEventListener('resize', handleResize);
+    };
   }, []);
   return windowSize;
 };

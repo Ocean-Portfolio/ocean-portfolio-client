@@ -8,7 +8,9 @@ import {
   colorVariants,
 } from '@/styles/common/color.css';
 import { getStaticContext } from '@/utils/context/StaticContext';
-import StaticContextProjectCard from './ProjectCard.context';
+import StaticContextProjectCard, {
+  ProjectCardContextProps,
+} from './ProjectCard.context';
 import {
   descriptionVariants,
   gapVariants,
@@ -19,10 +21,9 @@ import {
   wrapVariants,
 } from './ProjectCard.css';
 
-export interface ProjectCardProps {
+export interface ProjectCardProps extends ProjectCardContextProps {
   className?: string;
   visible_status: VisibleStatusToken;
-  sizeToken: SizeToken;
   projectMode: ProjectModeToken;
   projectStatus: EndTimeToken;
 }
@@ -31,9 +32,14 @@ const ProjectCard = ({
   className,
   children,
   visible_status,
+  // projectMode,
+  // projectStatus,
   sizeToken,
-  projectMode,
-  projectStatus,
+  name,
+  content,
+  period,
+  src,
+  alt,
 }: PropsWithChildren<ProjectCardProps>) => {
   if (visible_status === 'NONE') return null;
 
@@ -41,6 +47,11 @@ const ProjectCard = ({
     <StaticContextProjectCard.Provider
       value={{
         sizeToken,
+        name,
+        content,
+        period,
+        src,
+        alt,
       }}
     >
       <Grid
@@ -59,12 +70,8 @@ const ProjectCard = ({
   );
 };
 
-interface NameProps {
-  name: string;
-}
-
-const Name = ({ name }: NameProps) => {
-  const { sizeToken } = getStaticContext(StaticContextProjectCard);
+const Name = () => {
+  const { sizeToken, name } = getStaticContext(StaticContextProjectCard);
 
   return (
     <p
@@ -78,12 +85,8 @@ const Name = ({ name }: NameProps) => {
   );
 };
 
-interface DescriptionProps {
-  content?: string;
-}
-
-const Description = ({ content }: DescriptionProps) => {
-  const { sizeToken } = getStaticContext(StaticContextProjectCard);
+const Description = () => {
+  const { sizeToken, content } = getStaticContext(StaticContextProjectCard);
 
   return (
     <p
@@ -97,12 +100,8 @@ const Description = ({ content }: DescriptionProps) => {
   );
 };
 
-interface PeriodProps {
-  period: string;
-}
-
-const Period = ({ period }: PeriodProps) => {
-  const { sizeToken } = getStaticContext(StaticContextProjectCard);
+const Period = () => {
+  const { sizeToken, period } = getStaticContext(StaticContextProjectCard);
   return (
     <Chip
       className={classNames(periodVariants[sizeToken])}
@@ -113,13 +112,8 @@ const Period = ({ period }: PeriodProps) => {
   );
 };
 
-interface ImageProps {
-  src: string;
-  alt: string;
-}
-
-const Image = ({ src, alt }: ImageProps) => {
-  const { sizeToken } = getStaticContext(StaticContextProjectCard);
+const Image = () => {
+  const { sizeToken, src, alt } = getStaticContext(StaticContextProjectCard);
 
   const getImageSize = (sizeToken: SizeToken): ImageSizeToken => {
     switch (sizeToken) {

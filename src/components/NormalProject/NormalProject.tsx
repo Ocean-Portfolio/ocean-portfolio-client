@@ -7,55 +7,158 @@ import classNames from 'classnames';
 import React, {
   CSSProperties,
   MouseEventHandler,
-  useEffect,
+  PropsWithChildren,
+  useContext,
   useLayoutEffect,
   useRef,
+  useState,
 } from 'react';
 import Slider from 'react-slick';
 import CommonIcon from '@/composable/Icon/CommonIcon';
 import { useODSBreakPoints } from '@/hook/useODSBreakPoints';
 import { useWindowResize } from '@/hook/useWindowResize';
+import { getPeriod } from '@/utils/date/getPeriod';
+import ProjectCard from '../Card/Project/ProjectCard';
+import { ProjectContextData } from '../Project/Project.context';
 import { getButtonPositionWithBreakPoints } from './getButtonPositionWithBreakPoints';
 import {
+  ContextDispatchNormalProject,
+  ContextValueNormalProject,
+} from './NormalProject.context';
+import {
   buttonVariants,
+  defaultContentsStyle,
   iconVariants,
   sliderStyle,
   wrapStyle,
 } from './NormalProject.css';
 
-const NormalProject = () => {
+interface Props {
+  projectData: ProjectContextData[];
+}
+
+const NormalProject = ({ projectData }: Props) => {
+  const [isMouseInSection, setMouseInSection] = useState(false);
+
   return (
-    <div className={wrapStyle}>
-      <Slider
-        className={sliderStyle}
-        infinite={false}
-        focusOnSelect={false}
-        slidesToShow={3}
-        slidesToScroll={3}
-        nextArrow={<NormalProject.ButtonBox />}
-        prevArrow={<NormalProject.ButtonBox />}
-        speed={500}
+    <ContextDispatchNormalProject.Provider
+      value={{
+        setMouseInSection,
+      }}
+    >
+      <ContextValueNormalProject.Provider
+        value={{ isMouseInSection, projectData }}
       >
-        <div>
-          <h3>1</h3>
-        </div>
-        <div>
-          <h3>2</h3>
-        </div>
-        <div>
-          <h3>3</h3>
-        </div>
-        <div>
-          <h3>4</h3>
-        </div>
-        <div>
-          <h3>5</h3>
-        </div>
-        <div>
-          <h3>6</h3>
-        </div>
-      </Slider>
+        <NormalProject.Wrap>
+          {projectData.length > 4 ? (
+            <NormalProject.Slide />
+          ) : (
+            <NormalProject.Content />
+          )}
+        </NormalProject.Wrap>
+      </ContextValueNormalProject.Provider>
+    </ContextDispatchNormalProject.Provider>
+  );
+};
+
+const Wrap = ({ children }: PropsWithChildren) => {
+  const { setMouseInSection } = useContext(ContextDispatchNormalProject);
+
+  const handleMouseEnter = () => {
+    setMouseInSection(true);
+  };
+
+  return (
+    <div className={wrapStyle} onMouseEnter={handleMouseEnter}>
+      {children}
     </div>
+  );
+};
+
+const Content = () => {
+  const { projectData } = useContext(ContextValueNormalProject);
+  return (
+    <div className={defaultContentsStyle}>
+      <>
+        {projectData.map((project, idx) => {
+          if (project.mode === 'MAIN') return null;
+
+          const period = getPeriod(
+            Number(project?.start_date || 0),
+            Number(project?.end_date || 0),
+            project?.end_time === 'CURRENT',
+          );
+
+          return (
+            <ProjectCard
+              key={project.id}
+              visible_status="VISIBLE"
+              projectMode={project.mode}
+              projectStatus={project.end_time}
+              sizeToken="LARGE"
+              name={project.name}
+              content={project.content || ''}
+              period={period}
+              src={project.image?.storage_url || ''}
+              alt={project.image?.description || ''}
+            >
+              <ProjectCard.Name />
+              <ProjectCard.Description />
+              <ProjectCard.Period />
+              <ProjectCard.Image />
+            </ProjectCard>
+          );
+        })}
+      </>
+      );
+    </div>
+  );
+};
+
+const Slide = () => {
+  const { projectData } = useContext(ContextValueNormalProject);
+
+  return (
+    <Slider
+      className={sliderStyle}
+      infinite={false}
+      focusOnSelect={false}
+      slidesToShow={3}
+      slidesToScroll={3}
+      nextArrow={<NormalProject.ButtonBox />}
+      prevArrow={<NormalProject.ButtonBox />}
+      speed={500}
+    >
+      {projectData.map((project, idx) => {
+        if (project.mode === 'MAIN') return null;
+
+        const period = getPeriod(
+          Number(project?.start_date || 0),
+          Number(project?.end_date || 0),
+          project?.end_time === 'CURRENT',
+        );
+
+        return (
+          <ProjectCard
+            key={project.id}
+            visible_status="VISIBLE"
+            projectMode={project.mode}
+            projectStatus={project.end_time}
+            sizeToken="LARGE"
+            name={project.name}
+            content={project.content || ''}
+            period={period}
+            src={project.image?.storage_url || ''}
+            alt={project.image?.description || ''}
+          >
+            <ProjectCard.Name />
+            <ProjectCard.Description />
+            <ProjectCard.Period />
+            <ProjectCard.Image />
+          </ProjectCard>
+        );
+      })}
+    </Slider>
   );
 };
 
@@ -133,6 +236,9 @@ const ButtonBox = (props: ButtonBoxProps) => {
   );
 };
 
+NormalProject.Wrap = Wrap;
+NormalProject.Content = Content;
+NormalProject.Slide = Slide;
 NormalProject.ButtonBox = ButtonBox;
 
 export default NormalProject;

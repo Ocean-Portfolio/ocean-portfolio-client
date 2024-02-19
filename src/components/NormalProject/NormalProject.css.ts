@@ -7,6 +7,11 @@ export const wrapStyle = style({
   height: '100%',
 });
 
+export const defaultContentsStyle = style({
+  display: 'flex',
+  gap: '1.5rem',
+});
+
 export const sliderStyle = style({
   width: '100%',
   height: '100%',

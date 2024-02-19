@@ -1,9 +1,21 @@
 import { createStaticContext } from '@/utils/context/StaticContext';
 
-const StaticContextProjectCard = createStaticContext<{
+export interface ProjectCardContextProps {
   sizeToken: SizeToken;
-}>({
+  name: string;
+  content?: string;
+  period: string;
+  src: string;
+  alt: string;
+}
+
+const StaticContextProjectCard = createStaticContext<ProjectCardContextProps>({
   sizeToken: 'LARGE',
+  name: '',
+  content: '',
+  period: '',
+  src: '',
+  alt: '',
 });
 
 export default StaticContextProjectCard;

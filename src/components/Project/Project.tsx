@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import SectionTitle from '@/composable/SectionTitle/SectionTitle';
 import { getStaticContext } from '@/utils/context/StaticContext';
+import { getPeriod } from '@/utils/date/getPeriod';
 import MainProject from '../MainProject/MainProject';
 import NormalProject from '../NormalProject/NormalProject';
 import { ProjectContextProps, StaticContextProject } from './Project.context';
@@ -33,16 +34,11 @@ const Main = () => {
   const { data } = getStaticContext(StaticContextProject);
   const mainProject = data.find((project) => project.mode === 'MAIN');
 
-  const startDate = new Date(Number(mainProject?.start_date))
-    .toISOString()
-    .split('-');
-  const endDate = new Date(Number(mainProject?.end_date))
-    .toISOString()
-    .split('-');
-
-  const period = `${startDate[0]}.${startDate[1]} ~ ${
-    mainProject?.end_time === 'CURRENT' ? 'ing' : `${endDate[0]}.${endDate[1]}`
-  }`;
+  const period = getPeriod(
+    Number(mainProject?.start_date || 0),
+    Number(mainProject?.end_date || 0),
+    mainProject?.end_time === 'CURRENT',
+  );
 
   return (
     <MainProject
@@ -58,7 +54,7 @@ const Main = () => {
 const Normal = () => {
   const { data } = getStaticContext(StaticContextProject);
 
-  return <NormalProject />;
+  return <NormalProject projectData={data} />;
 };
 
 Project.Title = Title;
