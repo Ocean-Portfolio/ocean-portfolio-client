@@ -21,8 +21,13 @@ export const wrapStyle = style([
         padding: '0 0.69rem',
       },
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
-        flexDirection: 'column',
+        position: 'initial',
+        display: 'grid',
+        gridTemplateRows: '20rem auto',
+        rowGap: '4rem',
         padding: '0',
+        paddingTop: '1.38rem',
+        paddingBottom: '2rem',
       },
     },
   },
@@ -40,9 +45,8 @@ export const wrapVariants = styleVariants({
         minHeight: '20rem',
       },
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
-        gap: '4rem',
         height: '100%',
-        paddingTop: '1.37rem',
+        minHeight: 'initial',
       },
     },
   },
@@ -87,7 +91,8 @@ export const mockWrapVariants = styleVariants({
         [ODSBreakpointTokenVariables['breakpoint-s']]: {
           gap: '0',
           minWidth: '20rem',
-          height: '20rem',
+          minHeight: '20rem',
+          // height: '20rem',
         },
       },
     },
@@ -195,6 +200,8 @@ export const contentWrapStyle = style({
       alignItems: 'center',
       rowGap: '0.5rem',
       columnGap: '0.5rem',
+
+      height: 'fit-content',
     },
   },
 });

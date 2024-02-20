@@ -16,10 +16,11 @@ export const containerStyle = style({
 
   '@media': {
     [ODSBreakpointTokenVariables['breakpoint-l']]: {
-      padding: '0 2rem',
+      padding: '0 5rem',
       gap: '10rem',
     },
     [ODSBreakpointTokenVariables['breakpoint-m']]: {
+      padding: '0 2rem',
       gap: '7.5rem',
     },
     [ODSBreakpointTokenVariables['breakpoint-s']]: {

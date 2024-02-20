@@ -7,6 +7,7 @@ export interface ContextDispatchNormalProjectProps {
 
 export interface ContextNormalProjectProps {
   isMouseInSection: boolean;
+  observerRef: React.RefObject<HTMLDivElement>;
   projectData: ProjectContextData[];
 }
 
@@ -18,5 +19,6 @@ export const ContextDispatchNormalProject =
 export const ContextValueNormalProject =
   createContext<ContextNormalProjectProps>({
     isMouseInSection: false,
+    observerRef: { current: null },
     projectData: [],
   });

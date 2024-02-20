@@ -10,7 +10,7 @@ export const getButtonPositionWithBreakPoints = (
     case 'breakpoint-l':
       return 48;
     case 'breakpoint-xl':
-      return 60;
+      return 48;
     case 'breakpoint-xxl':
       return 60;
     default:

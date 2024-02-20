@@ -1,4 +1,5 @@
 import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
+import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 import { flexCenter } from '@/styles/common/flex.css';
 
 export const wrapStyle = style({
@@ -8,8 +9,13 @@ export const wrapStyle = style({
 });
 
 export const defaultContentsStyle = style({
-  display: 'flex',
-  gap: '1.5rem',
+  // display: 'flex',
+  // gap: '1.5rem',
+  // '@media': {
+  //   [ODSBreakpointTokenVariables['breakpoint-s']]: {
+  //     gap: '0.75rem',
+  //   },
+  // },
 });
 
 export const sliderStyle = style({
@@ -19,6 +25,25 @@ export const sliderStyle = style({
 
 globalStyle('.slick-list', {
   overflow: 'visible !important',
+});
+
+globalStyle('.slick-track', {
+  display: 'flex',
+  // gap: '1.5rem',
+
+  // '@media': {
+  //   [ODSBreakpointTokenVariables['breakpoint-s']]: {
+  //     gap: '0.75rem',
+  //   },
+  // },
+});
+
+globalStyle('.slick-track::before', {
+  display: 'none',
+});
+
+globalStyle('.slick-slide', {
+  // width: 'fit-content !important',
 });
 
 globalStyle('.slick-arrow', {
@@ -41,10 +66,6 @@ const buttonStyle = style([
 
 const buttonAnimationStyle = style({
   transition: 'all 0.3s ease-in-out',
-  // opacity: 0,
-  // ':hover': {
-  //   opacity: 1,
-  // },
 });
 
 export const buttonVariants = styleVariants({
@@ -52,7 +73,6 @@ export const buttonVariants = styleVariants({
     buttonStyle,
     buttonAnimationStyle,
     {
-      // left: '-15rem',
       left: '0',
     },
   ],
@@ -60,13 +80,7 @@ export const buttonVariants = styleVariants({
     buttonStyle,
     buttonAnimationStyle,
     {
-      // right: '-15rem',
       right: '0',
-      // '@media': {
-      //   [ODSBreakpointTokenVariables['breakpoint-xl']]: {
-      //     right: '0',
-      //   },
-      // },
     },
   ],
 });

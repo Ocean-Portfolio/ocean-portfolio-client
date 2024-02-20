@@ -8,7 +8,6 @@ interface BreakPointsTokenInterface {
 }
 
 type BreakPointsToken = keyof BreakPointsTokenInterface;
-
 interface BreakPointsBoolean {
   breakpointS: boolean;
   breakpointM: boolean;

@@ -5,8 +5,6 @@ describe('ProjectCard 컴포넌트', () => {
   const mockProps: ProjectCardProps = {
     visible_status: 'VISIBLE',
     sizeToken: 'LARGE',
-    projectMode: 'MAIN',
-    projectStatus: 'CURRENT',
     name: '프로젝트 이름',
     content: '프로젝트 설명',
     period: '2021-2022',

@@ -3,6 +3,7 @@ import React, { PropsWithChildren } from 'react';
 import Chip from '@/composable/Chip/Chip';
 import Grid from '@/composable/Grid/Grid';
 import ODSNextImage from '@/composable/Image/ODSNextImage';
+import { ODSImageTokenVariables } from '@/const/images';
 import {
   backgroundColorVariants,
   colorVariants,
@@ -12,28 +13,30 @@ import StaticContextProjectCard, {
   ProjectCardContextProps,
 } from './ProjectCard.context';
 import {
+  descriptionStyle,
   descriptionVariants,
+  gapStyle,
   gapVariants,
   imageStyle,
+  nameStyle,
   nameVariants,
+  periodStyle,
   periodVariants,
+  sizeStyle,
   sizeVariants,
+  wrapStyle,
   wrapVariants,
 } from './ProjectCard.css';
 
 export interface ProjectCardProps extends ProjectCardContextProps {
   className?: string;
   visible_status: VisibleStatusToken;
-  projectMode: ProjectModeToken;
-  projectStatus: EndTimeToken;
 }
 
 const ProjectCard = ({
-  className,
   children,
+  className,
   visible_status,
-  // projectMode,
-  // projectStatus,
   sizeToken,
   name,
   content,
@@ -57,10 +60,13 @@ const ProjectCard = ({
       <Grid
         className={classNames(
           className,
-          wrapVariants[sizeToken],
+          wrapStyle,
+          sizeToken && wrapVariants[sizeToken],
           backgroundColorVariants['tertiary-variant'],
-          sizeVariants[sizeToken],
-          gapVariants[sizeToken],
+          sizeStyle,
+          sizeToken && sizeVariants[sizeToken],
+          gapStyle,
+          sizeToken && gapVariants[sizeToken],
         )}
         templateRows="repeat(3, fit-content) 1fr"
       >
@@ -76,7 +82,8 @@ const Name = () => {
   return (
     <p
       className={classNames(
-        nameVariants[sizeToken],
+        nameStyle,
+        sizeToken && nameVariants[sizeToken],
         colorVariants['gray-scale-00'],
       )}
     >
@@ -91,7 +98,8 @@ const Description = () => {
   return (
     <p
       className={classNames(
-        descriptionVariants[sizeToken],
+        descriptionStyle,
+        sizeToken && descriptionVariants[sizeToken],
         colorVariants['gray-scale-01'],
       )}
     >
@@ -104,7 +112,10 @@ const Period = () => {
   const { sizeToken, period } = getStaticContext(StaticContextProjectCard);
   return (
     <Chip
-      className={classNames(periodVariants[sizeToken])}
+      className={classNames(
+        periodStyle,
+        sizeToken && periodVariants[sizeToken],
+      )}
       bgColorToken="tertiary"
     >
       {period}
@@ -112,10 +123,14 @@ const Period = () => {
   );
 };
 
-const Image = () => {
+interface ImageProps {
+  breakPointsToken?: BreakPointsToken;
+}
+
+const Image = ({ breakPointsToken }: ImageProps) => {
   const { sizeToken, src, alt } = getStaticContext(StaticContextProjectCard);
 
-  const getImageSize = (sizeToken: SizeToken): ImageSizeToken => {
+  const getImageSizeWithSizeToken = (sizeToken: SizeToken): ImageSizeToken => {
     switch (sizeToken) {
       case 'LARGE':
         return 'image-100';
@@ -123,12 +138,36 @@ const Image = () => {
         return 'image-75';
     }
   };
+
+  const getImageSizeWithBreakPointsToken = (
+    breakPointsToken: BreakPointsToken,
+  ): ImageSizeToken => {
+    switch (breakPointsToken) {
+      case 'breakpoint-l':
+        return 'image-75';
+      case 'breakpoint-m':
+        return 'image-75';
+      case 'breakpoint-s':
+        return 'image-75';
+      default:
+        return 'image-100';
+    }
+  };
+
+  const sizeTokenValue = ((sizeToken && getImageSizeWithSizeToken(sizeToken)) ||
+    (breakPointsToken &&
+      getImageSizeWithBreakPointsToken(breakPointsToken))) as ImageSizeToken;
+
   return (
     <ODSNextImage
       className={imageStyle}
+      style={{
+        width: ODSImageTokenVariables[sizeTokenValue].width,
+        height: ODSImageTokenVariables[sizeTokenValue].height,
+      }}
       src={src}
       alt={alt}
-      sizeToken={getImageSize(sizeToken)}
+      sizeToken={sizeTokenValue}
     />
   );
 };

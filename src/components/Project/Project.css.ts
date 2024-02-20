@@ -7,7 +7,12 @@ export const wrapStyle = style({
   justifyContent: 'center',
   gap: '5rem',
 
+  height: '100%',
+
   '@media': {
+    [ODSBreakpointTokenVariables['breakpoint-l']]: {
+      gap: '2.5rem',
+    },
     [ODSBreakpointTokenVariables['breakpoint-s']]: {
       gap: '0',
     },

@@ -30,8 +30,6 @@ export const Large: Story = {
   args: {
     visible_status: 'VISIBLE',
     sizeToken: 'LARGE',
-    projectMode: 'MAIN',
-    projectStatus: 'CURRENT',
     name: '구름톤 in Jeju 6기 - 도누리 : 모다드렁 (우수상)',
     content:
       "'모두 한데 모여'라는 의미의 제주도 방언, 레트로 감성을 디지털로 담아내는 제주 여행기록 및 공유 서비스",
@@ -46,8 +44,6 @@ export const Medium: Story = {
   args: {
     visible_status: 'VISIBLE',
     sizeToken: 'MEDIUM',
-    projectMode: 'MAIN',
-    projectStatus: 'CURRENT',
   },
   render: Template,
 };
@@ -56,8 +52,6 @@ export const Small: Story = {
   args: {
     visible_status: 'VISIBLE',
     sizeToken: 'SMALL',
-    projectMode: 'MAIN',
-    projectStatus: 'CURRENT',
   },
   render: Template,
 };
@@ -111,8 +105,6 @@ export const ColorVariants: Story = {
   args: {
     visible_status: 'VISIBLE',
     sizeToken: 'LARGE',
-    projectMode: 'MAIN',
-    projectStatus: 'CURRENT',
   },
   render: ColorVariantsTemplate,
 };
