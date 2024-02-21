@@ -9,6 +9,7 @@ import React, {
   MouseEventHandler,
   PropsWithChildren,
   useContext,
+  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -74,11 +75,28 @@ const Wrap = ({ children }: PropsWithChildren) => {
     setMouseInSection(true);
   };
 
+  const handleMouseLeave = () => {
+    setMouseInSection(false);
+  };
+
+  const handleBlur = () => {
+    setMouseInSection(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('blur', handleBlur);
+
+    return () => {
+      window.removeEventListener('blur', handleBlur);
+    };
+  }, []);
+
   return (
     <div
       className={wrapStyle}
       ref={observerRef}
       onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {children}
     </div>
@@ -87,9 +105,9 @@ const Wrap = ({ children }: PropsWithChildren) => {
 
 const Content = () => {
   const { projectData } = useContext(ContextValueNormalProject);
-
   const breakPoints = useODSBreakPoints();
   const currentBreakPoints = getCurrentBreakPoints(breakPoints);
+
   return (
     <div className={defaultContentsStyle}>
       <>
@@ -126,7 +144,9 @@ const Content = () => {
 };
 
 const Slide = () => {
-  const { projectData } = useContext(ContextValueNormalProject);
+  const { projectData, isMouseInSection } = useContext(
+    ContextValueNormalProject,
+  );
 
   const breakPoints = useODSBreakPoints();
   const currentBreakPoints = getCurrentBreakPoints(breakPoints);
@@ -139,13 +159,13 @@ const Slide = () => {
       focusOnSelect={false}
       slidesToShow={getSlidesToShowWithBreakPoints(currentBreakPoints)}
       slidesToScroll={getSlidesToShowWithBreakPoints(currentBreakPoints)}
-      nextArrow={
-        currentBreakPoints !== 'breakpoint-s' ? (
+      prevArrow={
+        currentBreakPoints !== 'breakpoint-s' && isMouseInSection ? (
           <NormalProject.ButtonBox />
         ) : undefined
       }
-      prevArrow={
-        currentBreakPoints !== 'breakpoint-s' ? (
+      nextArrow={
+        currentBreakPoints !== 'breakpoint-s' && isMouseInSection ? (
           <NormalProject.ButtonBox />
         ) : undefined
       }
@@ -223,7 +243,6 @@ const ButtonBox = (props: ButtonBoxProps) => {
     : '';
 
   const setButtonPosition = () => {
-    console.log('setButtonPosition');
     const button = buttonRef.current as HTMLButtonElement;
     const $p = button.parentElement as HTMLElement;
     const $pp = $p.parentElement as HTMLElement;

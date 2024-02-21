@@ -1,5 +1,6 @@
 import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
+import { globalFadeIn } from '@/styles/animation/fade.css';
 import { flexCenter } from '@/styles/common/flex.css';
 
 export const wrapStyle = style({
@@ -65,7 +66,7 @@ const buttonStyle = style([
 // TODO: buttonAnimationStyle
 
 const buttonAnimationStyle = style({
-  transition: 'all 0.3s ease-in-out',
+  animation: `${globalFadeIn} 0.3s ease-in-out`,
 });
 
 export const buttonVariants = styleVariants({

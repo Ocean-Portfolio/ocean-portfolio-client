@@ -5,7 +5,6 @@ globalStyle('*', {
   margin: 0,
   padding: 0,
   boxSizing: 'border-box',
-  transition: 'all 0.2s ease-in-out',
 
   fontFeatureSettings: '"clig" off, "liga" off',
   fontStyle: 'normal',
