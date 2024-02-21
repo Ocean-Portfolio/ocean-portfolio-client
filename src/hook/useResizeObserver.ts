@@ -6,12 +6,16 @@ const useResizeObserver = (
 ) => {
   const elementRef = useRef<HTMLElement>(null);
   const [resizedValue, setResizedValue] = useState(Number);
-  const resizeObserver = new ResizeObserver((entries) => {
-    callBack(entries);
-    setResizedValue(entries[0].contentRect.width);
-  });
+  const resizeObserver =
+    typeof window !== 'undefined' &&
+    new ResizeObserver((entries) => {
+      callBack(entries);
+      setResizedValue(entries[0].contentRect.width);
+    });
 
   useEffect(() => {
+    if (!resizeObserver) return;
+
     if (element) {
       resizeObserver.observe(element);
     } else if (elementRef.current) {

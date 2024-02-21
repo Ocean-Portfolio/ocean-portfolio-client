@@ -223,6 +223,7 @@ const ButtonBox = (props: ButtonBoxProps) => {
     : '';
 
   const setButtonPosition = () => {
+    console.log('setButtonPosition');
     const button = buttonRef.current as HTMLButtonElement;
     const $p = button.parentElement as HTMLElement;
     const $pp = $p.parentElement as HTMLElement;
@@ -242,7 +243,7 @@ const ButtonBox = (props: ButtonBoxProps) => {
 
   const { resizedValue } = useResizeObserver(observerRef.current, () => {});
 
-  useLayoutEffect(setButtonPosition, [resizedValue, buttonRef]);
+  useLayoutEffect(setButtonPosition, [resizedValue]);
 
   return (
     <button
