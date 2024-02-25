@@ -2,6 +2,7 @@ import React from 'react';
 import { StaticContextPageInfo } from '@/app/sungyeon/context';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import ContactContainer from './Contact';
+import HistoryContainer from './History';
 import IntroduceContainer from './Introduce';
 import KeywordContainer from './Keyword';
 import ProjectContainer from './Project';
@@ -16,6 +17,14 @@ const Contents = () => {
           case 'INTRODUCE':
             return (
               <IntroduceContainer
+                key={data.id}
+                title={data.name}
+                section_id={Number(data.id)}
+              />
+            );
+          case 'HISTORY':
+            return (
+              <HistoryContainer
                 key={data.id}
                 title={data.name}
                 section_id={Number(data.id)}

@@ -1,0 +1,1 @@
+type ButtonDirection = 'PREV' | 'NEXT';
