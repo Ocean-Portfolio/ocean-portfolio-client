@@ -1,65 +1,78 @@
 'use client';
 
-import 'swiper/css';
-
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { A11y } from 'swiper/modules';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react';
 import { SwiperOptions } from 'swiper/types';
+import Tag from '@/composable/Tag/Tag';
+import { customEvents } from '@/const/customEvents';
+import { getStaticContext } from '@/utils/context/StaticContext';
+import {
+  ContextDispatchOceanSwiper,
+  ContextValueOceanSwiper,
+} from './OceanSwiper.context';
 
 // TODO : 이벤트 위임 구현과 UI 컨트롤 로직을 위한 컨텍스트 API 사용
-interface Props {}
 
-const OceanSwiper = ({ children }: PropsWithChildren<Props>) => {
-  return <div>{children}</div>;
-};
-
-const Top = ({ children }: PropsWithChildren) => {
-  return { children };
+const OceanSwiper = ({ children }: PropsWithChildren) => {
+  return (
+    <ContextDispatchOceanSwiper.Provider value={{}}>
+      <ContextValueOceanSwiper.Provider
+        value={{
+          buttonRefs: {
+            prev: null,
+            next: null,
+          },
+        }}
+      >
+        <div>{children}</div>
+      </ContextValueOceanSwiper.Provider>
+    </ContextDispatchOceanSwiper.Provider>
+  );
 };
 
 interface MainProps extends SwiperOptions {
-  eventDelegation?: boolean;
-  prevButton: React.ReactNode;
-  nextButton: React.ReactNode;
+  hiddenNavigation?: boolean;
+  prevButton?: React.ReactNode;
+  nextButton?: React.ReactNode;
 }
 
 const Main = ({
   children,
-  eventDelegation,
+  hiddenNavigation,
   prevButton,
   nextButton,
   ...rest
 }: PropsWithChildren<MainProps>) => {
+  const swiperRef = useRef<SwiperRef | null>(null);
+
   return (
-    <Swiper {...rest} modules={[A11y]} slidesPerView={1}>
-      {eventDelegation === true ? (
+    <Swiper
+      {...rest}
+      ref={swiperRef}
+      modules={[A11y]}
+      slidesPerView={1}
+      onRealIndexChange={(e) => {
+        typeof window !== 'undefined' &&
+          window.dispatchEvent(
+            new CustomEvent(customEvents.SWIPER_REAL_INDEX_CHANGE, {
+              detail: e,
+            }),
+          );
+      }}
+    >
+      {hiddenNavigation === true ? (
         <OceanSwiper.Button hidden direction="PREV" />
       ) : (
         prevButton
       )}
       {children}
-      {eventDelegation === true ? (
+      {hiddenNavigation === true ? (
         <OceanSwiper.Button hidden direction="NEXT" />
       ) : (
         nextButton
       )}
     </Swiper>
-  );
-};
-
-interface SlideProps {
-  ids: string[];
-  childs: React.ReactNode[];
-}
-
-const Slide = ({ ids, childs }: SlideProps) => {
-  return (
-    <div>
-      {childs.map((child, index) => (
-        <SwiperSlide key={ids[index]}>{child}</SwiperSlide>
-      ))}
-    </div>
   );
 };
 
@@ -72,7 +85,6 @@ interface ButtonProps {
 
 const Button = ({ className, style, direction, hidden }: ButtonProps) => {
   const swiper = useSwiper();
-
   const handleClick = () => {
     if (direction === 'PREV') {
       swiper.slidePrev();
@@ -80,9 +92,22 @@ const Button = ({ className, style, direction, hidden }: ButtonProps) => {
       swiper.slideNext();
     }
   };
+
+  const { buttonRefs } = getStaticContext(ContextValueOceanSwiper);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (direction === 'PREV') {
+      buttonRefs.prev = buttonRef.current;
+    } else {
+      buttonRefs.next = buttonRef.current;
+    }
+  }, []);
+
   return (
     <button
       type="button"
+      ref={buttonRef}
       className={className}
       style={style}
       hidden={hidden}
@@ -91,9 +116,9 @@ const Button = ({ className, style, direction, hidden }: ButtonProps) => {
   );
 };
 
-OceanSwiper.Top = Top;
+OceanSwiper.Top = Tag;
 OceanSwiper.Main = Main;
-OceanSwiper.slide = Slide;
+OceanSwiper.Slide = SwiperSlide;
 OceanSwiper.Button = Button;
 
 export default OceanSwiper;

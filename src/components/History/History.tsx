@@ -1,10 +1,10 @@
 import React from 'react';
-import OceanSwiper from '../OceanSwiper/OceanSwiper';
+import HistorySwiper from '../HistorySwiper/HistorySwiper';
 
 const History = () => {
   return (
     <section>
-      <OceanSwiper />
+      <HistorySwiper />
     </section>
   );
 };
