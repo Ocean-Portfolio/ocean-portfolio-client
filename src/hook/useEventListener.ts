@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 const useEventListener = <T extends Event>(
-  target: EventTarget | undefined,
+  target: EventTarget | undefined | null,
   event: string,
   callback: (event: T) => void,
   options?: boolean | AddEventListenerOptions,
@@ -11,13 +11,13 @@ const useEventListener = <T extends Event>(
   };
 
   useEffect(() => {
-    typeof target !== 'undefined' &&
-      target.addEventListener(event, eventListener, options);
+    if (!target) return;
+
+    target.addEventListener(event, eventListener, options);
     return () => {
-      typeof target !== 'undefined' &&
-        target.removeEventListener(event, eventListener, options);
+      target.removeEventListener(event, eventListener, options);
     };
-  }, []);
+  }, [target]);
 };
 
 export default useEventListener;

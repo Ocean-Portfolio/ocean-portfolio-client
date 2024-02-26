@@ -1,34 +1,46 @@
 'use client';
 
-import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useRef } from 'react';
 import { A11y } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react';
 import { SwiperOptions } from 'swiper/types';
 import Tag from '@/composable/Tag/Tag';
 import { customEvents } from '@/const/customEvents';
 import { getStaticContext } from '@/utils/context/StaticContext';
-import {
-  ContextDispatchOceanSwiper,
-  ContextValueOceanSwiper,
-} from './OceanSwiper.context';
-
-// TODO : 이벤트 위임 구현과 UI 컨트롤 로직을 위한 컨텍스트 API 사용
+import { ContextValueOceanSwiper } from './OceanSwiper.context';
 
 const OceanSwiper = ({ children }: PropsWithChildren) => {
   return (
-    <ContextDispatchOceanSwiper.Provider value={{}}>
-      <ContextValueOceanSwiper.Provider
-        value={{
-          buttonRefs: {
-            prev: null,
-            next: null,
-          },
-        }}
-      >
-        <div>{children}</div>
-      </ContextValueOceanSwiper.Provider>
-    </ContextDispatchOceanSwiper.Provider>
+    <ContextValueOceanSwiper.Provider
+      value={{
+        swiperWrapperRef: {
+          current: null,
+        },
+        buttonRefs: {
+          prev: null,
+          next: null,
+        },
+      }}
+    >
+      <OceanSwiper.Wrap>{children}</OceanSwiper.Wrap>
+    </ContextValueOceanSwiper.Provider>
   );
+};
+
+const Wrap = ({ children }: PropsWithChildren) => {
+  const { swiperWrapperRef } = getStaticContext(ContextValueOceanSwiper);
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    swiperWrapperRef.current = divRef.current;
+    typeof window !== 'undefined' &&
+      window.dispatchEvent(
+        new CustomEvent(customEvents.SWIPER_INIT, {
+          detail: swiperWrapperRef.current,
+        }),
+      );
+  }, []);
+  return <div ref={divRef}>{children}</div>;
 };
 
 interface MainProps extends SwiperOptions {
@@ -44,6 +56,7 @@ const Main = ({
   nextButton,
   ...rest
 }: PropsWithChildren<MainProps>) => {
+  const { swiperWrapperRef } = getStaticContext(ContextValueOceanSwiper);
   const swiperRef = useRef<SwiperRef | null>(null);
 
   return (
@@ -53,8 +66,8 @@ const Main = ({
       modules={[A11y]}
       slidesPerView={1}
       onRealIndexChange={(e) => {
-        typeof window !== 'undefined' &&
-          window.dispatchEvent(
+        swiperWrapperRef.current &&
+          swiperWrapperRef.current.dispatchEvent(
             new CustomEvent(customEvents.SWIPER_REAL_INDEX_CHANGE, {
               detail: e,
             }),
@@ -116,6 +129,7 @@ const Button = ({ className, style, direction, hidden }: ButtonProps) => {
   );
 };
 
+OceanSwiper.Wrap = Wrap;
 OceanSwiper.Top = Tag;
 OceanSwiper.Main = Main;
 OceanSwiper.Slide = SwiperSlide;
