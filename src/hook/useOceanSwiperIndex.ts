@@ -7,7 +7,7 @@ export const useOceanSwiperIndex = () => {
   const [readIndex, setIndex] = useState(0);
 
   useEventListener<CustomEvent<Swiper>>(
-    window,
+    typeof window !== 'undefined' ? window : undefined,
     customEvents.SWIPER_REAL_INDEX_CHANGE,
     (e) => {
       setIndex(e.detail.realIndex);
