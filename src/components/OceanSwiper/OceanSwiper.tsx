@@ -40,10 +40,12 @@ const Wrap = ({ children }: PropsWithChildren) => {
         }),
       );
   }, []);
+
   return <div ref={divRef}>{children}</div>;
 };
 
 interface MainProps extends SwiperOptions {
+  className?: string;
   hiddenNavigation?: boolean;
   prevButton?: React.ReactNode;
   nextButton?: React.ReactNode;
