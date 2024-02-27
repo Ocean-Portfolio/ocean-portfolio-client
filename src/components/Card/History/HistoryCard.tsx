@@ -6,8 +6,11 @@ import StaticContextHistoryCard, {
   HistoryCardContextProps,
 } from './HistoryCard.context';
 import {
+  companyStyle,
   companyVariants,
+  periodStyle,
   periodVariants,
+  wrapStyle,
   wrapVariants,
 } from './HistoryCard.css';
 
@@ -34,7 +37,13 @@ const HistoryCard = ({
         period,
       }}
     >
-      <div className={classNames(className, wrapVariants[sizeToken])}>
+      <div
+        className={classNames(
+          className,
+          wrapStyle,
+          sizeToken && wrapVariants[sizeToken],
+        )}
+      >
         {children}
       </div>
     </StaticContextHistoryCard.Provider>
@@ -44,23 +53,11 @@ const HistoryCard = ({
 const Company = () => {
   const { sizeToken, companyName } = getStaticContext(StaticContextHistoryCard);
 
-  const getCompanyColor = (
-    sizeToken: 'LARGE' | 'SMALL',
-  ): UserColorThemeToken | GrayScaleToken => {
-    switch (sizeToken) {
-      case 'LARGE':
-        return 'gray-scale-06';
-
-      default:
-        return 'primary-variant';
-    }
-  };
-
   return (
     <p
       className={classNames(
-        companyVariants[sizeToken],
-        colorVariants[getCompanyColor(sizeToken)],
+        companyStyle,
+        sizeToken && companyVariants[sizeToken],
       )}
     >
       {companyName}
@@ -74,8 +71,8 @@ const Period = () => {
   return (
     <p
       className={classNames(
-        periodVariants[sizeToken],
-        colorVariants['gray-scale-05'],
+        periodStyle,
+        sizeToken && periodVariants[sizeToken],
       )}
     >
       {period}

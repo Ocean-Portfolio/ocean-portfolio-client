@@ -1,7 +1,7 @@
 import { createStaticContext } from '@/utils/context/StaticContext';
 
 export interface HistoryCardContextProps {
-  sizeToken: 'LARGE' | 'SMALL';
+  sizeToken?: 'LARGE' | 'SMALL';
   companyName: string;
   period: string;
 }

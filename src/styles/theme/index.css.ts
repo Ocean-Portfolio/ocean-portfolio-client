@@ -23,6 +23,11 @@ const ODSUserColorTokens = {
   'tertiary-variant': '',
 };
 
+export const ODSColorTokenVariables = {
+  ...ODSGrayScaleTokens,
+  ...ODSUserColorTokens,
+};
+
 export const ODSUserColorKeyList = Object.keys(ODSUserColorTokens) as Array<
   keyof typeof ODSUserColorTokens
 >;
