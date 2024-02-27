@@ -5,14 +5,17 @@ describe('HistoryCard 컴포넌트', () => {
   const mockProps: HistoryCardProps = {
     visible_status: 'VISIBLE',
     sizeToken: 'LARGE',
+    companyName: '회사명',
+    positionName: '직책명',
+    period: '기간',
   };
 
   it('visible_status가 NONE이면 렌더링되지 않아야 한다', () => {
     const { queryByText } = render(
       <HistoryCard {...mockProps} visible_status="NONE">
-        <HistoryCard.Company companyName="회사명" />
-        <HistoryCard.Position positionName="직책명" />
-        <HistoryCard.Period period="기간" />
+        <HistoryCard.Company />
+        <HistoryCard.Position />
+        <HistoryCard.Period />
       </HistoryCard>,
     );
 
@@ -24,9 +27,9 @@ describe('HistoryCard 컴포넌트', () => {
   it('적절한 props를 받아 하위 컴포넌트들이 올바르게 렌더링되어야 한다', () => {
     const { getByText } = render(
       <HistoryCard {...mockProps}>
-        <HistoryCard.Company companyName="회사명" />
-        <HistoryCard.Position positionName="직책명" />
-        <HistoryCard.Period period="기간" />
+        <HistoryCard.Company />
+        <HistoryCard.Position />
+        <HistoryCard.Period />
       </HistoryCard>,
     );
 

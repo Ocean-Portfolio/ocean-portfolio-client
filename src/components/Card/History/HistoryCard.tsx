@@ -2,17 +2,18 @@ import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
 import { colorVariants } from '@/styles/common/color.css';
 import { getStaticContext } from '@/utils/context/StaticContext';
-import StaticContextHistoryCard from './HistoryCard.context';
+import StaticContextHistoryCard, {
+  HistoryCardContextProps,
+} from './HistoryCard.context';
 import {
   companyVariants,
   periodVariants,
   wrapVariants,
 } from './HistoryCard.css';
 
-export interface HistoryCardProps {
+export interface HistoryCardProps extends HistoryCardContextProps {
   className?: string;
   visible_status: VisibleStatusToken;
-  sizeToken: 'LARGE' | 'SMALL';
 }
 
 const HistoryCard = ({
@@ -20,6 +21,9 @@ const HistoryCard = ({
   children,
   visible_status,
   sizeToken,
+  companyName,
+  positionName,
+  period,
 }: PropsWithChildren<HistoryCardProps>) => {
   if (visible_status === 'NONE') return null;
 
@@ -27,6 +31,9 @@ const HistoryCard = ({
     <StaticContextHistoryCard.Provider
       value={{
         sizeToken,
+        companyName,
+        positionName,
+        period,
       }}
     >
       <div className={classNames(className, wrapVariants[sizeToken])}>
@@ -36,12 +43,8 @@ const HistoryCard = ({
   );
 };
 
-interface CompanyProps {
-  companyName: string;
-}
-
-const Company = ({ companyName }: CompanyProps) => {
-  const { sizeToken } = getStaticContext(StaticContextHistoryCard);
+const Company = () => {
+  const { sizeToken, companyName } = getStaticContext(StaticContextHistoryCard);
 
   const getCompanyColor = (
     sizeToken: 'LARGE' | 'SMALL',
@@ -67,20 +70,14 @@ const Company = ({ companyName }: CompanyProps) => {
   );
 };
 
-interface PositionProps {
-  positionName: string;
-}
+const Position = () => {
+  const { positionName } = getStaticContext(StaticContextHistoryCard);
 
-const Position = ({ positionName }: PositionProps) => {
   return <p>{positionName}</p>;
 };
 
-interface PeriodProps {
-  period: string;
-}
-
-const Period = ({ period }: PeriodProps) => {
-  const { sizeToken } = getStaticContext(StaticContextHistoryCard);
+const Period = () => {
+  const { sizeToken, period } = getStaticContext(StaticContextHistoryCard);
 
   return (
     <p

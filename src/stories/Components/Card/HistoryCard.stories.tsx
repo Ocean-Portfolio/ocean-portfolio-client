@@ -21,8 +21,8 @@ const meta: Meta<typeof HistoryCard> = {
 const Template = (args: HistoryCardProps) => {
   return (
     <HistoryCard {...args}>
-      <HistoryCard.Company companyName="다이닝 코드" />
-      <HistoryCard.Period period="2022.04 ~ 2023.06" />
+      <HistoryCard.Company />
+      <HistoryCard.Period />
     </HistoryCard>
   );
 };
@@ -33,6 +33,9 @@ export const Large: Story = {
   args: {
     visible_status: 'VISIBLE',
     sizeToken: 'LARGE',
+    companyName: '다이닝 코드',
+    positionName: 'Frontend Developer',
+    period: '2022.04 ~ 2023.06',
   },
   render: Template,
 };
@@ -41,6 +44,9 @@ export const Small: Story = {
   args: {
     visible_status: 'VISIBLE',
     sizeToken: 'SMALL',
+    companyName: '다이닝 코드',
+    positionName: 'Frontend Developer',
+    period: '2022.04 ~ 2023.06',
   },
   render: Template,
 };
