@@ -6,7 +6,6 @@ describe('HistoryCard 컴포넌트', () => {
     visible_status: 'VISIBLE',
     sizeToken: 'LARGE',
     companyName: '회사명',
-    positionName: '직책명',
     period: '기간',
   };
 
@@ -14,7 +13,6 @@ describe('HistoryCard 컴포넌트', () => {
     const { queryByText } = render(
       <HistoryCard {...mockProps} visible_status="NONE">
         <HistoryCard.Company />
-        <HistoryCard.Position />
         <HistoryCard.Period />
       </HistoryCard>,
     );
@@ -28,7 +26,6 @@ describe('HistoryCard 컴포넌트', () => {
     const { getByText } = render(
       <HistoryCard {...mockProps}>
         <HistoryCard.Company />
-        <HistoryCard.Position />
         <HistoryCard.Period />
       </HistoryCard>,
     );

@@ -22,7 +22,6 @@ const HistoryCard = ({
   visible_status,
   sizeToken,
   companyName,
-  positionName,
   period,
 }: PropsWithChildren<HistoryCardProps>) => {
   if (visible_status === 'NONE') return null;
@@ -32,7 +31,6 @@ const HistoryCard = ({
       value={{
         sizeToken,
         companyName,
-        positionName,
         period,
       }}
     >
@@ -70,12 +68,6 @@ const Company = () => {
   );
 };
 
-const Position = () => {
-  const { positionName } = getStaticContext(StaticContextHistoryCard);
-
-  return <p>{positionName}</p>;
-};
-
 const Period = () => {
   const { sizeToken, period } = getStaticContext(StaticContextHistoryCard);
 
@@ -92,7 +84,6 @@ const Period = () => {
 };
 
 HistoryCard.Company = Company;
-HistoryCard.Position = Position;
 HistoryCard.Period = Period;
 
 export default HistoryCard;
