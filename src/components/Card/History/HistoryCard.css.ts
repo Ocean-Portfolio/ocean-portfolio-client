@@ -9,21 +9,13 @@ import {
   userColorThemeVars,
 } from '@/styles/theme/index.css';
 
-const wrapCommonStyle = style({
-  display: 'inline-flex',
-  flexDirection: 'column',
-  backdropFilter: 'blur(8px)',
-});
-
 export const wrapStyle = style([
-  wrapCommonStyle,
   {
     gap: '0.5rem',
     width: '19.375rem',
     height: '7rem',
     padding: '1.5rem 2.15625rem',
     borderRadius: '0.75rem',
-    backgroundColor: 'rgba(248, 252, 253, 0.75)',
 
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-xl']]: {
@@ -39,7 +31,6 @@ export const wrapStyle = style([
         width: '100%',
         padding: '0.75rem',
         borderRadius: '0.5rem',
-        backgroundColor: 'rgba(248, 252, 253, 0.75)',
       },
     },
   },
@@ -47,24 +38,20 @@ export const wrapStyle = style([
 
 export const wrapVariants = styleVariants({
   LARGE: [
-    wrapCommonStyle,
     {
       gap: '0.5rem',
       width: '19.375rem',
       height: '7rem',
       padding: '1.5rem 2.15625rem',
       borderRadius: '0.75rem',
-      backgroundColor: 'rgba(248, 252, 253, 0.75)',
     },
   ],
   SMALL: [
-    wrapCommonStyle,
     {
       gap: '0.25rem',
       width: '100%',
       padding: '0.75rem',
       borderRadius: '0.5rem',
-      backgroundColor: 'rgba(248, 252, 253, 0.75)',
     },
   ],
 });

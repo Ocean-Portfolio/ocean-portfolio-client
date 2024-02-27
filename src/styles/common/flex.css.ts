@@ -11,3 +11,8 @@ export const inlineFlexCenter = style({
   alignItems: 'center',
   justifyContent: 'center',
 });
+
+export const flexColumn = style({
+  display: 'flex',
+  flexDirection: 'column',
+});

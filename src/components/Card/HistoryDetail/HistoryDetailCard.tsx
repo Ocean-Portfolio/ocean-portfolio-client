@@ -3,15 +3,31 @@ import React, { PropsWithChildren } from 'react';
 import { colorVariants } from '@/styles/common/color.css';
 import { fontVariants } from '@/styles/common/font.css';
 import { getStaticContext } from '@/utils/context/StaticContext';
-import StaticContextHistoryDetailCard from './HistoryDetailCard.context';
-import { titleVariants, wrapVariants } from './HistoryDetailCard.css';
+import CommonCard from '../Common/CommonCard';
+import StaticContextHistoryDetailCard, {
+  HistoryDetailContextProps,
+} from './HistoryDetailCard.context';
+import {
+  contentSelector,
+  contentStyle,
+  contentVariants,
+  headStyle,
+  headVariants,
+  periodStyle,
+  periodVariants,
+  positionStyle,
+  positionVariants,
+  titleStyle,
+  titleVariants,
+  wrapStyle,
+  wrapVariants,
+} from './HistoryDetailCard.css';
 
-// 스토리북, 테스트코드 추가해야함
+// TODO : 스토리북, 테스트코드 추가해야함
 
-interface HistoryDetailCardProps {
+interface Props extends HistoryDetailContextProps {
   className?: string;
   visible_status: VisibleStatusToken;
-  sizeToken: HistoryItemCardSizeToken;
 }
 
 const HistoryDetailCard = ({
@@ -19,68 +35,88 @@ const HistoryDetailCard = ({
   children,
   visible_status,
   sizeToken,
-}: PropsWithChildren<HistoryDetailCardProps>) => {
+  title,
+  period,
+  position,
+  content,
+}: PropsWithChildren<Props>) => {
   if (visible_status === 'NONE') return null;
 
   return (
     <StaticContextHistoryDetailCard.Provider
       value={{
         sizeToken,
+        title,
+        period,
+        position,
+        content,
       }}
     >
-      <article className={classNames(className, wrapVariants[sizeToken])}>
+      <CommonCard
+        className={classNames(
+          className,
+          sizeToken ? wrapVariants[sizeToken] : wrapStyle,
+        )}
+        bgColorToken="GRAY"
+      >
         {children}
-      </article>
+      </CommonCard>
     </StaticContextHistoryDetailCard.Provider>
   );
 };
 
-interface TitleProps {
-  title: string;
-  period: string;
-}
-
-const Title = ({ title, period }: TitleProps) => {
-  const { sizeToken } = getStaticContext(StaticContextHistoryDetailCard);
+const Head = () => {
+  const { sizeToken, title, period, position } = getStaticContext(
+    StaticContextHistoryDetailCard,
+  );
 
   return (
-    <div className={classNames(titleVariants[sizeToken])}>
+    <div
+      className={classNames(sizeToken ? headVariants[sizeToken] : headStyle)}
+    >
       <h3
         className={classNames(
-          colorVariants['gray-scale-06'],
-          fontVariants['GNB-l-bold'],
+          sizeToken ? titleVariants[sizeToken] : titleStyle,
         )}
       >
         {title}
       </h3>
       <p
         className={classNames(
-          colorVariants['primary-variant'],
-          fontVariants['title-s-semibold'],
+          sizeToken ? periodVariants[sizeToken] : periodStyle,
         )}
       >
         {period}
+      </p>
+      <p
+        className={classNames(
+          sizeToken ? positionVariants[sizeToken] : positionStyle,
+        )}
+      >
+        {position}
       </p>
     </div>
   );
 };
 
-interface DescriptionProps {
-  content: string;
-}
-
-const Description = ({ content }: DescriptionProps) => {
-  const { sizeToken } = getStaticContext(StaticContextHistoryDetailCard);
-
-  // fontVariants['display-s-medium'],
-  // 세부 디자인 결정되면 사이즈별 타이포그래피 적용 필요
+const Content = () => {
+  const { sizeToken, content } = getStaticContext(
+    StaticContextHistoryDetailCard,
+  );
 
   return (
-    <pre className={classNames(colorVariants['gray-scale-06'])}>{content}</pre>
+    <pre
+      className={classNames(
+        sizeToken ? contentVariants[sizeToken] : contentStyle,
+        contentSelector,
+      )}
+    >
+      {content}
+    </pre>
   );
 };
 
-HistoryDetailCard.Title = Title;
-HistoryDetailCard.Description = Description;
+HistoryDetailCard.Head = Head;
+HistoryDetailCard.Content = Content;
 
 export default HistoryDetailCard;

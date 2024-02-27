@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
-import { colorVariants } from '@/styles/common/color.css';
 import { getStaticContext } from '@/utils/context/StaticContext';
+import CommonCard from '../Common/CommonCard';
 import StaticContextHistoryCard, {
   HistoryCardContextProps,
 } from './HistoryCard.context';
@@ -37,15 +37,15 @@ const HistoryCard = ({
         period,
       }}
     >
-      <div
+      <CommonCard
         className={classNames(
           className,
-          wrapStyle,
-          sizeToken && wrapVariants[sizeToken],
+          sizeToken ? wrapVariants[sizeToken] : wrapStyle,
         )}
+        bgColorToken="GRAY"
       >
         {children}
-      </div>
+      </CommonCard>
     </StaticContextHistoryCard.Provider>
   );
 };
@@ -56,8 +56,7 @@ const Company = () => {
   return (
     <p
       className={classNames(
-        companyStyle,
-        sizeToken && companyVariants[sizeToken],
+        sizeToken ? companyVariants[sizeToken] : companyStyle,
       )}
     >
       {companyName}
@@ -71,8 +70,7 @@ const Period = () => {
   return (
     <p
       className={classNames(
-        periodStyle,
-        sizeToken && periodVariants[sizeToken],
+        sizeToken ? periodVariants[sizeToken] : periodStyle,
       )}
     >
       {period}
