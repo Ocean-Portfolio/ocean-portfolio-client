@@ -19,12 +19,21 @@ export const wrapStyle = style([
   wrapCommonStyle,
   {
     gap: '0.5rem',
-    width: '19.25rem',
-    padding: '1.5rem',
+    width: '19.375rem',
+    height: '7rem',
+    padding: '1.5rem 2.15625rem',
     borderRadius: '0.75rem',
-    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+    backgroundColor: 'rgba(248, 252, 253, 0.75)',
 
     '@media': {
+      [ODSBreakpointTokenVariables['breakpoint-xl']]: {
+        width: '15rem',
+        height: '5.75rem',
+        padding: '0.875rem 1.5rem',
+      },
+      [ODSBreakpointTokenVariables['breakpoint-m']]: {
+        width: '12.5rem',
+      },
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         gap: '0.25rem',
         width: '100%',
@@ -41,10 +50,11 @@ export const wrapVariants = styleVariants({
     wrapCommonStyle,
     {
       gap: '0.5rem',
-      width: '19.25rem',
-      padding: '1.5rem',
+      width: '19.375rem',
+      height: '7rem',
+      padding: '1.5rem 2.15625rem',
       borderRadius: '0.75rem',
-      backgroundColor: 'rgba(255, 255, 255, 0.75)',
+      backgroundColor: 'rgba(248, 252, 253, 0.75)',
     },
   ],
   SMALL: [
@@ -60,13 +70,13 @@ export const wrapVariants = styleVariants({
 });
 
 export const companyStyle = style([
-  fontVariants['title-l-bold'],
+  fontVariants['title-s-semibold'],
   textPreStyle,
-  colorVariants['gray-scale-06'],
+  colorVariants['tertiary-variant'],
   {
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
-        ...ODSTextTokenVariables['paragraph-l-bold'],
+        ...ODSTextTokenVariables['paragraph-m-bold'],
         color: userColorThemeVars.token['primary-variant'],
       },
     },
@@ -75,19 +85,19 @@ export const companyStyle = style([
 
 export const companyVariants = styleVariants({
   LARGE: [
-    fontVariants['title-l-bold'],
+    fontVariants['title-s-semibold'],
     textPreStyle,
-    colorVariants['gray-scale-06'],
+    colorVariants['tertiary-variant'],
   ],
   SMALL: [
-    fontVariants['paragraph-l-bold'],
+    fontVariants['paragraph-m-bold'],
     textPreStyle,
     colorVariants['primary-variant'],
   ],
 });
 
 export const periodStyle = style([
-  fontVariants['display-s-medium'],
+  fontVariants['paragraph-m-semibold'],
   textPreStyle,
   colorVariants['gray-scale-05'],
   {
