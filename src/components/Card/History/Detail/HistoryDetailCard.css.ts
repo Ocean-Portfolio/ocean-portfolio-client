@@ -179,3 +179,11 @@ globalStyle(`li::marker`, {
     },
   },
 });
+
+globalStyle(`${contentVariants.SMALL} > ul > li::marker`, {
+  ...ODSTextTokenVariables['paragraph-s-regular'],
+});
+
+globalStyle(`${contentVariants.SMALL} > ol > li::marker`, {
+  ...ODSTextTokenVariables['paragraph-s-regular'],
+});
