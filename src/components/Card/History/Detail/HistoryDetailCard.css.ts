@@ -126,41 +126,53 @@ export const positionVariants = styleVariants({
 });
 
 export const contentStyle = style([
-  flexColumn,
   textPreStyle,
+  fontVariants['paragraph-m-medium'],
   {
-    gap: '0.75rem',
+    color: commonColorThemeVars.token['gray-scale-06'],
+
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
-        gap: '0.5rem',
+        ...ODSTextTokenVariables['paragraph-s-regular'],
       },
     },
   },
 ]);
 
 export const contentVariants = styleVariants({
-  LARGE: [
-    flexColumn,
-    textPreStyle,
-    {
-      gap: '0.75rem',
-    },
-  ],
-  SMALL: [
-    flexColumn,
-    textPreStyle,
-    {
-      gap: '0.5rem',
-    },
-  ],
+  LARGE: [textPreStyle, fontVariants['paragraph-m-medium']],
+  SMALL: [textPreStyle, fontVariants['paragraph-s-regular']],
 });
 
 export const contentSelector = style({});
 
-globalStyle(`.${contentSelector} > li`, {
+globalStyle(`.${contentSelector} > ul`, {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.75rem',
+  listStylePosition: 'inside',
+  '@media': {
+    [ODSBreakpointTokenVariables['breakpoint-s']]: {
+      gap: '0.5rem',
+    },
+  },
+});
+
+globalStyle(`.${contentSelector} > ol`, {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.75rem',
+  listStylePosition: 'inside',
+  '@media': {
+    [ODSBreakpointTokenVariables['breakpoint-s']]: {
+      gap: '0.5rem',
+    },
+  },
+});
+
+globalStyle(`li::marker`, {
   color: commonColorThemeVars.token['gray-scale-06'],
   ...ODSTextTokenVariables['paragraph-m-medium'],
-
   '@media': {
     [ODSBreakpointTokenVariables['breakpoint-s']]: {
       ...ODSTextTokenVariables['paragraph-s-regular'],

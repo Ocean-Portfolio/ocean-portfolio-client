@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
+import MarkdownViewer from '@/components/MarkdownViewer/MarkdownViewer';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import CommonCard from '../../Common/CommonCard';
 import StaticContextHistoryDetailCard, {
@@ -23,9 +24,9 @@ import {
 
 // TODO : 스토리북, 테스트코드 추가해야함
 
-interface Props extends HistoryDetailContextProps {
+export interface HistoryDetailCardProps extends HistoryDetailContextProps {
   className?: string;
-  visible_status: VisibleStatusToken;
+  visible_status?: VisibleStatusToken;
 }
 
 const HistoryDetailCard = ({
@@ -37,7 +38,7 @@ const HistoryDetailCard = ({
   period,
   position,
   content,
-}: PropsWithChildren<Props>) => {
+}: PropsWithChildren<HistoryDetailCardProps>) => {
   if (visible_status === 'NONE') return null;
 
   return (
@@ -103,14 +104,13 @@ const Content = () => {
   );
 
   return (
-    <pre
+    <MarkdownViewer
       className={classNames(
         sizeToken ? contentVariants[sizeToken] : contentStyle,
         contentSelector,
       )}
-    >
-      {content}
-    </pre>
+      value={content}
+    />
   );
 };
 
