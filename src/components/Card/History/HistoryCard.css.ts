@@ -13,14 +13,12 @@ export const wrapStyle = style([
   {
     gap: '0.5rem',
     width: '19.375rem',
-    height: '7rem',
     padding: '1.5rem 2.15625rem',
     borderRadius: '0.75rem',
 
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-xl']]: {
         width: '15rem',
-        height: '5.75rem',
         padding: '0.875rem 1.5rem',
       },
       [ODSBreakpointTokenVariables['breakpoint-m']]: {
@@ -41,7 +39,6 @@ export const wrapVariants = styleVariants({
     {
       gap: '0.5rem',
       width: '19.375rem',
-      height: '7rem',
       padding: '1.5rem 2.15625rem',
       borderRadius: '0.75rem',
     },
@@ -49,7 +46,7 @@ export const wrapVariants = styleVariants({
   SMALL: [
     {
       gap: '0.25rem',
-      width: '100%',
+      width: 'auto',
       padding: '0.75rem',
       borderRadius: '0.5rem',
     },
