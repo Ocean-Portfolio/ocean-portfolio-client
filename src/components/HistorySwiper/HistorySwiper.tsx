@@ -3,8 +3,8 @@
 import 'swiper/css';
 
 import React from 'react';
+import HistoryDetailCard from '../Card/History/Detail/HistoryDetailCard';
 import HistoryCard from '../Card/History/HistoryCard';
-import HistoryDetailCard from '../Card/HistoryDetail/HistoryDetailCard';
 import HistorySlideButton from '../HistorySlideButton/HistorySlideButton';
 import HistoryTab from '../HistoryTab/HistoryTab';
 import OceanSwiper from '../OceanSwiper/OceanSwiper';

@@ -13,6 +13,10 @@ const ODSGrayScaleTokens = {
   'gray-scale-06': 'gray-scale-06',
 };
 
+const ODSColorPaletteTokens = {
+  'sky-cyan-100': 'sky-cyan-100',
+};
+
 const ODSUserColorTokens = {
   primary: '',
   'primary-variant': '',
@@ -25,6 +29,7 @@ const ODSUserColorTokens = {
 
 export const ODSColorTokenVariables = {
   ...ODSGrayScaleTokens,
+  ...ODSColorPaletteTokens,
   ...ODSUserColorTokens,
 };
 
@@ -34,6 +39,10 @@ export const ODSUserColorKeyList = Object.keys(ODSUserColorTokens) as Array<
 
 export const commonColorThemeVars = createGlobalThemeContract({
   token: ODSGrayScaleTokens,
+});
+
+export const colorPaletteThemeVars = createGlobalThemeContract({
+  token: ODSColorPaletteTokens,
 });
 
 export const userColorThemeVars = createThemeContract({

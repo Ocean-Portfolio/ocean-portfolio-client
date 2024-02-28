@@ -12,6 +12,6 @@ export const bgColorVariants = styleVariants({
     backgroundColor: 'rgba(248, 252, 253, 0.75)',
   },
   USER: {
-    backgroundColor: userColorThemeVars.token['tertiary-variant'],
+    backgroundColor: userColorThemeVars.token['primary-variant'],
   },
 });

@@ -1,5 +1,6 @@
 import '@/styles/global.css';
 import '@/styles/theme/grayScale.css';
+import '@/styles/theme/colorPalette.css';
 import '@/styles/storybook.css';
 import type { Preview } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';

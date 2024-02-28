@@ -19,6 +19,12 @@ type GrayScaleToken =
   | 'gray-scale-05'
   | 'gray-scale-06';
 
+interface ColorPaletteTokenInterface {
+  'sky-cyan-100': string;
+}
+
+type ColorPaletteToken = 'sky-cyan-100';
+
 interface UserColorThemeTokenInterface {
   primary: string;
   'primary-variant': string;

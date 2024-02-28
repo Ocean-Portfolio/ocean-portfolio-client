@@ -1,5 +1,9 @@
 import { styleVariants } from '@vanilla-extract/css';
-import { commonColorThemeVars, userColorThemeVars } from '../theme/index.css';
+import {
+  colorPaletteThemeVars,
+  commonColorThemeVars,
+  userColorThemeVars,
+} from '../theme/index.css';
 
 export const colorVariants = styleVariants({
   transparent: {
@@ -25,6 +29,9 @@ export const colorVariants = styleVariants({
   },
   'gray-scale-06': {
     color: commonColorThemeVars.token['gray-scale-06'],
+  },
+  'sky-cyan-100': {
+    color: colorPaletteThemeVars.token['sky-cyan-100'],
   },
   primary: {
     color: userColorThemeVars.token.primary,
@@ -73,6 +80,9 @@ export const backgroundColorVariants = styleVariants({
   },
   'gray-scale-06': {
     backgroundColor: commonColorThemeVars.token['gray-scale-06'],
+  },
+  'sky-cyan-100': {
+    backgroundColor: colorPaletteThemeVars.token['sky-cyan-100'],
   },
   primary: {
     backgroundColor: userColorThemeVars.token.primary,

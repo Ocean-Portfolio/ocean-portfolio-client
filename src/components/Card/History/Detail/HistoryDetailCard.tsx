@@ -1,9 +1,7 @@
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
-import { colorVariants } from '@/styles/common/color.css';
-import { fontVariants } from '@/styles/common/font.css';
 import { getStaticContext } from '@/utils/context/StaticContext';
-import CommonCard from '../Common/CommonCard';
+import CommonCard from '../../Common/CommonCard';
 import StaticContextHistoryDetailCard, {
   HistoryDetailContextProps,
 } from './HistoryDetailCard.context';

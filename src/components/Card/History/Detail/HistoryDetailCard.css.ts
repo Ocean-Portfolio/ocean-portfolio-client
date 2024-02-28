@@ -4,6 +4,7 @@ import { ODSTextTokenVariables } from '@/const/fonts';
 import { colorVariants } from '@/styles/common/color.css';
 import { flexColumn } from '@/styles/common/flex.css';
 import { fontVariants } from '@/styles/common/font.css';
+import { textPreStyle } from '@/styles/common/text.css';
 import { commonColorThemeVars } from '@/styles/theme/index.css';
 
 export const wrapStyle = style([
@@ -126,6 +127,7 @@ export const positionVariants = styleVariants({
 
 export const contentStyle = style([
   flexColumn,
+  textPreStyle,
   {
     gap: '0.75rem',
     '@media': {
@@ -139,12 +141,14 @@ export const contentStyle = style([
 export const contentVariants = styleVariants({
   LARGE: [
     flexColumn,
+    textPreStyle,
     {
       gap: '0.75rem',
     },
   ],
   SMALL: [
     flexColumn,
+    textPreStyle,
     {
       gap: '0.5rem',
     },

@@ -1,5 +1,6 @@
 import '@/styles/global.css';
 import '@/styles/theme/grayScale.css';
+import '@/styles/theme/colorPalette.css';
 import type { Metadata } from 'next';
 import { ApolloWrapper } from '@/apollo/apollo-wrapper';
 import suit from '@/suit';
