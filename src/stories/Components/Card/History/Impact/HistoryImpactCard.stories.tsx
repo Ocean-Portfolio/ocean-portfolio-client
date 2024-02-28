@@ -38,4 +38,24 @@ export const Small: Story = {
   },
 };
 
+export const PercentLarge: Story = {
+  args: {
+    sizeToken: 'LARGE',
+    before: '70',
+    after: '120',
+    unitWord: '%',
+    content: '웹 리뉴얼을 통한\nMAU 지수 상승',
+  },
+};
+
+export const PercentSmall: Story = {
+  args: {
+    sizeToken: 'SMALL',
+    before: '70',
+    after: '9999',
+    unitWord: '%',
+    content: '웹 리뉴얼을 통한\nMAU 지수 상승',
+  },
+};
+
 export default meta;
