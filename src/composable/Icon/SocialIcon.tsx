@@ -22,7 +22,9 @@ const SocialIcon = ({
     state,
   });
 
-  const path = iconAssetEndpoint(company);
+  const path = iconAssetEndpoint({
+    iconName: company,
+  });
 
   return (
     <Image

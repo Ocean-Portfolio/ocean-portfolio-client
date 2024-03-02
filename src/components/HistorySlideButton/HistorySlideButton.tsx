@@ -16,6 +16,7 @@ const HistorySlideButton = ({ direction }: Props) => {
       <CommonIcon
         className={iconVariants[direction]}
         variant="LEFT_ARROW_SECONDARY_VARIANT"
+        userToken="sungyeon"
         width={24}
         height={24}
       />

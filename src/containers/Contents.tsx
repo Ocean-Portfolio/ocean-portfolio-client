@@ -1,5 +1,5 @@
 import React from 'react';
-import { StaticContextPageInfo } from '@/app/sungyeon/context';
+import { StaticContextPageInfo } from '@/app/context';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import ContactContainer from './Contact';
 import HistoryContainer from './History';

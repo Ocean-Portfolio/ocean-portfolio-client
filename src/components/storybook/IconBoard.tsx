@@ -36,12 +36,19 @@ const IconBoard = () => {
       <Grid
         className={backgroundColorVariants['gray-scale-01']}
         autoFlow="column"
-        templateColumns="repeat(7, 2rem)"
+        autoColumns="auto"
         style={gridStyle}
       >
         <IconBoard.Common />
       </Grid>
-
+      <Grid
+        className={backgroundColorVariants['gray-scale-03']}
+        autoFlow="column"
+        autoColumns="auto"
+        style={gridStyle}
+      >
+        <IconBoard.Common2 />
+      </Grid>
       <Text
         as="h1"
         typoToken="display-m-bold"
@@ -260,11 +267,71 @@ const Common = ({ format }: CommonProps) => {
         format={format}
       />
       <CommonIcon variant="UP_ARROW" width={32} height={32} format={format} />
+      <CommonIcon variant="PLUS" width={32} height={32} format={format} />
+    </>
+  );
+};
+
+const Common2 = ({ format }: CommonProps) => {
+  return (
+    <>
+      <CommonIcon
+        variant="RIGHT_TAIL_ARROW"
+        width={36}
+        height={36}
+        format={format}
+      />
+      <CommonIcon
+        variant="RIGHT_TAIL_ARROW_MEDIUM"
+        width={48}
+        height={48}
+        format={format}
+      />
+      <CommonIcon
+        variant="RIGHT_TAIL_ARROW_SECONDARY_VARIANT"
+        userToken="sungyeon"
+        width={36}
+        height={36}
+        format={format}
+      />
+      <CommonIcon
+        variant="LEFT_ARROW_SECONDARY_VARIANT"
+        userToken="sungyeon"
+        width={36}
+        height={36}
+        format={format}
+      />
+      <CommonIcon variant="MEATBALL" width={24} height={24} format={format} />
+      <CommonIcon
+        variant="PAGINATION_SELECTED_SKY_BLUE_LARGE"
+        width={44}
+        height={44}
+        format={format}
+      />
+      <CommonIcon
+        variant="PAGINATION_SELECTED_SKY_BLUE_MEDIUM"
+        width={40}
+        height={40}
+        format={format}
+      />
+      <CommonIcon
+        variant="PAGINATION_UNSELECTED_SKY_BLUE_LARGE"
+        width={24}
+        height={24}
+        format={format}
+      />
+      <CommonIcon
+        variant="PAGINATION_UNSELECTED_SKY_BLUE_MEDIUM"
+        width={16}
+        height={16}
+        format={format}
+      />
     </>
   );
 };
 
 IconBoard.Social = Social;
 IconBoard.Common = Common;
+IconBoard.Common2 = Common2;
 
 export default IconBoard;

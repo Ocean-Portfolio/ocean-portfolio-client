@@ -279,6 +279,7 @@ const ButtonBox = (props: ButtonBoxProps) => {
       <CommonIcon
         className={iconVariants[direction]}
         variant="LEFT_ARROW_SECONDARY_VARIANT"
+        userToken="sungyeon"
         format="png"
         width={40}
         height={40}

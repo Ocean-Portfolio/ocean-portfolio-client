@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
+import { StaticContextPageInfo } from '@/app/context';
 import CommonIcon from '@/composable/Icon/CommonIcon';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import calcRemToPxNumber from '@/utils/style/calcRemToPxNumber';
@@ -59,6 +60,7 @@ const HistoryImpactCard = ({
 };
 
 const Headline = () => {
+  const { userInfo } = getStaticContext(StaticContextPageInfo);
   const { sizeToken, before, after, unitWord } = getStaticContext(
     StaticContextHistoryImpactCard,
   );
@@ -77,6 +79,7 @@ const Headline = () => {
           sizeToken ? iconStyleVariants[sizeToken] : iconStyle,
         )}
         variant="LEFT_ARROW_SECONDARY_VARIANT"
+        userToken={userInfo.token}
         width={calcRemToPxNumber('1.5rem')}
         height={calcRemToPxNumber('1.5rem')}
       />

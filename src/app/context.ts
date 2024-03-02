@@ -1,6 +1,7 @@
 import { createStaticContext } from '@/utils/context/StaticContext';
 
 export interface UserInfoData {
+  token: UserNameToken;
   id: string;
   name: string;
   email: string;
@@ -22,6 +23,7 @@ interface PageInfoData {
 
 export const StaticContextPageInfo = createStaticContext<PageInfoData>({
   userInfo: {
+    token: 'sungyeon',
     id: '',
     name: '',
     email: '',

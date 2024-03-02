@@ -7,7 +7,7 @@ import { getSectionsByUserIdQuery } from '@/helper/getSectionByUserIdQuery';
 import { getUserByNameQuery } from '@/helper/getUserByNameQuery';
 import { backgroundColorVariants } from '@/styles/common/color.css';
 import { sungyeonColorTheme } from '@/styles/theme/sungyeon.css';
-import { StaticContextPageInfo } from './context';
+import { StaticContextPageInfo } from '../context';
 
 const Sungyeon = async () => {
   const apolloClient = getClient();
@@ -24,6 +24,7 @@ const Sungyeon = async () => {
     <StaticContextPageInfo.Provider
       value={{
         userInfo: {
+          token: 'sungyeon',
           id: getUserByName.id,
           name: getUserByName.name,
           email: getUserByName.email,
