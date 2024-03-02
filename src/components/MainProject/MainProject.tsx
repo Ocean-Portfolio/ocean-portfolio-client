@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import Button from '@/composable/Button/Button';
+import LinkedButton from '@/composable/LinkedButton/LinkedButton';
 import Mock from '@/composable/Mock/Mock';
 import {
   backgroundGradientVariants,
@@ -44,9 +44,9 @@ const MainProject = ({ src, device, title, period, description }: Props) => {
         <p className={titleStyle}>{title}</p>
         <p className={periodStyle}>{period}</p>
         <p className={descriptionStyle}>{description}</p>
-        <Button className={buttonStyle} as="button" size="M">
+        <LinkedButton className={buttonStyle} size="M">
           더보기
-        </Button>
+        </LinkedButton>
       </div>
     </article>
   );

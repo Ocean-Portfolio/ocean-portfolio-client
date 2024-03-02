@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
-import Button from '@/composable/Button/Button';
 import Clipboard from '@/composable/Clipboard/Clipboard';
+import LinkedButton from '@/composable/LinkedButton/LinkedButton';
 import SectionTitle from '@/composable/SectionTitle/SectionTitle';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import { ContactSectionProps, StaticContextContact } from './Contact.context';
@@ -55,9 +55,9 @@ const Description = () => {
 const Send = () => {
   const { data } = getStaticContext(StaticContextContact);
   return (
-    <Button as="a" className={sendStyle} size="L" href={`mailto:${data.email}`}>
+    <LinkedButton className={sendStyle} size="L" href={`mailto:${data.email}`}>
       메일 보내기
-    </Button>
+    </LinkedButton>
   );
 };
 

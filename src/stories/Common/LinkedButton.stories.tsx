@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Button from '@/composable/Button/Button';
+import LinkedButton from '@/composable/LinkedButton/LinkedButton';
 import { backgroundColorVariants } from '@/styles/common/color.css';
 
-const meta: Meta<typeof Button> = {
-  title: 'Common/Button',
-  component: Button,
+const meta: Meta<typeof LinkedButton> = {
+  title: 'Common/Button/LinkedButton',
+  component: LinkedButton,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },
   argTypes: {
@@ -35,7 +35,7 @@ const meta: Meta<typeof Button> = {
   ],
 };
 
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof LinkedButton>;
 
 export const Default_M: Story = {
   args: {

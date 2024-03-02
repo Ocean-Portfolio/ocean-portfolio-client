@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
-import Button from '@/composable/Button/Button';
 import Grid from '@/composable/Grid/Grid';
+import LinkedButton from '@/composable/LinkedButton/LinkedButton';
 import Text from '@/composable/Text/Text';
 import {
   backgroundColorVariants,
@@ -23,7 +23,7 @@ const buttonStates: {
   { size: 'L', status: 'PRESS', text: '메일 보내기' },
 ];
 
-const ButtonBoard = () => {
+const LinkedButtonBoard = () => {
   // 각 버튼 상태에 대한 버튼 렌더링
   return (
     <Grid
@@ -79,18 +79,17 @@ const ButtonBoard = () => {
         Press
       </Text>
       {buttonStates.map(({ size, status, text }) => (
-        <Button
-          as="button"
+        <LinkedButton
           key={`${size}-${status}`}
           size={size}
           status={status}
           width={size === 'M' ? '6.875rem' : '20rem'}
         >
           {text}
-        </Button>
+        </LinkedButton>
       ))}
     </Grid>
   );
 };
 
-export default ButtonBoard;
+export default LinkedButtonBoard;

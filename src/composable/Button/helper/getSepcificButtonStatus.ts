@@ -1,4 +1,4 @@
-import { buttonStatusVariants } from '../Button.css';
+import { buttonStatusVariants } from '@/composable/LinkedButton/LinkedButton.css';
 
 export const getSpecificButtonStatus =
   process.env.STORYBOOK || process.env.NODE_ENV === 'test'
