@@ -106,9 +106,6 @@ const Point = ({ sizeToken, idx, isSelected, onClick }: PointProps) => {
         {isSelected && (
           <CommonIcon
             className={iconStyle}
-            style={{
-              animation: `${globalFadeIn} 0.2s ease-in-out`,
-            }}
             variant={selectedIcon}
             width={selectedSize}
             height={selectedSize}

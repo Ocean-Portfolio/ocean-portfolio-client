@@ -1,5 +1,6 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
+import { globalFadeIn } from '@/styles/animation/fade.css';
 import { backgroundColorVariants } from '@/styles/common/color.css';
 import { flexCenter } from '@/styles/common/flex.css';
 
@@ -190,4 +191,5 @@ export const iconStyle = style({
   position: 'absolute',
   userSelect: 'none',
   pointerEvents: 'none',
+  animation: `${globalFadeIn} 0.2s ease-in-out`,
 });
