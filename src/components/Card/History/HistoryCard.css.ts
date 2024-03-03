@@ -9,24 +9,34 @@ import {
   userColorThemeVars,
 } from '@/styles/theme/index.css';
 
+export const historyCardWrapWidthStyle = style({
+  width: '19.375rem',
+  '@media': {
+    [ODSBreakpointTokenVariables['breakpoint-xl']]: {
+      width: '15rem',
+    },
+    [ODSBreakpointTokenVariables['breakpoint-m']]: {
+      width: '12.5rem',
+    },
+    [ODSBreakpointTokenVariables['breakpoint-s']]: {
+      width: '100%',
+    },
+  },
+});
+
 export const wrapStyle = style([
+  historyCardWrapWidthStyle,
   {
     gap: '0.5rem',
-    width: '19.375rem',
     padding: '1.5rem 2.15625rem',
     borderRadius: '0.75rem',
 
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-xl']]: {
-        width: '15rem',
         padding: '0.875rem 1.5rem',
-      },
-      [ODSBreakpointTokenVariables['breakpoint-m']]: {
-        width: '12.5rem',
       },
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         gap: '0.25rem',
-        width: '100%',
         padding: '0.75rem',
         borderRadius: '0.5rem',
       },

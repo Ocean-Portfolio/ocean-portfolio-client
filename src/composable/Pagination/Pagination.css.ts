@@ -7,22 +7,17 @@ import { flexCenter } from '@/styles/common/flex.css';
 const wrapCommonStyle = style({
   position: 'relative',
   display: 'flex',
-  justifyContent: 'space-around',
   alignItems: 'center',
 });
 
 export const wrapStyle = style([
   wrapCommonStyle,
   {
-    width: '80rem',
-
+    width: '100%',
+    height: '0.25rem',
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-l']]: {
-        width: '62.25rem',
-      },
-
-      [ODSBreakpointTokenVariables['breakpoint-m']]: {
-        width: '52.4375rem',
+        height: '0.125rem',
       },
     },
   },
@@ -33,69 +28,37 @@ export const wrapStyleVariants = styleVariants({
     wrapCommonStyle,
     {
       width: '80rem',
+      height: '0.25rem',
     },
   ],
   LARGE: [
     wrapCommonStyle,
     {
       width: '62.25rem',
+      height: '0.125rem',
     },
   ],
   MEDIUM: [
     wrapCommonStyle,
     {
       width: '52.4375rem',
+      height: '0.125rem',
     },
   ],
 });
 
-const barCommonStyle = style([
+export const barStyle = style([
   backgroundColorVariants['sky-cyan-300'],
   {
     position: 'absolute',
     width: '100%',
     borderRadius: '0.4375rem',
     opacity: 0.7,
+    height: '100%',
   },
 ]);
 
-export const barStyle = style([
-  barCommonStyle,
-  {
-    height: '0.25rem',
-
-    '@media': {
-      [ODSBreakpointTokenVariables['breakpoint-l']]: {
-        height: '0.125rem',
-      },
-
-      [ODSBreakpointTokenVariables['breakpoint-m']]: {
-        width: '52.4375rem',
-      },
-    },
-  },
-]);
-
-export const barStyleVariants = styleVariants({
-  XLARGE: [
-    barCommonStyle,
-    {
-      height: '0.25rem',
-    },
-  ],
-  LARGE: [
-    barCommonStyle,
-    {
-      height: '0.125rem',
-    },
-  ],
-  MEDIUM: [
-    barCommonStyle,
-    {
-      height: '0.125rem',
-    },
-  ],
-});
+export const pointWrapStyle = style([flexCenter]);
 
 const buttonAnchorCommonStyle = style([
   flexCenter,

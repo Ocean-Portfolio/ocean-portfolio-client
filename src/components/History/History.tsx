@@ -1,12 +1,8 @@
 import React from 'react';
-import HistorySwiper from '../HistorySwiper/HistorySwiper';
+import HistorySwiperSummary from '../HistorySwiper/Summary/HistorySwiperSummary';
 
 const History = () => {
-  return (
-    <section>
-      <HistorySwiper />
-    </section>
-  );
+  return <section>{/* <HistorySwiperSummary /> */}</section>;
 };
 
 export default History;

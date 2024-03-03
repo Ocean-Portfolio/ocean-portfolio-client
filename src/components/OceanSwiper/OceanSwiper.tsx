@@ -9,7 +9,11 @@ import { customEvents } from '@/const/customEvents';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import { ContextValueOceanSwiper } from './OceanSwiper.context';
 
-const OceanSwiper = ({ children }: PropsWithChildren) => {
+interface Props {
+  className?: string;
+}
+
+const OceanSwiper = ({ children, className }: PropsWithChildren<Props>) => {
   return (
     <ContextValueOceanSwiper.Provider
       value={{
@@ -22,12 +26,16 @@ const OceanSwiper = ({ children }: PropsWithChildren) => {
         },
       }}
     >
-      <OceanSwiper.Wrap>{children}</OceanSwiper.Wrap>
+      <OceanSwiper.Wrap className={className}>{children}</OceanSwiper.Wrap>
     </ContextValueOceanSwiper.Provider>
   );
 };
 
-const Wrap = ({ children }: PropsWithChildren) => {
+interface WrapProps {
+  className?: string;
+}
+
+const Wrap = ({ children, className }: PropsWithChildren<WrapProps>) => {
   const { swiperWrapperRef } = getStaticContext(ContextValueOceanSwiper);
   const divRef = useRef<HTMLDivElement>(null);
 
@@ -41,11 +49,14 @@ const Wrap = ({ children }: PropsWithChildren) => {
       );
   }, []);
 
-  return <div ref={divRef}>{children}</div>;
+  return (
+    <div className={className} ref={divRef}>
+      {children}
+    </div>
+  );
 };
 
 interface MainProps extends SwiperOptions {
-  className?: string;
   hiddenNavigation?: boolean;
   prevButton?: React.ReactNode;
   nextButton?: React.ReactNode;

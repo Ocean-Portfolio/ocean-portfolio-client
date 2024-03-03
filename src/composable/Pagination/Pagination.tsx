@@ -1,20 +1,18 @@
 'use client';
 
-import { useTransition, animated } from '@react-spring/web';
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
 import { useODSBreakPoints } from '@/hook/useODSBreakPoints';
-import { globalFadeIn } from '@/styles/animation/fade.css';
 import Button from '../Button/Button';
 import CommonIcon from '../Icon/CommonIcon';
 import {
   barStyle,
-  barStyleVariants,
   buttonAnchorStyle,
   buttonAnchorStyleVariants,
   buttonStyle,
   buttonStyleVariants,
   iconStyle,
+  pointWrapStyle,
   wrapStyle,
   wrapStyleVariants,
 } from './Pagination.css';
@@ -23,26 +21,36 @@ type PaginationSizeTokens = 'XLARGE' | 'LARGE' | 'MEDIUM';
 
 export interface PaginationProps {
   sizeToken?: PaginationSizeTokens;
-  selectedIdx: number;
-  onClick: (currentIdx: number) => void;
   length: number;
+  selectedIdx: number;
+  wrapperGapClass?: string;
+  contentsWidthClass: string;
+  onClick?: (currentIdx: number) => void;
 }
 
 const Pagination = ({
   sizeToken,
   length,
   selectedIdx,
+  wrapperGapClass,
+  contentsWidthClass,
   onClick,
 }: PropsWithChildren<PaginationProps>) => {
   return (
-    <div className={sizeToken ? wrapStyleVariants[sizeToken] : wrapStyle}>
-      <Pagination.Bar sizeToken={sizeToken} />
+    <div
+      className={classNames(
+        sizeToken ? wrapStyleVariants[sizeToken] : wrapStyle,
+        wrapperGapClass,
+      )}
+    >
+      <Pagination.Bar />
       {Array.from({ length }).map((_, idx) => (
         <Pagination.Point
           sizeToken={sizeToken}
           key={idx}
           idx={idx}
           isSelected={idx === selectedIdx}
+          contentsWidthClass={contentsWidthClass}
           onClick={onClick}
         />
       ))}
@@ -50,26 +58,29 @@ const Pagination = ({
   );
 };
 
-interface BarProps {
-  sizeToken?: PaginationSizeTokens;
-}
-
-const Bar = ({ sizeToken }: BarProps) => {
-  return <hr className={sizeToken ? barStyleVariants[sizeToken] : barStyle} />;
+const Bar = () => {
+  return <hr className={barStyle} />;
 };
 
 interface PointProps {
   sizeToken?: PaginationSizeTokens;
   idx: number;
   isSelected: boolean;
-  onClick: (currentIdx: number) => void;
+  contentsWidthClass: string;
+  onClick?: (currentIdx: number) => void;
 }
 
-const Point = ({ sizeToken, idx, isSelected, onClick }: PointProps) => {
+const Point = ({
+  sizeToken,
+  idx,
+  isSelected,
+  contentsWidthClass,
+  onClick,
+}: PointProps) => {
   const { breakpointL } = useODSBreakPoints();
 
   const handleClick = () => {
-    onClick(idx);
+    if (onClick) onClick(idx);
   };
 
   const unSelectedSize =
@@ -87,32 +98,34 @@ const Point = ({ sizeToken, idx, isSelected, onClick }: PointProps) => {
       : 'PAGINATION_SELECTED_SKY_BLUE_LARGE';
 
   return (
-    <span
-      className={classNames(
-        sizeToken ? buttonAnchorStyleVariants[sizeToken] : buttonAnchorStyle,
-      )}
-    >
-      <Button
-        as="button"
-        className={sizeToken ? buttonStyleVariants[sizeToken] : buttonStyle}
-        onClick={handleClick}
+    <div className={classNames(pointWrapStyle, contentsWidthClass)}>
+      <span
+        className={classNames(
+          sizeToken ? buttonAnchorStyleVariants[sizeToken] : buttonAnchorStyle,
+        )}
       >
-        <CommonIcon
-          className={iconStyle}
-          variant={unSelectedIcon}
-          width={unSelectedSize}
-          height={unSelectedSize}
-        />
-        {isSelected && (
+        <Button
+          as="button"
+          className={sizeToken ? buttonStyleVariants[sizeToken] : buttonStyle}
+          onClick={handleClick}
+        >
           <CommonIcon
             className={iconStyle}
-            variant={selectedIcon}
-            width={selectedSize}
-            height={selectedSize}
+            variant={unSelectedIcon}
+            width={unSelectedSize}
+            height={unSelectedSize}
           />
-        )}
-      </Button>
-    </span>
+          {isSelected && (
+            <CommonIcon
+              className={iconStyle}
+              variant={selectedIcon}
+              width={selectedSize}
+              height={selectedSize}
+            />
+          )}
+        </Button>
+      </span>
+    </div>
   );
 };
 

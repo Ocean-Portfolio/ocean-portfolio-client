@@ -16,7 +16,7 @@ import {
 
 export interface HistoryCardProps extends HistoryCardContextProps {
   className?: string;
-  visible_status: VisibleStatusToken;
+  visible_status?: VisibleStatusToken;
 }
 
 const HistoryCard = ({
