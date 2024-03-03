@@ -15,6 +15,7 @@ const ODSGrayScaleTokens = {
 
 const ODSColorPaletteTokens = {
   'sky-cyan-100': 'sky-cyan-100',
+  'sky-cyan-300': 'sky-cyan-300',
 };
 
 const ODSUserColorTokens = {

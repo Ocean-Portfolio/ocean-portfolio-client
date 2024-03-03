@@ -54,3 +54,7 @@ globalStyle('section', {
 globalStyle('a', {
   textDecoration: 'none',
 });
+
+globalStyle('hr', {
+  border: 'none',
+});

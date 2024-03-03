@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Button from '../Button/Button';
 import { buttonAnchorStyleVariant, buttonStyle, wrapStyle } from './Tab.css';

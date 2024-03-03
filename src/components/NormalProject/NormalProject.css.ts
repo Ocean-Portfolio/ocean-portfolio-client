@@ -1,5 +1,4 @@
 import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
-import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 import { globalFadeIn } from '@/styles/animation/fade.css';
 import { flexCenter } from '@/styles/common/flex.css';
 

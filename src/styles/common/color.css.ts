@@ -33,6 +33,9 @@ export const colorVariants = styleVariants({
   'sky-cyan-100': {
     color: colorPaletteThemeVars.token['sky-cyan-100'],
   },
+  'sky-cyan-300': {
+    color: colorPaletteThemeVars.token['sky-cyan-300'],
+  },
   primary: {
     color: userColorThemeVars.token.primary,
   },
@@ -83,6 +86,9 @@ export const backgroundColorVariants = styleVariants({
   },
   'sky-cyan-100': {
     backgroundColor: colorPaletteThemeVars.token['sky-cyan-100'],
+  },
+  'sky-cyan-300': {
+    backgroundColor: colorPaletteThemeVars.token['sky-cyan-300'],
   },
   primary: {
     backgroundColor: userColorThemeVars.token.primary,

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const useOceanTab = (initIdx?: number) => {
+const useContentsPagination = (initIdx?: number) => {
   const [selectedIdx, setSelectedIdx] = useState(initIdx || 0);
 
   const handleClick = (idx: number) => {
@@ -13,4 +13,4 @@ const useOceanTab = (initIdx?: number) => {
   };
 };
 
-export default useOceanTab;
+export default useContentsPagination;
