@@ -57,48 +57,56 @@ const Wrap = ({ children, className }: PropsWithChildren<WrapProps>) => {
 };
 
 interface MainProps extends SwiperOptions {
+  className?: string;
   hiddenNavigation?: boolean;
   prevButton?: React.ReactNode;
   nextButton?: React.ReactNode;
+  isSwipeAble?: boolean;
 }
 
 const Main = ({
   children,
+  className,
   hiddenNavigation,
   prevButton,
   nextButton,
+  isSwipeAble = true,
   ...rest
 }: PropsWithChildren<MainProps>) => {
   const { swiperWrapperRef } = getStaticContext(ContextValueOceanSwiper);
   const swiperRef = useRef<SwiperRef | null>(null);
 
   return (
-    <Swiper
-      {...rest}
-      ref={swiperRef}
-      modules={[A11y]}
-      slidesPerView={1}
-      onRealIndexChange={(e) => {
-        swiperWrapperRef.current &&
-          swiperWrapperRef.current.dispatchEvent(
-            new CustomEvent(customEvents.SWIPER_REAL_INDEX_CHANGE, {
-              detail: e,
-            }),
-          );
-      }}
-    >
-      {hiddenNavigation === true ? (
-        <OceanSwiper.Button hidden direction="PREV" />
-      ) : (
-        prevButton
-      )}
-      {children}
-      {hiddenNavigation === true ? (
-        <OceanSwiper.Button hidden direction="NEXT" />
-      ) : (
-        nextButton
-      )}
-    </Swiper>
+    <div className={className}>
+      <Swiper
+        {...rest}
+        ref={swiperRef}
+        modules={[A11y]}
+        slidesPerView={1}
+        allowSlideNext={isSwipeAble}
+        allowSlidePrev={isSwipeAble}
+        onRealIndexChange={(e) => {
+          swiperWrapperRef.current &&
+            swiperWrapperRef.current.dispatchEvent(
+              new CustomEvent(customEvents.SWIPER_REAL_INDEX_CHANGE, {
+                detail: e,
+              }),
+            );
+        }}
+      >
+        {hiddenNavigation === true ? (
+          <OceanSwiper.Button hidden direction="PREV" />
+        ) : (
+          prevButton
+        )}
+        {children}
+        {hiddenNavigation === true ? (
+          <OceanSwiper.Button hidden direction="NEXT" />
+        ) : (
+          nextButton
+        )}
+      </Swiper>
+    </div>
   );
 };
 
