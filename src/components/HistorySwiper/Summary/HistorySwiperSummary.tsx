@@ -19,6 +19,7 @@ import {
   gapStyle,
   iconStyle,
   iconStyleVariants,
+  mainWrapStyle,
   slideStyle,
   titleStyle,
   topStyle,
@@ -33,6 +34,7 @@ interface Props {
   data: HistoryCardData[];
 }
 // TODO : Item 하나 클릭해서 자세히보기 상태로 전환
+// TODO : swiper overflow - fit-content 구현하기
 const HistorySwiperSummary = ({ title, data }: Props) => {
   return (
     <OceanSwiper>
@@ -51,12 +53,15 @@ interface TopProps {
 }
 
 const Top = ({ data }: TopProps) => {
-  const { breakpointS } = useODSBreakPoints();
+  const { breakpointS, breakpointL } = useODSBreakPoints();
+  const maxDisplayLength = breakpointL ? 3 : 4;
   return (
     <>
       {!breakpointS && (
         <Pagination
-          length={data.length}
+          length={
+            data.length > maxDisplayLength ? maxDisplayLength : data.length
+          }
           selectedIdx={-1}
           wrapperGapClass={gapStyle}
           contentsWidthClass={historyCardWrapWidthStyle}
@@ -76,7 +81,7 @@ const Slider = ({ data }: SliderProps) => {
     ? new Array(data)
     : createNestedArray(data, breakpointL ? 3 : 4);
   return (
-    <OceanSwiper.Main isSwipeAble={!breakpointS}>
+    <OceanSwiper.Main className={mainWrapStyle} isSwipeAble={!breakpointS}>
       {nestedData.map((bundle, idx) => (
         <OceanSwiper.Slide key={idx}>
           <HistorySwiperSummary.Items data={bundle} />

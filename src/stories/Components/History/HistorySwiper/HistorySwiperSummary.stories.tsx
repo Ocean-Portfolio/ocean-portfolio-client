@@ -16,6 +16,10 @@ export const Default: Story = {
       { companyName: 'companyName', period: 'period', id: '311' },
       { companyName: 'companyName', period: 'period', id: '312' },
       { companyName: 'companyName', period: 'period', id: '313' },
+      { companyName: 'companyName', period: 'period', id: '314' },
+      { companyName: 'companyName', period: 'period', id: '315' },
+      { companyName: 'companyName', period: 'period', id: '316' },
+      { companyName: 'companyName', period: 'period', id: '317' },
     ],
   },
 };

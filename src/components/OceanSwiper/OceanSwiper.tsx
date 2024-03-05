@@ -82,7 +82,7 @@ const Main = ({
         {...rest}
         ref={swiperRef}
         modules={[A11y]}
-        slidesPerView={1}
+        slidesPerView={'auto'}
         allowSlideNext={isSwipeAble}
         allowSlidePrev={isSwipeAble}
         onRealIndexChange={(e) => {

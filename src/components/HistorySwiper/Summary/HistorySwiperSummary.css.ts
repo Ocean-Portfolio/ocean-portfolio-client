@@ -46,14 +46,20 @@ export const gapStyle = style({
   gap: '0.75rem',
 });
 
+export const mainWrapStyle = style({
+  overflow: 'visible',
+});
+
 export const slideStyle = style([
   gapStyle,
   {
     display: 'flex',
+    width: 'fit-content',
 
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         position: 'relative',
+        width: '100%',
         // overflowY: 'hidden',
         flexDirection: 'column',
         // transition: 'all 0.3s ease-in-out',
