@@ -35,10 +35,10 @@ interface HistoryCardData extends HistoryCardContextProps {
 interface Props {
   title: string;
   data: HistoryCardData[];
-  isDetailView: boolean;
-  insertIndex?: number;
+  isDetailView?: boolean;
+  selectIndex?: number;
 }
-const HistorySummary = ({ title, data, isDetailView, insertIndex }: Props) => {
+const HistorySummary = ({ title, data, isDetailView, selectIndex }: Props) => {
   const { breakpointS } = useODSBreakPoints();
 
   if (breakpointS)
@@ -47,7 +47,7 @@ const HistorySummary = ({ title, data, isDetailView, insertIndex }: Props) => {
         title={title}
         data={data}
         isDetailView={isDetailView}
-        insertIndex={insertIndex}
+        selectIndex={selectIndex}
       />
     );
 
@@ -56,11 +56,12 @@ const HistorySummary = ({ title, data, isDetailView, insertIndex }: Props) => {
       title={title}
       data={data}
       isDetailView={isDetailView}
+      selectIndex={selectIndex}
     />
   );
 };
 
-const Swiper = ({ title, data, isDetailView }: Props) => {
+const Swiper = ({ title, data, isDetailView, selectIndex }: Props) => {
   const { breakpointM, breakpointL, breakpointXXL } = useODSBreakPoints();
 
   const maxDisplayLength = breakpointL ? 3 : 4;
@@ -75,7 +76,7 @@ const Swiper = ({ title, data, isDetailView }: Props) => {
           length={
             data.length > maxDisplayLength ? maxDisplayLength : data.length
           }
-          selectedIdx={-1}
+          selectedIdx={typeof selectIndex === 'number' ? selectIndex : -1}
           wrapperGapClass={gapStyle}
           contentsWidthClass={historyCardWrapWidthStyle}
         />
@@ -101,7 +102,7 @@ const List = ({
   title,
   data,
   isDetailView,
-  insertIndex,
+  selectIndex,
 }: PropsWithChildren<Props>) => {
   const [isOpen, setIsOpen] = useState(isDetailView);
   const displayData = isOpen === false ? data.slice(0, 2) : data;
@@ -111,9 +112,9 @@ const List = ({
       <HistorySummary.Bundle
         className={listBundleStyle}
         data={displayData}
-        insertIndex={insertIndex}
+        selectIndex={selectIndex}
       >
-        {children}
+        {isDetailView && children}
       </HistorySummary.Bundle>
       {isOpen && <Spacer direction="horizontal" spacing="spacer-075" />}
       {isOpen && <Spacer direction="horizontal" spacing="spacer-15" />}
@@ -142,14 +143,14 @@ const List = ({
 interface BundleProps {
   className?: string;
   data: HistoryCardData[];
-  insertIndex?: number;
+  selectIndex?: number;
 }
 
 const Bundle = ({
   children,
   className,
   data,
-  insertIndex,
+  selectIndex,
 }: PropsWithChildren<BundleProps>) => {
   return (
     <div className={classNames(bundleStyle, className)}>
@@ -163,7 +164,7 @@ const Bundle = ({
               <HistoryCard.Company />
               <HistoryCard.Period />
             </HistoryCard>
-            {insertIndex === idx && children}
+            {selectIndex === idx && children}
           </Fragment>
         );
       })}

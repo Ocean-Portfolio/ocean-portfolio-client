@@ -21,7 +21,6 @@ export const Default: Story = {
       { companyName: 'companyName', period: 'period', id: '316' },
       { companyName: 'companyName', period: 'period', id: '317' },
     ],
-    isDetailView: false,
   },
 };
 
