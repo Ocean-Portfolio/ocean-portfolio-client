@@ -9,7 +9,7 @@ import Tag from '@/composable/Tag/Tag';
 import { customEvents } from '@/const/customEvents';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import { ContextValueOceanSwiper } from './OceanSwiper.context';
-import { swiperSelector } from './OceanSwiper.css';
+import { swiperVisibleSelector } from './OceanSwiper.css';
 
 interface Props {
   className?: string;
@@ -72,6 +72,7 @@ interface MainProps extends SwiperOptions {
   prevButton?: React.ReactNode;
   nextButton?: React.ReactNode;
   isSwipeAble?: boolean;
+  overflowVisible?: boolean;
 }
 
 const Main = ({
@@ -81,13 +82,19 @@ const Main = ({
   prevButton,
   nextButton,
   isSwipeAble = true,
+  overflowVisible = true,
   ...rest
 }: PropsWithChildren<MainProps>) => {
   const { swiperWrapperRef } = getStaticContext(ContextValueOceanSwiper);
   const swiperRef = useRef<SwiperRef | null>(null);
 
   return (
-    <div className={classNames(className, swiperSelector)}>
+    <div
+      className={classNames(
+        className,
+        overflowVisible === true && swiperVisibleSelector,
+      )}
+    >
       <Swiper
         {...rest}
         ref={swiperRef}

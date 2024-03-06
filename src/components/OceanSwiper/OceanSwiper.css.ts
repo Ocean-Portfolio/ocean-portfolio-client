@@ -1,7 +1,7 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
-export const swiperSelector = style({});
+export const swiperVisibleSelector = style({});
 
-globalStyle(`${swiperSelector} > .swiper`, {
+globalStyle(`${swiperVisibleSelector} > .swiper`, {
   overflow: 'visible !important',
 });
