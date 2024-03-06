@@ -24,7 +24,7 @@ export interface PaginationProps {
   length: number;
   selectedIdx: number;
   wrapperGapClass?: string;
-  contentsWidthClass: string;
+  contentsWidthClass?: string;
   onClick?: (currentIdx: number) => void;
 }
 
@@ -66,7 +66,7 @@ interface PointProps {
   sizeToken?: PaginationSizeTokens;
   idx: number;
   isSelected: boolean;
-  contentsWidthClass: string;
+  contentsWidthClass?: string;
   onClick?: (currentIdx: number) => void;
 }
 

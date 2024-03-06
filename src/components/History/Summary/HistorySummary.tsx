@@ -12,7 +12,6 @@ import CommonIcon from '@/composable/Icon/CommonIcon';
 import Pagination from '@/composable/Pagination/Pagination';
 import Spacer from '@/composable/Spacer/Spacer';
 import { useODSBreakPoints } from '@/hook/useODSBreakPoints';
-import { flexColumn } from '@/styles/common/flex.css';
 import { createNestedArray } from '@/utils/array/createNestedArray';
 import OceanSwiper from '../../OceanSwiper/OceanSwiper';
 import {
@@ -26,6 +25,7 @@ import {
   swiperTitleStyle,
   listTitleStyle,
   listBundleStyle,
+  listWrapStyle,
 } from './HistorySummary.css';
 
 interface HistoryCardData extends HistoryCardContextProps {
@@ -87,7 +87,7 @@ const List = ({ title, data }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const displayData = isOpen === false ? data.slice(0, 2) : data;
   return (
-    <div className={flexColumn}>
+    <div className={listWrapStyle}>
       <h2 className={listTitleStyle}>{title}</h2>
       <HistorySummary.Bundle className={listBundleStyle} data={displayData}>
         <Button
