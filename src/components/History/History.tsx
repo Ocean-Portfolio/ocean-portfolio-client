@@ -1,5 +1,5 @@
 import React from 'react';
-import HistorySwiperSummary from '../HistorySwiper/Summary/HistorySwiperSummary';
+import HistorySwiperSummary from './Summary/HistorySummary';
 
 const History = () => {
   return <section>{/* <HistorySwiperSummary /> */}</section>;

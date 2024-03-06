@@ -1,14 +1,14 @@
 import { Meta, StoryObj } from '@storybook/react';
-import HistorySwiperSummary from '@/components/HistorySwiper/Summary/HistorySwiperSummary';
+import HistorySummary from '@/components/History/Summary/HistorySummary';
 
-const meta: Meta<typeof HistorySwiperSummary> = {
-  title: 'Components/History/HistorySwiper/Summary',
-  component: HistorySwiperSummary,
+const meta: Meta<typeof HistorySummary> = {
+  title: 'Components/History/Summary',
+  component: HistorySummary,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },
 };
 
-type Story = StoryObj<typeof HistorySwiperSummary>;
+type Story = StoryObj<typeof HistorySummary>;
 export const Default: Story = {
   args: {
     title: 'title',
