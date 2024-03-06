@@ -51,8 +51,6 @@ export const gapStyle = style({
   gap: '0.75rem',
 });
 
-export const swiperSelector = style({});
-
 export const swiperWrapVariants = styleVariants({
   3: [
     {
@@ -76,10 +74,6 @@ export const swiperWrapVariants = styleVariants({
       },
     },
   ],
-});
-
-globalStyle(`${swiperSelector} > .swiper`, {
-  overflow: 'visible !important',
 });
 
 export const bundleStyle = style([
