@@ -3,7 +3,7 @@
 import 'swiper/css';
 
 import classNames from 'classnames';
-import React, { PropsWithChildren, useState } from 'react';
+import React, { Fragment, PropsWithChildren, useState } from 'react';
 import HistoryCard from '@/components/Card/History/HistoryCard';
 import { HistoryCardContextProps } from '@/components/Card/History/HistoryCard.context';
 import { historyCardWrapWidthStyle } from '@/components/Card/History/HistoryCard.css';
@@ -35,18 +35,33 @@ interface HistoryCardData extends HistoryCardContextProps {
 interface Props {
   title: string;
   data: HistoryCardData[];
+  isDetailView: boolean;
+  insertIndex?: number;
 }
-// TODO : Item 하나 클릭해서 자세히보기 상태로 전환
 // TODO : swiper overflow - fit-content 구현하기
-const HistorySummary = ({ title, data }: Props) => {
+const HistorySummary = ({ title, data, isDetailView, insertIndex }: Props) => {
   const { breakpointS } = useODSBreakPoints();
 
-  if (breakpointS) return <HistorySummary.List title={title} data={data} />;
+  if (breakpointS)
+    return (
+      <HistorySummary.List
+        title={title}
+        data={data}
+        isDetailView={isDetailView}
+        insertIndex={insertIndex}
+      />
+    );
 
-  return <HistorySummary.Swiper title={title} data={data} />;
+  return (
+    <HistorySummary.Swiper
+      title={title}
+      data={data}
+      isDetailView={isDetailView}
+    />
+  );
 };
 
-const Swiper = ({ title, data }: Props) => {
+const Swiper = ({ title, data, isDetailView }: Props) => {
   const { breakpointS, breakpointM, breakpointL } = useODSBreakPoints();
 
   const maxDisplayLength = breakpointL ? 3 : 4;
@@ -58,7 +73,7 @@ const Swiper = ({ title, data }: Props) => {
   return (
     <OceanSwiper>
       <OceanSwiper.Top className={swiperTopStyle}>
-        <h2 className={swiperTitleStyle}>{title}</h2>
+        {!isDetailView && <h2 className={swiperTitleStyle}>{title}</h2>}
         <Pagination
           length={
             data.length > maxDisplayLength ? maxDisplayLength : data.length
@@ -83,32 +98,43 @@ const Swiper = ({ title, data }: Props) => {
   );
 };
 
-const List = ({ title, data }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+const List = ({
+  children,
+  title,
+  data,
+  isDetailView,
+  insertIndex,
+}: PropsWithChildren<Props>) => {
+  const [isOpen, setIsOpen] = useState(isDetailView);
   const displayData = isOpen === false ? data.slice(0, 2) : data;
   return (
     <div className={listWrapStyle}>
       <h2 className={listTitleStyle}>{title}</h2>
-      <HistorySummary.Bundle className={listBundleStyle} data={displayData}>
-        <Button
-          className={buttonStyle}
-          as="button"
-          type="button"
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
-        >
-          <CommonIcon
-            className={classNames(
-              iconStyle,
-              iconStyleVariants[isOpen ? 'OPEN' : 'CLOSE'],
-            )}
-            variant="LEFT_ARROW_SECONDARY_VARIANT"
-            width={21.33333}
-            height={24}
-          />
-        </Button>
+      <HistorySummary.Bundle
+        className={listBundleStyle}
+        data={displayData}
+        insertIndex={insertIndex}
+      >
+        {children}
       </HistorySummary.Bundle>
+      <Button
+        className={buttonStyle}
+        as="button"
+        type="button"
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+      >
+        <CommonIcon
+          className={classNames(
+            iconStyle,
+            iconStyleVariants[isOpen ? 'OPEN' : 'CLOSE'],
+          )}
+          variant="LEFT_ARROW_SECONDARY_VARIANT"
+          width={21.33333}
+          height={24}
+        />
+      </Button>
     </div>
   );
 };
@@ -116,26 +142,31 @@ const List = ({ title, data }: Props) => {
 interface BundleProps {
   className?: string;
   data: HistoryCardData[];
+  insertIndex?: number;
 }
 
 const Bundle = ({
   children,
   className,
   data,
+  insertIndex,
 }: PropsWithChildren<BundleProps>) => {
   return (
     <div className={classNames(bundleStyle, className)}>
-      {data.map((history) => (
-        <HistoryCard
-          key={history.id}
-          companyName={history.companyName}
-          period={history.period}
-        >
-          <HistoryCard.Company />
-          <HistoryCard.Period />
-        </HistoryCard>
-      ))}
-      {children}
+      {data.map((history, idx) => {
+        return (
+          <Fragment key={history.id}>
+            <HistoryCard
+              companyName={history.companyName}
+              period={history.period}
+            >
+              <HistoryCard.Company />
+              <HistoryCard.Period />
+            </HistoryCard>
+            {insertIndex === idx && children}
+          </Fragment>
+        );
+      })}
     </div>
   );
 };

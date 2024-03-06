@@ -37,6 +37,7 @@ export const swiperTitleStyle = style([
 export const listWrapStyle = style([
   flexColumn,
   {
+    position: 'relative',
     transition: 'all 0.3s ease-in-out',
   },
 ]);
@@ -63,10 +64,10 @@ export const bundleStyle = style([
 ]);
 
 export const listBundleStyle = style({
-  position: 'relative',
-  width: '100%',
   // overflowY: 'hidden',
   flexDirection: 'column',
+  width: '100%',
+  transition: 'all 0.3s ease-in-out',
 });
 
 // export const listBundleVariants = styleVariants({
