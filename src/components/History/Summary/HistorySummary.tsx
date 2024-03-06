@@ -19,13 +19,13 @@ import {
   gapStyle,
   iconStyle,
   iconStyleVariants,
-  mainWrapStyle,
   bundleStyle,
   swiperTopStyle,
   swiperTitleStyle,
   listTitleStyle,
   listBundleStyle,
   listWrapStyle,
+  swiperWrapVariants,
 } from './HistorySummary.css';
 
 interface HistoryCardData extends HistoryCardContextProps {
@@ -38,7 +38,6 @@ interface Props {
   isDetailView: boolean;
   insertIndex?: number;
 }
-// TODO : swiper overflow - fit-content 구현하기
 const HistorySummary = ({ title, data, isDetailView, insertIndex }: Props) => {
   const { breakpointS } = useODSBreakPoints();
 
@@ -62,13 +61,11 @@ const HistorySummary = ({ title, data, isDetailView, insertIndex }: Props) => {
 };
 
 const Swiper = ({ title, data, isDetailView }: Props) => {
-  const { breakpointS, breakpointM, breakpointL } = useODSBreakPoints();
+  const { breakpointM, breakpointL } = useODSBreakPoints();
 
   const maxDisplayLength = breakpointL ? 3 : 4;
 
-  const nestedData = breakpointS
-    ? new Array(data)
-    : createNestedArray(data, breakpointL ? 3 : 4);
+  const nestedData = createNestedArray(data, breakpointL ? 3 : 4);
 
   return (
     <OceanSwiper>
@@ -87,7 +84,7 @@ const Swiper = ({ title, data, isDetailView }: Props) => {
         direction="horizontal"
         spacing={breakpointM ? 'spacer-075' : 'spacer-15'}
       />
-      <OceanSwiper.Main className={mainWrapStyle} isSwipeAble={!breakpointS}>
+      <OceanSwiper.Main className={swiperWrapVariants[maxDisplayLength]}>
         {nestedData.map((bundle, idx) => (
           <OceanSwiper.Slide key={idx}>
             <HistorySummary.Bundle data={bundle} />

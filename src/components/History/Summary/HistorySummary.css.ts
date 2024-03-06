@@ -1,4 +1,4 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 import { ODSTextTokenVariables } from '@/const/fonts';
 import { colorVariants } from '@/styles/common/color.css';
@@ -51,8 +51,35 @@ export const gapStyle = style({
   gap: '0.75rem',
 });
 
-export const mainWrapStyle = style({
-  overflow: 'visible',
+export const swiperSelector = style({});
+
+export const swiperWrapVariants = styleVariants({
+  3: [
+    {
+      width: 'calc(15rem * 3 + 0.75rem * 2)',
+
+      '@media': {
+        [ODSBreakpointTokenVariables['breakpoint-m']]: {
+          width: 'calc(12.5rem * 3 + 0.75rem * 2)',
+        },
+      },
+    },
+  ],
+  4: [
+    {
+      width: 'calc(19.375rem * 4 + 0.75rem * 3)',
+
+      '@media': {
+        [ODSBreakpointTokenVariables['breakpoint-xl']]: {
+          width: 'calc(15rem * 4 + 0.75rem * 3)',
+        },
+      },
+    },
+  ],
+});
+
+globalStyle(`${swiperSelector} > .swiper`, {
+  overflow: 'visible !important',
 });
 
 export const bundleStyle = style([

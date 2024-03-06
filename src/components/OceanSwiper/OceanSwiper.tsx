@@ -1,5 +1,6 @@
 'use client';
 
+import classNames from 'classnames';
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
 import { A11y } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react';
@@ -8,12 +9,18 @@ import Tag from '@/composable/Tag/Tag';
 import { customEvents } from '@/const/customEvents';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import { ContextValueOceanSwiper } from './OceanSwiper.context';
+import { swiperSelector } from './OceanSwiper.css';
 
 interface Props {
   className?: string;
+  style?: React.CSSProperties;
 }
 
-const OceanSwiper = ({ children, className }: PropsWithChildren<Props>) => {
+const OceanSwiper = ({
+  children,
+  className,
+  style,
+}: PropsWithChildren<Props>) => {
   return (
     <ContextValueOceanSwiper.Provider
       value={{
@@ -26,16 +33,19 @@ const OceanSwiper = ({ children, className }: PropsWithChildren<Props>) => {
         },
       }}
     >
-      <OceanSwiper.Wrap className={className}>{children}</OceanSwiper.Wrap>
+      <OceanSwiper.Wrap className={className} style={style}>
+        {children}
+      </OceanSwiper.Wrap>
     </ContextValueOceanSwiper.Provider>
   );
 };
 
 interface WrapProps {
   className?: string;
+  style?: React.CSSProperties;
 }
 
-const Wrap = ({ children, className }: PropsWithChildren<WrapProps>) => {
+const Wrap = ({ children, className, style }: PropsWithChildren<WrapProps>) => {
   const { swiperWrapperRef } = getStaticContext(ContextValueOceanSwiper);
   const divRef = useRef<HTMLDivElement>(null);
 
@@ -50,7 +60,7 @@ const Wrap = ({ children, className }: PropsWithChildren<WrapProps>) => {
   }, []);
 
   return (
-    <div className={className} ref={divRef}>
+    <div className={className} ref={divRef} style={style}>
       {children}
     </div>
   );
@@ -77,7 +87,7 @@ const Main = ({
   const swiperRef = useRef<SwiperRef | null>(null);
 
   return (
-    <div className={className}>
+    <div className={classNames(className, swiperSelector)}>
       <Swiper
         {...rest}
         ref={swiperRef}
