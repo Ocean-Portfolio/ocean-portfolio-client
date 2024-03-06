@@ -64,10 +64,10 @@ export const wrapVariants = styleVariants({
 });
 
 export const companyStyle = style([
-  fontVariants['title-s-semibold'],
   textPreStyle,
-  colorVariants['tertiary-variant'],
   {
+    ...ODSTextTokenVariables['title-s-semibold'],
+    color: userColorThemeVars.token['tertiary-variant'],
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         ...ODSTextTokenVariables['paragraph-m-bold'],
@@ -91,10 +91,10 @@ export const companyVariants = styleVariants({
 });
 
 export const periodStyle = style([
-  fontVariants['paragraph-m-semibold'],
   textPreStyle,
-  colorVariants['gray-scale-05'],
   {
+    ...ODSTextTokenVariables['paragraph-m-semibold'],
+    color: commonColorThemeVars.token['gray-scale-05'],
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         ...ODSTextTokenVariables['paragraph-s-regular'],

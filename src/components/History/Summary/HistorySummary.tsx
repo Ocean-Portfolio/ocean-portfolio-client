@@ -61,7 +61,7 @@ const HistorySummary = ({ title, data, isDetailView, insertIndex }: Props) => {
 };
 
 const Swiper = ({ title, data, isDetailView }: Props) => {
-  const { breakpointM, breakpointL } = useODSBreakPoints();
+  const { breakpointM, breakpointL, breakpointXXL } = useODSBreakPoints();
 
   const maxDisplayLength = breakpointL ? 3 : 4;
 
@@ -91,6 +91,7 @@ const Swiper = ({ title, data, isDetailView }: Props) => {
           </OceanSwiper.Slide>
         ))}
       </OceanSwiper.Main>
+      {breakpointXXL && <Spacer direction="horizontal" spacing="spacer-20" />}
     </OceanSwiper>
   );
 };
@@ -114,6 +115,8 @@ const List = ({
       >
         {children}
       </HistorySummary.Bundle>
+      {isOpen && <Spacer direction="horizontal" spacing="spacer-075" />}
+      {isOpen && <Spacer direction="horizontal" spacing="spacer-15" />}
       <Button
         className={buttonStyle}
         as="button"

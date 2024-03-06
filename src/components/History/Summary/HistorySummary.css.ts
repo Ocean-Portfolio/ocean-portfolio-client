@@ -1,4 +1,4 @@
-import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 import { ODSTextTokenVariables } from '@/const/fonts';
 import { colorVariants } from '@/styles/common/color.css';
@@ -22,9 +22,9 @@ export const swiperTopStyle = style([
 ]);
 
 export const swiperTitleStyle = style([
-  fontVariants['title-m-bold'],
   colorVariants['gray-scale-06'],
   {
+    ...ODSTextTokenVariables['title-m-bold'],
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-l']]:
         ODSTextTokenVariables['title-s-medium'],
