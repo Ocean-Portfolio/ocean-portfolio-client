@@ -9,7 +9,7 @@ import Tag from '@/composable/Tag/Tag';
 import { customEvents } from '@/const/customEvents';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import { ContextValueOceanSwiper } from './OceanSwiper.context';
-import { swiperVisibleSelector } from './OceanSwiper.css';
+import { swiperVisibleSelector, swiperWrap } from './OceanSwiper.css';
 
 interface Props {
   className?: string;
@@ -60,7 +60,11 @@ const Wrap = ({ children, className, style }: PropsWithChildren<WrapProps>) => {
   }, []);
 
   return (
-    <div className={className} ref={divRef} style={style}>
+    <div
+      className={classNames(className, swiperWrap)}
+      ref={divRef}
+      style={style}
+    >
       {children}
     </div>
   );
@@ -99,7 +103,7 @@ const Main = ({
         {...rest}
         ref={swiperRef}
         modules={[A11y]}
-        slidesPerView={'auto'}
+        slidesPerView={1}
         allowSlideNext={isSwipeAble}
         allowSlidePrev={isSwipeAble}
         onRealIndexChange={(e) => {

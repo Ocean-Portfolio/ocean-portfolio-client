@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
+import { StaticContextPageInfo } from '@/app/context';
 import HistoryImpactCard, {
   HistoryImpactCardProps,
 } from '@/components/Card/History/Impact/HistoryImpactCard';
@@ -15,6 +16,25 @@ const meta: Meta<typeof HistoryImpactCard> = {
   component: Template,
   tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },
+  decorators: [
+    (Story) => (
+      <StaticContextPageInfo.Provider
+        value={{
+          userInfo: {
+            token: 'sungyeon',
+            id: '1',
+            name: '윤성연',
+            email: '',
+            job: 'Frontend Engineer',
+            image_id: 1,
+          },
+          sections: [],
+        }}
+      >
+        <Story />
+      </StaticContextPageInfo.Provider>
+    ),
+  ],
 };
 
 type Story = StoryObj<typeof HistoryImpactCard>;

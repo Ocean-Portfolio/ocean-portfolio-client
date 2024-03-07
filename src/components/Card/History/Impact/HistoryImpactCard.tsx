@@ -5,7 +5,6 @@ import CommonIcon from '@/composable/Icon/CommonIcon';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import calcRemToPxNumber from '@/utils/style/calcRemToPxNumber';
 import CommonCard from '../../Common/CommonCard';
-import { wrapStyle } from '../HistoryCard.css';
 import {
   HistoryImpactContextProps,
   StaticContextHistoryImpactCard,
@@ -21,6 +20,7 @@ import {
   strongStyleVariants,
   strongWrapStyle,
   wrapStyleVariants,
+  wrapStyle,
 } from './HistoryImpactCard.css';
 
 export interface HistoryImpactCardProps extends HistoryImpactContextProps {
@@ -60,10 +60,12 @@ const HistoryImpactCard = ({
 };
 
 const Headline = () => {
-  const { userInfo } = getStaticContext(StaticContextPageInfo);
   const { sizeToken, before, after, unitWord } = getStaticContext(
     StaticContextHistoryImpactCard,
   );
+
+  const { userInfo } = getStaticContext(StaticContextPageInfo);
+
   return (
     <h3
       className={classNames(

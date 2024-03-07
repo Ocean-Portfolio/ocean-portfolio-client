@@ -8,13 +8,13 @@ import useEventListener from './useEventListener';
 
 export const useOceanSwiperIndex = () => {
   const { swiperWrapperRef } = getStaticContext(ContextValueOceanSwiper);
-  const [readIndex, setIndex] = useState(0);
+  const [realIndex, setRealIndex] = useState(0);
 
   const { add, remove } = eventManager(
     swiperWrapperRef,
     customEvents.SWIPER_REAL_INDEX_CHANGE,
     (e) => {
-      setIndex((e as CustomEvent<Swiper>).detail.realIndex);
+      setRealIndex((e as CustomEvent<Swiper>).detail.realIndex);
     },
   );
 
@@ -32,5 +32,5 @@ export const useOceanSwiperIndex = () => {
     };
   }, []);
 
-  return { readIndex };
+  return { realIndex };
 };

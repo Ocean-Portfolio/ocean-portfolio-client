@@ -5,11 +5,13 @@ import { colorVariants } from '@/styles/common/color.css';
 import { flexCenter, flexColumn } from '@/styles/common/flex.css';
 import { fontVariants } from '@/styles/common/font.css';
 import { textPreStyle } from '@/styles/common/text.css';
-import { commonColorThemeVars } from '@/styles/theme/index.css';
+import {
+  colorPaletteThemeVars,
+  commonColorThemeVars,
+} from '@/styles/theme/index.css';
 
 const wrapCommonStyle = style([
   flexColumn,
-  colorVariants['secondary-variant'],
   {
     justifyContent: 'center',
     alignItems: 'center',
@@ -62,13 +64,12 @@ export const wrapStyleVariants = styleVariants({
   ],
 });
 
-const headlineCommonStyle = style([flexCenter]);
-
 export const headlineStyle = style([
-  headlineCommonStyle,
-  fontVariants['title-s-medium'],
+  flexCenter,
+  colorVariants['secondary-variant'],
   {
     gap: '0.25rem',
+    ...ODSTextTokenVariables['title-s-medium'],
 
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
@@ -81,14 +82,14 @@ export const headlineStyle = style([
 
 export const headlineStyleVariants = styleVariants({
   LARGE: [
-    headlineCommonStyle,
+    flexCenter,
     fontVariants['title-s-medium'],
     {
       gap: '0.25rem',
     },
   ],
   SMALL: [
-    headlineCommonStyle,
+    flexCenter,
     fontVariants['GNB-m-medium'],
     {
       gap: '0.125rem',
@@ -97,8 +98,8 @@ export const headlineStyleVariants = styleVariants({
 });
 
 export const strongStyle = style([
-  fontVariants['title-xl-bold'],
   {
+    ...ODSTextTokenVariables['title-xl-bold'],
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         ...ODSTextTokenVariables['title-s-semibold'],
@@ -142,10 +143,11 @@ export const strongStyleVariants = styleVariants({
 });
 
 export const contentStyle = style([
-  fontVariants['paragraph-s-medium'],
-  colorVariants['sky-cyan-100'],
   textPreStyle,
   {
+    ...ODSTextTokenVariables['paragraph-s-medium'],
+    color: colorPaletteThemeVars.token['sky-cyan-100'],
+    textAlign: 'center',
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         ...ODSTextTokenVariables['paragraph-s-regular'],
