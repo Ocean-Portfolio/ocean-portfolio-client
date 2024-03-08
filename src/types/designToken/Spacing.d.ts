@@ -8,6 +8,8 @@ type SpacingToken =
   | 'spacer-10'
   | 'spacer-15'
   | 'spacer-20'
+  | 'spacer-225'
+  | 'spacer-275'
   | 'spacer-30'
   | 'spacer-40'
   | 'spacer-50'

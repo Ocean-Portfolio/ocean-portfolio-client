@@ -16,7 +16,6 @@ export const wrapStyle = style([
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         gap: '1rem',
-        width: '20rem',
         padding: '1rem',
         borderRadius: '0.5rem',
       },

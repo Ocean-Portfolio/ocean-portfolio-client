@@ -22,6 +22,12 @@ export const horizontalSpacerStyle = styleVariants({
   'spacer-20': {
     height: '2rem',
   },
+  'spacer-225': {
+    height: '2.25rem',
+  },
+  'spacer-275': {
+    height: '2.75rem',
+  },
   'spacer-30': {
     height: '3rem',
   },
@@ -69,6 +75,14 @@ export const verticalSpacerStyle = styleVariants({
   },
   'spacer-20': {
     width: '2rem',
+    height: '100%',
+  },
+  'spacer-225': {
+    width: '2.25rem',
+    height: '100%',
+  },
+  'spacer-275': {
+    width: '2.75rem',
     height: '100%',
   },
   'spacer-30': {

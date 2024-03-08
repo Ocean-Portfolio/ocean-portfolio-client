@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSwiper } from 'swiper/react';
 import HistoryDetailCard, {
   HistoryDetailCardProps,
@@ -14,16 +14,18 @@ import CommonIcon from '@/composable/Icon/CommonIcon';
 import Tab from '@/composable/Tab/Tab';
 import useOceanSwiperButton from '@/hook/useOceanSwiperButton';
 import { useOceanSwiperIndex } from '@/hook/useOceanSwiperIndex';
+import { useODSBreakPoints } from '@/hook/useODSBreakPoints';
+import { getStaticContext } from '@/utils/context/StaticContext';
+import { StaticContextHistoryCarousel } from './HistoryCarousel.context';
 import {
   detailStyle,
   iconVariants,
   impactStyle,
   slideStyle,
-  swiperWrapStyle,
   topStyle,
 } from './HistoryCarousel.css';
 
-// TODO : HistoryCarousel 컴포넌트를 구현합니다.
+// TODO :
 interface Props {
   data: {
     detail: HistoryDetailCardProps;
@@ -33,42 +35,48 @@ interface Props {
 
 const HistoryCarousel = ({ data }: Props) => {
   return (
-    <OceanSwiper>
-      <OceanSwiper.Main className={swiperWrapStyle} hiddenNavigation>
+    <StaticContextHistoryCarousel.Provider
+      value={{ tabRef: { current: null } }}
+    >
+      <OceanSwiper>
         <OceanSwiper.Top className={topStyle}>
           <HistoryCarousel.NavigateButton direction="PREV" />
-          <HistoryCarousel.PaginateTab length={data.length} />
+          <HistoryCarousel.DisplayTab length={data.length} />
           <HistoryCarousel.NavigateButton direction="NEXT" />
         </OceanSwiper.Top>
-        {data.map((item) => (
-          <OceanSwiper.Slide className={slideStyle} key={item.detail.title}>
-            <HistoryDetailCard
-              className={detailStyle}
-              title={item.detail.title}
-              period={item.detail.period}
-              position={item.detail.position}
-              content={item.detail.content}
-            >
-              <HistoryDetailCard.Head />
-              <HistoryDetailCard.Content />
-            </HistoryDetailCard>
-            {item.impact.map((impact, idx) => (
-              <HistoryImpactCard
-                key={idx}
-                className={impactStyle}
-                before={impact.before}
-                after={impact.after}
-                unitWord={impact.unitWord}
-                content={impact.content}
+        <OceanSwiper.Main hiddenNavigation overflowVisible={false}>
+          <HistoryCarousel.PaginateTab length={data.length} />
+
+          {data.map((item) => (
+            <OceanSwiper.Slide className={slideStyle} key={item.detail.title}>
+              <HistoryDetailCard
+                className={detailStyle}
+                title={item.detail.title}
+                period={item.detail.period}
+                position={item.detail.position}
+                content={item.detail.content}
               >
-                <HistoryImpactCard.Headline />
-                <HistoryImpactCard.Content />
-              </HistoryImpactCard>
-            ))}
-          </OceanSwiper.Slide>
-        ))}
-      </OceanSwiper.Main>
-    </OceanSwiper>
+                <HistoryDetailCard.Head />
+                <HistoryDetailCard.Content />
+              </HistoryDetailCard>
+              {item.impact.map((impact, idx) => (
+                <HistoryImpactCard
+                  key={idx}
+                  className={impactStyle}
+                  before={impact.before}
+                  after={impact.after}
+                  unitWord={impact.unitWord}
+                  content={impact.content}
+                >
+                  <HistoryImpactCard.Headline />
+                  <HistoryImpactCard.Content />
+                </HistoryImpactCard>
+              ))}
+            </OceanSwiper.Slide>
+          ))}
+        </OceanSwiper.Main>
+      </OceanSwiper>
+    </StaticContextHistoryCarousel.Provider>
   );
 };
 
@@ -77,27 +85,57 @@ interface PaginateTabProps {
 }
 
 const PaginateTab = ({ length }: PaginateTabProps) => {
+  const { tabRef } = getStaticContext(StaticContextHistoryCarousel);
   const { realIndex } = useOceanSwiperIndex();
   const swiper = useSwiper();
+  const divRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    tabRef.current = divRef.current;
+
+    return () => {
+      tabRef.current = null;
+    };
+  }, []);
   return (
     <Tab
+      hidden
+      wrapRef={divRef}
       length={length > 5 ? 5 : length}
       selectedIdx={realIndex}
       onClick={(currentIdx) => {
-        console.log(swiper, 'swiper');
         swiper.slideTo(currentIdx);
       }}
     />
   );
 };
 
+const DisplayTab = ({ length }: PaginateTabProps) => {
+  const { tabRef } = getStaticContext(StaticContextHistoryCarousel);
+  const { realIndex } = useOceanSwiperIndex();
+
+  return (
+    <Tab
+      length={length > 5 ? 5 : length}
+      selectedIdx={realIndex}
+      onClick={(currentIdx) => {
+        const div = tabRef.current as HTMLDivElement;
+
+        (div.children[currentIdx] as HTMLDivElement).click();
+      }}
+    />
+  );
+};
 interface NavigateButtonProps {
   direction: ButtonDirection;
 }
 
 const NavigateButton = ({ direction }: NavigateButtonProps) => {
+  const { breakpointS } = useODSBreakPoints();
   const { handleClick } = useOceanSwiperButton(direction);
+
+  if (breakpointS) return null;
+
   return (
     <Button as="button" type="button" onClick={handleClick}>
       <CommonIcon
@@ -111,6 +149,7 @@ const NavigateButton = ({ direction }: NavigateButtonProps) => {
   );
 };
 
+HistoryCarousel.DisplayTab = DisplayTab;
 HistoryCarousel.PaginateTab = PaginateTab;
 HistoryCarousel.NavigateButton = NavigateButton;
 

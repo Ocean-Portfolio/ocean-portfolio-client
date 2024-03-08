@@ -36,6 +36,8 @@ globalStyle('button', {
   cursor: 'pointer',
   background: 'none',
   color: 'inherit',
+  paddingBlock: 0,
+  paddingInline: 0,
 });
 
 globalStyle('section', {

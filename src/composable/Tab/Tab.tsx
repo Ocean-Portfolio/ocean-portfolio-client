@@ -1,18 +1,35 @@
 'use client';
 
-import React from 'react';
+import classNames from 'classnames';
+import React, { useEffect, useRef } from 'react';
 import Button from '../Button/Button';
 import { buttonAnchorStyleVariant, buttonStyle, wrapStyle } from './Tab.css';
 
 export interface TabProps {
+  className?: string;
+  wrapRef?: React.RefObject<HTMLDivElement>;
   selectedIdx: number;
   onClick: (currentIdx: number) => void;
   length: number;
+  hidden?: boolean;
 }
 
-const Tab = ({ length, selectedIdx, onClick }: TabProps) => {
+const Tab = ({
+  className,
+  wrapRef,
+  hidden,
+  length,
+  selectedIdx,
+  onClick,
+}: TabProps) => {
   return (
-    <div className={wrapStyle}>
+    <div
+      className={classNames(className, wrapStyle)}
+      ref={wrapRef}
+      style={{
+        display: hidden ? 'none' : 'flex',
+      }}
+    >
       {Array.from({ length: length > 5 ? 5 : length }).map((_, idx) => (
         <Tab.Item
           key={idx}
@@ -32,14 +49,27 @@ interface ItemProps {
 }
 
 const Item = ({ idx, isSelected, onClick }: ItemProps) => {
+  const spanRef = useRef<HTMLSpanElement>(null);
   const handleClick = () => {
     onClick(idx);
   };
+  useEffect(() => {
+    if (spanRef.current) {
+      spanRef.current.addEventListener('click', handleClick);
+    }
+
+    return () => {
+      if (spanRef.current) {
+        spanRef.current.removeEventListener('click', handleClick);
+      }
+    };
+  }, []);
   return (
     <span
+      ref={spanRef}
       className={buttonAnchorStyleVariant[isSelected ? 'SELECTED' : 'DEFAULT']}
     >
-      <Button as="button" className={buttonStyle} onClick={handleClick} />
+      <Button as="button" className={buttonStyle} />
     </span>
   );
 };

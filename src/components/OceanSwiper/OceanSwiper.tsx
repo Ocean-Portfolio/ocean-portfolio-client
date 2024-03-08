@@ -57,6 +57,10 @@ const Wrap = ({ children, className, style }: PropsWithChildren<WrapProps>) => {
           detail: swiperWrapperRef.current,
         }),
       );
+
+    return () => {
+      swiperWrapperRef.current = null;
+    };
   }, []);
 
   return (
@@ -157,6 +161,14 @@ const Button = ({ className, style, direction, hidden }: ButtonProps) => {
     } else {
       buttonRefs.next = buttonRef.current;
     }
+
+    return () => {
+      if (direction === 'PREV') {
+        buttonRefs.prev = null;
+      } else {
+        buttonRefs.next = null;
+      }
+    };
   }, []);
 
   return (

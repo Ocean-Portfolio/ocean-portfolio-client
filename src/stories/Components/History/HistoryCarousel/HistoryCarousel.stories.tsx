@@ -22,7 +22,9 @@ const meta: Meta<typeof HistoryCarousel> = {
           sections: [],
         }}
       >
-        <Story />
+        <div style={{ backgroundColor: '#CCC' }}>
+          <Story />
+        </div>
       </StaticContextPageInfo.Provider>
     ),
   ],
