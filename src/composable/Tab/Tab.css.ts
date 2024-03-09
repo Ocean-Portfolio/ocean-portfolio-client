@@ -1,10 +1,17 @@
 import { style, styleVariants } from '@vanilla-extract/css';
+import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 import { backgroundColorVariants } from '@/styles/common/color.css';
 import { flexCenter } from '@/styles/common/flex.css';
 
 export const wrapStyle = style({
   display: 'flex',
   gap: '0.25rem',
+
+  '@media': {
+    [ODSBreakpointTokenVariables['breakpoint-s']]: {
+      width: '15rem',
+    },
+  },
 });
 
 const buttonAnchorCommonStyle = style([
@@ -27,6 +34,12 @@ export const buttonAnchorStyleVariant = styleVariants({
       ':hover': {
         opacity: 0.8,
       },
+
+      '@media': {
+        [ODSBreakpointTokenVariables['breakpoint-s']]: {
+          width: '100%',
+        },
+      },
     },
   ],
   DEFAULT: [
@@ -36,6 +49,12 @@ export const buttonAnchorStyleVariant = styleVariants({
       opacity: 0.4,
       ':hover': {
         opacity: 0.2,
+      },
+
+      '@media': {
+        [ODSBreakpointTokenVariables['breakpoint-s']]: {
+          width: '100%',
+        },
       },
     },
   ],

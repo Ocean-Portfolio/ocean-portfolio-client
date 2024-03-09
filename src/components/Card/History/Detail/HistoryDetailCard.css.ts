@@ -5,7 +5,12 @@ import { colorVariants } from '@/styles/common/color.css';
 import { flexColumn } from '@/styles/common/flex.css';
 import { fontVariants } from '@/styles/common/font.css';
 import { textPreStyle } from '@/styles/common/text.css';
-import { commonColorThemeVars } from '@/styles/theme/index.css';
+import {
+  commonColorThemeVars,
+  userColorThemeVars,
+} from '@/styles/theme/index.css';
+
+// TODO : 반응형 디자인 재확인하기
 
 export const wrapStyle = style([
   {
@@ -72,9 +77,9 @@ export const headVariants = styleVariants({
 });
 
 export const titleStyle = style([
-  colorVariants['tertiary-variant'],
-  fontVariants['title-m-bold'],
   {
+    ...ODSTextTokenVariables['title-m-bold'],
+    color: userColorThemeVars.token['tertiary-variant'],
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         ...ODSTextTokenVariables['paragraph-m-bold'],
@@ -91,8 +96,9 @@ export const titleVariants = styleVariants({
 
 export const periodStyle = style([
   colorVariants['primary-variant'],
-  fontVariants['paragraph-l-semibold'],
   {
+    ...ODSTextTokenVariables['paragraph-l-semibold'],
+
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]:
         ODSTextTokenVariables['caption-m-semibold'],
@@ -110,8 +116,9 @@ export const periodVariants = styleVariants({
 
 export const positionStyle = style([
   colorVariants['gray-scale-06'],
-  fontVariants['paragraph-l-medium'],
   {
+    ...ODSTextTokenVariables['paragraph-l-medium'],
+
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]:
         ODSTextTokenVariables['paragraph-s-medium'],
@@ -126,9 +133,9 @@ export const positionVariants = styleVariants({
 
 export const contentStyle = style([
   textPreStyle,
-  fontVariants['paragraph-m-medium'],
+  colorVariants['gray-scale-06'],
   {
-    color: commonColorThemeVars.token['gray-scale-06'],
+    ...ODSTextTokenVariables['paragraph-m-medium'],
 
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {

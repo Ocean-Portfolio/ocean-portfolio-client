@@ -8,7 +8,10 @@ export const topStyle = style({
 
   '@media': {
     [ODSBreakpointTokenVariables['breakpoint-s']]: {
+      justifyContent: 'center',
+      alignItems: 'flex-end',
       height: '2.25rem',
+      paddingBottom: '0.625rem',
     },
   },
 });
