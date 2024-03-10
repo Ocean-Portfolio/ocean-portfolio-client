@@ -10,8 +10,6 @@ import {
   userColorThemeVars,
 } from '@/styles/theme/index.css';
 
-// TODO : 반응형 디자인 재확인하기
-
 export const wrapStyle = style([
   {
     gap: '1.25rem',

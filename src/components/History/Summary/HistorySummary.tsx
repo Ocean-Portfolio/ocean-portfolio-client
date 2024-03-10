@@ -28,7 +28,7 @@ import {
   swiperWrapVariants,
 } from './HistorySummary.css';
 
-interface HistoryCardData extends HistoryCardContextProps {
+export interface HistoryCardData extends HistoryCardContextProps {
   id: string;
 }
 

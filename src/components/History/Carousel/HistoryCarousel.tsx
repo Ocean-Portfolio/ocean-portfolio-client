@@ -25,7 +25,6 @@ import {
   topStyle,
 } from './HistoryCarousel.css';
 
-// TODO :
 interface Props {
   data: {
     detail: HistoryDetailCardProps;

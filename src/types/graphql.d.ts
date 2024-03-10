@@ -406,6 +406,23 @@ export type GetContactBySectionIdQuery = {
   };
 };
 
+export type GetHistoriesByCategoryIdQueryVariables = Exact<{
+  category_id: Scalars['Float']['input'];
+}>;
+
+export type GetHistoriesByCategoryIdQuery = {
+  __typename?: 'Query';
+  getHistoriesByCategoryId: Array<{
+    __typename?: 'HistoryTable';
+    id: string;
+    title: string;
+    position: string;
+    start_date: string;
+    end_date: string;
+    visible_status: string;
+  }>;
+};
+
 export type GetImageByIdQueryVariables = Exact<{
   id: Scalars['Float']['input'];
 }>;

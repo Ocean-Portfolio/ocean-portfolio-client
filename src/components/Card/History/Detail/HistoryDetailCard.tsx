@@ -22,8 +22,6 @@ import {
   wrapVariants,
 } from './HistoryDetailCard.css';
 
-// TODO : 스토리북, 테스트코드 추가해야함
-
 export interface HistoryDetailCardProps extends HistoryDetailContextProps {
   className?: string;
   visible_status?: VisibleStatusToken;
