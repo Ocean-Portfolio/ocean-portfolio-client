@@ -24,6 +24,7 @@ interface DispatcherContextProps {
     React.SetStateAction<{
       isSelected: boolean;
       id: string;
+      summary_id: string;
     }>
   >;
 }
@@ -36,6 +37,7 @@ interface ValueContextHistoryProps {
   selectInfo: {
     isSelected: boolean;
     id: string;
+    summary_id: string;
   };
 }
 
@@ -43,5 +45,6 @@ export const ValueContextHistory = createContext<ValueContextHistoryProps>({
   selectInfo: {
     isSelected: false,
     id: '',
+    summary_id: '',
   },
 });

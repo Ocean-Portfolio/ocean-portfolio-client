@@ -65,8 +65,9 @@ export type HistoryItemTable = {
   date_type: Scalars['String']['output'];
   end_date?: Maybe<Scalars['String']['output']>;
   history_id: Scalars['Float']['output'];
-  history_mode: Scalars['String']['output'];
   id: Scalars['ID']['output'];
+  position?: Maybe<Scalars['String']['output']>;
+  sort_order: Scalars['Float']['output'];
   start_date?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
   updated_at: Scalars['String']['output'];
@@ -158,7 +159,7 @@ export type Query = {
   getHistoriesByTitle: Array<HistoryTable>;
   getHistoryById: HistoryTable;
   getHistoryItem: Array<HistoryItemTable>;
-  getHistoryItemByCategoryId: Array<HistoryItemTable>;
+  getHistoryItemByHistoryId: Array<HistoryItemTable>;
   getHistoryItemById: HistoryItemTable;
   getHistoryItemByTitle: Array<HistoryItemTable>;
   getImage: Array<ImageTable>;
@@ -232,7 +233,7 @@ export type QueryGetHistoryByIdArgs = {
   id: Scalars['Float']['input'];
 };
 
-export type QueryGetHistoryItemByCategoryIdArgs = {
+export type QueryGetHistoryItemByHistoryIdArgs = {
   history_id: Scalars['Float']['input'];
 };
 
@@ -417,8 +418,29 @@ export type GetHistoriesByCategoryIdQuery = {
     id: string;
     title: string;
     position: string;
+    date_type: string;
     start_date: string;
     end_date: string;
+    visible_status: string;
+  }>;
+};
+
+export type GetHistoryItemByHistoryIdQueryVariables = Exact<{
+  history_id: Scalars['Float']['input'];
+}>;
+
+export type GetHistoryItemByHistoryIdQuery = {
+  __typename?: 'Query';
+  getHistoryItemByHistoryId: Array<{
+    __typename?: 'HistoryItemTable';
+    id: string;
+    sort_order: number;
+    title: string;
+    position?: string | null;
+    content?: string | null;
+    date_type: string;
+    start_date?: string | null;
+    end_date?: string | null;
     visible_status: string;
   }>;
 };

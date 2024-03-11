@@ -6,6 +6,7 @@ export const GET_HISTORIES_BY_CATEGORY_ID = gql`
       id
       title
       position
+      date_type
       start_date
       end_date
       visible_status

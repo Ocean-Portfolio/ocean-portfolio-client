@@ -24,11 +24,7 @@ const Contents = () => {
             );
           case 'HISTORY':
             return (
-              <HistoryContainer
-                key={data.id}
-                title={data.name}
-                section_id={Number(data.id)}
-              />
+              <HistoryContainer key={data.id} section_id={Number(data.id)} />
             );
           case 'KEYWORD':
             return (

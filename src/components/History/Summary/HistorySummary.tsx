@@ -35,25 +35,28 @@ export interface HistoryCardData extends HistoryCardContextProps {
   id: string;
 }
 
-interface Props extends HistorySummaryContextProps {
+interface CommonProps extends HistorySummaryContextProps {
   title: string;
   data: HistoryCardData[];
   isDetailView?: boolean;
   selectIndex?: number;
 }
+
 const HistorySummary = ({
+  summary_id,
   title,
   data,
   isDetailView,
   selectIndex,
   handleClick,
-}: Props) => {
+}: CommonProps) => {
   const { breakpointS } = useODSBreakPoints();
 
   return (
     <StaticContextHistorySummary.Provider
       value={{
         handleClick,
+        summary_id,
       }}
     >
       {breakpointS && (
@@ -76,7 +79,12 @@ const HistorySummary = ({
   );
 };
 
-const Swiper = ({ title, data, isDetailView, selectIndex }: Props) => {
+const Swiper = ({
+  title,
+  data,
+  isDetailView,
+  selectIndex,
+}: Omit<CommonProps, 'summary_id'>) => {
   const { breakpointM, breakpointL, breakpointXXL } = useODSBreakPoints();
 
   const maxDisplayLength = breakpointL ? 3 : 4;
@@ -118,7 +126,7 @@ const List = ({
   data,
   isDetailView,
   selectIndex,
-}: PropsWithChildren<Props>) => {
+}: PropsWithChildren<Omit<CommonProps, 'summary_id'>>) => {
   const [isOpen, setIsOpen] = useState(isDetailView);
   const displayData = isOpen === false ? data.slice(0, 2) : data;
   return (
@@ -167,7 +175,9 @@ const Bundle = ({
   data,
   selectIndex,
 }: PropsWithChildren<BundleProps>) => {
-  const { handleClick } = getStaticContext(StaticContextHistorySummary);
+  const { handleClick, summary_id } = getStaticContext(
+    StaticContextHistorySummary,
+  );
 
   return (
     <div className={classNames(bundleStyle, className)}>
@@ -178,7 +188,7 @@ const Bundle = ({
               companyName={history.companyName}
               period={history.period}
               onClick={() => {
-                if (handleClick) handleClick(history.id);
+                if (handleClick) handleClick(history.id, summary_id);
               }}
             >
               <HistoryCard.Company />

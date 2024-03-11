@@ -1,8 +1,11 @@
 import { createStaticContext } from '@/utils/context/StaticContext';
 
 export interface HistorySummaryContextProps {
-  handleClick?: (id: string) => void;
+  summary_id: string;
+  handleClick?: (id: string, summary_id: string) => void;
 }
 
 export const StaticContextHistorySummary =
-  createStaticContext<HistorySummaryContextProps>({});
+  createStaticContext<HistorySummaryContextProps>({
+    summary_id: '',
+  });
