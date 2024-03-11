@@ -5,12 +5,14 @@ import { bgColorVariants, cardStyle } from './CommonCard.css';
 interface Props {
   className?: string;
   bgColorToken: 'GRAY' | 'USER';
+  onClick?: () => void;
 }
 
 const CommonCard = ({
   children,
   className,
   bgColorToken,
+  onClick,
 }: PropsWithChildren<Props>) => {
   return (
     <article
@@ -19,6 +21,7 @@ const CommonCard = ({
         cardStyle,
         bgColorVariants[bgColorToken],
       )}
+      onClick={onClick}
     >
       {children}
     </article>

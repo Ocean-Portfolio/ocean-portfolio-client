@@ -31,6 +31,8 @@ export const wrapStyle = style([
     padding: '1.5rem 2.15625rem',
     borderRadius: '0.75rem',
 
+    cursor: 'pointer',
+
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-xl']]: {
         padding: '0.875rem 1.5rem',

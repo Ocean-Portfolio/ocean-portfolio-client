@@ -17,6 +17,7 @@ import {
 export interface HistoryCardProps extends HistoryCardContextProps {
   className?: string;
   visible_status?: VisibleStatusToken;
+  onClick?: () => void;
 }
 
 const HistoryCard = ({
@@ -26,6 +27,7 @@ const HistoryCard = ({
   sizeToken,
   companyName,
   period,
+  onClick,
 }: PropsWithChildren<HistoryCardProps>) => {
   if (visible_status === 'NONE') return null;
 
@@ -43,6 +45,7 @@ const HistoryCard = ({
           sizeToken ? wrapVariants[sizeToken] : wrapStyle,
         )}
         bgColorToken="GRAY"
+        onClick={onClick}
       >
         {children}
       </CommonCard>

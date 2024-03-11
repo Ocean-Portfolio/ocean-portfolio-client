@@ -1,5 +1,3 @@
-'use client';
-
 import 'swiper/css';
 
 import classNames from 'classnames';
@@ -13,7 +11,12 @@ import Pagination from '@/composable/Pagination/Pagination';
 import Spacer from '@/composable/Spacer/Spacer';
 import { useODSBreakPoints } from '@/hook/useODSBreakPoints';
 import { createNestedArray } from '@/utils/array/createNestedArray';
+import { getStaticContext } from '@/utils/context/StaticContext';
 import OceanSwiper from '../../OceanSwiper/OceanSwiper';
+import {
+  HistorySummaryContextProps,
+  StaticContextHistorySummary,
+} from './HistorySummary.context';
 import {
   buttonStyle,
   gapStyle,
@@ -32,32 +35,44 @@ export interface HistoryCardData extends HistoryCardContextProps {
   id: string;
 }
 
-interface Props {
+interface Props extends HistorySummaryContextProps {
   title: string;
   data: HistoryCardData[];
   isDetailView?: boolean;
   selectIndex?: number;
 }
-const HistorySummary = ({ title, data, isDetailView, selectIndex }: Props) => {
+const HistorySummary = ({
+  title,
+  data,
+  isDetailView,
+  selectIndex,
+  handleClick,
+}: Props) => {
   const { breakpointS } = useODSBreakPoints();
 
-  if (breakpointS)
-    return (
-      <HistorySummary.List
-        title={title}
-        data={data}
-        isDetailView={isDetailView}
-        selectIndex={selectIndex}
-      />
-    );
-
   return (
-    <HistorySummary.Swiper
-      title={title}
-      data={data}
-      isDetailView={isDetailView}
-      selectIndex={selectIndex}
-    />
+    <StaticContextHistorySummary.Provider
+      value={{
+        handleClick,
+      }}
+    >
+      {breakpointS && (
+        <HistorySummary.List
+          title={title}
+          data={data}
+          isDetailView={isDetailView}
+          selectIndex={selectIndex}
+        />
+      )}
+      {!breakpointS && (
+        <HistorySummary.Swiper
+          title={title}
+          data={data}
+          isDetailView={isDetailView}
+          selectIndex={selectIndex}
+        />
+      )}
+    </StaticContextHistorySummary.Provider>
   );
 };
 
@@ -152,6 +167,8 @@ const Bundle = ({
   data,
   selectIndex,
 }: PropsWithChildren<BundleProps>) => {
+  const { handleClick } = getStaticContext(StaticContextHistorySummary);
+
   return (
     <div className={classNames(bundleStyle, className)}>
       {data.map((history, idx) => {
@@ -160,6 +177,9 @@ const Bundle = ({
             <HistoryCard
               companyName={history.companyName}
               period={history.period}
+              onClick={() => {
+                if (handleClick) handleClick(history.id);
+              }}
             >
               <HistoryCard.Company />
               <HistoryCard.Period />
