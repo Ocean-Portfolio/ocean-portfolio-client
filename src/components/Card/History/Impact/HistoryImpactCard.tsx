@@ -1,7 +1,10 @@
+'use client';
+
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
 import { StaticContextPageInfo } from '@/app/context';
 import CommonIcon from '@/composable/Icon/CommonIcon';
+import { useUserInfo } from '@/hook/useUserInfo';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import calcRemToPxNumber from '@/utils/style/calcRemToPxNumber';
 import CommonCard from '../../Common/CommonCard';
@@ -33,7 +36,6 @@ const HistoryImpactCard = ({
   sizeToken,
   before,
   after,
-  unitWord,
   content,
 }: PropsWithChildren<HistoryImpactCardProps>) => {
   return (
@@ -42,7 +44,6 @@ const HistoryImpactCard = ({
         sizeToken,
         before,
         after,
-        unitWord,
         content,
       }}
     >
@@ -60,11 +61,11 @@ const HistoryImpactCard = ({
 };
 
 const Headline = () => {
-  const { sizeToken, before, after, unitWord } = getStaticContext(
+  const { sizeToken, before, after } = getStaticContext(
     StaticContextHistoryImpactCard,
   );
 
-  const { userInfo } = getStaticContext(StaticContextPageInfo);
+  const userInfo = useUserInfo();
 
   return (
     <h3
@@ -72,16 +73,13 @@ const Headline = () => {
         sizeToken ? headlineStyleVariants[sizeToken] : headlineStyle,
       )}
     >
-      <span>
-        {before}
-        {unitWord}
-      </span>
+      <span>{before}</span>
       <CommonIcon
         className={classNames(
           sizeToken ? iconStyleVariants[sizeToken] : iconStyle,
         )}
         variant="LEFT_ARROW_SECONDARY_VARIANT"
-        userToken={userInfo.token}
+        userToken={userInfo.name as UserNameToken}
         width={calcRemToPxNumber('1.5rem')}
         height={calcRemToPxNumber('1.5rem')}
       />
@@ -93,7 +91,6 @@ const Headline = () => {
         >
           {after}
         </strong>
-        {unitWord}
       </span>
     </h3>
   );

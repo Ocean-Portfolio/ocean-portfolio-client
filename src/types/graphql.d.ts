@@ -58,6 +58,19 @@ export type ContactTable = {
   visible_status: Scalars['String']['output'];
 };
 
+export type HistoryImpactTable = {
+  __typename?: 'HistoryImpactTable';
+  after: Scalars['String']['output'];
+  before: Scalars['String']['output'];
+  content?: Maybe<Scalars['String']['output']>;
+  created_at: Scalars['String']['output'];
+  history_item_id: Scalars['Float']['output'];
+  id: Scalars['ID']['output'];
+  sort_order: Scalars['Float']['output'];
+  updated_at: Scalars['String']['output'];
+  visible_status: Scalars['String']['output'];
+};
+
 export type HistoryItemTable = {
   __typename?: 'HistoryItemTable';
   content?: Maybe<Scalars['String']['output']>;
@@ -66,6 +79,7 @@ export type HistoryItemTable = {
   end_date?: Maybe<Scalars['String']['output']>;
   history_id: Scalars['Float']['output'];
   id: Scalars['ID']['output'];
+  impacts: Array<HistoryImpactTable>;
   position?: Maybe<Scalars['String']['output']>;
   sort_order: Scalars['Float']['output'];
   start_date?: Maybe<Scalars['String']['output']>;
@@ -158,6 +172,9 @@ export type Query = {
   getHistoriesByCategoryId: Array<HistoryTable>;
   getHistoriesByTitle: Array<HistoryTable>;
   getHistoryById: HistoryTable;
+  getHistoryImpact: Array<HistoryImpactTable>;
+  getHistoryImpactByHistoryItemId: Array<HistoryImpactTable>;
+  getHistoryImpactById: HistoryImpactTable;
   getHistoryItem: Array<HistoryItemTable>;
   getHistoryItemByHistoryId: Array<HistoryItemTable>;
   getHistoryItemById: HistoryItemTable;
@@ -230,6 +247,14 @@ export type QueryGetHistoriesByTitleArgs = {
 };
 
 export type QueryGetHistoryByIdArgs = {
+  id: Scalars['Float']['input'];
+};
+
+export type QueryGetHistoryImpactByHistoryItemIdArgs = {
+  history_item_id: Scalars['Float']['input'];
+};
+
+export type QueryGetHistoryImpactByIdArgs = {
   id: Scalars['Float']['input'];
 };
 
@@ -442,6 +467,15 @@ export type GetHistoryItemByHistoryIdQuery = {
     start_date?: string | null;
     end_date?: string | null;
     visible_status: string;
+    impacts: Array<{
+      __typename?: 'HistoryImpactTable';
+      id: string;
+      sort_order: number;
+      before: string;
+      after: string;
+      content?: string | null;
+      visible_status: string;
+    }>;
   }>;
 };
 

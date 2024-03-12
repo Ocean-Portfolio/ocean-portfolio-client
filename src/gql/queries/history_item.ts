@@ -11,6 +11,14 @@ export const GET_HISTORY_ITEM_BY_HISTORY_ID = gql`
       date_type
       start_date
       end_date
+      impacts {
+        id
+        sort_order
+        before
+        after
+        content
+        visible_status
+      }
       visible_status
     }
   }

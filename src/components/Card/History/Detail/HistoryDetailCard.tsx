@@ -107,7 +107,7 @@ const Content = () => {
         sizeToken ? contentVariants[sizeToken] : contentStyle,
         contentSelector,
       )}
-      value={content}
+      value={content || ''}
     />
   );
 };

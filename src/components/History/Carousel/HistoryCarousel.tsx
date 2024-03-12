@@ -64,7 +64,6 @@ const HistoryCarousel = ({ data }: Props) => {
                   className={impactStyle}
                   before={impact.before}
                   after={impact.after}
-                  unitWord={impact.unitWord}
                   content={impact.content}
                 >
                   <HistoryImpactCard.Headline />

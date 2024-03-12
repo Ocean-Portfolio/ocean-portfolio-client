@@ -4,8 +4,8 @@ export interface HistoryDetailContextProps {
   sizeToken?: 'LARGE' | 'SMALL';
   title: string;
   period: string;
-  position: string;
-  content: string;
+  position: string | null | undefined;
+  content: string | null | undefined;
 }
 
 const StaticContextHistoryDetailCard =

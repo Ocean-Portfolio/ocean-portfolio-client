@@ -4,8 +4,7 @@ export interface HistoryImpactContextProps {
   sizeToken?: 'LARGE' | 'SMALL';
   before: string;
   after: string;
-  unitWord: string;
-  content: string;
+  content: string | null | undefined;
 }
 
 export const StaticContextHistoryImpactCard =
@@ -13,6 +12,5 @@ export const StaticContextHistoryImpactCard =
     sizeToken: 'LARGE',
     before: '',
     after: '',
-    unitWord: '',
     content: '',
   });

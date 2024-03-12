@@ -1,9 +1,15 @@
 'use client';
 
-import { useQuery, useSuspenseQuery } from '@apollo/client';
+import { useSuspenseQuery } from '@apollo/client';
 import React, { useContext, useState } from 'react';
 import { GET_HISTORY_ITEM_BY_HISTORY_ID } from '@/gql/queries/history_item';
+import { useUserInfo } from '@/hook/useUserInfo';
+import {
+  GetHistoryItemByHistoryIdQuery,
+  GetHistoryItemByHistoryIdQueryVariables,
+} from '@/types/graphql';
 import { getStaticContext } from '@/utils/context/StaticContext';
+import { getPeriod } from '@/utils/date/getPeriod';
 import HistoryCarousel from './Carousel/HistoryCarousel';
 import {
   DispatcherContextHistory,
@@ -97,13 +103,38 @@ const Carousel = () => {
     });
   };
 
-  const { data } = useSuspenseQuery(GET_HISTORY_ITEM_BY_HISTORY_ID, {
+  const historyItemQuery = useSuspenseQuery<
+    GetHistoryItemByHistoryIdQuery,
+    GetHistoryItemByHistoryIdQueryVariables
+  >(GET_HISTORY_ITEM_BY_HISTORY_ID, {
     variables: {
       history_id: Number(selectInfo.id),
     },
   });
 
-  console.log(data);
+  const data = historyItemQuery.data.getHistoryItemByHistoryId.map(
+    (historyItem) => {
+      return {
+        detail: {
+          title: historyItem.title,
+          period: getPeriod(
+            Number(historyItem.start_date),
+            Number(historyItem.end_date),
+          ),
+          position: historyItem.position,
+          content: historyItem.content,
+        },
+        impact: historyItem.impacts.map((impact) => {
+          return {
+            before: impact.before,
+            after: impact.after,
+            content: impact.content,
+          };
+        }),
+      };
+    },
+  );
+
   return (
     <>
       <HistorySummary
@@ -112,7 +143,7 @@ const Carousel = () => {
         data={selectedSummary.histories}
         handleClick={handleClick}
       />
-      {/* <HistoryCarousel /> */}
+      <HistoryCarousel data={data} />
     </>
   );
 };
