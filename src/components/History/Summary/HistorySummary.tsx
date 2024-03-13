@@ -2,6 +2,7 @@ import 'swiper/css';
 
 import classNames from 'classnames';
 import React, { Fragment, PropsWithChildren, useState } from 'react';
+import { useSwiper } from 'swiper/react';
 import HistoryCard from '@/components/Card/History/HistoryCard';
 import { HistoryCardContextProps } from '@/components/Card/History/HistoryCard.context';
 import { historyCardWrapWidthStyle } from '@/components/Card/History/HistoryCard.css';
@@ -86,6 +87,9 @@ const Swiper = ({
   selectIndex,
 }: Omit<CommonProps, 'summary_id'>) => {
   const { breakpointM, breakpointL, breakpointXXL } = useODSBreakPoints();
+  const { handleClick, summary_id } = getStaticContext(
+    StaticContextHistorySummary,
+  );
 
   const maxDisplayLength = breakpointL ? 3 : 4;
 
@@ -102,6 +106,10 @@ const Swiper = ({
           selectedIdx={typeof selectIndex === 'number' ? selectIndex : -1}
           wrapperGapClass={gapStyle}
           contentsWidthClass={historyCardWrapWidthStyle}
+          onClick={(currentIdx) => {
+            if (handleClick)
+              handleClick(data[currentIdx].id, summary_id, currentIdx);
+          }}
         />
       </OceanSwiper.Top>
       <Spacer
@@ -188,7 +196,7 @@ const Bundle = ({
               companyName={history.companyName}
               period={history.period}
               onClick={() => {
-                if (handleClick) handleClick(history.id, summary_id);
+                if (handleClick) handleClick(history.id, summary_id, idx);
               }}
             >
               <HistoryCard.Company />

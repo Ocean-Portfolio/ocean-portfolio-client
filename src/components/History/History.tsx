@@ -27,6 +27,7 @@ const History = ({ summary }: Props) => {
     isSelected: false,
     id: '',
     summary_id: '',
+    index: -1,
   });
 
   return (
@@ -63,13 +64,15 @@ const History = ({ summary }: Props) => {
 
 const Summary = () => {
   const { summary } = getStaticContext(StaticContextHistory);
+  const { selectInfo } = useContext(ValueContextHistory);
   const { setSelectInfo } = useContext(DispatcherContextHistory);
 
-  const handleClick = (id: string, summary_id: string) => {
+  const handleClick = (id: string, summary_id: string, index: number) => {
     setSelectInfo({
       isSelected: true,
       summary_id,
       id,
+      index,
     });
   };
 
@@ -84,6 +87,7 @@ const Summary = () => {
             summary_id={historySummary.id}
             title={historySummary.name}
             data={historySummary.histories}
+            selectIndex={selectInfo.index}
             handleClick={handleClick}
           />
         );
@@ -101,11 +105,14 @@ const Carousel = () => {
     (historySummary) => historySummary.id === selectInfo.summary_id,
   ) as SummaryData;
 
-  const handleClick = (id: string, summary_id: string) => {
+  const handleClick = (id: string, summary_id: string, index: number) => {
+    console.log({ id, summary_id, index });
+
     setSelectInfo({
       isSelected: true,
       id,
       summary_id,
+      index,
     });
   };
 
@@ -147,6 +154,7 @@ const Carousel = () => {
         summary_id={selectedSummary.id}
         title={selectedSummary.name}
         data={selectedSummary.histories}
+        selectIndex={selectInfo.index}
         handleClick={handleClick}
       />
       <HistoryCarousel data={data} />

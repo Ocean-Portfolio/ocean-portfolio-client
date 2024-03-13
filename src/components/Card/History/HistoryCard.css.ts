@@ -1,4 +1,4 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
 import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 import { ODSTextTokenVariables } from '@/const/fonts';
 import { colorVariants } from '@/styles/common/color.css';
@@ -30,8 +30,6 @@ export const wrapStyle = style([
     gap: '0.5rem',
     padding: '1.5rem 2.15625rem',
     borderRadius: '0.75rem',
-
-    cursor: 'pointer',
 
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-xl']]: {

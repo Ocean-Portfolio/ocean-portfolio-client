@@ -6,6 +6,7 @@ globalStyle('*', {
   padding: 0,
   boxSizing: 'border-box',
 
+  fontFamily: 'inherit',
   fontFeatureSettings: '"clig" off, "liga" off',
   fontStyle: 'normal',
   fontStretch: 'normal',
@@ -27,8 +28,6 @@ globalStyle('html::-webkit-scrollbar', {
 globalStyle('html, body', {
   maxWidth: '100vw',
 });
-
-globalStyle('main', {});
 
 globalStyle('button', {
   border: 'none',

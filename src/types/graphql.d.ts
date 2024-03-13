@@ -94,8 +94,9 @@ export type HistoryTable = {
   created_at: Scalars['String']['output'];
   date_type: Scalars['String']['output'];
   end_date: Scalars['String']['output'];
+  end_time: Scalars['String']['output'];
   id: Scalars['ID']['output'];
-  position: Scalars['String']['output'];
+  sort_order: Scalars['Float']['output'];
   start_date: Scalars['String']['output'];
   title: Scalars['String']['output'];
   updated_at: Scalars['String']['output'];
@@ -441,9 +442,10 @@ export type GetHistoriesByCategoryIdQuery = {
   getHistoriesByCategoryId: Array<{
     __typename?: 'HistoryTable';
     id: string;
+    sort_order: number;
     title: string;
-    position: string;
     date_type: string;
+    end_time: string;
     start_date: string;
     end_date: string;
     visible_status: string;

@@ -1,7 +1,7 @@
 'use client';
 
 import classNames from 'classnames';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import Button from '../Button/Button';
 import { buttonAnchorStyleVariant, buttonStyle, wrapStyle } from './Tab.css';
 
@@ -49,25 +49,12 @@ interface ItemProps {
 }
 
 const Item = ({ idx, isSelected, onClick }: ItemProps) => {
-  const spanRef = useRef<HTMLSpanElement>(null);
-  const handleClick = () => {
-    onClick(idx);
-  };
-  useEffect(() => {
-    if (spanRef.current) {
-      spanRef.current.addEventListener('click', handleClick);
-    }
-
-    return () => {
-      if (spanRef.current) {
-        spanRef.current.removeEventListener('click', handleClick);
-      }
-    };
-  }, []);
+  const handleClick = () => onClick(idx);
   return (
     <span
-      ref={spanRef}
       className={buttonAnchorStyleVariant[isSelected ? 'SELECTED' : 'DEFAULT']}
+      onClick={handleClick}
+      onClickCapture={handleClick}
     >
       <Button as="button" className={buttonStyle} />
     </span>

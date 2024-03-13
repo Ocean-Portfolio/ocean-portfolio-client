@@ -40,6 +40,7 @@ const HistoryCard = ({
       }}
     >
       <CommonCard
+        as="button"
         className={classNames(
           className,
           sizeToken ? wrapVariants[sizeToken] : wrapStyle,

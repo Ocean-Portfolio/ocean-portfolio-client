@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { useSwiper } from 'swiper/react';
 import HistoryDetailCard, {
   HistoryDetailCardProps,
@@ -92,6 +92,8 @@ const PaginateTab = ({ length }: PaginateTabProps) => {
   const swiper = useSwiper();
   const divRef = useRef<HTMLDivElement>(null);
 
+  const handleClick = (currentIdx: number) => swiper.slideTo(currentIdx);
+
   useEffect(() => {
     tabRef.current = divRef.current;
 
@@ -105,9 +107,7 @@ const PaginateTab = ({ length }: PaginateTabProps) => {
       wrapRef={divRef}
       length={length > 5 ? 5 : length}
       selectedIdx={realIndex}
-      onClick={(currentIdx) => {
-        swiper.slideTo(currentIdx);
-      }}
+      onClick={handleClick}
     />
   );
 };

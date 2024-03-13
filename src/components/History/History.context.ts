@@ -25,6 +25,7 @@ interface DispatcherContextProps {
       isSelected: boolean;
       id: string;
       summary_id: string;
+      index: number;
     }>
   >;
 }
@@ -38,6 +39,7 @@ interface ValueContextHistoryProps {
     isSelected: boolean;
     id: string;
     summary_id: string;
+    index: number;
   };
 }
 
@@ -46,5 +48,6 @@ export const ValueContextHistory = createContext<ValueContextHistoryProps>({
     isSelected: false,
     id: '',
     summary_id: '',
+    index: -1,
   },
 });

@@ -40,6 +40,7 @@ const HistoryContainer = async ({ section_id }: Props) => {
           period: getPeriod(
             Number(history.start_date),
             Number(history.end_date),
+            history.end_time === 'CURRENT',
           ),
         };
       });
