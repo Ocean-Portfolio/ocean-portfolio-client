@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { StaticContextPageInfo } from '@/app/context';
 import HistoryImpactCard, {
   HistoryImpactCardProps,
 } from '@/components/Card/History/Impact/HistoryImpactCard';
+import UserInfoProvider from '@/containers/UserInfoProvider';
 
 const Template = (args: HistoryImpactCardProps) => (
   <HistoryImpactCard {...args}>
@@ -18,21 +18,9 @@ const meta: Meta<typeof HistoryImpactCard> = {
   parameters: { layout: 'fullscreen' },
   decorators: [
     (Story) => (
-      <StaticContextPageInfo.Provider
-        value={{
-          userInfo: {
-            token: 'sungyeon',
-            id: '1',
-            name: '윤성연',
-            email: '',
-            job: 'Frontend Engineer',
-            image_id: 1,
-          },
-          sections: [],
-        }}
-      >
+      <UserInfoProvider>
         <Story />
-      </StaticContextPageInfo.Provider>
+      </UserInfoProvider>
     ),
   ],
 };
@@ -41,9 +29,8 @@ type Story = StoryObj<typeof HistoryImpactCard>;
 export const Large: Story = {
   args: {
     sizeToken: 'LARGE',
-    before: '220',
-    after: '330',
-    unitWord: '만',
+    before: '220만',
+    after: '330만',
     content: '웹 리뉴얼을 통한\nMAU 지수 상승',
   },
 };
@@ -51,9 +38,8 @@ export const Large: Story = {
 export const Small: Story = {
   args: {
     sizeToken: 'SMALL',
-    before: '220',
-    after: '330',
-    unitWord: '만',
+    before: '220만',
+    after: '330만',
     content: '웹 리뉴얼을 통한\nMAU 지수 상승',
   },
 };
@@ -61,9 +47,8 @@ export const Small: Story = {
 export const PercentLarge: Story = {
   args: {
     sizeToken: 'LARGE',
-    before: '70',
-    after: '120',
-    unitWord: '%',
+    before: '70%',
+    after: '120%',
     content: '웹 리뉴얼을 통한\nMAU 지수 상승',
   },
 };
@@ -71,9 +56,8 @@ export const PercentLarge: Story = {
 export const PercentSmall: Story = {
   args: {
     sizeToken: 'SMALL',
-    before: '70',
-    after: '9999',
-    unitWord: '%',
+    before: '70%',
+    after: '9999%',
     content: '웹 리뉴얼을 통한\nMAU 지수 상승',
   },
 };

@@ -1,9 +1,9 @@
 'use client';
 
 import { useSuspenseQuery } from '@apollo/client';
-import React, { useContext, useState } from 'react';
+import React, { Suspense, useContext, useState } from 'react';
+import UserInfoProvider from '@/containers/UserInfoProvider';
 import { GET_HISTORY_ITEM_BY_HISTORY_ID } from '@/gql/queries/history_item';
-import { useUserInfo } from '@/hook/useUserInfo';
 import {
   GetHistoryItemByHistoryIdQuery,
   GetHistoryItemByHistoryIdQueryVariables,
@@ -30,28 +30,34 @@ const History = ({ summary }: Props) => {
   });
 
   return (
-    <StaticContextHistory.Provider
-      value={{
-        summary,
-      }}
-    >
-      <DispatcherContextHistory.Provider
+    <UserInfoProvider>
+      <StaticContextHistory.Provider
         value={{
-          setSelectInfo,
+          summary,
         }}
       >
-        <ValueContextHistory.Provider
+        <DispatcherContextHistory.Provider
           value={{
-            selectInfo,
+            setSelectInfo,
           }}
         >
-          <section>
-            {!selectInfo.isSelected && <History.Summary />}
-            {selectInfo.isSelected && <History.Carousel />}
-          </section>
-        </ValueContextHistory.Provider>
-      </DispatcherContextHistory.Provider>
-    </StaticContextHistory.Provider>
+          <ValueContextHistory.Provider
+            value={{
+              selectInfo,
+            }}
+          >
+            <section>
+              {!selectInfo.isSelected && <History.Summary />}
+              {selectInfo.isSelected && (
+                <Suspense fallback={<></>}>
+                  <History.Carousel />
+                </Suspense>
+              )}
+            </section>
+          </ValueContextHistory.Provider>
+        </DispatcherContextHistory.Provider>
+      </StaticContextHistory.Provider>
+    </UserInfoProvider>
   );
 };
 

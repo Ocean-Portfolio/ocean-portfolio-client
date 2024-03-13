@@ -48,7 +48,6 @@ const HistoryContainer = async ({ section_id }: Props) => {
         histories,
       };
     });
-
   return <History summary={summaryData} />;
 };
 

@@ -2,9 +2,8 @@
 
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
-import { StaticContextPageInfo } from '@/app/context';
 import CommonIcon from '@/composable/Icon/CommonIcon';
-import { useUserInfo } from '@/hook/useUserInfo';
+import { StaticContextUserInfo } from '@/containers/UserInfoProvider.context';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import calcRemToPxNumber from '@/utils/style/calcRemToPxNumber';
 import CommonCard from '../../Common/CommonCard';
@@ -24,6 +23,7 @@ import {
   strongWrapStyle,
   wrapStyleVariants,
   wrapStyle,
+  beforeStyle,
 } from './HistoryImpactCard.css';
 
 export interface HistoryImpactCardProps extends HistoryImpactContextProps {
@@ -65,7 +65,7 @@ const Headline = () => {
     StaticContextHistoryImpactCard,
   );
 
-  const userInfo = useUserInfo();
+  const { name } = getStaticContext(StaticContextUserInfo);
 
   return (
     <h3
@@ -73,15 +73,15 @@ const Headline = () => {
         sizeToken ? headlineStyleVariants[sizeToken] : headlineStyle,
       )}
     >
-      <span>{before}</span>
+      <span className={beforeStyle}>{before}</span>
       <CommonIcon
         className={classNames(
           sizeToken ? iconStyleVariants[sizeToken] : iconStyle,
         )}
-        variant="LEFT_ARROW_SECONDARY_VARIANT"
-        userToken={userInfo.name as UserNameToken}
-        width={calcRemToPxNumber('1.5rem')}
-        height={calcRemToPxNumber('1.5rem')}
+        variant="RIGHT_TAIL_ARROW_SECONDARY_VARIANT"
+        userToken={name}
+        width={calcRemToPxNumber('1rem')}
+        height={calcRemToPxNumber('1rem')}
       />
       <span className={strongWrapStyle}>
         <strong
@@ -101,9 +101,9 @@ const Content = () => {
     StaticContextHistoryImpactCard,
   );
   return (
-    <pre className={sizeToken ? contentStyleVariants[sizeToken] : contentStyle}>
+    <p className={sizeToken ? contentStyleVariants[sizeToken] : contentStyle}>
       {content}
-    </pre>
+    </p>
   );
 };
 

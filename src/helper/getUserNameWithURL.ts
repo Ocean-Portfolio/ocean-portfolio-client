@@ -7,6 +7,6 @@ export const getUserNameWithURL = (pathname: string) => {
     case '/jaeyoon':
       return '안재윤';
     default:
-      return '';
+      return '윤성연';
   }
 };

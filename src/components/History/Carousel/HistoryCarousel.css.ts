@@ -19,17 +19,42 @@ export const topStyle = style({
 export const slideStyle = style({
   display: 'grid !important',
   gridTemplateColumns: '1fr 19.5rem',
-  gridTemplateRows: 'auto auto',
   rowGap: '0.0625rem',
 
   '@media': {
     [ODSBreakpointTokenVariables['breakpoint-l']]: {
-      gridTemplateColumns: 'auto auto',
+      gridTemplateColumns: '1fr 1fr',
       gridTemplateRows: '1fr auto',
       rowGap: '0',
       columnGap: '0.0625rem',
     },
   },
+});
+
+export const slideStyleVariants = styleVariants({
+  0: [slideStyle],
+  1: [
+    slideStyle,
+    {
+      gridTemplateRows: '1fr',
+      '@media': {
+        [ODSBreakpointTokenVariables['breakpoint-l']]: {
+          gridTemplateColumns: '1fr',
+        },
+      },
+    },
+  ],
+  2: [
+    slideStyle,
+    {
+      gridTemplateRows: '1fr 1fr',
+      '@media': {
+        [ODSBreakpointTokenVariables['breakpoint-l']]: {
+          gridTemplateColumns: '1fr 1fr',
+        },
+      },
+    },
+  ],
 });
 
 export const detailStyle = style({

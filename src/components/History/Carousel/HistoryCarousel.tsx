@@ -22,6 +22,7 @@ import {
   iconVariants,
   impactStyle,
   slideStyle,
+  slideStyleVariants,
   topStyle,
 } from './HistoryCarousel.css';
 
@@ -47,7 +48,10 @@ const HistoryCarousel = ({ data }: Props) => {
           <HistoryCarousel.PaginateTab length={data.length} />
 
           {data.map((item) => (
-            <OceanSwiper.Slide className={slideStyle} key={item.detail.title}>
+            <OceanSwiper.Slide
+              className={slideStyleVariants[item.impact.length as 0 | 1 | 2]}
+              key={item.detail.title}
+            >
               <HistoryDetailCard
                 className={detailStyle}
                 title={item.detail.title}

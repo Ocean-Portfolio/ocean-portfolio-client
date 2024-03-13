@@ -97,8 +97,13 @@ export const headlineStyleVariants = styleVariants({
   ],
 });
 
+export const beforeStyle = style({
+  whiteSpace: 'nowrap',
+});
+
 export const strongStyle = style([
   {
+    whiteSpace: 'nowrap',
     ...ODSTextTokenVariables['title-xl-bold'],
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
@@ -108,17 +113,15 @@ export const strongStyle = style([
   },
 ]);
 
-const iconCommonStyle = style({
-  transform: 'rotate(180deg)',
-});
+const iconCommonStyle = style({});
 
 export const iconStyle = style([
   iconCommonStyle,
   {
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
-        width: '0.75rem',
-        height: '0.75rem',
+        width: '0.5rem',
+        height: '0.5rem',
       },
     },
   },
@@ -129,8 +132,8 @@ export const iconStyleVariants = styleVariants({
   SMALL: [
     iconCommonStyle,
     {
-      width: '0.75rem',
-      height: '0.75rem',
+      width: '0.5rem',
+      height: '0.5rem',
     },
   ],
 });

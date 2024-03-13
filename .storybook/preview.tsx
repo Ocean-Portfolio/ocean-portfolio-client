@@ -6,6 +6,7 @@ import type { Preview } from '@storybook/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { defaultColorTheme } from '../src/styles/theme/default.css';
 import React from 'react';
+import { ApolloWrapper } from '../src/apollo/apollo-wrapper';
 
 export const customViewports = {
   'container-s': {
@@ -66,9 +67,11 @@ const preview: Preview = {
 export const decorators = [
   (Story) => {
     return (
-      <div className={defaultColorTheme}>
-        <Story />
-      </div>
+      <ApolloWrapper>
+        <div className={defaultColorTheme}>
+          <Story />
+        </div>
+      </ApolloWrapper>
     );
   },
 ];

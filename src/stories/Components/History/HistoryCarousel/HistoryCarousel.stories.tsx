@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { StaticContextPageInfo } from '@/app/context';
 import HistoryCarousel from '@/components/History/Carousel/HistoryCarousel';
+import UserInfoProvider from '@/containers/UserInfoProvider';
 
 const meta: Meta<typeof HistoryCarousel> = {
   title: 'Components/History/Carousel',
@@ -9,23 +9,11 @@ const meta: Meta<typeof HistoryCarousel> = {
   parameters: { layout: 'fullscreen' },
   decorators: [
     (Story) => (
-      <StaticContextPageInfo.Provider
-        value={{
-          userInfo: {
-            token: 'sungyeon',
-            id: '1',
-            name: '윤성연',
-            email: '',
-            job: 'Frontend Engineer',
-            image_id: 1,
-          },
-          sections: [],
-        }}
-      >
+      <UserInfoProvider>
         <div style={{ backgroundColor: '#CCC' }}>
           <Story />
         </div>
-      </StaticContextPageInfo.Provider>
+      </UserInfoProvider>
     ),
   ],
 };
@@ -44,15 +32,8 @@ export const Default: Story = {
         },
         impact: [
           {
-            before: '220',
-            after: '330',
-            unitWord: '만',
-            content: '웹 리뉴얼을 통한\nMAU 지수 상승',
-          },
-          {
-            before: '100',
-            after: '200',
-            unitWord: '%',
+            before: '220만',
+            after: '330만',
             content: '웹 리뉴얼을 통한\nMAU 지수 상승',
           },
         ],
@@ -67,15 +48,13 @@ export const Default: Story = {
         },
         impact: [
           {
-            before: '220',
-            after: '330',
-            unitWord: '만',
+            before: '220만',
+            after: '330만',
             content: '웹 리뉴얼을 통한\nMAU 지수 상승',
           },
           {
-            before: '100',
-            after: '200',
-            unitWord: '%',
+            before: '100%',
+            after: '200%',
             content: '웹 리뉴얼을 통한\nMAU 지수 상승',
           },
         ],
@@ -90,15 +69,13 @@ export const Default: Story = {
         },
         impact: [
           {
-            before: '220',
-            after: '330',
-            unitWord: '만',
+            before: '220만',
+            after: '330만',
             content: '웹 리뉴얼을 통한\nMAU 지수 상승',
           },
           {
-            before: '100',
-            after: '200',
-            unitWord: '%',
+            before: '100%',
+            after: '200%',
             content: '웹 리뉴얼을 통한\nMAU 지수 상승',
           },
         ],
@@ -113,15 +90,13 @@ export const Default: Story = {
         },
         impact: [
           {
-            before: '220',
-            after: '330',
-            unitWord: '만',
+            before: '220만',
+            after: '330만',
             content: '웹 리뉴얼을 통한\nMAU 지수 상승',
           },
           {
-            before: '100',
-            after: '200',
-            unitWord: '%',
+            before: '100%',
+            after: '200%',
             content: '웹 리뉴얼을 통한\nMAU 지수 상승',
           },
         ],
