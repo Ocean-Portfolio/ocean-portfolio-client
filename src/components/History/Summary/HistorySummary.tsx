@@ -3,7 +3,7 @@
 import 'swiper/css';
 
 import classNames from 'classnames';
-import React, { Fragment, PropsWithChildren, useEffect, useState } from 'react';
+import React, { Fragment, PropsWithChildren, useState } from 'react';
 import HistoryCard from '@/components/Card/History/HistoryCard';
 import { HistoryCardContextProps } from '@/components/Card/History/HistoryCard.context';
 import { historyCardWrapWidthStyle } from '@/components/Card/History/HistoryCard.css';
@@ -12,7 +12,6 @@ import CommonIcon from '@/composable/Icon/CommonIcon';
 import Pagination from '@/composable/Pagination/Pagination';
 import Spacer from '@/composable/Spacer/Spacer';
 import { useODSBreakPoints } from '@/hook/useODSBreakPoints';
-import { StaticContextUserAgent } from '@/Provider/StaticContextUserAgent.context';
 import { createNestedArray } from '@/utils/array/createNestedArray';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import OceanSwiper from '../../OceanSwiper/OceanSwiper';
@@ -37,65 +36,37 @@ export interface HistoryCardData extends HistoryCardContextProps {
   id: string;
 }
 
-interface CommonProps extends HistorySummaryContextProps {
-  title: string;
-  data: HistoryCardData[];
-  isDetailView?: boolean;
-  selectIndex?: number;
-}
+interface Props extends HistorySummaryContextProps {}
 
 const HistorySummary = ({
+  children,
   summary_id,
   title,
   data,
   isDetailView,
   selectIndex,
   handleClick,
-}: CommonProps) => {
-  const ua = getStaticContext(StaticContextUserAgent);
-  const { breakpointS } = useODSBreakPoints();
-  const [isMobile, setIsMobile] = useState(
-    ua.device?.type === 'mobile' || false,
-  );
-
-  useEffect(() => {
-    if (breakpointS === true) setIsMobile(true);
-    else setIsMobile(false);
-  }, [breakpointS]);
+}: PropsWithChildren<Props>) => {
   return (
     <StaticContextHistorySummary.Provider
       value={{
-        handleClick,
         summary_id,
+        title,
+        data,
+        isDetailView,
+        selectIndex,
+        handleClick,
       }}
     >
-      {isMobile && (
-        <HistorySummary.List
-          title={title}
-          data={data}
-          isDetailView={isDetailView}
-          selectIndex={selectIndex}
-        />
-      )}
-      {!isMobile && (
-        <HistorySummary.Swiper
-          title={title}
-          data={data}
-          isDetailView={isDetailView}
-          selectIndex={selectIndex}
-        />
-      )}
+      {children}
     </StaticContextHistorySummary.Provider>
   );
 };
 
-const List = ({
-  children,
-  title,
-  data,
-  isDetailView,
-  selectIndex,
-}: PropsWithChildren<Omit<CommonProps, 'summary_id'>>) => {
+const List = ({ children }: PropsWithChildren) => {
+  const { isDetailView, title, data, selectIndex } = getStaticContext(
+    StaticContextHistorySummary,
+  );
   const [isOpen, setIsOpen] = useState(isDetailView);
   const displayData = isOpen === false ? data.slice(0, 2) : data;
   return (
@@ -132,20 +103,17 @@ const List = ({
   );
 };
 
-const Swiper = ({
-  title,
-  data,
-  isDetailView,
-  selectIndex,
-}: Omit<CommonProps, 'summary_id'>) => {
+const Swipe = () => {
+  const { isDetailView, title, data, selectIndex } = getStaticContext(
+    StaticContextHistorySummary,
+  );
   const { breakpointM, breakpointL, breakpointXXL } = useODSBreakPoints();
   const { handleClick, summary_id } = getStaticContext(
     StaticContextHistorySummary,
   );
 
-  const maxDisplayLength = breakpointL ? 3 : 4;
-
   const nestedData = createNestedArray(data, breakpointL ? 3 : 4);
+  const maxDisplayLength = breakpointL ? 3 : 4;
 
   return (
     <OceanSwiper>
@@ -219,8 +187,8 @@ const Bundle = ({
   );
 };
 
-HistorySummary.Swiper = Swiper;
 HistorySummary.List = List;
+HistorySummary.Swipe = Swipe;
 HistorySummary.Bundle = Bundle;
 
 export default HistorySummary;

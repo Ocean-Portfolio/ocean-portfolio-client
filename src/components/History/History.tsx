@@ -4,7 +4,7 @@ import { useSuspenseQuery } from '@apollo/client';
 import React, { Suspense, useContext, useState } from 'react';
 import UAParser from 'ua-parser-js';
 import { GET_HISTORY_ITEM_BY_HISTORY_ID } from '@/gql/queries/history_item';
-import { StaticContextUserAgent } from '@/Provider/StaticContextUserAgent.context';
+import { useReactiveLayout } from '@/hook/useReactiveLayout';
 import UserInfoProvider from '@/Provider/UserInfoProvider';
 import {
   GetHistoryItemByHistoryIdQuery,
@@ -17,7 +17,6 @@ import {
   DispatcherContextHistory,
   HistorySectionContextProps,
   StaticContextHistory,
-  SummaryData,
   ValueContextHistory,
 } from './History.context';
 import HistorySummary from './Summary/HistorySummary';
@@ -27,6 +26,7 @@ interface Props extends HistorySectionContextProps {
 }
 
 const History = ({ summary, userAgent }: Props) => {
+  const { isMobile } = useReactiveLayout(userAgent);
   const [selectInfo, setSelectInfo] = useState({
     isSelected: false,
     id: '',
@@ -36,39 +36,40 @@ const History = ({ summary, userAgent }: Props) => {
 
   return (
     <UserInfoProvider>
-      <StaticContextUserAgent.Provider value={userAgent}>
-        <StaticContextHistory.Provider
+      <StaticContextHistory.Provider
+        value={{
+          summary,
+        }}
+      >
+        <DispatcherContextHistory.Provider
           value={{
-            summary,
+            setSelectInfo,
           }}
         >
-          <DispatcherContextHistory.Provider
+          <ValueContextHistory.Provider
             value={{
-              setSelectInfo,
+              selectInfo,
             }}
           >
-            <ValueContextHistory.Provider
-              value={{
-                selectInfo,
-              }}
-            >
-              <section suppressHydrationWarning>
-                {!selectInfo.isSelected && <History.Summary />}
-                {selectInfo.isSelected && (
-                  <Suspense fallback={<></>}>
-                    <History.Carousel />
-                  </Suspense>
-                )}
-              </section>
-            </ValueContextHistory.Provider>
-          </DispatcherContextHistory.Provider>
-        </StaticContextHistory.Provider>
-      </StaticContextUserAgent.Provider>
+            <section suppressHydrationWarning>
+              <History.SummaryContainer isMobile={isMobile} />
+              {!isMobile && selectInfo.isSelected && (
+                <Suspense fallback={<></>}>
+                  <History.CarouselContainer />
+                </Suspense>
+              )}
+            </section>
+          </ValueContextHistory.Provider>
+        </DispatcherContextHistory.Provider>
+      </StaticContextHistory.Provider>
     </UserInfoProvider>
   );
 };
+interface SummaryContainerProps {
+  isMobile: boolean;
+}
 
-const Summary = () => {
+const SummaryContainer = ({ isMobile }: SummaryContainerProps) => {
   const { summary } = getStaticContext(StaticContextHistory);
   const { selectInfo } = useContext(ValueContextHistory);
   const { setSelectInfo } = useContext(DispatcherContextHistory);
@@ -76,15 +77,22 @@ const Summary = () => {
   const handleClick = (id: string, summary_id: string, index: number) => {
     setSelectInfo({
       isSelected: true,
-      summary_id,
       id,
+      summary_id,
       index,
     });
   };
 
+  const summaryDisplayList =
+    selectInfo.isSelected && !isMobile
+      ? summary.filter(
+          (historySummary) => historySummary.id === selectInfo.summary_id,
+        )
+      : summary;
+
   return (
     <>
-      {summary.map((historySummary) => {
+      {summaryDisplayList.map((historySummary) => {
         if (!historySummary.histories.length) return null;
 
         return (
@@ -93,32 +101,27 @@ const Summary = () => {
             summary_id={historySummary.id}
             title={historySummary.name}
             data={historySummary.histories}
+            isDetailView={selectInfo.isSelected}
             selectIndex={selectInfo.index}
             handleClick={handleClick}
-          />
+          >
+            {isMobile && (
+              <HistorySummary.List>
+                <Suspense fallback={<></>}>
+                  <History.CarouselContainer />
+                </Suspense>
+              </HistorySummary.List>
+            )}
+            {!isMobile && <HistorySummary.Swipe />}
+          </HistorySummary>
         );
       })}
     </>
   );
 };
 
-const Carousel = () => {
-  const { summary } = getStaticContext(StaticContextHistory);
+const CarouselContainer = () => {
   const { selectInfo } = useContext(ValueContextHistory);
-  const { setSelectInfo } = useContext(DispatcherContextHistory);
-
-  const selectedSummary = summary.find(
-    (historySummary) => historySummary.id === selectInfo.summary_id,
-  ) as SummaryData;
-
-  const handleClick = (id: string, summary_id: string, index: number) => {
-    setSelectInfo({
-      isSelected: true,
-      id,
-      summary_id,
-      index,
-    });
-  };
 
   const historyItemQuery = useSuspenseQuery<
     GetHistoryItemByHistoryIdQuery,
@@ -151,22 +154,10 @@ const Carousel = () => {
       };
     },
   );
-
-  return (
-    <>
-      <HistorySummary
-        summary_id={selectedSummary.id}
-        title={selectedSummary.name}
-        data={selectedSummary.histories}
-        selectIndex={selectInfo.index}
-        handleClick={handleClick}
-      />
-      <HistoryCarousel data={data} />
-    </>
-  );
+  return <HistoryCarousel data={data} />;
 };
 
-History.Summary = Summary;
-History.Carousel = Carousel;
+History.SummaryContainer = SummaryContainer;
+History.CarouselContainer = CarouselContainer;
 
 export default History;
