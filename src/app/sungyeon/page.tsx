@@ -1,5 +1,7 @@
 import classNames from 'classnames';
+import { headers } from 'next/headers';
 import React from 'react';
+import { UAParser } from 'ua-parser-js';
 import { getClient } from '@/apollo/apollo-client';
 import Container from '@/composable/Container/Container';
 import Contents from '@/containers/Contents';
@@ -10,6 +12,7 @@ import { sungyeonColorTheme } from '@/styles/theme/sungyeon.css';
 import { StaticContextPageInfo } from '../context';
 
 const Sungyeon = async () => {
+  const ua = new UAParser(headers().get('user-agent') || '').getResult();
   const apolloClient = getClient();
   const userByName = await getUserByNameQuery(apolloClient, '윤성연');
   const sectionByUserId = await getSectionsByUserIdQuery(
@@ -23,6 +26,7 @@ const Sungyeon = async () => {
   return (
     <StaticContextPageInfo.Provider
       value={{
+        userAgent: ua,
         userInfo: {
           token: 'sungyeon',
           id: getUserByName.id,

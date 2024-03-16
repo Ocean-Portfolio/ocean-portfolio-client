@@ -2,8 +2,10 @@
 
 import { useSuspenseQuery } from '@apollo/client';
 import React, { Suspense, useContext, useState } from 'react';
-import UserInfoProvider from '@/containers/UserInfoProvider';
+import UAParser from 'ua-parser-js';
 import { GET_HISTORY_ITEM_BY_HISTORY_ID } from '@/gql/queries/history_item';
+import { StaticContextUserAgent } from '@/Provider/StaticContextUserAgent.context';
+import UserInfoProvider from '@/Provider/UserInfoProvider';
 import {
   GetHistoryItemByHistoryIdQuery,
   GetHistoryItemByHistoryIdQueryVariables,
@@ -20,9 +22,11 @@ import {
 } from './History.context';
 import HistorySummary from './Summary/HistorySummary';
 
-interface Props extends HistorySectionContextProps {}
+interface Props extends HistorySectionContextProps {
+  userAgent: UAParser.IResult;
+}
 
-const History = ({ summary }: Props) => {
+const History = ({ summary, userAgent }: Props) => {
   const [selectInfo, setSelectInfo] = useState({
     isSelected: false,
     id: '',
@@ -32,32 +36,34 @@ const History = ({ summary }: Props) => {
 
   return (
     <UserInfoProvider>
-      <StaticContextHistory.Provider
-        value={{
-          summary,
-        }}
-      >
-        <DispatcherContextHistory.Provider
+      <StaticContextUserAgent.Provider value={userAgent}>
+        <StaticContextHistory.Provider
           value={{
-            setSelectInfo,
+            summary,
           }}
         >
-          <ValueContextHistory.Provider
+          <DispatcherContextHistory.Provider
             value={{
-              selectInfo,
+              setSelectInfo,
             }}
           >
-            <section>
-              {!selectInfo.isSelected && <History.Summary />}
-              {selectInfo.isSelected && (
-                <Suspense fallback={<></>}>
-                  <History.Carousel />
-                </Suspense>
-              )}
-            </section>
-          </ValueContextHistory.Provider>
-        </DispatcherContextHistory.Provider>
-      </StaticContextHistory.Provider>
+            <ValueContextHistory.Provider
+              value={{
+                selectInfo,
+              }}
+            >
+              <section suppressHydrationWarning>
+                {!selectInfo.isSelected && <History.Summary />}
+                {selectInfo.isSelected && (
+                  <Suspense fallback={<></>}>
+                    <History.Carousel />
+                  </Suspense>
+                )}
+              </section>
+            </ValueContextHistory.Provider>
+          </DispatcherContextHistory.Provider>
+        </StaticContextHistory.Provider>
+      </StaticContextUserAgent.Provider>
     </UserInfoProvider>
   );
 };
@@ -106,8 +112,6 @@ const Carousel = () => {
   ) as SummaryData;
 
   const handleClick = (id: string, summary_id: string, index: number) => {
-    console.log({ id, summary_id, index });
-
     setSelectInfo({
       isSelected: true,
       id,

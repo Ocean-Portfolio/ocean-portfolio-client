@@ -1,7 +1,9 @@
+'use client';
+
 import 'swiper/css';
 
 import classNames from 'classnames';
-import React, { Fragment, PropsWithChildren, useState } from 'react';
+import React, { Fragment, PropsWithChildren, useEffect, useState } from 'react';
 import HistoryCard from '@/components/Card/History/HistoryCard';
 import { HistoryCardContextProps } from '@/components/Card/History/HistoryCard.context';
 import { historyCardWrapWidthStyle } from '@/components/Card/History/HistoryCard.css';
@@ -10,6 +12,7 @@ import CommonIcon from '@/composable/Icon/CommonIcon';
 import Pagination from '@/composable/Pagination/Pagination';
 import Spacer from '@/composable/Spacer/Spacer';
 import { useODSBreakPoints } from '@/hook/useODSBreakPoints';
+import { StaticContextUserAgent } from '@/Provider/StaticContextUserAgent.context';
 import { createNestedArray } from '@/utils/array/createNestedArray';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import OceanSwiper from '../../OceanSwiper/OceanSwiper';
@@ -30,7 +33,6 @@ import {
   listWrapStyle,
   swiperWrapVariants,
 } from './HistorySummary.css';
-
 export interface HistoryCardData extends HistoryCardContextProps {
   id: string;
 }
@@ -50,8 +52,15 @@ const HistorySummary = ({
   selectIndex,
   handleClick,
 }: CommonProps) => {
+  const ua = getStaticContext(StaticContextUserAgent);
   const { breakpointS } = useODSBreakPoints();
+  const [isMobile, setIsMobile] = useState(
+    ua.device?.type === 'mobile' || false,
+  );
 
+  useEffect(() => {
+    if (breakpointS === true) setIsMobile(true);
+  }, [breakpointS]);
   return (
     <StaticContextHistorySummary.Provider
       value={{
@@ -59,7 +68,7 @@ const HistorySummary = ({
         summary_id,
       }}
     >
-      {breakpointS && (
+      {isMobile && (
         <HistorySummary.List
           title={title}
           data={data}
@@ -67,7 +76,7 @@ const HistorySummary = ({
           selectIndex={selectIndex}
         />
       )}
-      {!breakpointS && (
+      {!isMobile && (
         <HistorySummary.Swiper
           title={title}
           data={data}

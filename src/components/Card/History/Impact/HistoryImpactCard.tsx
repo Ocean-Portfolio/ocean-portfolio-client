@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import React, { PropsWithChildren } from 'react';
 import CommonIcon from '@/composable/Icon/CommonIcon';
-import { StaticContextUserInfo } from '@/containers/UserInfoProvider.context';
+import { StaticContextUserInfo } from '@/Provider/UserInfoProvider.context';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import calcRemToPxNumber from '@/utils/style/calcRemToPxNumber';
 import CommonCard from '../../Common/CommonCard';

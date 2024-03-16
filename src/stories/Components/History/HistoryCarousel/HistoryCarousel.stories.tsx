@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import HistoryCarousel from '@/components/History/Carousel/HistoryCarousel';
-import UserInfoProvider from '@/containers/UserInfoProvider';
+import UserInfoProvider from '@/Provider/UserInfoProvider';
 
 const meta: Meta<typeof HistoryCarousel> = {
   title: 'Components/History/Carousel',

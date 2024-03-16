@@ -1,3 +1,4 @@
+import UAParser from 'ua-parser-js';
 import { createStaticContext } from '@/utils/context/StaticContext';
 
 export interface UserInfoData {
@@ -17,11 +18,36 @@ export interface SectionData {
 }
 
 interface PageInfoData {
+  userAgent: UAParser.IResult;
   userInfo: UserInfoData;
   sections: SectionData[];
 }
 
 export const StaticContextPageInfo = createStaticContext<PageInfoData>({
+  userAgent: {
+    ua: '',
+    browser: {
+      name: '',
+      version: '',
+      major: '',
+    },
+    device: {
+      model: '',
+      type: '',
+      vendor: '',
+    },
+    engine: {
+      name: '',
+      version: '',
+    },
+    os: {
+      name: '',
+      version: '',
+    },
+    cpu: {
+      architecture: '',
+    },
+  },
   userInfo: {
     token: 'sungyeon',
     id: '',

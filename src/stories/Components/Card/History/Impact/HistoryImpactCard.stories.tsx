@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import HistoryImpactCard, {
   HistoryImpactCardProps,
 } from '@/components/Card/History/Impact/HistoryImpactCard';
-import UserInfoProvider from '@/containers/UserInfoProvider';
+import UserInfoProvider from '@/Provider/UserInfoProvider';
 
 const Template = (args: HistoryImpactCardProps) => (
   <HistoryImpactCard {...args}>

@@ -21,8 +21,6 @@ const Admin = () => {
     [],
   );
 
-  console.log(value);
-
   return (
     <div className={classNames(defaultColorTheme)}>
       <p>계속해서 줄바꿈을 하고 싶다면 \ 을 사용하세용</p>

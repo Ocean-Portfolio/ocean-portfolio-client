@@ -7,6 +7,8 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { defaultColorTheme } from '../src/styles/theme/default.css';
 import React from 'react';
 import { ApolloWrapper } from '../src/apollo/apollo-wrapper';
+import { StaticContextUserAgent } from '../src/Provider/StaticContextUserAgent.context';
+import { UAParser } from 'ua-parser-js';
 
 export const customViewports = {
   'container-s': {
@@ -66,11 +68,14 @@ const preview: Preview = {
 
 export const decorators = [
   (Story) => {
+    const ua = new UAParser(window.navigator.userAgent).getResult();
     return (
       <ApolloWrapper>
-        <div className={defaultColorTheme}>
-          <Story />
-        </div>
+        <StaticContextUserAgent.Provider value={ua}>
+          <div className={defaultColorTheme}>
+            <Story />
+          </div>
+        </StaticContextUserAgent.Provider>
       </ApolloWrapper>
     );
   },

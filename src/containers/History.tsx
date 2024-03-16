@@ -1,9 +1,11 @@
 import React from 'react';
 import { getClient } from '@/apollo/apollo-client';
+import { StaticContextPageInfo } from '@/app/context';
 import History from '@/components/History/History';
 import { SummaryData } from '@/components/History/History.context';
 import { getCategoryBySectionIdQuery } from '@/helper/getCategoryBySectionIdQuery';
 import { getHistoriesByCategoryIdQueryList } from '@/helper/getHistoriesByCategoryIdQuery';
+import { getStaticContext } from '@/utils/context/StaticContext';
 import { getPeriod } from '@/utils/date/getPeriod';
 
 interface Props {
@@ -11,6 +13,8 @@ interface Props {
 }
 
 const HistoryContainer = async ({ section_id }: Props) => {
+  const { userAgent } = getStaticContext(StaticContextPageInfo);
+
   const apolloClient = getClient();
 
   const categoryBySectionId = await getCategoryBySectionIdQuery(
@@ -49,7 +53,8 @@ const HistoryContainer = async ({ section_id }: Props) => {
         histories,
       };
     });
-  return <History summary={summaryData} />;
+
+  return <History summary={summaryData} userAgent={userAgent} />;
 };
 
 export default HistoryContainer;
