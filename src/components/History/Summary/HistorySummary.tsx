@@ -60,6 +60,7 @@ const HistorySummary = ({
 
   useEffect(() => {
     if (breakpointS === true) setIsMobile(true);
+    else setIsMobile(false);
   }, [breakpointS]);
   return (
     <StaticContextHistorySummary.Provider
