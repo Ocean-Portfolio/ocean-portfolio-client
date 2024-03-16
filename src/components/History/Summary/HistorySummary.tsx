@@ -2,7 +2,6 @@ import 'swiper/css';
 
 import classNames from 'classnames';
 import React, { Fragment, PropsWithChildren, useState } from 'react';
-import { useSwiper } from 'swiper/react';
 import HistoryCard from '@/components/Card/History/HistoryCard';
 import { HistoryCardContextProps } from '@/components/Card/History/HistoryCard.context';
 import { historyCardWrapWidthStyle } from '@/components/Card/History/HistoryCard.css';
@@ -80,6 +79,49 @@ const HistorySummary = ({
   );
 };
 
+const List = ({
+  children,
+  title,
+  data,
+  isDetailView,
+  selectIndex,
+}: PropsWithChildren<Omit<CommonProps, 'summary_id'>>) => {
+  const [isOpen, setIsOpen] = useState(isDetailView);
+  const displayData = isOpen === false ? data.slice(0, 2) : data;
+  return (
+    <div className={listWrapStyle} suppressHydrationWarning>
+      <h2 className={listTitleStyle}>{title}</h2>
+      <HistorySummary.Bundle
+        className={listBundleStyle}
+        data={displayData}
+        selectIndex={selectIndex}
+      >
+        {isDetailView && children}
+      </HistorySummary.Bundle>
+      {isOpen && <Spacer direction="horizontal" spacing="spacer-075" />}
+      {isOpen && <Spacer direction="horizontal" spacing="spacer-15" />}
+      <Button
+        className={buttonStyle}
+        as="button"
+        type="button"
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+      >
+        <CommonIcon
+          className={classNames(
+            iconStyle,
+            iconStyleVariants[isOpen ? 'OPEN' : 'CLOSE'],
+          )}
+          variant="LEFT_ARROW_SECONDARY_VARIANT"
+          width={21.33333}
+          height={24}
+        />
+      </Button>
+    </div>
+  );
+};
+
 const Swiper = ({
   title,
   data,
@@ -125,49 +167,6 @@ const Swiper = ({
       </OceanSwiper.Main>
       {breakpointXXL && <Spacer direction="horizontal" spacing="spacer-20" />}
     </OceanSwiper>
-  );
-};
-
-const List = ({
-  children,
-  title,
-  data,
-  isDetailView,
-  selectIndex,
-}: PropsWithChildren<Omit<CommonProps, 'summary_id'>>) => {
-  const [isOpen, setIsOpen] = useState(isDetailView);
-  const displayData = isOpen === false ? data.slice(0, 2) : data;
-  return (
-    <div className={listWrapStyle}>
-      <h2 className={listTitleStyle}>{title}</h2>
-      <HistorySummary.Bundle
-        className={listBundleStyle}
-        data={displayData}
-        selectIndex={selectIndex}
-      >
-        {isDetailView && children}
-      </HistorySummary.Bundle>
-      {isOpen && <Spacer direction="horizontal" spacing="spacer-075" />}
-      {isOpen && <Spacer direction="horizontal" spacing="spacer-15" />}
-      <Button
-        className={buttonStyle}
-        as="button"
-        type="button"
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-      >
-        <CommonIcon
-          className={classNames(
-            iconStyle,
-            iconStyleVariants[isOpen ? 'OPEN' : 'CLOSE'],
-          )}
-          variant="LEFT_ARROW_SECONDARY_VARIANT"
-          width={21.33333}
-          height={24}
-        />
-      </Button>
-    </div>
   );
 };
 

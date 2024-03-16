@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSwiper } from 'swiper/react';
 import HistoryDetailCard, {
   HistoryDetailCardProps,
@@ -21,7 +21,6 @@ import {
   detailStyle,
   iconVariants,
   impactStyle,
-  slideStyle,
   slideStyleVariants,
   topStyle,
 } from './HistoryCarousel.css';

@@ -68,6 +68,7 @@ const Wrap = ({ children, className, style }: PropsWithChildren<WrapProps>) => {
       className={classNames(className, swiperWrap)}
       ref={divRef}
       style={style}
+      suppressHydrationWarning
     >
       {children}
     </div>
