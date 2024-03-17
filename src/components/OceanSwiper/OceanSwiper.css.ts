@@ -12,5 +12,6 @@ globalStyle(`${swiperVisibleSelector} > .swiper`, {
 
 globalStyle('.swiper-slide', {
   display: 'inline-flex !important',
+  flexDirection: 'column',
   width: 'fit-content !important',
 });

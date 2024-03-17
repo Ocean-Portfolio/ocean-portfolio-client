@@ -18,8 +18,8 @@ export const listTitleStyle = style([
   colorVariants['primary-variant'],
 ]);
 
-export const gapStyle = style({
-  gap: '0.75rem',
+export const barWidthStyle = style({
+  width: 'calc(100% + 0.75rem)',
 });
 
 export const swiperWrapStyle = style({

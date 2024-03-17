@@ -20,7 +20,6 @@ import {
 } from './HistorySummary.context';
 import {
   buttonStyle,
-  gapStyle,
   iconStyle,
   iconStyleVariants,
   swiperTitleStyle,
@@ -30,6 +29,7 @@ import {
   swiperMainStyle,
   swiperWrapStyle,
   swiperItemStyle,
+  barWidthStyle,
 } from './HistorySummary.css';
 export interface HistoryCardData extends HistoryCardContextProps {
   id: string;
@@ -116,43 +116,38 @@ const Swipe = () => {
   const { isDetailView, title, data, selectIndex } = getStaticContext(
     StaticContextHistorySummary,
   );
-  const { breakpointM, breakpointL, breakpointXXL } = useODSBreakPoints();
+  const { breakpointM, breakpointXXL } = useODSBreakPoints();
   const { handleClick, summary_id } = getStaticContext(
     StaticContextHistorySummary,
   );
 
-  const threeParts = isDetailView ? breakpointXXL : breakpointL;
-
-  const maxDisplayLength = threeParts ? 3 : 4;
-
   return (
     <OceanSwiper className={swiperWrapStyle}>
       <OceanSwiper.Top>
-        {isDetailView && <Spacer spacing="spacer-025" />}
         {!isDetailView && (
           <h2 className={swiperTitleStyle}>{title.toUpperCase()}</h2>
         )}
-        <Pagination
-          length={
-            data.length > maxDisplayLength ? maxDisplayLength : data.length
-          }
-          selectedIdx={typeof selectIndex === 'number' ? selectIndex : -1}
-          wrapperGapClass={gapStyle}
-          contentsWidthClass={historyCardWrapWidthStyle}
-          onClick={(currentIdx) => {
-            if (handleClick)
-              handleClick(data[currentIdx].id, summary_id, currentIdx);
-          }}
-        />
       </OceanSwiper.Top>
-      <Spacer
-        direction="horizontal"
-        spacing={breakpointM ? 'spacer-075' : 'spacer-15'}
-      />
       <OceanSwiper.Main className={swiperMainStyle} perView={'auto'}>
         {data.map((history, idx) => {
           return (
             <OceanSwiper.Slide key={history.id} className={swiperItemStyle}>
+              {isDetailView && <Spacer spacing="spacer-025" />}
+              <Pagination
+                length={1}
+                isSelected={
+                  typeof selectIndex === 'number' ? selectIndex === idx : false
+                }
+                barWidthClass={barWidthStyle}
+                contentsWidthClass={historyCardWrapWidthStyle}
+                onClick={() => {
+                  if (handleClick) handleClick(data[idx].id, summary_id, idx);
+                }}
+              />
+              <Spacer
+                direction="horizontal"
+                spacing={breakpointM ? 'spacer-075' : 'spacer-15'}
+              />
               <HistoryCard
                 companyName={history.companyName}
                 period={history.period}

@@ -22,8 +22,10 @@ type PaginationSizeTokens = 'XLARGE' | 'LARGE' | 'MEDIUM';
 export interface PaginationProps {
   sizeToken?: PaginationSizeTokens;
   length: number;
-  selectedIdx: number;
+  selectedIdx?: number;
+  isSelected?: boolean;
   wrapperGapClass?: string;
+  barWidthClass?: string;
   contentsWidthClass?: string;
   onClick?: (currentIdx: number) => void;
 }
@@ -32,7 +34,9 @@ const Pagination = ({
   sizeToken,
   length,
   selectedIdx,
+  isSelected,
   wrapperGapClass,
+  barWidthClass,
   contentsWidthClass,
   onClick,
 }: PropsWithChildren<PaginationProps>) => {
@@ -43,13 +47,13 @@ const Pagination = ({
         wrapperGapClass,
       )}
     >
-      <Pagination.Bar />
+      <Pagination.Bar barWidthClass={barWidthClass} />
       {Array.from({ length }).map((_, idx) => (
         <Pagination.Point
           sizeToken={sizeToken}
           key={idx}
           idx={idx}
-          isSelected={idx === selectedIdx}
+          isSelected={isSelected ? isSelected : idx === selectedIdx}
           contentsWidthClass={contentsWidthClass}
           onClick={onClick}
         />
@@ -58,8 +62,12 @@ const Pagination = ({
   );
 };
 
-const Bar = () => {
-  return <hr className={barStyle} />;
+interface BarProps {
+  barWidthClass?: string;
+}
+
+const Bar = ({ barWidthClass }: BarProps) => {
+  return <hr className={classNames(barStyle, barWidthClass)} />;
 };
 
 interface PointProps {

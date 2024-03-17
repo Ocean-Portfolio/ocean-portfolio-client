@@ -4,11 +4,12 @@ import { globalFadeIn } from '@/styles/animation/fade.css';
 import { backgroundColorVariants } from '@/styles/common/color.css';
 import { flexCenter } from '@/styles/common/flex.css';
 
-const wrapCommonStyle = style({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-});
+const wrapCommonStyle = style([
+  flexCenter,
+  {
+    position: 'relative',
+  },
+]);
 
 export const wrapStyle = style([
   wrapCommonStyle,
