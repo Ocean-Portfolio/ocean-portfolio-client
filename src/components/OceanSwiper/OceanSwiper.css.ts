@@ -9,9 +9,3 @@ export const swiperVisibleSelector = style({});
 globalStyle(`${swiperVisibleSelector} > .swiper`, {
   overflow: 'visible !important',
 });
-
-globalStyle('.swiper-slide', {
-  display: 'inline-flex !important',
-  flexDirection: 'column',
-  width: 'fit-content !important',
-});

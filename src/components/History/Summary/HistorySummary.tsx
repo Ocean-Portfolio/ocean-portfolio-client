@@ -36,7 +36,7 @@ export interface HistoryCardData extends HistoryCardContextProps {
   id: string;
 }
 
-interface Props extends HistorySummaryContextProps {}
+export interface HistorySummaryProps extends HistorySummaryContextProps {}
 
 const HistorySummary = ({
   children,
@@ -46,7 +46,7 @@ const HistorySummary = ({
   isDetailView,
   selectIndex,
   handleClick,
-}: PropsWithChildren<Props>) => {
+}: PropsWithChildren<HistorySummaryProps>) => {
   return (
     <StaticContextHistorySummary.Provider
       value={{

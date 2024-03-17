@@ -51,6 +51,9 @@ export const swiperTitleStyle = style([
 ]);
 
 export const swiperItemStyle = style({
+  display: 'inline-flex !important',
+  flexDirection: 'column',
+  width: 'fit-content !important',
   marginRight: '0.75rem',
 });
 
