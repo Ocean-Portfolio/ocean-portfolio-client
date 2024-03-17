@@ -1,8 +1,5 @@
 'use client';
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-
 import classNames from 'classnames';
 import React, { Fragment, PropsWithChildren, useState } from 'react';
 import HistoryCard from '@/components/Card/History/HistoryCard';

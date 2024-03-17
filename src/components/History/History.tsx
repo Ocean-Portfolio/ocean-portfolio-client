@@ -1,20 +1,17 @@
 'use client';
 
-import { useSuspenseQuery } from '@apollo/client';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 import classNames from 'classnames';
+import dynamic from 'next/dynamic';
 import React, { Suspense, useContext, useState } from 'react';
 import UAParser from 'ua-parser-js';
 import Button from '@/composable/Button/Button';
-import { GET_HISTORY_ITEM_BY_HISTORY_ID } from '@/gql/queries/history_item';
+import HistorySummaryContainer from '@/containers/HistorySummary';
 import { useReactiveLayout } from '@/hook/useReactiveLayout';
 import UserInfoProvider from '@/Provider/UserInfoProvider';
-import {
-  GetHistoryItemByHistoryIdQuery,
-  GetHistoryItemByHistoryIdQueryVariables,
-} from '@/types/graphql';
 import { getStaticContext } from '@/utils/context/StaticContext';
-import { getPeriod } from '@/utils/date/getPeriod';
-import HistoryCarousel from './Carousel/HistoryCarousel';
 import {
   DispatcherContextHistory,
   HistorySectionContextProps,
@@ -29,7 +26,6 @@ import {
   wrapColumnStyle,
   wrapStyle,
 } from './History.css';
-import HistorySummary from './Summary/HistorySummary';
 
 interface Props extends HistorySectionContextProps {
   userAgent: UAParser.IResult;
@@ -81,105 +77,6 @@ const History = ({ summary, userAgent }: Props) => {
     </UserInfoProvider>
   );
 };
-interface SummaryContainerProps {
-  isMobile: boolean;
-}
-
-const SummaryContainer = ({ isMobile }: SummaryContainerProps) => {
-  const { summary } = getStaticContext(StaticContextHistory);
-  const { isSelected, page, state } = useContext(ValueContextHistory);
-  const { dispatcher } = useContext(DispatcherContextHistory);
-
-  const handleClick = (id: string, summary_id: string, index: number) => {
-    dispatcher((prev) => {
-      const newState = [...prev.state];
-      newState[page] = {
-        id,
-        summary_id,
-        index,
-      };
-      return {
-        ...prev,
-        isSelected: true,
-        state: newState,
-      };
-    });
-  };
-
-  const summaryDisplayList =
-    isSelected && !isMobile
-      ? summary.filter(
-          (historySummary) => historySummary.id === state[page].summary_id,
-        )
-      : summary;
-
-  return (
-    <>
-      {summaryDisplayList.map((historySummary) => {
-        if (!historySummary.histories.length) return null;
-
-        return (
-          <HistorySummary
-            key={historySummary.id}
-            summary_id={historySummary.id}
-            title={historySummary.name}
-            data={historySummary.histories}
-            isDetailView={isSelected}
-            selectIndex={state[page].index}
-            handleClick={handleClick}
-          >
-            {isMobile && (
-              <HistorySummary.List>
-                <Suspense fallback={<></>}>
-                  <History.CarouselContainer />
-                </Suspense>
-              </HistorySummary.List>
-            )}
-
-            {!isMobile && <HistorySummary.Swipe />}
-          </HistorySummary>
-        );
-      })}
-    </>
-  );
-};
-
-const CarouselContainer = () => {
-  const { page, state } = useContext(ValueContextHistory);
-
-  const historyItemQuery = useSuspenseQuery<
-    GetHistoryItemByHistoryIdQuery,
-    GetHistoryItemByHistoryIdQueryVariables
-  >(GET_HISTORY_ITEM_BY_HISTORY_ID, {
-    variables: {
-      history_id: Number(state[page].id),
-    },
-  });
-
-  const data = historyItemQuery.data.getHistoryItemByHistoryId.map(
-    (historyItem) => {
-      return {
-        detail: {
-          title: historyItem.title,
-          period: getPeriod(
-            Number(historyItem.start_date),
-            Number(historyItem.end_date),
-          ),
-          position: historyItem.position,
-          content: historyItem.content,
-        },
-        impact: historyItem.impacts.map((impact) => {
-          return {
-            before: impact.before,
-            after: impact.after,
-            content: impact.content,
-          };
-        }),
-      };
-    },
-  );
-  return <HistoryCarousel data={data} />;
-};
 
 const Menu = () => {
   const { summary } = getStaticContext(StaticContextHistory);
@@ -219,8 +116,14 @@ const Menu = () => {
   );
 };
 
-History.SummaryContainer = SummaryContainer;
-History.CarouselContainer = CarouselContainer;
+History.SummaryContainer = HistorySummaryContainer;
+History.CarouselContainer = dynamic(
+  () => import('@/containers/HistoryCarousel'),
+  {
+    ssr: false,
+    loading: () => <></>,
+  },
+);
 History.Menu = Menu;
 
 export default History;
