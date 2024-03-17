@@ -7,6 +7,7 @@ import { fontVariants } from '@/styles/common/font.css';
 
 export const barWidthStyle = style({
   width: 'calc(100% + 0.75rem)',
+  overflow: 'hidden',
 });
 
 export const defaultSwiperWrapStyle = style({
@@ -16,6 +17,7 @@ export const defaultSwiperWrapStyle = style({
 
 export const detailViewSwiperWrapStyle = style({
   width: 'calc(100% + 5rem)',
+  overflow: 'hidden',
 });
 
 export const swiperMainStyle = style({
