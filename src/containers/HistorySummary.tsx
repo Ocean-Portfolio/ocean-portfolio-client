@@ -66,7 +66,7 @@ const HistorySummaryContainer = ({ isMobile }: SummaryContainerProps) => {
             {isMobile && (
               <HistorySummary.List>
                 <Suspense fallback={<></>}>
-                  <HistoryCarouselContainer />
+                  {isSelected && <HistoryCarouselContainer />}
                 </Suspense>
               </HistorySummary.List>
             )}
