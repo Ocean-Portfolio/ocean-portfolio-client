@@ -2,7 +2,7 @@
 
 import classNames from 'classnames';
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
-import { A11y, Pagination, Navigation } from 'swiper/modules';
+import { A11y, Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react';
 import { SwiperOptions } from 'swiper/types';
 import Tag from '@/composable/Tag/Tag';
