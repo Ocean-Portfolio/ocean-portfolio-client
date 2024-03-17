@@ -82,6 +82,8 @@ interface MainProps extends SwiperOptions {
   nextButton?: React.ReactNode;
   isSwipeAble?: boolean;
   overflowVisible?: boolean;
+  perView?: number | 'auto';
+  gap?: number;
 }
 
 const Main = ({
@@ -92,6 +94,8 @@ const Main = ({
   nextButton,
   isSwipeAble = true,
   overflowVisible = true,
+  perView,
+  gap,
   ...rest
 }: PropsWithChildren<MainProps>) => {
   const { swiperWrapperRef } = getStaticContext(ContextValueOceanSwiper);
@@ -108,7 +112,8 @@ const Main = ({
         {...rest}
         ref={swiperRef}
         modules={[A11y]}
-        slidesPerView={1}
+        slidesPerView={perView || 'auto'}
+        spaceBetween={gap}
         allowSlideNext={isSwipeAble}
         allowSlidePrev={isSwipeAble}
         onRealIndexChange={(e) => {

@@ -66,6 +66,9 @@ export const wrapVariants = styleVariants({
 export const companyStyle = style([
   textPreStyle,
   {
+    width: '100%',
+    textAlign: 'left',
+
     ...ODSTextTokenVariables['title-s-semibold'],
     color: userColorThemeVars.token['tertiary-variant'],
     '@media': {
@@ -93,6 +96,8 @@ export const companyVariants = styleVariants({
 export const periodStyle = style([
   textPreStyle,
   {
+    width: '100%',
+    textAlign: 'left',
     ...ODSTextTokenVariables['paragraph-m-semibold'],
     color: commonColorThemeVars.token['gray-scale-05'],
     '@media': {

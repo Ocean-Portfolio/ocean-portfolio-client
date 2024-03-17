@@ -3,7 +3,7 @@
 import 'swiper/css';
 
 import classNames from 'classnames';
-import React, { Fragment, PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import HistoryCard from '@/components/Card/History/HistoryCard';
 import { HistoryCardContextProps } from '@/components/Card/History/HistoryCard.context';
 import { historyCardWrapWidthStyle } from '@/components/Card/History/HistoryCard.css';
@@ -12,7 +12,6 @@ import CommonIcon from '@/composable/Icon/CommonIcon';
 import Pagination from '@/composable/Pagination/Pagination';
 import Spacer from '@/composable/Spacer/Spacer';
 import { useODSBreakPoints } from '@/hook/useODSBreakPoints';
-import { createNestedArray } from '@/utils/array/createNestedArray';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import OceanSwiper from '../../OceanSwiper/OceanSwiper';
 import {
@@ -24,13 +23,13 @@ import {
   gapStyle,
   iconStyle,
   iconStyleVariants,
-  bundleStyle,
-  swiperTopStyle,
   swiperTitleStyle,
   listTitleStyle,
   listBundleStyle,
   listWrapStyle,
-  swiperWrapVariants,
+  swiperMainStyle,
+  swiperWrapStyle,
+  swiperItemStyle,
 } from './HistorySummary.css';
 export interface HistoryCardData extends HistoryCardContextProps {
   id: string;
@@ -64,21 +63,31 @@ const HistorySummary = ({
 };
 
 const List = ({ children }: PropsWithChildren) => {
-  const { isDetailView, title, data, selectIndex } = getStaticContext(
-    StaticContextHistorySummary,
-  );
+  const { isDetailView, title, data, selectIndex, summary_id, handleClick } =
+    getStaticContext(StaticContextHistorySummary);
   const [isOpen, setIsOpen] = useState(isDetailView);
   const displayData = isOpen === false ? data.slice(0, 2) : data;
+
   return (
     <div className={listWrapStyle} suppressHydrationWarning>
       <h2 className={listTitleStyle}>{title}</h2>
-      <HistorySummary.Bundle
-        className={listBundleStyle}
-        data={displayData}
-        selectIndex={selectIndex}
-      >
-        {isDetailView && children}
-      </HistorySummary.Bundle>
+      {displayData.map((history, idx) => {
+        return (
+          <OceanSwiper.Slide key={history.id} className={listBundleStyle}>
+            <HistoryCard
+              companyName={history.companyName}
+              period={history.period}
+              onClick={() => {
+                if (handleClick) handleClick(history.id, summary_id, idx);
+              }}
+            >
+              <HistoryCard.Company />
+              <HistoryCard.Period />
+            </HistoryCard>
+            {selectIndex === idx && children}
+          </OceanSwiper.Slide>
+        );
+      })}
       {isOpen && <Spacer direction="horizontal" spacing="spacer-075" />}
       {isOpen && <Spacer direction="horizontal" spacing="spacer-15" />}
       <Button
@@ -112,13 +121,17 @@ const Swipe = () => {
     StaticContextHistorySummary,
   );
 
-  const nestedData = createNestedArray(data, breakpointL ? 3 : 4);
-  const maxDisplayLength = breakpointL ? 3 : 4;
+  const threeParts = isDetailView ? breakpointXXL : breakpointL;
+
+  const maxDisplayLength = threeParts ? 3 : 4;
 
   return (
-    <OceanSwiper>
-      <OceanSwiper.Top className={swiperTopStyle}>
-        {!isDetailView && <h2 className={swiperTitleStyle}>{title}</h2>}
+    <OceanSwiper className={swiperWrapStyle}>
+      <OceanSwiper.Top>
+        {isDetailView && <Spacer spacing="spacer-025" />}
+        {!isDetailView && (
+          <h2 className={swiperTitleStyle}>{title.toUpperCase()}</h2>
+        )}
         <Pagination
           length={
             data.length > maxDisplayLength ? maxDisplayLength : data.length
@@ -136,59 +149,30 @@ const Swipe = () => {
         direction="horizontal"
         spacing={breakpointM ? 'spacer-075' : 'spacer-15'}
       />
-      <OceanSwiper.Main className={swiperWrapVariants[maxDisplayLength]}>
-        {nestedData.map((bundle, idx) => (
-          <OceanSwiper.Slide key={idx}>
-            <HistorySummary.Bundle data={bundle} />
-          </OceanSwiper.Slide>
-        ))}
+      <OceanSwiper.Main className={swiperMainStyle} perView={'auto'}>
+        {data.map((history, idx) => {
+          return (
+            <OceanSwiper.Slide key={history.id} className={swiperItemStyle}>
+              <HistoryCard
+                companyName={history.companyName}
+                period={history.period}
+                onClick={() => {
+                  if (handleClick) handleClick(history.id, summary_id, idx);
+                }}
+              >
+                <HistoryCard.Company />
+                <HistoryCard.Period />
+              </HistoryCard>
+            </OceanSwiper.Slide>
+          );
+        })}
       </OceanSwiper.Main>
       {breakpointXXL && <Spacer direction="horizontal" spacing="spacer-20" />}
     </OceanSwiper>
   );
 };
 
-interface BundleProps {
-  className?: string;
-  data: HistoryCardData[];
-  selectIndex?: number;
-}
-
-const Bundle = ({
-  children,
-  className,
-  data,
-  selectIndex,
-}: PropsWithChildren<BundleProps>) => {
-  const { handleClick, summary_id } = getStaticContext(
-    StaticContextHistorySummary,
-  );
-
-  return (
-    <div className={classNames(bundleStyle, className)}>
-      {data.map((history, idx) => {
-        return (
-          <Fragment key={history.id}>
-            <HistoryCard
-              companyName={history.companyName}
-              period={history.period}
-              onClick={() => {
-                if (handleClick) handleClick(history.id, summary_id, idx);
-              }}
-            >
-              <HistoryCard.Company />
-              <HistoryCard.Period />
-            </HistoryCard>
-            {selectIndex === idx && children}
-          </Fragment>
-        );
-      })}
-    </div>
-  );
-};
-
 HistorySummary.List = List;
 HistorySummary.Swipe = Swipe;
-HistorySummary.Bundle = Bundle;
 
 export default HistorySummary;

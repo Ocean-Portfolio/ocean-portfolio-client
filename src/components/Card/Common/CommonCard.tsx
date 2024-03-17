@@ -32,4 +32,4 @@ const CommonCard = ({
   );
 };
 
-export default CommonCard;
+export default React.memo(CommonCard);

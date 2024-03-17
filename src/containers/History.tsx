@@ -54,6 +54,24 @@ const HistoryContainer = async ({ section_id }: Props) => {
       };
     });
 
+  summaryData[0].histories.push(
+    {
+      id: '99',
+      companyName: 'test',
+      period: '2021-01-01 ~ 2021-01-02',
+    },
+    {
+      id: '100',
+      companyName: 'test',
+      period: '2021-01-01 ~ 2021-01-02',
+    },
+    {
+      id: '101',
+      companyName: 'test',
+      period: '2021-01-01 ~ 2021-01-02',
+    },
+  );
+
   return <History summary={summaryData} userAgent={userAgent} />;
 };
 

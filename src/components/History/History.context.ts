@@ -19,35 +19,26 @@ export const StaticContextHistory =
     summary: [],
   });
 
-interface DispatcherContextProps {
-  setSelectInfo: React.Dispatch<
-    React.SetStateAction<{
-      isSelected: boolean;
-      id: string;
-      summary_id: string;
-      index: number;
-    }>
-  >;
-}
-
-export const DispatcherContextHistory = createContext<DispatcherContextProps>({
-  setSelectInfo: () => {},
-});
-
-interface ValueContextHistoryProps {
-  selectInfo: {
-    isSelected: boolean;
+export interface ValueContextHistoryProps {
+  page: number;
+  isSelected: boolean;
+  state: {
     id: string;
     summary_id: string;
     index: number;
-  };
+  }[];
 }
 
 export const ValueContextHistory = createContext<ValueContextHistoryProps>({
-  selectInfo: {
-    isSelected: false,
-    id: '',
-    summary_id: '',
-    index: -1,
-  },
+  page: 0,
+  isSelected: false,
+  state: [],
+});
+
+interface DispatcherContextProps {
+  dispatcher: React.Dispatch<React.SetStateAction<ValueContextHistoryProps>>;
+}
+
+export const DispatcherContextHistory = createContext<DispatcherContextProps>({
+  dispatcher: () => {},
 });

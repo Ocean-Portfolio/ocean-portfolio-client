@@ -1,8 +1,10 @@
 'use client';
 
 import { useSuspenseQuery } from '@apollo/client';
+import classNames from 'classnames';
 import React, { Suspense, useContext, useState } from 'react';
 import UAParser from 'ua-parser-js';
+import Button from '@/composable/Button/Button';
 import { GET_HISTORY_ITEM_BY_HISTORY_ID } from '@/gql/queries/history_item';
 import { useReactiveLayout } from '@/hook/useReactiveLayout';
 import UserInfoProvider from '@/Provider/UserInfoProvider';
@@ -18,7 +20,15 @@ import {
   HistorySectionContextProps,
   StaticContextHistory,
   ValueContextHistory,
+  ValueContextHistoryProps,
 } from './History.context';
+import {
+  menuButtonSelectedStyle,
+  menuButtonStyle,
+  menuStyle,
+  wrapColumnStyle,
+  wrapStyle,
+} from './History.css';
 import HistorySummary from './Summary/HistorySummary';
 
 interface Props extends HistorySectionContextProps {
@@ -27,11 +37,14 @@ interface Props extends HistorySectionContextProps {
 
 const History = ({ summary, userAgent }: Props) => {
   const { isMobile } = useReactiveLayout(userAgent);
-  const [selectInfo, setSelectInfo] = useState({
+  const [value, setValue] = useState<ValueContextHistoryProps>({
+    page: 0,
     isSelected: false,
-    id: '',
-    summary_id: '',
-    index: -1,
+    state: Array.from({ length: summary.length }, () => ({
+      id: '',
+      summary_id: '',
+      index: -1,
+    })),
   });
 
   return (
@@ -43,17 +56,20 @@ const History = ({ summary, userAgent }: Props) => {
       >
         <DispatcherContextHistory.Provider
           value={{
-            setSelectInfo,
+            dispatcher: setValue,
           }}
         >
-          <ValueContextHistory.Provider
-            value={{
-              selectInfo,
-            }}
-          >
-            <section suppressHydrationWarning>
+          <ValueContextHistory.Provider value={value}>
+            <section
+              className={classNames(
+                wrapStyle,
+                value.isSelected && wrapColumnStyle,
+              )}
+              suppressHydrationWarning
+            >
+              {!isMobile && value.isSelected && <History.Menu />}
               <History.SummaryContainer isMobile={isMobile} />
-              {!isMobile && selectInfo.isSelected && (
+              {!isMobile && value.isSelected && (
                 <Suspense fallback={<></>}>
                   <History.CarouselContainer />
                 </Suspense>
@@ -71,22 +87,29 @@ interface SummaryContainerProps {
 
 const SummaryContainer = ({ isMobile }: SummaryContainerProps) => {
   const { summary } = getStaticContext(StaticContextHistory);
-  const { selectInfo } = useContext(ValueContextHistory);
-  const { setSelectInfo } = useContext(DispatcherContextHistory);
+  const { isSelected, page, state } = useContext(ValueContextHistory);
+  const { dispatcher } = useContext(DispatcherContextHistory);
 
   const handleClick = (id: string, summary_id: string, index: number) => {
-    setSelectInfo({
-      isSelected: true,
-      id,
-      summary_id,
-      index,
+    dispatcher((prev) => {
+      const newState = [...prev.state];
+      newState[page] = {
+        id,
+        summary_id,
+        index,
+      };
+      return {
+        ...prev,
+        isSelected: true,
+        state: newState,
+      };
     });
   };
 
   const summaryDisplayList =
-    selectInfo.isSelected && !isMobile
+    isSelected && !isMobile
       ? summary.filter(
-          (historySummary) => historySummary.id === selectInfo.summary_id,
+          (historySummary) => historySummary.id === state[page].summary_id,
         )
       : summary;
 
@@ -101,8 +124,8 @@ const SummaryContainer = ({ isMobile }: SummaryContainerProps) => {
             summary_id={historySummary.id}
             title={historySummary.name}
             data={historySummary.histories}
-            isDetailView={selectInfo.isSelected}
-            selectIndex={selectInfo.index}
+            isDetailView={isSelected}
+            selectIndex={state[page].index}
             handleClick={handleClick}
           >
             {isMobile && (
@@ -112,6 +135,7 @@ const SummaryContainer = ({ isMobile }: SummaryContainerProps) => {
                 </Suspense>
               </HistorySummary.List>
             )}
+
             {!isMobile && <HistorySummary.Swipe />}
           </HistorySummary>
         );
@@ -121,14 +145,14 @@ const SummaryContainer = ({ isMobile }: SummaryContainerProps) => {
 };
 
 const CarouselContainer = () => {
-  const { selectInfo } = useContext(ValueContextHistory);
+  const { page, state } = useContext(ValueContextHistory);
 
   const historyItemQuery = useSuspenseQuery<
     GetHistoryItemByHistoryIdQuery,
     GetHistoryItemByHistoryIdQueryVariables
   >(GET_HISTORY_ITEM_BY_HISTORY_ID, {
     variables: {
-      history_id: Number(selectInfo.id),
+      history_id: Number(state[page].id),
     },
   });
 
@@ -157,7 +181,46 @@ const CarouselContainer = () => {
   return <HistoryCarousel data={data} />;
 };
 
+const Menu = () => {
+  const { summary } = getStaticContext(StaticContextHistory);
+  const { page } = useContext(ValueContextHistory);
+  const { dispatcher } = useContext(DispatcherContextHistory);
+
+  const handleClick = (pageIndex: number) => {
+    dispatcher((prev) => {
+      return {
+        ...prev,
+        page: pageIndex,
+        isSelected: true,
+      };
+    });
+  };
+
+  return (
+    <div className={menuStyle}>
+      {summary.map((historySummary, index) => {
+        return (
+          <Button
+            className={classNames(
+              menuButtonStyle,
+              page === index ? menuButtonSelectedStyle : null,
+            )}
+            key={historySummary.id}
+            as="button"
+            onClick={() => {
+              handleClick(index);
+            }}
+          >
+            {historySummary.name}
+          </Button>
+        );
+      })}
+    </div>
+  );
+};
+
 History.SummaryContainer = SummaryContainer;
 History.CarouselContainer = CarouselContainer;
+History.Menu = Menu;
 
 export default History;

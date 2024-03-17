@@ -37,46 +37,48 @@ const HistoryCarousel = ({ data }: Props) => {
     <StaticContextHistoryCarousel.Provider
       value={{ tabRef: { current: null } }}
     >
-      <OceanSwiper>
-        <OceanSwiper.Top className={topStyle}>
-          <HistoryCarousel.NavigateButton direction="PREV" />
-          <HistoryCarousel.DisplayTab length={data.length} />
-          <HistoryCarousel.NavigateButton direction="NEXT" />
-        </OceanSwiper.Top>
-        <OceanSwiper.Main hiddenNavigation overflowVisible={false}>
-          <HistoryCarousel.PaginateTab length={data.length} />
+      {data.length !== 0 && (
+        <OceanSwiper>
+          <OceanSwiper.Top className={topStyle}>
+            <HistoryCarousel.NavigateButton direction="PREV" />
+            <HistoryCarousel.DisplayTab length={data.length} />
+            <HistoryCarousel.NavigateButton direction="NEXT" />
+          </OceanSwiper.Top>
+          <OceanSwiper.Main hiddenNavigation overflowVisible={false}>
+            <HistoryCarousel.PaginateTab length={data.length} />
 
-          {data.map((item) => (
-            <OceanSwiper.Slide
-              className={slideStyleVariants[item.impact.length as 0 | 1 | 2]}
-              key={item.detail.title}
-            >
-              <HistoryDetailCard
-                className={detailStyle}
-                title={item.detail.title}
-                period={item.detail.period}
-                position={item.detail.position}
-                content={item.detail.content}
+            {data.map((item) => (
+              <OceanSwiper.Slide
+                className={slideStyleVariants[item.impact.length as 0 | 1 | 2]}
+                key={item.detail.title}
               >
-                <HistoryDetailCard.Head />
-                <HistoryDetailCard.Content />
-              </HistoryDetailCard>
-              {item.impact.map((impact, idx) => (
-                <HistoryImpactCard
-                  key={idx}
-                  className={impactStyle}
-                  before={impact.before}
-                  after={impact.after}
-                  content={impact.content}
+                <HistoryDetailCard
+                  className={detailStyle}
+                  title={item.detail.title}
+                  period={item.detail.period}
+                  position={item.detail.position}
+                  content={item.detail.content}
                 >
-                  <HistoryImpactCard.Headline />
-                  <HistoryImpactCard.Content />
-                </HistoryImpactCard>
-              ))}
-            </OceanSwiper.Slide>
-          ))}
-        </OceanSwiper.Main>
-      </OceanSwiper>
+                  <HistoryDetailCard.Head />
+                  <HistoryDetailCard.Content />
+                </HistoryDetailCard>
+                {item.impact.map((impact, idx) => (
+                  <HistoryImpactCard
+                    key={idx}
+                    className={impactStyle}
+                    before={impact.before}
+                    after={impact.after}
+                    content={impact.content}
+                  >
+                    <HistoryImpactCard.Headline />
+                    <HistoryImpactCard.Content />
+                  </HistoryImpactCard>
+                ))}
+              </OceanSwiper.Slide>
+            ))}
+          </OceanSwiper.Main>
+        </OceanSwiper>
+      )}
     </StaticContextHistoryCarousel.Provider>
   );
 };

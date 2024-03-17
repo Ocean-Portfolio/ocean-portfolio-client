@@ -50,7 +50,7 @@ export const slideStyleVariants = styleVariants({
       gridTemplateRows: '1fr 1fr',
       '@media': {
         [ODSBreakpointTokenVariables['breakpoint-l']]: {
-          gridTemplateColumns: '1fr 1fr',
+          gridTemplateColumns: '50% 50%',
         },
       },
     },

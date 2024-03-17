@@ -34,6 +34,7 @@ export const wrapStyle = style([
       },
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         gap: '0.125rem',
+        width: 'auto',
         padding: '0.6875rem 0.75rem',
         borderRadius: '0.5rem',
       },
