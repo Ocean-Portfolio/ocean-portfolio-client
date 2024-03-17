@@ -58,17 +58,17 @@ const HistoryContainer = async ({ section_id }: Props) => {
     {
       id: '99',
       companyName: 'test',
-      period: '2021-01-01 ~ 2021-01-02',
+      period: '2021-01 ~ 2021-02',
     },
     {
       id: '100',
       companyName: 'test',
-      period: '2021-01-01 ~ 2021-01-02',
+      period: '2021-01 ~ 2021-02',
     },
     {
       id: '101',
       companyName: 'test',
-      period: '2021-01-01 ~ 2021-01-02',
+      period: '2021-01 ~ 2021-02',
     },
   );
 

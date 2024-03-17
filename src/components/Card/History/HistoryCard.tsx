@@ -8,6 +8,8 @@ import StaticContextHistoryCard, {
 import {
   companyStyle,
   companyVariants,
+  defaultCardWidthStyle,
+  detailViewCardWidthStyle,
   periodStyle,
   periodVariants,
   wrapStyle,
@@ -17,6 +19,7 @@ import {
 export interface HistoryCardProps extends HistoryCardContextProps {
   className?: string;
   visible_status?: VisibleStatusToken;
+  isDetailView?: boolean;
   onClick?: () => void;
 }
 
@@ -24,6 +27,7 @@ const HistoryCard = ({
   className,
   children,
   visible_status,
+  isDetailView,
   sizeToken,
   companyName,
   period,
@@ -44,6 +48,7 @@ const HistoryCard = ({
         className={classNames(
           className,
           sizeToken ? wrapVariants[sizeToken] : wrapStyle,
+          isDetailView ? detailViewCardWidthStyle : defaultCardWidthStyle,
         )}
         bgColorToken="GRAY"
         onClick={onClick}

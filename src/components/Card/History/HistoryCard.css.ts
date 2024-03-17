@@ -1,4 +1,4 @@
-import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 import { ODSTextTokenVariables } from '@/const/fonts';
 import { colorVariants } from '@/styles/common/color.css';
@@ -9,10 +9,9 @@ import {
   userColorThemeVars,
 } from '@/styles/theme/index.css';
 
-export const historyCardWrapWidthStyle = style({
-  width: '19.375rem',
+const commonCardWidthStyle = style({
   '@media': {
-    [ODSBreakpointTokenVariables['breakpoint-xl']]: {
+    [ODSBreakpointTokenVariables['breakpoint-l']]: {
       width: '15rem',
     },
     [ODSBreakpointTokenVariables['breakpoint-m']]: {
@@ -24,10 +23,29 @@ export const historyCardWrapWidthStyle = style({
   },
 });
 
+export const defaultCardWidthStyle = style([
+  commonCardWidthStyle,
+  {
+    width: '19.375rem',
+  },
+]);
+
+export const detailViewCardWidthStyle = style([
+  commonCardWidthStyle,
+  {
+    width: '16.0625rem',
+    '@media': {
+      [ODSBreakpointTokenVariables['breakpoint-xl']]: {
+        width: '19.375rem',
+      },
+    },
+  },
+]);
+
 export const wrapStyle = style([
-  historyCardWrapWidthStyle,
   {
     gap: '0.5rem',
+    height: '7rem',
     padding: '1.5rem 2.15625rem',
     borderRadius: '0.75rem',
 
@@ -35,8 +53,12 @@ export const wrapStyle = style([
       [ODSBreakpointTokenVariables['breakpoint-xl']]: {
         padding: '0.875rem 1.5rem',
       },
+      [ODSBreakpointTokenVariables['breakpoint-l']]: {
+        height: '5.75rem',
+      },
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         gap: '0.25rem',
+        height: '100%',
         padding: '0.75rem',
         borderRadius: '0.5rem',
       },

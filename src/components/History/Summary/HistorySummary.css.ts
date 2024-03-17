@@ -9,9 +9,13 @@ export const barWidthStyle = style({
   width: 'calc(100% + 0.75rem)',
 });
 
-export const swiperWrapStyle = style({
-  width: 'calc(100% + 5rem)',
+export const defaultSwiperWrapStyle = style({
+  width: '100%',
   overflow: 'hidden',
+});
+
+export const detailViewSwiperWrapStyle = style({
+  width: 'calc(100% + 5rem)',
 });
 
 export const swiperMainStyle = style({

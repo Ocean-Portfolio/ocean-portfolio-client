@@ -7,7 +7,10 @@ import classNames from 'classnames';
 import React, { Fragment, PropsWithChildren, useState } from 'react';
 import HistoryCard from '@/components/Card/History/HistoryCard';
 import { HistoryCardContextProps } from '@/components/Card/History/HistoryCard.context';
-import { historyCardWrapWidthStyle } from '@/components/Card/History/HistoryCard.css';
+import {
+  defaultCardWidthStyle,
+  detailViewCardWidthStyle,
+} from '@/components/Card/History/HistoryCard.css';
 import Button from '@/composable/Button/Button';
 import CommonIcon from '@/composable/Icon/CommonIcon';
 import Pagination from '@/composable/Pagination/Pagination';
@@ -27,9 +30,10 @@ import {
   listTitleStyle,
   listWrapStyle,
   swiperMainStyle,
-  swiperWrapStyle,
   swiperItemStyle,
   barWidthStyle,
+  detailViewSwiperWrapStyle,
+  defaultSwiperWrapStyle,
 } from './HistorySummary.css';
 export interface HistoryCardData extends HistoryCardContextProps {
   id: string;
@@ -66,7 +70,7 @@ const List = ({ children }: PropsWithChildren) => {
   const { isDetailView, title, data, selectIndex, summary_id, handleClick } =
     getStaticContext(StaticContextHistorySummary);
   const [isOpen, setIsOpen] = useState(isDetailView);
-  const displayData = isOpen === false ? data.slice(0, 2) : data;
+  const displayData = !isOpen ? data.slice(0, 2) : data;
 
   return (
     <div className={listWrapStyle} suppressHydrationWarning>
@@ -122,7 +126,11 @@ const Swipe = () => {
   );
 
   return (
-    <OceanSwiper className={swiperWrapStyle}>
+    <OceanSwiper
+      className={
+        isDetailView ? detailViewSwiperWrapStyle : defaultSwiperWrapStyle
+      }
+    >
       <OceanSwiper.Top>
         {!isDetailView && (
           <h2 className={swiperTitleStyle}>{title.toUpperCase()}</h2>
@@ -139,7 +147,11 @@ const Swipe = () => {
                   typeof selectIndex === 'number' ? selectIndex === idx : false
                 }
                 barWidthClass={barWidthStyle}
-                contentsWidthClass={historyCardWrapWidthStyle}
+                contentsWidthClass={
+                  isDetailView
+                    ? detailViewCardWidthStyle
+                    : defaultCardWidthStyle
+                }
                 onClick={() => {
                   if (handleClick) handleClick(data[idx].id, summary_id, idx);
                 }}
@@ -151,6 +163,7 @@ const Swipe = () => {
               <HistoryCard
                 companyName={history.companyName}
                 period={history.period}
+                isDetailView={isDetailView}
                 onClick={() => {
                   if (handleClick) handleClick(history.id, summary_id, idx);
                 }}
