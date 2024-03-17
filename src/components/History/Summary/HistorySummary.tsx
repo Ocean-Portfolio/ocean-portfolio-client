@@ -4,7 +4,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import classNames from 'classnames';
-import React, { PropsWithChildren, useState } from 'react';
+import React, { Fragment, PropsWithChildren, useState } from 'react';
 import HistoryCard from '@/components/Card/History/HistoryCard';
 import { HistoryCardContextProps } from '@/components/Card/History/HistoryCard.context';
 import { historyCardWrapWidthStyle } from '@/components/Card/History/HistoryCard.css';
@@ -25,7 +25,6 @@ import {
   iconStyleVariants,
   swiperTitleStyle,
   listTitleStyle,
-  listBundleStyle,
   listWrapStyle,
   swiperMainStyle,
   swiperWrapStyle,
@@ -74,7 +73,7 @@ const List = ({ children }: PropsWithChildren) => {
       <h2 className={listTitleStyle}>{title}</h2>
       {displayData.map((history, idx) => {
         return (
-          <OceanSwiper.Slide key={history.id} className={listBundleStyle}>
+          <Fragment key={history.id}>
             <HistoryCard
               companyName={history.companyName}
               period={history.period}
@@ -86,7 +85,7 @@ const List = ({ children }: PropsWithChildren) => {
               <HistoryCard.Period />
             </HistoryCard>
             {selectIndex === idx && children}
-          </OceanSwiper.Slide>
+          </Fragment>
         );
       })}
       {isOpen && <Spacer direction="horizontal" spacing="spacer-075" />}

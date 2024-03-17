@@ -5,19 +5,6 @@ import { colorVariants } from '@/styles/common/color.css';
 import { flexColumn } from '@/styles/common/flex.css';
 import { fontVariants } from '@/styles/common/font.css';
 
-export const listWrapStyle = style([
-  flexColumn,
-  {
-    position: 'relative',
-    transition: 'all 0.3s ease-in-out',
-  },
-]);
-
-export const listTitleStyle = style([
-  fontVariants['title-m-bold'],
-  colorVariants['primary-variant'],
-]);
-
 export const barWidthStyle = style({
   width: 'calc(100% + 0.75rem)',
 });
@@ -49,6 +36,7 @@ export const swiperTitleStyle = style([
     },
   },
 ]);
+// transition: 'all 0.3s ease-in-out',
 
 export const swiperItemStyle = style({
   display: 'inline-flex !important',
@@ -57,46 +45,19 @@ export const swiperItemStyle = style({
   marginRight: '0.75rem',
 });
 
-// export const swiperWrapVariants = styleVariants({
-//   3: [
-//     {
-//       width: 'calc(19.375rem * 3 + 0.75rem * 2 + 3.375rem)',
+export const listWrapStyle = style([
+  flexColumn,
+  {
+    position: 'relative',
+    transition: 'all 0.3s ease-in-out',
+    gap: '0.75rem',
+  },
+]);
 
-//       '@media': {
-//         [ODSBreakpointTokenVariables['breakpoint-xl']]: {
-//           width: 'calc(15rem * 3 + 0.75rem * 3)',
-//         },
-//         [ODSBreakpointTokenVariables['breakpoint-m']]: {
-//           width: 'calc(12.5rem * 3 + 0.75rem * 3)',
-//         },
-//       },
-//     },
-//   ],
-//   4: [
-//     {
-//       width: 'calc(19.375rem * 4 + 0.75rem * 3 + 0.25rem)',
-//       '@media': {
-//         [ODSBreakpointTokenVariables['breakpoint-xl']]: {
-//           width: 'calc(15rem * 4 + 0.75rem * 4)',
-//         },
-//       },
-//     },
-//   ],
-// });
-
-// export const bundleStyle = style([
-//   gapStyle,
-//   {
-//     display: 'flex',
-//     width: '100%',
-//   },
-// ]);
-
-export const listBundleStyle = style({
-  flexDirection: 'column',
-  width: '100%',
-  transition: 'all 0.3s ease-in-out',
-});
+export const listTitleStyle = style([
+  fontVariants['title-m-bold'],
+  colorVariants['primary-variant'],
+]);
 
 export const buttonStyle = style({
   position: 'absolute',
