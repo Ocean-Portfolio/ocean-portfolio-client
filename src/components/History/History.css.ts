@@ -6,12 +6,12 @@ import { commonColorThemeVars } from '@/styles/theme/index.css';
 export const wrapStyle = style({
   display: 'grid',
   gridAutoRows: 'auto',
-  gap: '1rem',
+  columnGap: '1rem',
   width: '100%',
 
   '@media': {
     [ODSBreakpointTokenVariables['breakpoint-xxl']]: {
-      gap: '2.5rem',
+      columnGap: '2.5rem',
     },
     [ODSBreakpointTokenVariables['breakpoint-s']]: {
       display: 'flex',

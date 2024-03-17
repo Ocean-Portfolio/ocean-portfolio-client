@@ -211,7 +211,7 @@ const Menu = () => {
               handleClick(index);
             }}
           >
-            {historySummary.name}
+            {historySummary.name.toUpperCase()}
           </Button>
         );
       })}

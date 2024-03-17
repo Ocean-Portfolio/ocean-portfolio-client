@@ -1,6 +1,7 @@
 'use client';
 
 import 'swiper/css';
+import 'swiper/css/pagination';
 
 import classNames from 'classnames';
 import React, { PropsWithChildren, useState } from 'react';
@@ -162,7 +163,9 @@ const Swipe = () => {
           );
         })}
       </OceanSwiper.Main>
-      {breakpointXXL && <Spacer direction="horizontal" spacing="spacer-20" />}
+      {!isDetailView && breakpointXXL && (
+        <Spacer direction="horizontal" spacing="spacer-20" />
+      )}
     </OceanSwiper>
   );
 };

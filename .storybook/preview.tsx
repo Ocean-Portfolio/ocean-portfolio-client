@@ -1,3 +1,5 @@
+import 'swiper/css';
+import 'swiper/css/pagination';
 import '@/styles/global.css';
 import '@/styles/theme/grayScale.css';
 import '@/styles/theme/colorPalette.css';

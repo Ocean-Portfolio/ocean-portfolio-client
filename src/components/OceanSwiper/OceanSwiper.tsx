@@ -2,7 +2,7 @@
 
 import classNames from 'classnames';
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
-import { A11y } from 'swiper/modules';
+import { A11y, Pagination, Navigation } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react';
 import { SwiperOptions } from 'swiper/types';
 import Tag from '@/composable/Tag/Tag';
@@ -111,9 +111,10 @@ const Main = ({
       <Swiper
         {...rest}
         ref={swiperRef}
-        modules={[A11y]}
+        modules={[A11y, Pagination]}
         slidesPerView={perView || 'auto'}
         spaceBetween={gap}
+        pagination={{ clickable: true }}
         allowSlideNext={isSwipeAble}
         allowSlidePrev={isSwipeAble}
         onRealIndexChange={(e) => {
