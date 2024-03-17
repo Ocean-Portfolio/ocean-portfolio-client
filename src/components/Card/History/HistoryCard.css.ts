@@ -45,16 +45,15 @@ export const detailViewCardWidthStyle = style([
 export const wrapStyle = style([
   {
     gap: '0.5rem',
-    height: '7rem',
     padding: '1.5rem 2.15625rem',
     borderRadius: '0.75rem',
 
     '@media': {
       [ODSBreakpointTokenVariables['breakpoint-xl']]: {
-        padding: '0.875rem 1.5rem',
+        padding: '1.5rem 0.875rem',
       },
       [ODSBreakpointTokenVariables['breakpoint-l']]: {
-        height: '5.75rem',
+        padding: '0.875rem 1.5rem',
       },
       [ODSBreakpointTokenVariables['breakpoint-s']]: {
         gap: '0.25rem',
