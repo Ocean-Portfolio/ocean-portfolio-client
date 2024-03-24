@@ -20,6 +20,8 @@ import {
   buttonGroupStyle,
   iconVariants,
   interactionBarStyle,
+  navigationButtonStyle,
+  readMoreButtonStyle,
   swiperItemStyle,
   swiperTopStyle,
   swiperWrapStyle,
@@ -61,7 +63,7 @@ const SkillSlide = () => {
           <SkillSlide.NavigateButton direction="NEXT" />
         </SkillSlide.InteractionBar>
       </OceanSwiper.Top>
-      <OceanSwiper.Main perView={1} hiddenNavigation>
+      <OceanSwiper.Main perView={1} hiddenNavigation pagination={false}>
         {displayData.map((item, idx) => {
           return (
             <OceanSwiper.Slide
@@ -135,7 +137,7 @@ const Menu = () => {
 const InteractionBar = ({ children }: PropsWithChildren) => {
   return (
     <div className={interactionBarStyle}>
-      <Button as="button" type="button">
+      <Button as="button" type="button" className={readMoreButtonStyle}>
         전체 기술 보기
       </Button>
       <div className={buttonGroupStyle}>{children}</div>
@@ -150,7 +152,12 @@ interface NavigateButtonProps {
 const NavigateButton = ({ direction }: NavigateButtonProps) => {
   const { handleClick } = useOceanSwiperButton(direction);
   return (
-    <Button as="button" type="button" onClick={handleClick}>
+    <Button
+      as="button"
+      type="button"
+      className={navigationButtonStyle}
+      onClick={handleClick}
+    >
       <CommonIcon
         className={iconVariants[direction]}
         variant="LEFT_ARROW_SECONDARY_VARIANT"
