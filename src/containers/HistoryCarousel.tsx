@@ -45,7 +45,9 @@ const HistoryCarouselContainer = () => {
       };
     },
   );
-  return <HistoryCarousel data={data} />;
+
+  // TODO: Remove this after implementing the actual data fetching logic
+  return <HistoryCarousel data={[...data, ...data, ...data, ...data]} />;
 };
 
 export default HistoryCarouselContainer;

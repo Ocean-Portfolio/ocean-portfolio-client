@@ -48,9 +48,11 @@ const HistoryContainer = async ({ section_id }: Props) => {
           ),
         };
       });
+
+      // TODO: Remove this after implementing the actual data fetching logic
       return {
         ...category,
-        histories,
+        histories: [...histories, ...histories, ...histories, ...histories],
       };
     });
 

@@ -5,6 +5,7 @@ const useOceanSwiperButton = (direction: ButtonDirection) => {
   const { buttonRefs } = getStaticContext(ContextValueOceanSwiper);
 
   const handleClick = () => {
+    console.log(buttonRefs, 'buttonRefs');
     if (direction === 'PREV') {
       buttonRefs.prev?.click();
     } else {

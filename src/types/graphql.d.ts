@@ -386,6 +386,7 @@ export type SkillTable = {
   id: Scalars['ID']['output'];
   image_id?: Maybe<Scalars['Float']['output']>;
   name: Scalars['String']['output'];
+  sort_order: Scalars['Float']['output'];
   updated_at: Scalars['String']['output'];
   visible_status: Scalars['String']['output'];
 };
@@ -597,6 +598,25 @@ export type GetSectionsByUserIdQuery = {
     name: string;
     sort_order: number;
     section_type: string;
+  }>;
+};
+
+export type GetSkillsByCategoryIdQueryVariables = Exact<{
+  category_id: Scalars['Float']['input'];
+}>;
+
+export type GetSkillsByCategoryIdQuery = {
+  __typename?: 'Query';
+  getSkillsByCategoryId: Array<{
+    __typename?: 'SkillTable';
+    id: string;
+    sort_order: number;
+    name: string;
+    description?: string | null;
+    visible_status: string;
+    updated_at: string;
+    category_id: number;
+    image_id?: number | null;
   }>;
 };
 

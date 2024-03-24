@@ -3,15 +3,18 @@ import Image from 'next/image';
 import React from 'react';
 import calcRemToPxNumber from '@/utils/style/calcRemToPxNumber';
 import {
+  captionStyle,
   captionVariants,
   imageVariants,
+  pictureStyle,
   pictureVariants,
+  wrapStyle,
   wrapVariants,
 } from './SkillCard.css';
 
 interface Props {
   className?: string;
-  sizeToken: SizeToken;
+  sizeToken?: SizeToken;
   src: string;
   alt: string;
   name: string;
@@ -19,16 +22,31 @@ interface Props {
 
 const SkillCard = ({ className, sizeToken, src, alt, name }: Props) => {
   return (
-    <div className={classNames(className, wrapVariants[sizeToken])}>
-      <picture className={pictureVariants[sizeToken]}>
+    <div
+      className={classNames(
+        className,
+        sizeToken ? wrapVariants[sizeToken] : wrapStyle,
+      )}
+    >
+      <picture
+        className={classNames(
+          sizeToken ? pictureVariants[sizeToken] : pictureStyle,
+        )}
+      >
         <Image
           src={src}
           alt={alt}
-          width={calcRemToPxNumber(imageVariants[sizeToken].width)}
-          height={calcRemToPxNumber(imageVariants[sizeToken].height)}
+          width={calcRemToPxNumber(imageVariants[sizeToken || 'LARGE'].width)}
+          height={calcRemToPxNumber(imageVariants[sizeToken || 'LARGE'].height)}
         />
       </picture>
-      <caption className={captionVariants[sizeToken]}>{name}</caption>
+      <caption
+        className={classNames(
+          sizeToken ? captionVariants[sizeToken] : captionStyle,
+        )}
+      >
+        {name}
+      </caption>
     </div>
   );
 };

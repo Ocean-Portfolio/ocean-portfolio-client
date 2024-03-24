@@ -6,6 +6,7 @@ import HistoryContainer from './History';
 import IntroduceContainer from './Introduce';
 import KeywordContainer from './Keyword';
 import ProjectContainer from './Project';
+import SkillContainer from './Skill';
 
 const Contents = () => {
   const { sections } = getStaticContext(StaticContextPageInfo);
@@ -45,6 +46,14 @@ const Contents = () => {
           case 'PROJECT':
             return (
               <ProjectContainer
+                key={data.id}
+                title={data.name}
+                section_id={Number(data.id)}
+              />
+            );
+          case 'SKILL':
+            return (
+              <SkillContainer
                 key={data.id}
                 title={data.name}
                 section_id={Number(data.id)}

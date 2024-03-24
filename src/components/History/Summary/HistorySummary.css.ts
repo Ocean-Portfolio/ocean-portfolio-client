@@ -4,24 +4,25 @@ import { ODSTextTokenVariables } from '@/const/fonts';
 import { colorVariants } from '@/styles/common/color.css';
 import { flexColumn } from '@/styles/common/flex.css';
 import { fontVariants } from '@/styles/common/font.css';
+import { W100 } from '@/styles/common/layout.css';
 
 export const barWidthStyle = style({
   width: 'calc(100% + 0.75rem)',
   overflow: 'hidden',
 });
 
-export const defaultSwiperWrapStyle = style({
-  width: '100%',
+const swiperWrapCommonStyle = style({
   overflow: 'hidden',
 });
 
-export const detailViewSwiperWrapStyle = style({
-  width: 'calc(100% + 5rem)',
-  overflow: 'hidden',
-});
-
-export const swiperMainStyle = style({
-  width: '100%',
+export const swiperWrapStyleVariants = styleVariants({
+  DETAIL: [
+    swiperWrapCommonStyle,
+    {
+      width: 'calc(100% + 5rem)',
+    },
+  ],
+  DEFAULT: [swiperWrapCommonStyle, W100],
 });
 
 export const swiperTitleStyle = style([

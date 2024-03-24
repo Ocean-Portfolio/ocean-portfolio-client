@@ -3,13 +3,20 @@ import { ODSBreakpointTokenVariables } from '@/const/breakpoints';
 import { backgroundColorVariants } from '@/styles/common/color.css';
 import { flexCenter } from '@/styles/common/flex.css';
 
-export const wrapStyle = style({
-  display: 'flex',
-  gap: '0.25rem',
+export const wrapStyleVariants = styleVariants({
+  BOTTOM: {
+    position: 'absolute',
+    bottom: '0',
+    width: '100%',
+  },
+  DEFAULT: {
+    display: 'flex',
+    gap: '0.25rem',
 
-  '@media': {
-    [ODSBreakpointTokenVariables['breakpoint-s']]: {
-      width: '15rem',
+    '@media': {
+      [ODSBreakpointTokenVariables['breakpoint-s']]: {
+        width: '15rem',
+      },
     },
   },
 });

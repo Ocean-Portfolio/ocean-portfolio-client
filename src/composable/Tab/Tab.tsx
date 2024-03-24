@@ -3,15 +3,21 @@
 import classNames from 'classnames';
 import React from 'react';
 import Button from '../Button/Button';
-import { buttonAnchorStyleVariant, buttonStyle, wrapStyle } from './Tab.css';
+import {
+  buttonAnchorStyleVariant,
+  buttonStyle,
+  wrapStyleVariants,
+} from './Tab.css';
 
 export interface TabProps {
   className?: string;
   wrapRef?: React.RefObject<HTMLDivElement>;
-  selectedIdx: number;
+  isSelected?: boolean;
+  selectedIdx?: number;
   onClick: (currentIdx: number) => void;
   length: number;
   hidden?: boolean;
+  bottom?: boolean;
 }
 
 const Tab = ({
@@ -19,12 +25,17 @@ const Tab = ({
   wrapRef,
   hidden,
   length,
+  isSelected,
   selectedIdx,
+  bottom,
   onClick,
 }: TabProps) => {
   return (
     <div
-      className={classNames(className, wrapStyle)}
+      className={classNames(
+        className,
+        wrapStyleVariants[bottom ? 'BOTTOM' : 'DEFAULT'],
+      )}
       ref={wrapRef}
       style={{
         display: hidden ? 'none' : 'flex',
@@ -34,7 +45,7 @@ const Tab = ({
         <Tab.Item
           key={idx}
           idx={idx}
-          isSelected={idx === selectedIdx}
+          isSelected={isSelected ? isSelected : idx === selectedIdx}
           onClick={onClick}
         />
       ))}

@@ -7,9 +7,10 @@ import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react';
 import { SwiperOptions } from 'swiper/types';
 import Tag from '@/composable/Tag/Tag';
 import { customEvents } from '@/const/customEvents';
+import { W100 } from '@/styles/common/layout.css';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import { ContextValueOceanSwiper } from './OceanSwiper.context';
-import { swiperVisibleSelector, swiperWrap } from './OceanSwiper.css';
+import { swiperVisibleSelector } from './OceanSwiper.css';
 
 interface Props {
   className?: string;
@@ -65,7 +66,7 @@ const Wrap = ({ children, className, style }: PropsWithChildren<WrapProps>) => {
 
   return (
     <div
-      className={classNames(className, swiperWrap)}
+      className={classNames(className, W100)}
       ref={divRef}
       style={style}
       suppressHydrationWarning
@@ -114,7 +115,7 @@ const Main = ({
         modules={[A11y, Pagination]}
         slidesPerView={perView || 'auto'}
         spaceBetween={gap}
-        pagination={{ clickable: true }}
+        pagination={rest.pagination === false ? false : { clickable: true }}
         allowSlideNext={isSwipeAble}
         allowSlidePrev={isSwipeAble}
         onRealIndexChange={(e) => {

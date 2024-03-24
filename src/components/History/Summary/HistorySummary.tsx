@@ -13,6 +13,7 @@ import CommonIcon from '@/composable/Icon/CommonIcon';
 import Pagination from '@/composable/Pagination/Pagination';
 import Spacer from '@/composable/Spacer/Spacer';
 import { useODSBreakPoints } from '@/hook/useODSBreakPoints';
+import { W100 } from '@/styles/common/layout.css';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import OceanSwiper from '../../OceanSwiper/OceanSwiper';
 import {
@@ -26,11 +27,9 @@ import {
   swiperTitleStyle,
   listTitleStyle,
   listWrapStyle,
-  swiperMainStyle,
   swiperItemStyle,
   barWidthStyle,
-  detailViewSwiperWrapStyle,
-  defaultSwiperWrapStyle,
+  swiperWrapStyleVariants,
 } from './HistorySummary.css';
 export interface HistoryCardData extends HistoryCardContextProps {
   id: string;
@@ -124,16 +123,15 @@ const Swipe = () => {
 
   return (
     <OceanSwiper
-      className={
-        isDetailView ? detailViewSwiperWrapStyle : defaultSwiperWrapStyle
-      }
+      className={swiperWrapStyleVariants[isDetailView ? 'DETAIL' : 'DEFAULT']}
     >
       <OceanSwiper.Top>
         {!isDetailView && (
           <h2 className={swiperTitleStyle}>{title.toUpperCase()}</h2>
         )}
       </OceanSwiper.Top>
-      <OceanSwiper.Main className={swiperMainStyle} perView={'auto'}>
+
+      <OceanSwiper.Main className={W100} perView={'auto'}>
         {data.map((history, idx) => {
           return (
             <OceanSwiper.Slide key={history.id} className={swiperItemStyle}>

@@ -15,6 +15,7 @@ import Tab from '@/composable/Tab/Tab';
 import useOceanSwiperButton from '@/hook/useOceanSwiperButton';
 import { useOceanSwiperIndex } from '@/hook/useOceanSwiperIndex';
 import { useODSBreakPoints } from '@/hook/useODSBreakPoints';
+import { StaticContextUserInfo } from '@/Provider/UserInfoProvider.context';
 import { getStaticContext } from '@/utils/context/StaticContext';
 import { StaticContextHistoryCarousel } from './HistoryCarousel.context';
 import {
@@ -136,7 +137,7 @@ interface NavigateButtonProps {
 const NavigateButton = ({ direction }: NavigateButtonProps) => {
   const { breakpointS } = useODSBreakPoints();
   const { handleClick } = useOceanSwiperButton(direction);
-
+  const { name } = getStaticContext(StaticContextUserInfo);
   if (breakpointS) return null;
 
   return (
@@ -144,7 +145,8 @@ const NavigateButton = ({ direction }: NavigateButtonProps) => {
       <CommonIcon
         className={iconVariants[direction]}
         variant="LEFT_ARROW_SECONDARY_VARIANT"
-        userToken="sungyeon"
+        // TODO: userToken을 받아오는 방법을 고민해보세요.
+        userToken={name}
         width={24}
         height={24}
       />

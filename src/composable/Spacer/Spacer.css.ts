@@ -4,6 +4,9 @@ export const horizontalSpacerStyle = styleVariants({
   'spacer-0': {
     height: '0',
   },
+  'spacer-0125': {
+    height: '0.125rem',
+  },
   'spacer-025': {
     height: '0.25rem',
   },
@@ -51,6 +54,10 @@ export const horizontalSpacerStyle = styleVariants({
 export const verticalSpacerStyle = styleVariants({
   'spacer-0': {
     width: '0',
+    height: '100%',
+  },
+  'spacer-0125': {
+    width: '0.125rem',
     height: '100%',
   },
   'spacer-025': {

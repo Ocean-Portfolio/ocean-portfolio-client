@@ -2,6 +2,7 @@
 
 type SpacingToken =
   | 'spacer-0'
+  | 'spacer-0125'
   | 'spacer-025'
   | 'spacer-05'
   | 'spacer-075'
